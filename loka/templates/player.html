@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="media well">
+        <a class="pull-left" href="#">
+            <img class="media-object img-rounded" src="{% static 'images/Cryptite.png' %}" alt="Cryptite">
+        </a>
+
+        <div class="media-body">
+            <h1 class="media-heading">{{ player.name }}
+                <small>Stone Gladiator</small>
+            </h1>
+            <div class="col-sm-1 col-md-3 text-center">
+                <h2 class="rating">{{ player.arenarating }}</h2>
+
+                <h3>1v1 rating</h3>
+            </div>
+            {% if player.arenawins2v2 > 0 or player.arenalosses2v2 > 0 %}
+                <div class="col-sm-1 col-md-3 text-center">
+                    <h2 class="rating">{{ player.arenarating2v2 }}</h2>
+
+                    <h3>2v2 rating</h3>
+                </div>
+            {% endif %}
+            <div class="col-sm-1 col-md-3">
+                <h2 class="rating text-center">#1</h2>
+
+                <h3 class="text-center">VotA Rank</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-1 col-md-4 text-center stats">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h1>1v1 Arena</h1></div>
+            <div class="panel-body">
+                <h2>
+                    <small>Rank:</small> #1</h2>
+                <h2>
+                    <small>Streak:</small> {{ player.streak }}
+                    {% if player.streak > 0 %}
+                        <img src="{% static 'images/up.png' %}" />
+                    {% else %}
+                        <img src="{% static 'images/down.png' %}" />
+                    {% endif %}
+                </h2>
+                <h2>
+                    <small>W/L:</small> {{ player.arenawins }} - {{ player.arenalosses }}</h2>
+                <h2>
+                    <small>Highest Rating:</small> {{ player.highestrating }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-1 col-md-4 text-center stats">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h1>2v2 Arena</h1></div>
+            <div class="panel-body">
+                <h2>
+                    <small>Rank:</small> #1</h2>
+                <h2>
+                    <small>Streak:</small> {{ player.streak2v2 }}
+                    {% if player.streak2v2 > 0 %}
+                        <img src="{% static 'images/up.png' %}" />
+                    {% else %}
+                        <img src="{% static 'images/down.png' %}" />
+                    {% endif %}
+                </h2>
+                <h2>
+                    <small>W/L:</small> {{ player.arenawins2v2 }} - {{ player.arenalosses2v2 }}</h2>
+                <h2>
+                    <small>Highest Rating:</small> {{ player.highestrating2v2 }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-1 col-md-4 text-center stats">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h1>VotA</h1></div>
+            <div class="panel-body">
+                <h2>
+                    <small>Rank:</small> #1</h2>
+                <h2>
+                    <small>W/L:</small> {{ player.valleyWins }} - {{ player.valleyLosses }}</h2>
+                <h2>
+                    <small>K/D:</small> {{ player.valleyKills }} - {{ player.valleyDeaths }}</h2>
+                <h2>
+                    <small>Caps:</small> {{ player.valleyCaps }}</h2>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
