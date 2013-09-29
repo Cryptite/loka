@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="jumbotron">
+        <img src="{% static 'images/logo.png' %}" class="img-responsive"/>
+
+        <h1>The New World</h1>
+
+            <h2>iron.minecraftarium.com</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-md-4">
+            <div class="thumbnail">
+                <img src="{% static 'images/wal.png' %}" alt="...">
+
+                <div class="caption">
+                    <h2 class="pager">Towns</h2>
+
+                    <p>Loka provides a unique town-building system based off of real resources. Power your generator,
+                        protect your town, but hide your wealth well.</p>
+
+                    <p><a href="{% url 'loka.views.towns' %}" class="btn btn-primary btn-lg btn-group-justified">Learn
+                        about Towns</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-md-3">
+            <div class="thumbnail">
+                <img src="{% static 'images/sword.jpg' %}" alt="...">
+
+                <div class="caption">
+                    <h2 class="pager">PvP</h2>
+
+                    <p>Prove your worth in a variety of our rated arenas. Expand your bragging rights through our Elo
+                        system and become the ultimate gladiator!</p>
+
+                    <p><a href="{% url 'loka.views.pvp' %}" class="btn btn-warning btn-lg btn-group-justified">Learn
+                        about PvP</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-md-3">
+            <div class="thumbnail">
+                <img src="{% static 'images/chest.png' %}" alt="...">
+
+                <div class="caption">
+                    <h2 class="pager">Lore</h2>
+
+                    <p>Loka has a rich and continuing history. Will you discover the secret of the Ancients, the
+                        Artifacts, and the Unbound Ones?</p>
+
+                    <p><a href="http://loka.wikia.com/wiki/Loka_Wiki"
+                          class="btn btn-success btn-lg btn-group-justified">Delve into our Story</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

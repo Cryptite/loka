@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron pvp">
+        <h1>Exceptional PvP</h1>
+
+        <h2>Prove your worth!</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3 col-md-6">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h2>ELO-Rated Arenas</h2>
+
+                    <p>Loka features both 1v1 and 2v2 rated arenas that pit players against one another in a small
+                        arena.
+
+                        This is the ultimate test in pvp prowess. Players are all given a set of gear that gives them a
+                        choice of fighting styles.</p>
+
+                    <p><a href="#" class="btn btn-primary">Button</a> <a href="#" class="btn btn-default">Button</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-6">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h2>Battlegrounds</h2>
+
+                    <p>Test your strength in larger-scale, team-based battlegrounds in which you and your team must take
+                        control of the battlefield, earning points and defeating your foes</p>
+
+                    <p><a href="#" class="btn btn-primary">Button</a> <a href="#" class="btn btn-default">Button</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

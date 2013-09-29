@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron towns">
+        <h1>Our Town System</h1>
+
+        <h2>Discover Loka's Unique Town System!</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3 col-md-6">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h2>Generators</h2>
+
+                    <p>Loka's towns feature a one-of-a-kind generator system. Through custom code, Loka gives you a
+                        unique township experience.</p>
+
+                    <h3>Real Resources</h3>
+
+                    <p>Town generators run off of a a real-world resource, Emeralds. By keeping your generator topped
+                        off with emeralds, you can ensure protection for your town's citizens. Either by finding,
+                        trading, or converting ores to emeralds with our Ore Converter, you can ensure that your
+                        generator will keep running while you're away. If your generator should ever run out of
+                        emeralds, though, your protection will fall and thieves will be free to make their way to your
+                        vaults.</p>
+
+                    <p><a href="#" class="btn btn-primary">Button</a> <a href="#" class="btn btn-default">Button</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-6">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h2>Town Benefits</h2>
+
+                    <h3>Town Chat</h3>
+
+                    <p>Being in a town grants you access to a members-only town chat. Discuss all of your incredibly
+                        secret battle plans, or perhaps your odd town's religious rituals. The privacy is yours to
+                        exploit!</p>
+
+                    <h3>Town Portal</h3>
+
+                    <p>Town owners may set up a town portal that provides town members a way to warp back to the server
+                        spawn. Because warping and other teleports are extremely rare on Loka, these are useful to have
+                        if you need to get back to spawn to convert your hard-earned ores to emeralds or take place in
+                        some of Loka's more social events like our bi-weekly Auction!</p>
+
+                    <h3>Nether Protection</h3>
+
+                    <p>By paying an additional cost, your town can activate nether protection that protects the
+                        equivalent sector of the nether for your town. This grants your town an extra layer of security
+                        and prevents a variety of nether-entry methods.</p>
+
+                    <p><a href="#" class="btn btn-primary">Button</a> <a href="#" class="btn btn-default">Button</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

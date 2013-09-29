@@ -1,0 +1,76 @@
+.jumbotron {
+  background: url('/static/images/bg.png');
+}
+
+.towns {
+    background: url('/static/images/towns.png');
+}
+
+.pvp {
+    background: url('/static/images/arena.jpg');
+}
+
+.jumbotron img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.jumbotron h1,
+.jumbotron h2,
+.jumbotron h3{
+    text-shadow: 0 1px 10px rgba(0,0,0,.5), 0 0 30px rgba(0,0,0,.1);
+    text-align: center;
+    color: #ffffff;
+}
+
+.container .jumbotron {
+    border-radius: 15px;
+}
+
+.thumbnail {
+    border: 0px;
+    min-height: 500px;
+}
+
+.avatar {
+    max-height: 32px;
+    max-width: 32px;
+}
+
+.navbar-nav img {
+    width: 20px;
+    height: 20px;
+}
+
+.media-body h1 {
+    font-size: 5em;
+}
+
+.media-body h3 {
+    font-size: 2.3em;
+    color: #b3b3b3;
+    margin-top: 0px;
+}
+
+.media-body small {
+    font-size: .7em;
+}
+
+.rating {
+    font-size: 5em;
+    color: #5f5f5f;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.stats h1 {
+    font-size: 3em;
+}
+
+.stats h2 {
+    color: #3d3d3d;
+}
+
+.stats small {
+    font-size: 1em;
+}
