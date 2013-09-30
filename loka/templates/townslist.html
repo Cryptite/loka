@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron pvp">
+        <h1>Towns of Loka</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for town in towns %}
+                <div class="col-sm-1 col-md-3 well">
+                    <div class="caption">
+                        <h2>{{ town.name }}</h2>
+
+                        <p>Owner: <img src="{% static 'images/Cryptite_sm.png' %}"
+                                         class="avatar"/> {{ town.owner }}</p>
+
+                        <p><a href="/town/{{ town.name }}" class="btn btn-success btn-block">Visit {{ town.name }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

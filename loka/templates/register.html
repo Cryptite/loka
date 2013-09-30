@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div class="jumbotron register">
+        <a href="#">
+            <img class="media-object img-rounded" src="{% static 'images/Cryptite.png' %}" alt="Cryptite">
+        </a>
+
+        <div class="media-body">
+            <h1>{{ player.username }}</h1>
+
+            <div class="container registerform">
+                <form method="post">
+                    {% csrf_token %}
+                    <tr>
+                        <td><input class="container form-control input-lg" placeholder="password" name="password"
+                                   type="password"/></td>
+                    </tr>
+                    <tr>
+                        <td><input class="container form-control input-lg" placeholder="repeat password"
+                                   name="password2"
+                                   type="password"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Register!" class="btn btn-primary btn-lg btn-block"/></td>
+                    </tr>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

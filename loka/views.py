@@ -1,46 +1,26 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.forms.formsets import formset_factory
+from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from bootstrap_toolkit.widgets import BootstrapUneditableInput
 
-from .forms import TestForm, TestModelForm, TestInlineForm, WidgetsForm, FormSetInlineForm
-from loka.models import Player
+from loka.models import Player, Town
 
 
 def towns(request):
-    layout = request.GET.get('layout')
-    if not layout:
-        layout = 'vertical'
-    if request.method == 'POST':
-        form = TestForm(request.POST)
-        form.is_valid()
-    else:
-        form = TestForm()
-    form.fields['title'].widget = BootstrapUneditableInput()
-    return render_to_response('towns.html', RequestContext(request, {
-        'form': form,
-        'layout': layout,
-    }))
+    return render_to_response('towns.html', RequestContext(request))
 
+
+def townslist(request):
+    towns = Town.objects.all()
+    return render_to_response('townslist.html', RequestContext(request, {
+        'towns': towns,
+    }))
 
 def pvp(request):
-    layout = request.GET.get('layout')
-    if not layout:
-        layout = 'vertical'
-    if request.method == 'POST':
-        form = TestForm(request.POST)
-        form.is_valid()
-    else:
-        form = TestForm()
-    form.fields['title'].widget = BootstrapUneditableInput()
-    return render_to_response('pvp.html', RequestContext(request, {
-        'form': form,
-        'layout': layout,
-    }))
+    return render_to_response('pvp.html', RequestContext(request))
 
 
 def pvp1v1(request):
@@ -54,6 +34,25 @@ def player(request, player_name):
     player = Player.objects.get(name=player_name)
     return render_to_response('player.html', RequestContext(request, {
         'player': player,
+    }))
+
+
+def registration(request, registration_id):
+    user = User.objects.get(password=registration_id)
+    if request.POST:
+        pass1 = request.POST['password']
+        pass2 = request.POST['password2']
+        if pass1 != pass2:
+            messages.warning(request, 'Passwords do not match!')
+        else:
+            user.set_password(pass1)
+            messages.success(request, 'Welcome to Loka!')
+            user = authenticate(username=user.username, password=user.password)
+            return render_to_response('index.html', RequestContext(request, {
+                'player': user,
+            }))
+    return render_to_response('register.html', RequestContext(request, {
+        'player': user,
     }))
 
 
