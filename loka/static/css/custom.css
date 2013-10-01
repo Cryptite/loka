@@ -47,7 +47,7 @@ background-color: #89a5b0;
     border-left: 1px solid #6f879d;
     border-right: 1px solid #4f5a66;
     color: #f1f1f1;
-    max-height: 55px;
+    max-height: 45px;
 }
 
 .dropdown-toggle a {
@@ -84,6 +84,10 @@ background-color: #89a5b0;
     color: #ffffff;
 }
 
+.jumbotron .town {
+    text-size: 6em;
+}
+
 .container .jumbotron {
     border-radius: 15px;
 }
@@ -93,14 +97,17 @@ background-color: #89a5b0;
     min-height: 500px;
 }
 
-.avatar {
-    max-height: 32px;
-    max-width: 32px;
-}
-
 .navbar-nav img {
     width: 20px;
     height: 20px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    max-height: 32px;
+    max-width: 32px;
+    margin-left: 10px;
 }
 
 .media-body h1 {

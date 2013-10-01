@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="media well">
+        <div class="media-body">
+            <div class="col-sm-3 col-md-6">
+                <h1><strong>{{ town.name }}</strong> -
+                    <small> 9 members</small>
+                </h1>
+            </div>
+            <div class="col-sm-3 col-md-6">
+                <blockquote class="pull-right">
+                    <p>Avoid Psy at all costs!</p>
+                    <small>Message of the <cite title="Source Title">Day</cite></small>
+                </blockquote>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <h2>Owner:<img
+                    src="{% static 'images/Cryptite.png' %}"
+                    class="img-rounded avatar"/> {{ town.owner }}</h2>
+
+            <h3>Subowners:<img
+                    src="{% static 'images/Cryptite.png' %}"
+                    class="img-rounded avatar"/> Blah <img
+                    src="{% static 'images/Cryptite.png' %}"
+                    class="img-rounded avatar"/> Blah2</h3>
+        </div>
+    </div>
+
+{% endblock %}

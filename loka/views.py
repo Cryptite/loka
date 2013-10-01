@@ -1,4 +1,4 @@
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
@@ -14,7 +14,7 @@ def towns(request):
 
 
 def townslist(request):
-    towns = Town.objects.all()
+    towns = Town.objects.filter(public=1)
     return render_to_response('townslist.html', RequestContext(request, {
         'towns': towns,
     }))
@@ -36,6 +36,18 @@ def player(request, player_name):
         'player': player,
     }))
 
+def town(request, town_name):
+    town = Town.objects.get(name=town_name)
+    return render_to_response('town.html', RequestContext(request, {
+        'town': town,
+    }))
+
+def dashboard(request, player_name):
+    player = Player.objects.get(name=player_name)
+    return render_to_response('player.html', RequestContext(request, {
+        'player': player,
+    }))
+
 
 def registration(request, registration_id):
     user = User.objects.get(password=registration_id)
@@ -47,6 +59,7 @@ def registration(request, registration_id):
         else:
             user.set_password(pass1)
             messages.success(request, 'Welcome to Loka!')
+            user.save()
             user = authenticate(username=user.username, password=user.password)
             return render_to_response('index.html', RequestContext(request, {
                 'player': user,
@@ -54,6 +67,12 @@ def registration(request, registration_id):
     return render_to_response('register.html', RequestContext(request, {
         'player': user,
     }))
+
+
+def logout(request):
+    auth.logout(request)
+    messages.success(request, 'Seeya next time!')
+    return render_to_response('index.html', RequestContext(request))
 
 
 def home(request):
@@ -70,4 +89,8 @@ def home(request):
             print 'invalid'
             pass
             # Return an 'invalid login' error message.
+    elif request.user.is_authenticated():
+        return render_to_response('index.html', RequestContext(request, {
+            'user': request.user,
+        }))
     return render_to_response('index.html', RequestContext(request))

@@ -18,9 +18,13 @@
                     <div class="caption">
                         <h2>{{ town.name }}</h2>
 
-                        <p>Owner: <img src="{% static 'images/Cryptite_sm.png' %}"
+                        {% if user.username == town.owner %}
+                            <p>Owner: <img src="{% static 'images/Cryptite_sm.png' %}"
+                                         class="avatar"/> You!</p>
+                        {% else %}
+                            <p>Owner: <img src="{% static 'images/Cryptite_sm.png' %}"
                                          class="avatar"/> {{ town.owner }}</p>
-
+                        {% endif %}
                         <p><a href="/town/{{ town.name }}" class="btn btn-success btn-block">Visit {{ town.name }}</a>
                     </div>
                 </div>
