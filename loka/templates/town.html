@@ -7,32 +7,42 @@
 {% endblock %}
 
 {% block content %}
-
-    <div class="media well">
-        <div class="media-body">
-            <div class="col-sm-3 col-md-6">
-                <h1><strong>{{ town.name }}</strong> -
-                    <small> 9 members</small>
-                </h1>
+    <div class="container">
+        <div class="townboard">
+            <div class="media-body">
+                <div class="row">
+                    <h1><strong>{{ town.name }}</strong> -
+                        <small> 9 members</small>
+                    </h1>
+                    <blockquote>
+                        <p>Avoid Psy at all costs!</p>
+                        <small>Message of the <cite title="Source Title">Day</cite></small>
+                    </blockquote>
+                </div>
             </div>
-            <div class="col-sm-3 col-md-6">
-                <blockquote class="pull-right">
-                    <p>Avoid Psy at all costs!</p>
-                    <small>Message of the <cite title="Source Title">Day</cite></small>
-                </blockquote>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-6">
-            <h2>Owner:<img
-                    src="{% static 'images/Cryptite.png' %}"
-                    class="img-rounded avatar"/> {{ town.owner }}</h2>
+            <div class="col-sm-6 col-md-3">
+                <h3>Owner</h3>
+                <img src="{% static 'images/Cryptite.png' %}"
+                     class="img-circle avatar"/> {{ town.owner }}
 
-            <h3>Subowners:<img
-                    src="{% static 'images/Cryptite.png' %}"
-                    class="img-rounded avatar"/> Blah <img
-                    src="{% static 'images/Cryptite.png' %}"
-                    class="img-rounded avatar"/> Blah2</h3>
+                <h3>Subowners</h3>
+                <img src="{% static 'images/Cryptite.png' %}"
+                     class="img-circle avatar"/> Blah
+                <img src="{% static 'images/Cryptite.png' %}"
+                     class="img-circle avatar"/> Blah2</h3>
+            </div>
+
+            <div class="col-sm-6 col-md-8 well">
+                <h3>Owner</h3>
+                <img src="{% static 'images/Cryptite.png' %}"
+                     class="img-circle avatar"/> {{ town.owner }}
+
+                <h3>Subowners</h3>
+                <img src="{% static 'images/Cryptite.png' %}"
+                     class="img-circle avatar"/> Blah
+                <img src="{% static 'images/Cryptite.png' %}"
+                     class="img-circle avatar"/> Blah2</h3>
+            </div>
         </div>
     </div>
-
 {% endblock %}

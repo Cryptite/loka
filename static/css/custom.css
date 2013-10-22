@@ -1,3 +1,45 @@
+@font-face {
+    font-family: 'aleobolditalic';
+    src: url('/static/fonts/aleo-bolditalic-webfont.eot');
+    src: url('/static/fonts/aleo-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/aleo-bolditalic-webfont.woff') format('woff'),
+         url('/static/fonts/aleo-bolditalic-webfont.ttf') format('truetype'),
+         url('/static/fonts/aleo-bolditalic-webfont.svg#aleobolditalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'aleoregular';
+    src: url('/static/fonts/aleo-regular-webfont.eot');
+    src: url('/static/fonts/aleo-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/aleo-regular-webfont.woff') format('woff'),
+         url('/static/fonts/aleo-regular-webfont.ttf') format('truetype'),
+         url('/static/fonts/aleo-regular-webfont.svg#aleoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'aleobold';
+    src: url('/static/fonts/aleo-bold-webfont.eot');
+    src: url('/static/fonts/aleo-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/aleo-bold-webfont.woff') format('woff'),
+         url('/static/fonts/aleo-bold-webfont.ttf') format('truetype'),
+         url('/static/fonts/aleo-bold-webfont.svg#aleobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 .navbar-default .navbar-nav>.dropdown>a .caret {
 border-top-color: #f1f1f1;
 border-bottom-color: #f1f1f1;
@@ -47,7 +89,7 @@ background-color: #89a5b0;
     border-left: 1px solid #6f879d;
     border-right: 1px solid #4f5a66;
     color: #f1f1f1;
-    max-height: 55px;
+    max-height: 45px;
 }
 
 .dropdown-toggle a {
@@ -84,6 +126,10 @@ background-color: #89a5b0;
     color: #ffffff;
 }
 
+.jumbotron .town {
+    text-size: 6em;
+}
+
 .container .jumbotron {
     border-radius: 15px;
 }
@@ -93,14 +139,17 @@ background-color: #89a5b0;
     min-height: 500px;
 }
 
-.avatar {
-    max-height: 32px;
-    max-width: 32px;
-}
-
 .navbar-nav img {
     width: 20px;
     height: 20px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    max-height: 32px;
+    max-width: 32px;
+    margin-left: 10px;
 }
 
 .media-body h1 {
@@ -138,4 +187,19 @@ background-color: #89a5b0;
 
 .registerform {
     width: 35%;
+}
+
+.towns {
+    background: none;
+}
+
+.towns h2 {
+    font-family: 'aleoregular', Arial, sans-serif;
+    text-align: center;
+}
+
+.towns small {
+    font-family: 'aleoregular', Arial, sans-serif;
+    text-align: center;
+    color: #3d3d3d;
 }

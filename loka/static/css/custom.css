@@ -1,3 +1,39 @@
+@font-face {
+    font-family: 'aleobolditalic';
+    src: url('/static/fonts/aleo-bolditalic-webfont.eot');
+    src: url('/static/fonts/aleo-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/aleo-bolditalic-webfont.woff') format('woff'),
+         url('/static/fonts/aleo-bolditalic-webfont.ttf') format('truetype'),
+         url('/static/fonts/aleo-bolditalic-webfont.svg#aleobolditalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'aleoregular';
+    src: url('/static/fonts/aleo-regular-webfont.eot');
+    src: url('/static/fonts/aleo-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/aleo-regular-webfont.woff') format('woff'),
+         url('/static/fonts/aleo-regular-webfont.ttf') format('truetype'),
+         url('/static/fonts/aleo-regular-webfont.svg#aleoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'aleobold';
+    src: url('/static/fonts/aleo-bold-webfont.eot');
+    src: url('/static/fonts/aleo-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/aleo-bold-webfont.woff') format('woff'),
+         url('/static/fonts/aleo-bold-webfont.ttf') format('truetype'),
+         url('/static/fonts/aleo-bold-webfont.svg#aleobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 .navbar-default .navbar-nav>.dropdown>a .caret {
 border-top-color: #f1f1f1;
 border-bottom-color: #f1f1f1;
@@ -11,6 +47,10 @@ border-bottom-color: #fff;
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
 color: #fff;
 background-color: #89a5b0;
+}
+
+.navbar {
+    margin-bottom: 0px;
 }
 
 .jumbotron {
@@ -74,6 +114,7 @@ background-color: #89a5b0;
 .jumbotron img {
     margin-left: auto;
     margin-right: auto;
+    padding: 0px;
 }
 
 .jumbotron h1,
@@ -86,10 +127,6 @@ background-color: #89a5b0;
 
 .jumbotron .town {
     text-size: 6em;
-}
-
-.container .jumbotron {
-    border-radius: 15px;
 }
 
 .thumbnail {
@@ -145,4 +182,39 @@ background-color: #89a5b0;
 
 .registerform {
     width: 35%;
+}
+
+.towns {
+    background: none;
+}
+
+.towns h1 {
+    font-family: 'aleoregular', Arial, sans-serif;
+    text-align: center;
+}
+
+.towns small {
+    font-family: 'aleobold', Arial, sans-serif;
+    text-align: center;
+    color: #5d5d5d;
+    font-size: 1em;
+}
+
+.townboard h1 {
+    font-family: 'aleobold', Arial, sans-serif;
+    background: #fff;
+}
+
+.townboard {
+    background: url("/static/images/bg_vota.jpg");
+}
+
+.container {
+    max-width: 1300px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.container .jumbotron {
+    border-radius: 0px;
 }

@@ -11,20 +11,21 @@
     <div class="jumbotron pvp">
         <h1>Towns of Loka</h1>
     </div>
-    <div class="container">
+    <div class="container well">
         <div class="row">
             {% for town in towns %}
-                <div class="col-sm-1 col-md-3 well">
-                    <div class="caption">
-                        <h2>{{ town.name }}</h2>
-
-                        {% if user.username == town.owner %}
-                            <p>Owner: <img src="{% static 'images/Cryptite_sm.png' %}"
-                                         class="avatar"/> You!</p>
-                        {% else %}
-                            <p>Owner: <img src="{% static 'images/Cryptite_sm.png' %}"
-                                         class="avatar"/> {{ town.owner }}</p>
-                        {% endif %}
+                <div class="col-sm-1 col-md-3">
+                    <div class="caption towns">
+                        <h1>{{ town.name }}</h2>
+                        <small>
+                            {% if user.username == town.owner %}
+                                <p>Owner: <img src="{% static 'images/Cryptite_sm.png' %}"
+                                               class="avatar img-circle"/> You!</p>
+                            {% else %}
+                                <p>Owner: <img src="{% static 'images/Cryptite_sm.png' %}"
+                                               class="avatar img-circle"/> {{ town.owner }}</p>
+                            {% endif %}
+                        </small>
                         <p><a href="/town/{{ town.name }}" class="btn btn-success btn-block">Visit {{ town.name }}</a>
                     </div>
                 </div>
