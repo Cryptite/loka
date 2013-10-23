@@ -11,26 +11,29 @@
     <div class="jumbotron pvp">
         <h1>Towns of Loka</h1>
     </div>
-    <div class="container well">
-        <div class="row">
-            {% for town in towns %}
-                <div class="col-sm-1 col-md-3">
-                    <div class="caption towns">
-                        <h1>{{ town.name }}</h2>
-                        <small>
-                            {% if user.username == town.owner %}
-                                <p>Owner: <img src="{% static 'images/Cryptite_sm.png' %}"
-                                               class="avatar img-circle"/> You!</p>
-                            {% else %}
-                                <p>Owner: <img src="{% static 'images/Cryptite_sm.png' %}"
-                                               class="avatar img-circle"/> {{ town.owner }}</p>
-                            {% endif %}
-                        </small>
-                        <p><a href="/town/{{ town.name }}" class="btn btn-success btn-block">Visit {{ town.name }}</a>
-                    </div>
+    <div class="row">
+        {% for town in towns %}
+
+            <div class="span2 teammember text-center towns">
+
+                <div class="teamimagewrap smallportfolioshortcode"><a href="#"><img
+                        src="/static/images/portfolio3.jpg" alt="{{ town.name }}"></a>
                 </div>
-            {% endfor %}
-        </div>
+
+                <h1 class="teamname"><a class="inverse-link"href="/town/{{ town.name }}"
+                                              title="Alfie Htme Template">{{ town.name }}</a></h1>
+
+                    <span class="teamposition">
+                        {% if user.username == town.owner %}
+                            <span><img src="{% static 'images/Cryptite_sm.png' %}"
+                                    class="avatar img-circle"/> You!</span>
+                        {% else %}
+                            <p><img src="{% static 'images/Cryptite_sm.png' %}"
+                                    class="avatar img-circle"/> {{ town.owner }}</p>
+                        {% endif %}</span>
+                <i class="icon-repeat blogpost-slide padbottom30"></i>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

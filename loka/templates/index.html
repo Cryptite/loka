@@ -10,123 +10,47 @@
         <h2>iron.minecraftarium.com</h2>
     </div>
 
-    <div class="row">
-        <div class="col-md-4 col-md-4">
-            <div class="thumbnail">
-                <img src="{% static 'images/wal.png' %}" alt="...">
-
-                <div class="caption">
-                    <h2 class="pager">Towns</h2>
-
-                    <p>Loka provides a unique town-building system based off of real resources. Power your generator,
-                        protect your town, but hide your wealth well.</p>
-
-                    <p><a href="{% url 'loka.views.towns' %}" class="btn btn-primary btn-lg btn-group-justified">Learn
-                        about Towns</a></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-md-3">
-            <div class="thumbnail">
-                <img src="{% static 'images/sword.png' %}" alt="...">
-
-                <div class="caption">
-                    <h2 class="pager">PvP</h2>
-
-                    <p>Prove your worth in a variety of our rated arenas. Expand your bragging rights through our Elo
-                        system and become the ultimate gladiator!</p>
-
-                    <p><a href="{% url 'loka.views.pvp' %}" class="btn btn-warning btn-lg btn-group-justified">Learn
-                        about PvP</a></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-md-3">
-            <div class="thumbnail">
-                <img src="{% static 'images/chest.png' %}" alt="...">
-
-                <div class="caption">
-                    <h2 class="pager">Lore</h2>
-
-                    <p>Loka has a rich and continuing history. Will you discover the secret of the Ancients, the
-                        Artifacts, and the Unbound Ones?</p>
-
-                    <p><a href="http://loka.wikia.com/wiki/Loka_Wiki"
-                          class="btn btn-success btn-lg btn-group-justified">Delve into our Story</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="container">
         <div class="row text-center">
 
-            <!-- Intro Button -->
             <div class="span3">
-
                 <div class="introicons">
 
-                    <i class="icon-wall"></i>
+                    <i class="circleicon icon-wall"></i>
                     <h6 class="inverse-font">Towns</h6>
 
                     <p>Loka provides a unique town-building system based off of real resources. Power your generator,
                         protect your town, but hide your wealth well.</p>
-
+                    <p><a href="{% url 'loka.views.towns' %}" class="btn btn-primary btn-lg btn-group-justified">Learn
+                        about Towns</a></p>
                 </div>
-
             </div>
-            <!-- Intro Button -->
 
-            <!-- Intro Button -->
             <div class="span3">
-
                 <div class="introicons">
 
-                    <i class="icon-resize-full yellow-background"></i>
-                    <h6 class="inverse-font">Responsive Design</h6>
+                    <i class="circleicon icon-sword"></i>
+                    <h6 class="inverse-font">Towns</h6>
 
-                    <p>Developed to look good no matter what platform or device you are viewing the website on, go a
-                        head, try shrinking your browser!</p>
-
+                    <p>Prove your worth in a variety of our rated arenas. Expand your bragging rights through our Elo
+                        system and become the ultimate gladiator!</p>
+                    <p><a href="{% url 'loka.views.pvp' %}" class="btn btn-warning btn-lg btn-group-justified">Learn
+                        about PvP</a></p>
                 </div>
-
             </div>
-            <!-- Intro Button -->
 
-            <!-- Intro Button -->
             <div class="span3">
-
                 <div class="introicons">
 
-                    <i class="icon-html5 red-background"></i>
-                    <h6 class="inverse-font">Html Compliant</h6>
+                    <i class="circleicon icon-chest"></i>
+                    <h6 class="inverse-font">Towns</h6>
 
-                    <p>Developed with high level of coding and care to provide everyone with a Html5 compliant markup
-                        for this amazing website template</p>
-
+                    <p>Loka has a rich and continuing history. Will you discover the secret of the Ancients, the
+                        Artifacts, and the Unbound Ones?.</p>
+                    <p><a href="http://loka.wikia.com/wiki/Loka_Wiki"
+                          class="btn btn-success btn-lg btn-group-justified">Delve into our Story</a></p>
                 </div>
-
             </div>
-            <!-- Intro Button -->
-
-            <!-- Intro Button -->
-            <div class="span3">
-
-                <div class="introicons">
-
-                    <i class="icon-css3 blue-background"></i>
-                    <h6 class="inverse-font">CSS3 Transitions</h6>
-
-                    <p>We have incorporated a few nice subtle animations which finishes this template off, and gives it
-                        a really professional finish!</p>
-
-                </div>
-
-            </div>
-            <!-- Intro Button -->
-
         </div>
     </div>
 
