@@ -34,6 +34,10 @@
 
 }
 
+body {
+    background-color: #d7d6d6;
+}
+
 .navbar-default .navbar-nav>.dropdown>a .caret {
 border-top-color: #f1f1f1;
 border-bottom-color: #f1f1f1;
@@ -217,4 +221,68 @@ background-color: #89a5b0;
 
 .container .jumbotron {
     border-radius: 0px;
+}
+
+/* intro icons */
+.introicons {
+	padding: 14px;
+	position: relative;
+	background-color:white;
+	border-radius:5px;
+	margin:60px 0px;
+	cursor:pointer;
+}
+
+.introicons i {
+	position: absolute;
+	height: 130px;
+	width: 130px;
+	font-size: 50px;
+	line-height: 100px;
+	padding: 10px !important;
+	color: #f4f4f4;
+	top: 0px;
+	left: 50%;
+	margin: -60px 0px 0px -60px !important;
+	padding: 0px !important;
+	border-radius: 50%;
+	border: 10px solid #f4f4f4;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.introicons:hover > i {
+	border: 10px solid #ffffff;
+	-webkit-animation: spinAround 1.5s linear infinite;
+	-moz-animation: spinAround 1.5s linear infinite;
+	animation: spinAround 1.5s linear infinite;
+}
+
+.introicons h6 {
+	font-weight: 400;
+	font-size: 18px;
+	margin: 70px 0px 20px 0px;
+	color: #666666;
+}
+
+.introicons p{
+	line-height:22px;
+	font-size:14px;
+	font-weight:400;
+	color:#A8A8A8;
+}
+
+.icon-wall {
+    background: url('/static/images/chest.png');
+    background-repeat: no-repeat;
+    background-color: #fff;
+    background-position: 10px;
+}
+
+.span3 {
+    width: 350px;
+    float: left;
+    margin-left: 30px;
 }
