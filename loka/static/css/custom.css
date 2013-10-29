@@ -101,6 +101,7 @@ body {
 .jumbotron h1,
 .jumbotron h2,
 .jumbotron h3 {
+    font-family: 'aleoregular';
     text-shadow: 0 1px 10px rgba(0, 0, 0, .5), 0 0 30px rgba(0, 0, 0, .1);
     text-align: center;
     color: #ffffff;
@@ -272,6 +273,12 @@ body {
     background-position: 10px;
 }
 
+.span6 {
+    width: 550px;
+    margin-left: 40px;
+    float: left;
+}
+
 .span3 {
     width: 370px;
     float: left;
@@ -350,4 +357,149 @@ span.teamposition {
 .smallportfolioshortcode {
     height: 160px;
     overflow: hidden;
+}
+
+.title {
+	border-bottom: 4px dotted #DFDFDF;
+	margin-bottom: 30px;
+	margin-top: 0px;
+    font-family: 'aleoregular';
+}
+
+.title span {
+	border-bottom: 4px solid #2a7caa;
+	display: inline-block;
+	padding-bottom: 10px;
+	margin-bottom: -4px;
+}
+
+.btn-primary{
+	color: #ffffff !important;
+	text-shadow: none;
+	border-radius: 2px;
+	background-color: #006dcc;
+	background-image: none !important;
+	border: 0px;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006dcc', endColorstr='#006dcc', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	box-shadow: 0 -3px #08479E inset;
+	-moz-box-shadow: 0 -3px #08479E inset;
+	-webkit-box-shadow: 0 -3px #08479E inset;
+	-o-box-shadow: 0 -3px #08479E inset;
+	font-weight:600;
+	font-family: 'aleoregular';
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.btn-primary:hover{
+	background-color:#08479E;
+}
+
+.btn-success {
+	color: #ffffff !important;
+	text-shadow: none;
+	border-radius: 2px;
+	background-color: #AFD66D;
+	background-image: none !important;
+	border: 0px;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#AFD66D', endColorstr='#AFD66D', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	box-shadow: 0 -3px #8FB94F inset;
+	-moz-box-shadow: 0 -3px #8FB94F inset;
+	-webkit-box-shadow: 0 -3px #8FB94F inset;
+	-o-box-shadow: 0 -3px #8FB94F inset;
+	font-weight:600;
+	font-family: 'aleoregular';
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.btn-success:hover{
+	background-color: #9DCB57;
+}
+
+.btn-warning {
+	color: #ffffff !important;
+	text-shadow: none;
+	border-radius: 2px;
+	background-color: #e5a979;
+	background-image: none !important;
+	border: 0px;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5a979', endColorstr='#e5a979', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	box-shadow: 0 -3px #DD6F47 inset;
+	-moz-box-shadow: 0 -3px #DD6F47 inset;
+	-webkit-box-shadow: 0 -3px #DD6F47 inset;
+	-o-box-shadow: 0 -3px #DD6F47 inset;
+	font-weight:600;
+	font-family: 'aleoregular';
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.btn-warning:hover{
+	background-color: #DD6F47;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  display: inline-block;
+  height: 40px;
+  padding: 10px 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  vertical-align: middle;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.fullwidth{
+	display:block;
+	width:97%;
+	border:0px !important;
+	border-bottom:1px solid #DDDDDD !important;
+	background-color:white !important;
+	margin:0 !important;
+	padding:8px 1% !important;
+	font-size:14px !important;
+	-moz-border-radius:2px !important;
+	-ms-border-radius:2px !important;
+	-o-border-radius:2px !important;
+	-webkit-border-radius:2px !important;
+	border-radius:2px !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+img.smoothimage{
+	-moz-border-radius:5px !important;
+	-ms-border-radius:5px !important;
+	-o-border-radius:5px !important;
+	-webkit-border-radius:5px !important;
+	border-radius:5px !important;
 }

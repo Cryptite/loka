@@ -7,30 +7,38 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="townboard">
-            <div class="media-body">
-                <div class="row">
-                    <h1><strong>{{ town.name }}</strong> -
-                        <small> 9 members</small>
-                    </h1>
-                    <blockquote>
-                        <p>Avoid Psy at all costs!</p>
-                        <small>Message of the <cite title="Source Title">Day</cite></small>
-                    </blockquote>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <h3>Owner</h3>
-                <img src="{% static 'images/Cryptite.png' %}"
-                     class="img-circle avatar"/> {{ town.owner }}
+    <div class="jumbotron pvp">
+        <h1>{{ town.name }}</h1>
 
-                <h3>Subowners</h3>
-                <img src="{% static 'images/Cryptite.png' %}"
-                     class="img-circle avatar"/> Blah
-                <img src="{% static 'images/Cryptite.png' %}"
-                     class="img-circle avatar"/> Blah2</h3>
-            </div>
+        <h2>9 members</h2>
+    </div>
+
+    <div class="row">
+        <div class="span3">
+            <h2 class="title"><span>Citizens of {{ town.name }}</span></h2>
+
+            <h3>Owner</h3>
+            <img src="{% static 'images/Cryptite.png' %}"
+                 class="img-rounded avatar"/> {{ town.owner }}
+
+            <h3>Subowners</h3>
+            <img src="{% static 'images/Cryptite.png' %}"
+                 class="img-rounded avatar"/> Blah
+            <img src="{% static 'images/Cryptite.png' %}"
+                 class="img-rounded avatar"/> Blah2</h3>
         </div>
+
+        <div class="span6">
+            <h2 class="title"><span>Town Board</span></h2>
+
+            <blockquote>
+                <p>Avoid Psy at all costs!</p>
+                <small>Message of the <cite title="Source Title">Day</cite></small>
+            </blockquote>
+
+            <p><img class="alignnone size-full wp-image-56 smoothimage" alt="5389106042_e2f25db733_b"
+                    data-src="holder.js/500x300" width="500" height="300"></p>
+        </div>
+
     </div>
 {% endblock %}
