@@ -26,7 +26,30 @@
 }
 
 body {
-    background-color: #f4f4f4;
+    background-color: #d7d6d6;
+}
+
+.sitecontainer{
+	max-width:1240px;
+	margin:0px auto;
+	float:none;
+	height:auto;
+	overflow:hidden;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.page-section{
+	padding-top:30px;
+	width:100%;
+	float:left;
+	-webkit-animation: toLeftFromRight 0.9s forwards;
+	-moz-animation: toLeftFromRight 0.9s forwards;
+	animation: toLeftFromRight 0.9s forwards;
+	background-color:#f4f4f4;
 }
 
 .navbar-default .navbar-nav > .dropdown > a .caret {
@@ -45,6 +68,7 @@ body {
 
 .jumbotron {
     background: url('/static/images/bg.png');
+    margin-bottom: 0;
 }
 
 .register {
@@ -192,9 +216,7 @@ body {
 }
 
 .container {
-    max-width: 1300px;
-    padding-right: 0px;
-    padding-left: 0px;
+    max-width: 1250px;
 }
 
 .container .jumbotron {
@@ -280,7 +302,7 @@ body {
 }
 
 .span3 {
-    width: 370px;
+    width: 340px;
     float: left;
     margin-left: 50px;
 }
@@ -369,7 +391,7 @@ span.teamposition {
 .title span {
 	border-bottom: 4px solid #2a7caa;
 	display: inline-block;
-	padding-bottom: 10px;
+    padding: 15px;
 	margin-bottom: -4px;
 }
 

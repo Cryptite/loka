@@ -20,69 +20,69 @@
 </head>
 
 <body>
-
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-    <a class="navbar-brand" href="/"><img src="{% static 'images/logo_sm.png' %}" class="img-responsive"/></a>
-    <ul class="nav navbar-nav">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/Compass.png' %}"/> Towns<b
-                    class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="{% url 'loka.views.towns' %}">About</a></li>
-                <li><a href="{% url 'loka.views.townslist' %}">List of Towns</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/sword.png' %}"/>
-                PvP<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="{% url 'loka.views.pvp' %}">About</a></li>
-                <li><a href="{% url 'loka.views.pvp1v1' %}">1v1 Bracket</a></li>
-                {#                <li><a href="{% url 'loka.views.pvp2v2' %}">2v2 Bracket</a></li>#}
-                {#                <li><a href="{% url 'loka.views.vota' %}">VotA Rankings</a></li>#}
-            </ul>
-        </li>
-        <li><a href="http://loka.minecraftarium.com/forums/"><img src="{% static 'images/Paper.png' %}"/> Forums</a>
-        </li>
-        <li><a href="http://loka.wikia.com/wiki/Loka_Wiki"><img src="{% static 'images/Book.png' %}"/> Wiki</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            {% if user.is_authenticated %}
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cryptite  <img
-                        src="{% static 'images/Cryptite.png' %}"
-                        class="img-rounded avatar"/></a>
+<div class="sitecontainer">
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <a class="navbar-brand" href="/"><img src="{% static 'images/logo_sm.png' %}" class="img-responsive"/></a>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img
+                        src="{% static 'images/Compass.png' %}"/> Towns<b
+                        class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{% url 'loka.views.logout' %}">Sign Out</a></li>
+                    <li><a href="{% url 'loka.views.towns' %}">About</a></li>
+                    <li><a href="{% url 'loka.views.townslist' %}">List of Towns</a></li>
                 </ul>
-            {% else %}
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <img
-                        src="{% static 'images/steve.png' %}"
-                        class="img-rounded avatar"/></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'images/sword.png' %}"/>
+                    PvP<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li>
-                        <form method="post" action="{% url 'loka.views.home' %}">
-                            {% csrf_token %}
-                            <table>
-                                <tr>
-                                    <td><input name="username" type="text" class="fullwidth"/></td>
-                                </tr>
-                                <tr>
-                                    <td><input name="password" type="password" class="fullwidth"/></td>
-                                </tr>
-                            </table>
-
-                            <input type="submit" value="login"/>
-                            <input type="hidden" name="next" value="{{ next }}"/>
-                        </form>
-                    </li>
+                    <li><a href="{% url 'loka.views.pvp' %}">About</a></li>
+                    <li><a href="{% url 'loka.views.pvp1v1' %}">1v1 Bracket</a></li>
+                    {#                <li><a href="{% url 'loka.views.pvp2v2' %}">2v2 Bracket</a></li>#}
+                    {#                <li><a href="{% url 'loka.views.vota' %}">VotA Rankings</a></li>#}
                 </ul>
-            {% endif %}
-        </li>
-    </ul>
-</div>
+            </li>
+            <li><a href="http://loka.minecraftarium.com/forums/"><img src="{% static 'images/Paper.png' %}"/> Forums</a>
+            </li>
+            <li><a href="http://loka.wikia.com/wiki/Loka_Wiki"><img src="{% static 'images/Book.png' %}"/> Wiki</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                {% if user.is_authenticated %}
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cryptite <img
+                            src="{% static 'images/Cryptite.png' %}"
+                            class="img-rounded avatar"/></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'loka.views.logout' %}">Sign Out</a></li>
+                    </ul>
+                {% else %}
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <img
+                            src="{% static 'images/steve.png' %}"
+                            class="img-rounded avatar"/></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <form method="post" action="{% url 'loka.views.home' %}">
+                                {% csrf_token %}
+                                <table>
+                                    <tr>
+                                        <td><input name="username" type="text" class="fullwidth"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input name="password" type="password" class="fullwidth"/></td>
+                                    </tr>
+                                </table>
 
-<div class="container">
+                                <input type="submit" value="login"/>
+                                <input type="hidden" name="next" value="{{ next }}"/>
+                            </form>
+                        </li>
+                    </ul>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
     {% bootstrap_messages %}
     {% block content %}Empty page{% endblock %}
     <p>
