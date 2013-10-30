@@ -4,6 +4,14 @@
 
 {% block extra_head %}
     {{ form.media }}
+    <!-- Important Owl stylesheet -->
+    <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">
+
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css' %}">
+
+    <!-- Include js plugin -->
+    <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -12,37 +20,75 @@
 
         <h2>Prove your worth!</h2>
     </div>
-    <section class="page-section">
-        <div class="row">
-            <h2 class="title"><span>ELO-Rated Arenas </span></h2>
 
-            <div class="span6">
-                <p>Loka features both 1v1 and 2v2 rated arenas that pit players against one another in a small
-                    arena.
+    <div class="row">
+        <h2 class="title"><span>ELO-Rated Arenas </span></h2>
 
-                    This is the ultimate test in pvp prowess. Players are all given a set of gear that gives them a
-                    choice of fighting styles.</p>
-            </div>
+        <div class="span5">
+            <p>Loka features both 1v1 and 2v2 rated arenas that pit players against one another in a small
+                arena.
 
-            <div class="span6">
-                <p><img class="alignnone size-full wp-image-56 smoothimage" alt="5389106042_e2f25db733_b"
-                        data-src="holder.js/500x300" width="500" height="300"></p>
-            </div>
+                This is the ultimate test in pvp prowess. Players are all given a set of gear that gives them a
+                choice of fighting styles.</p>
 
+            <p>Fight to the top and earn a title! Will you be known as a Gladiator to all those who see you?</p>
+            <br/><br/>
+
+            <a href="{% url 'loka.views.pvp1v1' %}"
+               class="btn btn-success btn-lg btn-group-justified">View the Arena Ladder</a>
         </div>
 
-        <div class="row">
-            <h2 class="title"><span>Battlegrounds</span></h2>
-
-            <div class="span6">
-                <p><img class="alignnone size-full wp-image-56 smoothimage" alt="5389106042_e2f25db733_b"
-                        data-src="holder.js/500x300" width="500" height="300"></p>
+        <div class="span6">
+            <div id="slider_arena" class="owl-carousel">
+                <div><img class="smoothimage" alt="Nagrand Arena"
+                          src="{% static 'images/arena_nagrand.jpg' %}" width="600"
+                          height="300"></div>
+                <div><img class="smoothimage" alt="Blade's Edge Arena"
+                          src="{% static 'images/arena_blade.jpg' %}" width="600"
+                          height="300"></div>
             </div>
-            <div class="span6">
-                <p>Test your strength in larger-scale, team-based battlegrounds in which you and your team must take
-                    control of the battlefield, earning points and defeating your foes</p>
-            </div>
-
         </div>
-    </section>
+
+    </div>
+
+    <div class="row">
+        <h2 class="title"><span>Battlegrounds</span></h2>
+
+        <div class="span6">
+            <div id="slider_bg" class="owl-carousel">
+                <div><img class="smoothimage" alt="Valley of the Artifacts"
+                          src="{% static 'images/bg_vota1.jpg' %}" width="600"
+                          height="300"></div>
+            </div>
+        </div>
+        <div class="span5">
+            <p>Test your strength in larger-scale, team-based battlegrounds in which you and your team must take
+                control of the battlefield, earning points and defeating your foes</p>
+
+            <p>In Valley of the Artifacts, teams must fight to capture and hold three separate points. The first team to
+                100 wins!</p>
+            <br/><br/>
+
+            <a href="{% url 'loka.views.pvp1v1' %}"
+               class="btn btn-success btn-lg btn-group-justified bottom">View Battleground Rankings</a>
+        </div>
+
+    </div>
+
+    <script>$(document).ready(function () {
+
+        $("#slider_arena").owlCarousel({
+            slideSpeed: 600,
+            paginationSpeed: 600,
+            singleItem: true,
+            autoPlay: 5000 //Set AutoPlay to 3 seconds
+        });
+
+        $("#slider_bg").owlCarousel({
+            slideSpeed: 300,
+            paginationSpeed: 400,
+            singleItem: true
+        });
+
+    });</script>
 {% endblock %}

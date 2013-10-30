@@ -8,7 +8,7 @@
 }
 
 @font-face {
-    font-family: 'aleoregular';
+    font-family: aleoregular;
     src: url('/static/fonts/aleo-regular-webfont.eot');
     src: url('/static/fonts/aleo-regular-webfont.eot?#iefix') format('embedded-opentype'), url('/static/fonts/aleo-regular-webfont.woff') format('woff'), url('/static/fonts/aleo-regular-webfont.ttf') format('truetype'), url('/static/fonts/aleo-regular-webfont.svg#aleoregular') format('svg');
     font-weight: normal;
@@ -17,7 +17,7 @@
 }
 
 @font-face {
-    font-family: 'aleobold';
+    font-family: aleobold;
     src: url('/static/fonts/aleo-bold-webfont.eot');
     src: url('/static/fonts/aleo-bold-webfont.eot?#iefix') format('embedded-opentype'), url('/static/fonts/aleo-bold-webfont.woff') format('woff'), url('/static/fonts/aleo-bold-webfont.ttf') format('truetype'), url('/static/fonts/aleo-bold-webfont.svg#aleobold') format('svg');
     font-weight: normal;
@@ -27,6 +27,18 @@
 
 body {
     background-color: #d7d6d6;
+    color: #777;
+    font-family: aleoregular, serif;
+    font-size: 16px;
+}
+
+h1 {
+    color: #666;
+    font-family: aleobold;
+}
+
+a.inverse, a:visited {
+    color: #4aaaa5;
 }
 
 .sitecontainer{
@@ -43,13 +55,47 @@ body {
 }
 
 .page-section{
-	padding-top:30px;
 	width:100%;
 	float:left;
 	-webkit-animation: toLeftFromRight 0.9s forwards;
 	-moz-animation: toLeftFromRight 0.9s forwards;
 	animation: toLeftFromRight 0.9s forwards;
 	background-color:#f4f4f4;
+    padding-bottom: 30px;
+}
+
+.grey {
+    background-color: #ecebe9 !important;
+}
+
+/* ===== QUOTE SECTION ===== */
+
+.quote{
+	width:70%;
+	padding:0px 10%;
+	margin: auto;
+}
+
+.quoteimage{
+	width:16%;
+	float:left;
+	padding:10px 1%;
+}
+
+.quoteimage img{
+	width:100%;
+	height:auto;
+	padding:0;
+	margin:0;
+	border:0;
+}
+
+.quotetext{
+	width:76%;
+	padding:10px 2%;
+	float:right;
+	font-size:12px;
+	font-weight:300;
 }
 
 .navbar-default .navbar-nav > .dropdown > a .caret {
@@ -125,7 +171,7 @@ body {
 .jumbotron h1,
 .jumbotron h2,
 .jumbotron h3 {
-    font-family: 'aleoregular';
+    font-family: aleoregular;
     text-shadow: 0 1px 10px rgba(0, 0, 0, .5), 0 0 30px rgba(0, 0, 0, .1);
     text-align: center;
     color: #ffffff;
@@ -195,19 +241,19 @@ body {
 }
 
 .towns h1 {
-    font-family: 'aleoregular', Arial, sans-serif;
+    font-family: aleoregular, Arial, sans-serif;
     text-align: center;
 }
 
 .towns small {
-    font-family: 'aleobold', Arial, sans-serif;
+    font-family: aleobold, Arial, sans-serif;
     text-align: center;
     color: #5d5d5d;
     font-size: 1em;
 }
 
 .townboard h1 {
-    font-family: 'aleobold', Arial, sans-serif;
+    font-family: aleobold, Arial, sans-serif;
     background: #fff;
 }
 
@@ -296,7 +342,13 @@ body {
 }
 
 .span6 {
-    width: 550px;
+    width: 600px;
+    margin-left: 40px;
+    float: left;
+}
+
+.span5 {
+    width: 450px;
     margin-left: 40px;
     float: left;
 }
@@ -385,7 +437,14 @@ span.teamposition {
 	border-bottom: 4px dotted #DFDFDF;
 	margin-bottom: 30px;
 	margin-top: 0px;
-    font-family: 'aleoregular';
+    font-family: aleoregular;
+}
+
+.title-sm {
+	border-bottom: 2px dotted #DFDFDF;
+	margin-bottom: 20px;
+	margin-top: 0px;
+    font-family: aleoregular;
 }
 
 .title span {
@@ -393,6 +452,13 @@ span.teamposition {
 	display: inline-block;
     padding: 15px;
 	margin-bottom: -4px;
+}
+
+.title-sm span {
+	border-bottom: 2px solid #2a7caa;
+	display: inline-block;
+    padding: 5px;
+	margin-bottom: -2px;
 }
 
 .btn-primary{
@@ -409,7 +475,7 @@ span.teamposition {
 	-webkit-box-shadow: 0 -3px #08479E inset;
 	-o-box-shadow: 0 -3px #08479E inset;
 	font-weight:600;
-	font-family: 'aleoregular';
+	font-family: aleoregular;
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
@@ -434,7 +500,7 @@ span.teamposition {
 	-webkit-box-shadow: 0 -3px #8FB94F inset;
 	-o-box-shadow: 0 -3px #8FB94F inset;
 	font-weight:600;
-	font-family: 'aleoregular';
+	font-family: aleoregular;
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
@@ -459,7 +525,7 @@ span.teamposition {
 	-webkit-box-shadow: 0 -3px #DD6F47 inset;
 	-o-box-shadow: 0 -3px #DD6F47 inset;
 	font-weight:600;
-	font-family: 'aleoregular';
+	font-family: aleoregular;
 	-webkit-transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-o-transition: all .3s ease-in-out;
@@ -519,9 +585,25 @@ input[type="color"] {
 }
 
 img.smoothimage{
+    margin: auto;
 	-moz-border-radius:5px !important;
 	-ms-border-radius:5px !important;
 	-o-border-radius:5px !important;
 	-webkit-border-radius:5px !important;
 	border-radius:5px !important;
+}
+
+.footer{
+	width:100%;
+	float:left;
+	background-color: #212f43;
+    padding: 10px;
+}
+
+.copyright{
+    font-family: aleobold;
+	color:#6E727A;
+    text-align: center;
+	padding:40px 0px 30px 0px;
+	font-size: 18px;
 }

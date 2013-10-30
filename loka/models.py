@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.db import models
 
 
@@ -21,6 +22,11 @@ class Player(models.Model):
     valleyLosses = models.SmallIntegerField()
     deserterTime = models.BigIntegerField()
     title = models.CharField(max_length=20)
+    rank = models.CharField(max_length=20)
+    avatar = models.ImageField(upload_to='images/avatars/')
+
+    def __unicode__(self):
+        return self.name
 
 
 class Town(models.Model):
@@ -28,3 +34,12 @@ class Town(models.Model):
     public = models.BooleanField()
     tag = models.CharField(max_length=10)
     owner = models.CharField(max_length=30)
+
+
+class Quote(models.Model):
+    text = models.CharField(max_length=300)
+    author = models.ForeignKey(Player, blank=True, null=True)
+    event = models.CharField(max_length=100)
+    event_url = models.URLField(blank=True, null=True)
+
+admin.site.register(Quote)

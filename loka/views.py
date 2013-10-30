@@ -6,7 +6,7 @@ from django.template.context import RequestContext
 
 from bootstrap_toolkit.widgets import BootstrapUneditableInput
 
-from loka.models import Player, Town
+from loka.models import Player, Town, Quote
 
 
 def towns(request):
@@ -14,7 +14,7 @@ def towns(request):
 
 
 def townslist(request):
-    towns = Town.objects.filter(public=1)
+    towns = Town.objects.filter(public=0)
     return render_to_response('townslist.html', RequestContext(request, {
         'towns': towns,
     }))
@@ -92,5 +92,8 @@ def home(request):
     elif request.user.is_authenticated():
         return render_to_response('index.html', RequestContext(request, {
             'user': request.user,
+            "quote": Quote.objects.order_by('?')[0],
         }))
-    return render_to_response('index.html', RequestContext(request))
+    return render_to_response('index.html', RequestContext(request, {
+        "quote": Quote.objects.order_by('?')[0],
+    }))

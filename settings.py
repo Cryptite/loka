@@ -121,9 +121,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admindocs',
 
     'bootstrap_toolkit',
     'loka',
@@ -170,3 +170,13 @@ LOGGING = {
 
 # Enable for single bootstrap.js file
 #BOOTSTRAP_JS_URL        = BOOTSTRAP_JS_BASE_URL + 'bootstrap.min.js'
+
+##################
+# LOCAL SETTINGS #
+##################
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
