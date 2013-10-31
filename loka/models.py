@@ -23,7 +23,7 @@ class Player(models.Model):
     deserterTime = models.BigIntegerField()
     title = models.CharField(max_length=20)
     rank = models.CharField(max_length=20)
-    avatar = models.ImageField(upload_to='images/avatars/')
+    avatar = models.ImageField(upload_to='images/avatars/', blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -35,11 +35,17 @@ class Town(models.Model):
     tag = models.CharField(max_length=10)
     owner = models.CharField(max_length=30)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Quote(models.Model):
     text = models.CharField(max_length=300)
     author = models.ForeignKey(Player, blank=True, null=True)
     event = models.CharField(max_length=100)
     event_url = models.URLField(blank=True, null=True)
+
+    def __unicode__(self):
+        return self.text
 
 admin.site.register(Quote)
