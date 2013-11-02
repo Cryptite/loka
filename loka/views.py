@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 
 from bootstrap_toolkit.widgets import BootstrapUneditableInput
+from loka.core import avatar
 
 from loka.models import Player, Town, Quote
 
@@ -25,6 +26,11 @@ def pvp(request):
 
 def pvp1v1(request):
     players = Player.objects.all().order_by("-arenarating")
+    for p in players:
+        if not p.avatar:
+            print 'No avatar for', p.name
+            avatar.retrieve_avatar(p)
+
     return render_to_response('pvp_1v1.html', RequestContext(request, {
         'players': players,
     }))
@@ -76,6 +82,11 @@ def logout(request):
 
 
 def home(request):
+    quote = Quote.objects.order_by('?')[0]
+    if not quote.author.avatar:
+        print 'No avatar for', quote.author.name
+        avatar.retrieve_avatar(quote.author)
+
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
