@@ -4,10 +4,11 @@ from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 
-from bootstrap_toolkit.widgets import BootstrapUneditableInput
 from loka.core import avatar
 
 from loka.models import Player, Town, Quote
+
+from dajaxice.core import dajaxice_functions
 
 
 def towns(request):

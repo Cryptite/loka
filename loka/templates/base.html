@@ -2,6 +2,7 @@
 {% load bootstrap_toolkit %}
 {% load url from future %}
 {% load staticfiles %}
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -16,6 +17,8 @@
     <![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="{% static 'js/holder.js' %}"></script>
+    <script src="{% static "/static/dajax/jquery.dajax.core.js" %}"></script>
+    <script src="{% static "/static/dajaxice/dajaxice.core.js" %}"></script>
     {% block extra_head %}{% endblock %}
 </head>
 
@@ -99,7 +102,8 @@
                 <div class="quotetext">
                     <h4 class="title-sm"><span>
                         {% if quote.author %}
-                            {{ quote.author }} <small> - {{ quote.author.rank }}</small>
+                            {{ quote.author }}
+                            <small> - {{ quote.author.rank }}</small>
                         {% else %}
                             Unknown
                         {% endif %}</span>

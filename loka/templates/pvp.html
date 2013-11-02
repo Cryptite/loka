@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load bootstrap_toolkit %}
-
+{% load dajaxice_templatetags %}
 {% block extra_head %}
     {{ form.media }}
     <!-- Important Owl stylesheet -->
@@ -12,6 +12,8 @@
 
     <!-- Include js plugin -->
     <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
+
+    {% dajaxice_js_import 'nocsrf' %}
 {% endblock %}
 
 {% block content %}
@@ -20,6 +22,17 @@
 
         <h2>Prove your worth!</h2>
     </div>
+
+    <script type="text/javascript" charset="utf-8">
+        function calculate() {
+            Dajaxice.loka.multiply(Dajax.process, {'a': $('#a').val(), 'b': $('#b').val()})
+        }
+    </script>
+    <input type="text" value="5" id="a"> x
+    <input type="text" value="6" id="b"> =
+    <input type="text" value="" id="result">
+    <button onclick="calculate();">Click here!</button>
+    <button onclick="Dajaxice.loka.lol(function(d){alert(d.message);})">LOL</button>
 
     <div class="row">
         <h2 class="title"><span>ELO-Rated Arenas </span></h2>
