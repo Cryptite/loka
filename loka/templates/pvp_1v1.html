@@ -41,8 +41,14 @@
                                     <img src="{% static 'images/down.png' %}"/></a>
                                 </td>
                             {% endif %}
-                            <td><a href="/player/{{ player.name }}"><img
-                                    src="{% static 'media/' %}{{ player.avatar }}"> {{ player.name }}</a></td>
+                            <td><a href="/player/{{ player.name }}">
+                                {% if player.avatar_sm %}
+                                    <img src="{% static 'media/' %}{{ player.avatar_sm }}"
+                                         class="avatar-sm img-rounded">
+                                {% else %}
+                                    <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                                {% endif %}
+                                {{ player.name }}</a></td>
                             <td>{{ player.arenawins }}</td>
                             <td>{{ player.arenalosses }}</td>
                             <td>{{ player.arenarating }}</td>

@@ -5,25 +5,26 @@ from django.db import models
 # Create your models here.
 class Player(models.Model):
     name = models.CharField(max_length=30)
-    arenarating = models.SmallIntegerField()
-    arenawins = models.SmallIntegerField()
-    arenalosses = models.SmallIntegerField()
-    streak = models.SmallIntegerField()
-    highestrating = models.SmallIntegerField()
-    arenarating2v2 = models.SmallIntegerField()
-    arenawins2v2 = models.SmallIntegerField()
-    arenalosses2v2 = models.SmallIntegerField()
-    streak2v2 = models.SmallIntegerField()
-    highestrating2v2 = models.SmallIntegerField()
-    valleyKills = models.SmallIntegerField()
-    valleyDeaths = models.SmallIntegerField()
-    valleyCaps = models.SmallIntegerField()
-    valleyWins = models.SmallIntegerField()
-    valleyLosses = models.SmallIntegerField()
-    deserterTime = models.BigIntegerField()
-    title = models.CharField(max_length=20)
+    arenarating = models.SmallIntegerField(blank=True, null=True)
+    arenawins = models.SmallIntegerField(blank=True, null=True)
+    arenalosses = models.SmallIntegerField(blank=True, null=True)
+    streak = models.SmallIntegerField(blank=True, null=True)
+    highestrating = models.SmallIntegerField(blank=True, null=True)
+    arenarating2v2 = models.SmallIntegerField(blank=True, null=True)
+    arenawins2v2 = models.SmallIntegerField(blank=True, null=True)
+    arenalosses2v2 = models.SmallIntegerField(blank=True, null=True)
+    streak2v2 = models.SmallIntegerField(blank=True, null=True)
+    highestrating2v2 = models.SmallIntegerField(blank=True, null=True)
+    valleyKills = models.SmallIntegerField(blank=True, null=True)
+    valleyDeaths = models.SmallIntegerField(blank=True, null=True)
+    valleyCaps = models.SmallIntegerField(blank=True, null=True)
+    valleyWins = models.SmallIntegerField(blank=True, null=True)
+    valleyLosses = models.SmallIntegerField(blank=True, null=True)
+    deserterTime = models.BigIntegerField(blank=True, null=True)
+    title = models.CharField(max_length=20, blank=True, null=True)
     rank = models.CharField(max_length=20)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+    avatar_sm = models.ImageField(upload_to='avatars/', blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -33,10 +34,41 @@ class Town(models.Model):
     name = models.CharField(max_length=30)
     public = models.BooleanField()
     tag = models.CharField(max_length=10)
-    owner = models.CharField(max_length=30)
+    motd = models.CharField(max_length=255)
+    owner = models.ForeignKey(Player, blank=True, null=True)
+    owner_str = models.CharField(max_length=30)
+    members = models.ManyToManyField(Player, related_name="members", blank=True, null=True)
+    members_str = models.CharField(max_length=1000, blank=True, null=True)
+    subowners = models.ManyToManyField(Player, related_name="subowners", blank=True, null=True)
+    subowners_str = models.CharField(max_length=300)
 
     def __unicode__(self):
         return self.name
+
+    def resolve_players(self):
+        print 'Resolving', self.name, "for", self.owner_str
+        owner_player = Player.objects.filter(name=self.owner_str)
+        if owner_player:
+            self.owner = owner_player[0]
+        else:
+            self.owner = Player.objects.create(name=self.owner_str)
+        self.set_many_field(self.members_str, self.members)
+        self.set_many_field(self.subowners_str, self.subowners)
+
+        #A terrible hack, but set to none so the view knows when resolve needs calling again.
+        self.members_str = None
+        self.save()
+
+    def set_many_field(self, source_list, destination_field):
+        member_list = [m for m in source_list.split(",") if not m == ""]
+        for m in member_list:
+            player = Player.objects.filter(name=m)
+            if player:
+                destination_field.add(player[0])
+            else:
+                print 'Creating', m
+                destination_field.add(Player.objects.create(name=m))
+        print '{0} members resolved for {1}'.format(len(member_list), self.name)
 
 
 class Quote(models.Model):
@@ -47,5 +79,12 @@ class Quote(models.Model):
 
     def __unicode__(self):
         return self.text
+
+
+class Discussion(models.Model):
+    town = models.ForeignKey(Town)
+    text = models.TextField()
+    author = models.ForeignKey(Player)
+    date = models.DateTimeField(auto_now_add=True)
 
 admin.site.register(Quote)

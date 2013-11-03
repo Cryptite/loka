@@ -20,16 +20,28 @@
                         src="/static/images/portfolio3.jpg" alt="{{ town.name }}"></a>
                 </div>
 
-                <h1 class="teamname"><a class="inverse-link"href="/town/{{ town.name }}"
-                                              title="Alfie Htme Template">{{ town.name }}</a></h1>
+                <h1 class="teamname"><a class="inverse-link" href="/town/{{ town.name }}"
+                                        title="Alfie Htme Template">{{ town.name }}</a></h1>
 
                     <span class="teamposition">
-                        {% if user.username == town.owner %}
-                            <span><img src="{% static 'images/Cryptite_sm.png' %}"
-                                    class="avatar img-circle"/> You!</span>
+                        {% if user.username == town.owner.name.lower %}
+                            <span>
+                                {% if town.owner.avatar_sm %}
+                                    <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                                         class="avatar-sm img-rounded">
+                                {% else %}
+                                    <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                                {% endif %}
+                                You! </span>
                         {% else %}
-                            <p><img src="{% static 'images/Cryptite_sm.png' %}"
-                                    class="avatar img-circle"/> {{ town.owner }}</p>
+                            <p>
+                                {% if town.owner.avatar_sm %}
+                                    <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                                         class="avatar-sm img-rounded">
+                                {% else %}
+                                    <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                                {% endif %}
+                                {{ town.owner }}</p>
                         {% endif %}</span>
                 <i class="icon-repeat blogpost-slide padbottom30"></i>
             </div>

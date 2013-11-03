@@ -17,8 +17,6 @@
     <![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="{% static 'js/holder.js' %}"></script>
-    <script src="{% static "/static/dajax/jquery.dajax.core.js" %}"></script>
-    <script src="{% static "/static/dajaxice/dajaxice.core.js" %}"></script>
     {% block extra_head %}{% endblock %}
 </head>
 
@@ -32,7 +30,7 @@
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="{% url 'loka.views.towns' %}">About</a></li>
-                    <li><a href="{% url 'loka.views.townslist' %}">List of Towns</a></li>
+                    <li><a href="{% url 'loka.views.townslist' %}">Towns of Loka</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -88,16 +86,23 @@
         {% block content %}Empty page{% endblock %}
     </section>
 
-    <section class="page-section grey">
-        <div class="container padbottom30">
+    {% if quote %}
+        <section class="page-section grey">
+            <div class="container padbottom30">
 
-            <div class="text-center padbottom30">
-                <h1>Quotes of Loka</h1>
-            </div>
+                <div class="text-center padbottom30">
+                    <h1>Quotes of Loka</h1>
+                </div>
 
-            <div class="quote">
-                <div class="quoteimage"><img class="smoothimage" alt="quote3"
-                                             src="{% static 'media/' %}{{ quote.author.avatar }}"></div>
+                <div class="quote">
+                    <div class="quoteimage">
+                        {% if quote.author %}
+                            <img class="smoothimage" alt="quote3"
+                                 src="{% static 'media/' %}{{ quote.author.avatar }}"></div>
+                        {% else %}
+                            <img class="smoothimage" alt="quote3"
+                                 src="{% static 'images/steve.png' %}"></div>
+                        {% endif %}
 
                 <div class="quotetext">
                     <h4 class="title-sm"><span>
@@ -117,7 +122,8 @@
             </div>
 
 
-    </section>
+        </section>
+    {% endif %}
 
     <footer class="footer">
         <p class="copyright">

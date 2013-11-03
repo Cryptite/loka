@@ -1,13 +1,17 @@
 from django.conf.urls import patterns, url, include
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from dajaxice.core import dajaxice_autodiscover, dajaxice_config
 
 admin.autodiscover()
-dajaxice_autodiscover()
+
+## ViewSets define the view behavior.
+#class TownViewSet(viewsets.ModelViewSet):
+#    model = Town
+#
+## Routers provide an easy way of automatically determining the URL conf
+#router = routers.DefaultRouter()
+#router.register(r'town', TownViewSet)
 
 urlpatterns = patterns('',
     # Examples:
@@ -19,7 +23,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-
     url(r'^$', 'loka.views.home'),
     url(r'^townslist', 'loka.views.townslist'),
     url(r'^towns', 'loka.views.towns'),
@@ -29,7 +32,6 @@ urlpatterns = patterns('',
     url(r'^town/(?P<town_name>\w+)', 'loka.views.town'),
     url(r'^register/(?P<registration_id>\w+)', 'loka.views.registration'),
     url(r'^logout', 'loka.views.logout'),
-    (dajaxice_config.dajaxice_url, include('dajaxice.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()

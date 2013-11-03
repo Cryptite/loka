@@ -1,9 +1,11 @@
 # Django settings for loka project.
 import os
 from unipath import Path
-
+import djcelery
 
 SETTINGS_ROOT = os.path.dirname(__file__)
+
+djcelery.setup_loader()
 
 DEBUG = True
 TEMPLATE_DEBUG = True
@@ -99,7 +101,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'dajaxice.finders.DajaxiceFinder',
+    #'dajaxice.finders.DajaxiceFinder',
     #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -134,7 +136,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'loka.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'loka.wsgi.application'
+#WSGI_APPLICATION = 'loka.wsgi.application'
 
 TEMPLATE_DIRS = (
 # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -149,19 +151,34 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'dajaxice',
+    'djcelery',
     'bootstrap_toolkit',
     'loka',
+    #'rest_framework',
 )
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
+
+#REST_FRAMEWORK = {
+#    # Use hyperlinked styles by default.
+#    # Only used if the `serializer_class` attribute is not set on a view.
+#    'DEFAULT_MODEL_SERIALIZER_CLASS':
+#        'rest_framework.serializers.HyperlinkedModelSerializer',
+#
+#    # Use Django's standard `django.contrib.auth` permissions,
+#    # or allow read-only access for unauthenticated users.
+#    'DEFAULT_PERMISSION_CLASSES': [
+#        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#    ]
+#}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -192,13 +209,9 @@ LOGGING = {
     },
 }
 
-#BOOTSTRAP_BASE_URL      = '//netdna.bootstrapcdn.com/bootstrap/3.0.0/'
-#BOOTSTRAP_CSS_BASE_URL  = BOOTSTRAP_BASE_URL + 'css/'
-#BOOTSTRAP_CSS_URL       = BOOTSTRAP_CSS_BASE_URL + 'bootstrap.min.css'
-#BOOTSTRAP_JS_BASE_URL   = BOOTSTRAP_BASE_URL + 'js/'
-
-# Enable for single bootstrap.js file
-#BOOTSTRAP_JS_URL        = BOOTSTRAP_JS_BASE_URL + 'bootstrap.min.js'
+# Celery settings
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 ##################
 # LOCAL SETTINGS #

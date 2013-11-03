@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load bootstrap_toolkit %}
-
+{% load humanize %}
 {% block extra_head %}
     {{ form.media }}
     <!-- Important Owl stylesheet -->
@@ -12,40 +12,125 @@
 
     <!-- Include js plugin -->
     <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
+
+    <script>
+        jQuery(function ($) {
+            $(".avatar-sm").tooltip()
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
     <div class="jumbotron pvp">
         <h1>{{ town.name }}</h1>
 
-        <h2>9 members</h2>
+        <h2>{{ town.members.count }} members</h2>
     </div>
 
     <div class="row">
         <div class="span3">
+            {% if user.username == town.owner.name.lower %}
+                <h2 class="title"><span>Town Settings</span></h2>
+                {% if town.public %}
+                    <p id="visibility">Your town is visible to the public</p>
+                    <input type="submit" name="action" class="btn btn-info btn-md public" value="Set Private">
+                {% else %}
+                    <p id="visibility">Your town is currently private and can only be viewed by its members.</p>
+                    <input type="submit" name="action" class="btn btn-info btn-md public" value="Set Public">
+                {% endif %}
+                <script type="application/javascript">
+                    $('.public').click(function () {
+                        $.ajax({
+                            type: "POST",
+                            url: "/town/{{ town.name }}",
+                            data: {'town': "{{ town }}",
+                                'csrfmiddlewaretoken': '{{csrf_token}}',
+                                'action': "public"},
+                            dataType: "text",
+                            success: function (rs, e) {
+                                var button = $('.public')[0]
+                                var text = document.getElementById("visibility");
+                                if (button.value == "Set Public") {
+                                    button.value = "Set Private";
+                                    text.innerHTML = "Your town is visible to the public";
+                                } else {
+                                    button.value = "Set Public";
+                                    text.innerHTML = "Your town is currently private and can only be viewed by its members.";
+                                }
+                            },
+                            error: function (rs, e) {
+                                alert(rs.responseText);
+                            }
+                        });
+                    })
+                </script>
+            {% endif %}
+
             <h2 class="title"><span>Citizens of {{ town.name }}</span></h2>
 
             <h3>Owner</h3>
-            <img src="{% static 'images/Cryptite.png' %}"
-                 class="img-rounded avatar"/> {{ town.owner }}
+            <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                 class="avatar-sm img-rounded"> {{ town.owner.name }}
 
-            <h3>Subowners</h3>
-            <img src="{% static 'images/Cryptite.png' %}"
-                 class="img-rounded avatar"/> Blah
-            <img src="{% static 'images/Cryptite.png' %}"
-                 class="img-rounded avatar"/> Blah2</h3>
+            {% if town.subowners.count > 0 %}
+                <h3>Subowners</h3>
+                {% for subowner in town.subowners.all %}
+                    {% if subowner.avatar_sm %}
+                        <img src="{% static 'media/' %}{{ subowner.avatar_sm }}"
+                             class="avatar-sm img-rounded">
+                    {% else %}
+                        <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                    {% endif %}
+                    {{ subowner.name }}<br/>
+                {% endfor %}
+            {% endif %}
+
+            <h4>Members -
+                <small>{{ town.members.all.count }}</small>
+            </h4>
+            {% for member in town.members.all %}
+                {% if member.avatar_sm %}
+                    <img src="{% static 'media/' %}{{ member.avatar_sm }}"
+                         class="avatar-sm img-rounded" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="{{ member.name }}">
+                {% else %}
+                    <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                {% endif %}
+            {% endfor %}
         </div>
 
         <div class="span6">
             <h2 class="title"><span>Town Board</span></h2>
 
-            <blockquote>
-                <p>Avoid Psy at all costs!</p>
-                <small>Message of the <cite title="Source Title">Day</cite></small>
-            </blockquote>
+            {% if town.motd != "null" %}
+                <blockquote>
+                    <p>{{ town.motd }}</p>
+                    <small>Message of the <cite title="Source Title">Day</cite></small>
+                </blockquote>
+            {% endif %}
 
-            <p><img class="alignnone size-full wp-image-56 smoothimage" alt="5389106042_e2f25db733_b"
-                    data-src="holder.js/500x300" width="500" height="300"></p>
+            {% for comment in comments %}
+                <div class="theblogpost">
+
+                    <div class="bloginnerwrap">
+
+                        <div class="blogicons blogpost-image"><img src="{% static 'media/' %}{{ comment.author.avatar_sm }}" class="img-rounded"/></div>
+
+                        <h3><span>{{ comment.author.name }} <small>- {{ comment.date|naturaltime }}</small></span></h3>
+
+                        <p>{{ comment.text }}</p>
+
+                    </div>
+
+                </div>
+            {% endfor %}
+
+            <form method="post" action="/town/{{ town.name }}">
+                {% csrf_token %}
+                <textarea class="form-control" name="comment" placeholder="Add a comment to the town board!"
+                          rows="2"></textarea>
+                <input type="submit" name="action" class="btn btn-info btn-md" value="Post comment">
+            </form>
         </div>
 
     </div>
