@@ -138,28 +138,29 @@ def logout(request):
 
 
 def home(request):
-    quote = Quote.objects.order_by('?')[0]
-    if quote.author and not quote.author.avatar:
-        retrieve_avatar.delay(quote.author)
-
-    if request.POST:
-        username = request.POST['username']
-        password = request.POST['password']
-        print username, password
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            print 'success'
-            # Redirect to a success page.
-        else:
-            print 'invalid'
-            pass
-            # Return an 'invalid login' error message.
-    elif request.user.is_authenticated():
-        return render_to_response('index.html', RequestContext(request, {
-            'user': request.user,
-            "quote": Quote.objects.order_by('?')[0],
-        }))
-    return render_to_response('index.html', RequestContext(request, {
-        "quote": Quote.objects.order_by('?')[0],
-    }))
+    return render_to_response('index.html', RequestContext(request))
+    #quote = Quote.objects.order_by('?')[0]
+    #if quote.author and not quote.author.avatar:
+    #    retrieve_avatar.delay(quote.author)
+    #
+    #if request.POST:
+    #    username = request.POST['username']
+    #    password = request.POST['password']
+    #    print username, password
+    #    user = authenticate(username=username, password=password)
+    #    if user is not None:
+    #        login(request, user)
+    #        print 'success'
+    #        # Redirect to a success page.
+    #    else:
+    #        print 'invalid'
+    #        pass
+    #        # Return an 'invalid login' error message.
+    #elif request.user.is_authenticated():
+    #    return render_to_response('index.html', RequestContext(request, {
+    #        'user': request.user,
+    #        "quote": Quote.objects.order_by('?')[0],
+    #    }))
+    #return render_to_response('index.html', RequestContext(request, {
+    #    "quote": Quote.objects.order_by('?')[0],
+    #}))
