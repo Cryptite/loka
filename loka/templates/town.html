@@ -1,137 +1,115 @@
-{% extends "base.html" %}
+{% extends "townbase.html" %}
 {% load staticfiles %}
 {% load bootstrap_toolkit %}
 {% load humanize %}
-{% block extra_head %}
-    {{ form.media }}
-    <!-- Important Owl stylesheet -->
-    <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">
 
-    <!-- Default Theme -->
-    <link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css' %}">
+{% block towncontent %}
+    <h2 class="title"><span>Town Board</span>
+        {% if town.motd != "null" %}
+            <small> - {{ town.motd }}</small>
+        {% endif %}
+        <!-- Button trigger modal -->
+        <button class="btn btn-primary btn-md pull-right newthread" data-toggle="modal" data-target="#myModal">
+            Start a new thread
+        </button>
+    </h2>
 
-    <!-- Include js plugin -->
-    <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
-
-    <script>
-        jQuery(function ($) {
-            $(".avatar-sm").tooltip()
-        });
-    </script>
-{% endblock %}
-
-{% block content %}
-    <div class="jumbotron pvp">
-        <h1>{{ town.name }}</h1>
-
-        <h2>{{ town.members.count }} members</h2>
-    </div>
-
-    <div class="row">
-        <div class="span2">
-            {% if user.username == town.owner.name.lower %}
-                <h2 class="title"><span>Town Settings</span></h2>
-                {% if town.public %}
-                    <p id="visibility">Your town is visible to the public</p>
-                    <input type="submit" name="action" class="btn btn-info btn-md public" value="Set Private">
-                {% else %}
-                    <p id="visibility">Your town is currently private and can only be viewed by its members.</p>
-                    <input type="submit" name="action" class="btn btn-info btn-md public" value="Set Public">
-                {% endif %}
-                <script type="application/javascript">
-                    $('.public').click(function () {
-                        $.ajax({
-                            type: "POST",
-                            url: "/town/{{ town.name }}",
-                            data: {'town': "{{ town }}",
-                                'csrfmiddlewaretoken': '{{csrf_token}}',
-                                'action': "public"},
-                            dataType: "text",
-                            success: function (rs, e) {
-                                var button = $('.public')[0]
-                                var text = document.getElementById("visibility");
-                                if (button.value == "Set Public") {
-                                    button.value = "Set Private";
-                                    text.innerHTML = "Your town is visible to the public";
-                                } else {
-                                    button.value = "Set Public";
-                                    text.innerHTML = "Your town is currently private and can only be viewed by its members.";
-                                }
-                            },
-                            error: function (rs, e) {
-                                alert(rs.responseText);
-                            }
-                        });
-                    })
-                </script>
-            {% endif %}
-
-            <h3 class="title"><span>{{ town.name }} Citizens</span></h3>
-
-            <h3>Owner</h3>
-            <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
-                 class="avatar-sm img-rounded"> {{ town.owner.name }}
-
-            {% if town.subowners.count > 0 %}
-                <h3>Subowners</h3>
-                {% for subowner in town.subowners.all %}
-                    {% if subowner.avatar_sm %}
-                        <img src="{% static 'media/' %}{{ subowner.avatar_sm }}"
-                             class="avatar-sm img-rounded">
-                    {% else %}
-                        <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
-                    {% endif %}
-                    {{ subowner.name }}<br/>
-                {% endfor %}
-            {% endif %}
-
-            <h4>Members -
-                <small>{{ town.members.all.count }}</small>
-            </h4>
-            {% for member in town.members.all %}
-                {% if member.avatar_sm %}
-                    <img src="{% static 'media/' %}{{ member.avatar_sm }}"
-                         class="avatar-sm img-rounded" data-toggle="tooltip" data-placement="top" title=""
-                         data-original-title="{{ member.name }}">
-                {% else %}
-                    <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
-                {% endif %}
-            {% endfor %}
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Create a new thread</h4>
+                </div>
+                <form method="post" action="/town/{{ town.name }}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <input type="text" class="form-control" name="title" placeholder="Thread title"/>
+                        <textarea class="form-control" name="text" placeholder="Post your comment here!"
+                                  rows="3"></textarea>
+                        <button type="submit" name="action" class="btn btn-primary" value="thread">New Thread</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
         </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    {#    <span class="thread-category">Owner board</span>#}
+    {#    <div class="theblogpost">#}
+    {##}
+    {#        <div class="thread-category-wrap">#}
+    {##}
+    {#            <h3>Private forum</h3>#}
+    {##}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+    {% if threads.count > 0 %}
+        {% for thread in threads %}
+            <!-- Modal -->
+            <div class="modal fade" id="modal_{{ thread.id }}" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            Are you sure you wish to delete this thread? All posts within will be deleted as well!
+                        </div>
+                        <div class="modal-footer">
+                            <form method="post" action="/deleteitem/{{ thread.id }}">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="thread">Delete Thread
+                            </form>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <div class="theblogpost">
 
-        <div class="span6">
-            <h2 class="title"><span>Town Board</span></h2>
+                <div class="bloginnerwrap">
 
-            {% if town.motd != "null" %}
-                <blockquote>
-                    <p>{{ town.motd }}</p>
-                    <small>Message of the <cite title="Source Title">Day</cite></small>
-                </blockquote>
-            {% endif %}
-
-            {% for comment in comments %}
-                <div class="theblogpost">
-
-                    <div class="bloginnerwrap">
-
-                        <div class="blogicons blogpost-image"><img src="{% static 'media/' %}{{ comment.author.avatar_sm }}" class="img-rounded"/></div>
-
-                        <h3><span>{{ comment.author.name }} <small>- {{ comment.date|naturaltime }}</small></span></h3>
-
-                        <p>{{ comment.text }}</p>
-
+                    <div class="blogicons blogpost-image postcount" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="{{ thread.num_posts }} posts">
+                        <p>{{ thread.num_posts }}
+                            <small>post{{ thread.num_posts|pluralize }}</small>
+                        </p>
                     </div>
 
+                    <h3><span><a class="inverse-link"
+                                 href="/town/{{ town.name }}/thread/{{ thread.id }}">{{ thread.title }}</a>
+                    </span>
+                        {% if thread.author.name == user.username %}
+                            <button type="button" class="close pull-right" data-toggle="modal"
+                                    data-target="#modal_{{ thread.id }}">&times;</button>{% endif %}
+                    </h3>
+
+                    <p><img src="{% static 'media/' %}{{ thread.author.avatar_sm }}"
+                            class="img-rounded"/> {{ thread.author.name }}
+                        <small>- {{ thread.last_updated|naturaltime }}</small>
+                    </p>
+
                 </div>
-            {% endfor %}
 
-            <form method="post" action="/town/{{ town.name }}">
-                {% csrf_token %}
-                <textarea class="form-control" name="comment" placeholder="Add a comment to the town board!"
-                          rows="2"></textarea>
-                <input type="submit" name="action" class="btn btn-info btn-md" value="Post comment">
-            </form>
-        </div>
-
-    </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1 class="text-center">Your town has no threads yet. <br/>
+            Go ahead and
+            <a href="#" data-toggle="modal" data-target="#myModal">
+                Start one!
+            </a>
+        </h1>
+    {% endif %}
+    {#    <span class="thread-category">Public board</span>#}
 {% endblock %}

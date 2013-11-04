@@ -113,14 +113,8 @@ a.inverse, a:visited {
 }
 
 .jumbotron {
-    vertical-align: middle;
     background: url('/static/images/bg.png');
-    margin: auto;
-    position: absolute;
-    top: 20%;
-    width: 100%;
-    box-shadow: 0px 0px 20px 20px #ccc;
-    height: 400px;
+    margin-bottom: 0;
 }
 
 .jumbotron img {
@@ -321,6 +315,18 @@ a.inverse, a:visited {
     background: url('/static/images/sword.png');
 }
 
+.icon-emerald {
+    background: url('/static/images/emerald.png');
+}
+
+.icon-paper {
+    background: url('/static/images/paper.png');
+}
+
+.icon-ghast {
+    background: url('/static/images/ghast.png');
+}
+
 .icon-chest {
     background: url('/static/images/chest.png');
 }
@@ -343,8 +349,6 @@ a.inverse, a:visited {
     padding: 10px !important;
     color: #f4f4f4;
     top: 50%;
-    left: 0px;
-    margin: -45px 0px 0px -45px !important;
     padding: 0px !important;
     border-radius: 50%;
     border: 5px solid #eaeaea;
@@ -355,6 +359,16 @@ a.inverse, a:visited {
     background-repeat: no-repeat;
     background-color: #fff;
     background-position: 10px;
+}
+
+.feature-left i {
+    left: 0px;
+    margin: -45px 0px 0px -45px !important;
+}
+
+.feature-right i {
+    right: 0px;
+    margin: -45px -45px 0px 0px !important;
 }
 
 .feature:hover > i {
@@ -369,8 +383,18 @@ a.inverse, a:visited {
     margin-left: 30px;
 }
 
-.feature p {
+.feature-left p {
     margin-left: 40px;
+}
+
+.feature-right p {
+    margin-right: 35px;
+}
+
+.span7 {
+    width: 900px;
+    margin-left: 30px;
+    float: left;
 }
 
 .span6 {
@@ -479,6 +503,10 @@ span.teamposition {
     margin-bottom: 20px;
     margin-top: 0px;
     font-family: aleoregular;
+}
+
+.title small {
+    font-size: 14px;
 }
 
 .title span {
@@ -663,7 +691,6 @@ img.avatar-sm {
     line-height: 20px;
     color: #666666;
     font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
     border-bottom: 2px dotted #DFDFDF;
     margin-bottom: 5px;
 }
@@ -690,7 +717,9 @@ img.avatar-sm {
 .blogicons {
     position: absolute;
     top: 0px;
-    left: -18px;
+    left: -16px;
+    width: 30px;
+    height: 30px;
     text-align: center;
     font-size: 14px;
     line-height: 26px;
@@ -703,12 +732,34 @@ img.avatar-sm {
     color: #252525;
 }
 
+.postcount {
+    position: absolute;
+    top: 0px;
+    left: -20px;
+    width: 40px;
+    height: 50px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0px 7px 8px 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #252525;
+}
+
+.postcount small {
+    font-size: 14px;
+}
+
 .bloginnerwrap {
-    width: 95%;
+    width: 97%;
     float: right;
     position: relative;
     margin-left: 3%;
-    padding-left: 5%;
+    padding-left: 3%;
     border-left: 1px solid #2a7caa;
 }
 
@@ -716,6 +767,47 @@ img.avatar-sm {
     padding-bottom: 15px;
 }
 
+.bloginnerwrap p img {
+    width: 20px;
+    height: 20px;
+}
+
 .bloginnerwrap h3 {
     font-size: 20px !important;
+}
+
+.blogpost-image {
+    background-color: #2a7caa;
+}
+
+.blogpost-image p {
+    color: #f6f6f6;
+    font-family: aleobold;
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 1px;
+    margin-top: 5px;
+}
+
+.post-avatar {
+    margin-left: -2px;
+}
+
+.newthread {
+    margin-top: 20px;
+}
+
+.thread-category-wrap {
+    background-color: #5071b2;
+    max-height: 55px;
+    padding: 7px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.thread-category-wrap h3 {
+    color: #f1f1f1;
+    font-family: aleobold;
+    border: 0px;
 }

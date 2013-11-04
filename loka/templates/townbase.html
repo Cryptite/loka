@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+{% load humanize %}
+{% block extra_head %}
+    {{ form.media }}
+    <!-- Important Owl stylesheet -->
+    <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">
+
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css' %}">
+
+    <!-- Include js plugin -->
+    <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
+
+    <script>
+        jQuery(function ($) {
+            $(".avatar-sm").tooltip()
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron pvp">
+        <h1>{{ town.name }}</h1>
+
+        <h2>{{ town.members.count }} members</h2>
+    </div>
+
+    <div class="row">
+        <div class="span2">
+            {#            {% if user.username == town.owner.name.lower %}#}
+            {% if user %}
+                <!-- Modal -->
+                <div class="modal fade" id="modal_settings" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-hidden="true">&times;</button>
+                                <h3 class="modal-title" id="myModalLabel">Town settings</h3>
+                            </div>
+                            <div class="modal-body">
+                                <h2>Town Privacy</h2>
+                                {% if town.public %}
+                                    <p id="visibility">Your town is visible to the public. This means your town will
+                                        show up in the Towns of Loka page. More detailed privacy settings will come
+                                        soon.</p>
+                                    <input type="submit" name="action" class="btn btn-info btn-md public"
+                                           value="Set Private">
+                                {% else %}
+                                    <p id="visibility">Your town is currently private and can only be viewed by its
+                                        members if they are logged in. Users attempting to access your town's page will
+                                        fail.</p>
+                                    <input type="submit" name="action" class="btn btn-info btn-md public"
+                                           value="Set Public">
+                                {% endif %}
+                                <script type="application/javascript">
+                                    $('.public').click(function () {
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/town/{{ town.name }}",
+                                            data: {'town': "{{ town }}",
+                                                'csrfmiddlewaretoken': '{{csrf_token}}',
+                                                'action': "public"},
+                                            dataType: "text",
+                                            success: function (rs, e) {
+                                                var button = $('.public')[0]
+                                                var text = document.getElementById("visibility");
+                                                if (button.value == "Set Public") {
+                                                    button.value = "Set Private";
+                                                    text.innerHTML = "Your town is visible to the public";
+                                                } else {
+                                                    button.value = "Set Public";
+                                                    text.innerHTML = "Your town is currently private.";
+                                                }
+                                            },
+                                            error: function (rs, e) {
+                                                alert(rs.responseText);
+                                            }
+                                        });
+                                    })
+                                </script>
+                                <br/><br/>
+                                <small>More town settings will arrive soon!</small>
+                            </div>
+
+                            <div class="modal-footer">
+                                <form method="post" action="/deleteitem/{{ post.id }}">
+                                    {% csrf_token %}
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" name="action" class="btn btn-primary" value="post">Save
+                                        settings
+                                    </button>
+                                </form>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <br/>
+                <button type="button" class="btn btn-primary btn-lg btn-group-justified" data-toggle="modal"
+                        data-target="#modal_settings">Town Settings
+                </button>
+            {% endif %}
+
+            <h3 class="title"><span>{{ town.name }} Citizens</span></h3>
+
+            <h3>Owner</h3>
+            <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                 class="avatar-sm img-rounded"> {{ town.owner.name }}
+
+            {% if town.subowners.count > 0 %}
+                <h3>Subowners</h3>
+                {% for subowner in town.subowners.all %}
+                    {% if subowner.avatar_sm %}
+                        <img src="{% static 'media/' %}{{ subowner.avatar_sm }}"
+                             class="avatar-sm img-rounded">
+                    {% else %}
+                        <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                    {% endif %}
+                    {{ subowner.name }}<br/>
+                {% endfor %}
+            {% endif %}
+
+            <h4>Members -
+                <small>{{ town.members.all.count }}</small>
+            </h4>
+            {% for member in town.members.all %}
+                {% if member.avatar_sm %}
+                    <img src="{% static 'media/' %}{{ member.avatar_sm }}"
+                         class="avatar-sm img-rounded" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="{{ member.name }}">
+                {% else %}
+                    <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="span7">
+            {% block towncontent %}{% endblock %}
+        </div>
+
+    </div>
+{% endblock %}

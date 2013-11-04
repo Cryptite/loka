@@ -81,10 +81,25 @@ class Quote(models.Model):
         return self.text
 
 
-class Discussion(models.Model):
+class Thread(models.Model):
     town = models.ForeignKey(Town)
+    title = models.CharField(max_length=255)
+    author = models.ForeignKey(Player)
+    last_updated = models.DateTimeField(auto_now_add=True)
+    owner_only = models.BooleanField()
+
+    def num_posts(self):
+        return Post.objects.filter(thread=self).count()
+
+
+class Post(models.Model):
+    thread = models.ForeignKey(Thread)
     text = models.TextField()
     author = models.ForeignKey(Player)
     date = models.DateTimeField(auto_now_add=True)
 
+    def __unicode__(self):
+        return self.text
+
 admin.site.register(Quote)
+admin.site.register(Post)
