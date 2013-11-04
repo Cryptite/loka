@@ -69,10 +69,9 @@ def town(request, town_name):
             return HttpResponse(simplejson.dumps({"something": "somethingelse"}),
                                 mimetype='application/javascript')
         elif request.POST['action'] == "Post comment":
-            print request.POST['comment']
-            discussion_post = Discussion.objects.create(town=town,
-                                                        text=request.POST['comment'],
-                                                        author=Player.objects.get(name=request.user.username))
+            Discussion.objects.create(town=town,
+                                      text=request.POST['comment'],
+                                      author=Player.objects.get(name=request.user.username))
     return render_to_response('town.html', RequestContext(request, {
         'town': town,
         'comments': comments,

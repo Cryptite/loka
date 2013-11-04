@@ -14,25 +14,25 @@
     <div class="row">
         {% for town in towns %}
 
-            <div class="span2 teammember text-center towns">
+            <div class="teammember text-center">
 
                 <div class="teamimagewrap smallportfolioshortcode"><a href="#"><img
-                        src="/static/images/portfolio3.jpg" alt="{{ town.name }}"></a>
+                        src="{% static 'images/arena_nagrand.jpg' %}"/></a>
                 </div>
 
-                <h1 class="teamname"><a class="inverse-link" href="/town/{{ town.name }}"
+                <h1><a class="inverse-link" href="/town/{{ town.name }}"
                                         title="Alfie Htme Template">{{ town.name }}</a></h1>
 
                     <span class="teamposition">
                         {% if user.username == town.owner.name.lower %}
-                            <span>
+                            <p>
                                 {% if town.owner.avatar_sm %}
                                     <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
                                          class="avatar-sm img-rounded">
                                 {% else %}
                                     <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
                                 {% endif %}
-                                You! </span>
+                                You! </p>
                         {% else %}
                             <p>
                                 {% if town.owner.avatar_sm %}
@@ -43,7 +43,7 @@
                                 {% endif %}
                                 {{ town.owner }}</p>
                         {% endif %}</span>
-                <i class="icon-repeat blogpost-slide padbottom30"></i>
+                <i class="blogpost-slide"></i>
             </div>
         {% endfor %}
     </div>

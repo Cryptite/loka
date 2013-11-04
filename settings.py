@@ -11,7 +11,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ADMINS = (
-# ('Your Name', 'your_email@example.com'),
+    ('Tom Miller', 'cryptite@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -136,7 +136,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'loka.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-#WSGI_APPLICATION = 'loka.wsgi.application'
+WSGI_APPLICATION = 'loka.wsgi.application'
 
 TEMPLATE_DIRS = (
 # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

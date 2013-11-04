@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="jumbotron">
+        <img src="{% static 'images/logo.png' %}" class="img-responsive"/>
+
+        <h1>The New World</h1>
+
+        <h2>iron.minecraftarium.com</h2>
+    </div>
+
+    <div class="container">
+        <div class="row text-center">
+
+            <div class="span3">
+                <div class="introicons">
+
+                    <i class="circleicon icon-wall"></i>
+                    <h6 class="inverse-font">Towns</h6>
+
+                    <p>Loka provides a unique town-building system based off of real resources. Power your generator,
+                        protect your town, but hide your wealth well.</p>
+                    <p><a href="{% url 'loka.views.towns' %}" class="btn btn-primary btn-lg btn-group-justified">Learn
+                        about Towns</a></p>
+                </div>
+            </div>
+
+            <div class="span3">
+                <div class="introicons">
+
+                    <i class="icon-sword"></i>
+                    <h6 class="inverse-font">Towns</h6>
+
+                    <p>Prove your worth in a variety of our rated arenas. Expand your bragging rights through our Elo
+                        system and become the ultimate gladiator!</p>
+                    <p><a href="{% url 'loka.views.pvp' %}" class="btn btn-warning btn-lg btn-group-justified">Learn
+                        about PvP</a></p>
+                </div>
+            </div>
+
+            <div class="span3">
+                <div class="introicons">
+
+                    <i class="circleicon icon-chest"></i>
+                    <h6 class="inverse-font">Towns</h6>
+
+                    <p>Loka has a rich and continuing history. Will you discover the secret of the Ancients, the
+                        Artifacts, and the Unbound Ones?.</p>
+                    <p><a href="http://loka.wikia.com/wiki/Loka_Wiki"
+                          class="btn btn-success btn-lg btn-group-justified">Delve into our Story</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

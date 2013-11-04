@@ -28,7 +28,7 @@
     </div>
 
     <div class="row">
-        <div class="span3">
+        <div class="span2">
             {% if user.username == town.owner.name.lower %}
                 <h2 class="title"><span>Town Settings</span></h2>
                 {% if town.public %}
@@ -66,7 +66,7 @@
                 </script>
             {% endif %}
 
-            <h2 class="title"><span>Citizens of {{ town.name }}</span></h2>
+            <h3 class="title"><span>{{ town.name }} Citizens</span></h3>
 
             <h3>Owner</h3>
             <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
