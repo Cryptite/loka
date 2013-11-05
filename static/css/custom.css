@@ -68,6 +68,10 @@ a.inverse, a:visited {
     background-color: #dddcda !important;
 }
 
+.lightgrey {
+    background-color: #f0efed !important;
+}
+
 /* ===== QUOTE SECTION ===== */
 
 .quote {
@@ -281,16 +285,17 @@ a.inverse, a:visited {
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
-    background-repeat: no-repeat;
-    background-color: #fff;
-    background-position: 10px;
+}
+
+.introicons img {
+    width: 115px;
+    height: 115px;
+    margin-left: -1px;
+    margin-top: -1px;
 }
 
 .introicons:hover > i {
     border: 10px solid #5c8aaa;
-    -webkit-animation: spinAround 1.5s linear infinite;
-    -moz-animation: spinAround 1.5s linear infinite;
-    animation: spinAround 1.5s linear infinite;
 }
 
 .introicons h6 {
@@ -356,9 +361,6 @@ a.inverse, a:visited {
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
-    background-repeat: no-repeat;
-    background-color: #fff;
-    background-position: 10px;
 }
 
 .feature-left i {
@@ -373,9 +375,13 @@ a.inverse, a:visited {
 
 .feature:hover > i {
     border: 5px solid #2a7caa;
-    -webkit-animation: spinAround 1.5s linear infinite;
-    -moz-animation: spinAround 1.5s linear infinite;
-    animation: spinAround 1.5s linear infinite;
+}
+
+.feature img {
+    width: 88px;
+    height: 88px;
+    margin-left: -3px;
+    margin-top: -20px;
 }
 
 .feature h3 {
@@ -675,6 +681,20 @@ img.avatar-sm {
     font-size: 18px;
 }
 
+.copyright img {
+    margin: 30px;
+    border-radius: 50%;
+    border: 5px solid #2e415d;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.copyright img:hover {
+    border: 5px solid #2a7caa;
+}
+
 /* ===== BLOG SECTION ===== */
 
 .theblogpost {
@@ -810,4 +830,13 @@ img.avatar-sm {
     color: #f1f1f1;
     font-family: aleobold;
     border: 0px;
+}
+
+.section-header h1 {
+    font-size: 1.5em;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 0px;
 }

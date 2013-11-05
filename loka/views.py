@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
+import time
 
 from loka.models import Player, Town, Quote, Post, Thread
 from loka.tasks import retrieve_avatar
@@ -43,10 +44,6 @@ def post(request, town_name, thread_id):
         Post.objects.create(thread=thread,
                             text=request.POST['comment'],
                             author=Player.objects.get(name=request.user.username))
-
-    print town
-    print thread
-    print posts
 
     return render_to_response('post.html', RequestContext(request, {
         'town': town,
@@ -87,6 +84,7 @@ def town(request, town_name):
             else:
                 town.public = True
             town.save()
+            time.sleep(4)
             return HttpResponse({"something": "somethingelse"},
                                 mimetype='application/javascript')
 

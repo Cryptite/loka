@@ -23,29 +23,30 @@
     </div>
 
     <div class="row">
+        <section class="page-section lightgrey">
+            <div class="container padbottom30 section-header">
+                <div class="span2"><img src="{% static 'images/icon-towns.png' %}" class="pull-right"/></div>
+                <h1>Loka's towns feature a one-of-a-kind generator system. Through custom code, Loka gives you a
+                    unique township experience with control over your town you won't find anywhere else.</h1>
+            </div>
+        </section>
+
         <h2 class="title"><span>Town Generators </span></h2>
 
         <div class="span5">
-            <div class="feature feature-left">
-
-                <i class="circleicon icon-sword"></i>
-
-                <h3>Towns</h3>
-
-                <p>Loka's towns feature a one-of-a-kind generator system. Through custom code, Loka gives you a
-                    unique township experience.</p>
-            </div>
 
             <div class="feature feature-left">
 
-                <i class="circleicon icon-emerald"></i>
+                <i><img src="{% static 'images/icon-emerald.png' %}"/></i>
 
                 <h3>Real Resources</h3>
 
-                <p>Town generator protection runs off of the real-world resource, Emeralds. Either by finding,
-                    trading, or converting ores to emeralds with our Ore Converter, you can ensure that your
-                    generator will keep running while you're away. If your generator should ever run out of
-                    emeralds, though, your protection will fall and thieves will be free to make their way to your
+                <p>Town generators consume the real-world resource, Emeralds. Through whatever means necessary, you
+                    can
+                    ensure that your generator will keep running while you're away. Should your generator ever run
+                    out
+                    of emeralds, though, your protection will fall and thieves will be free to make their way to
+                    your
                     vaults.</p>
             </div>
             <br/><br/>
@@ -73,11 +74,32 @@
                 <div><img class="smoothimage" alt="Valley of the Artifacts"
                           src="{% static 'images/bg.png' %}" height="400"></div>
             </div>
+            <div class="feature feature-left">
+
+                <i><img src="{% static 'images/icon-ghast.png' %}"/></i>
+
+                <h3>Nether Protection</h3>
+
+                <p>By paying an additional cost, your town can activate nether protection that protects the
+                    equivalent sector of the nether for your town. This grants your town an extra layer of security
+                    and prevents a variety of nether-entry methods.</p>
+            </div>
+
+            <div class="feature feature-left">
+
+                <i><img src="{% static 'images/icon-ghast.png' %}"/></i>
+
+                <h3>Rank-based Build Priviledges</h3>
+
+                <p>Bubble generators allow town owners to define regions within their own town borders where only
+                    members with a specific rank may build. This allows towns to define districts where veteran town
+                    members can build without worrying about new members undoing their fine work.</p>
+            </div>
         </div>
         <div class="span5">
             <div class="feature feature-right">
 
-                <i class="circleicon icon-paper"></i>
+                <i><img src="{% static 'images/icon-feather.png' %}"/></i>
 
                 <h3>Town Chat</h3>
 
@@ -88,30 +110,14 @@
 
             <div class="feature feature-right">
 
-                <i class="circleicon icon-emerald"></i>
+                <i><img src="{% static 'images/icon-portal.png' %}"/></i>
 
                 <h3>Town Portal</h3>
 
                 <p>Town owners may set up a town portal that provides town members a way to warp back to the server
-                    spawn. Because warping and other teleports are extremely rare on Loka, these are useful to have
-                    if you need to get back to spawn to convert your hard-earned ores to emeralds or take place in
-                    some of Loka's more social events like our bi-weekly Auction!</p>
+                    spawn. Because warping and other teleports are extremely rare on Loka, town portals grant members
+                    quick travel back to spawn</p>
             </div>
-
-            <div class="feature feature-right">
-
-                <i class="circleicon icon-ghast"></i>
-
-                <h3>Nether Protection</h3>
-
-                <p>By paying an additional cost, your town can activate nether protection that protects the
-                    equivalent sector of the nether for your town. This grants your town an extra layer of security
-                    and prevents a variety of nether-entry methods.</p>
-            </div>
-            <br/><br/>
-
-            <a href="{% url 'loka.views.pvp1v1' %}"
-               class="btn btn-success btn-lg btn-group-justified bottom">View Battleground Rankings</a>
         </div>
 
     </div>
