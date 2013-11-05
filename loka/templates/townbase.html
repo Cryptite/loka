@@ -24,7 +24,7 @@
     <div class="jumbotron pvp">
         <h1>{{ town.name }}</h1>
 
-        <h2>{{ town.members.count }} members</h2>
+        <h2>{{ town.num_members }} members</h2>
     </div>
 
     <div class="row">
@@ -52,8 +52,8 @@
                                            value="Set Private">
                                 {% else %}
                                     <p id="visibility">Your town is currently private and can only be viewed by its
-                                        members if they are logged in. Users attempting to access your town's page will
-                                        fail.</p>
+                                        members if they are logged in. Other users attempting to access your town's page
+                                        will fail.</p>
                                     <input type="submit" name="action" class="btn btn-info btn-md public"
                                            value="Set Public">
                                 {% endif %}

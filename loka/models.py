@@ -70,6 +70,9 @@ class Town(models.Model):
                 destination_field.add(Player.objects.create(name=m))
         print '{0} members resolved for {1}'.format(len(member_list), self.name)
 
+    def num_members(self):
+        return self.members.count() + self.subowners.count() + 1
+
 
 class Quote(models.Model):
     text = models.CharField(max_length=300)
