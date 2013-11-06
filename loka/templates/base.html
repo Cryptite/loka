@@ -21,6 +21,30 @@
 </head>
 
 <body>
+
+<!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2>Log on to the server!</h2>
+            </div>
+            <div class="modal-body">
+
+                <p>This site is very much dependent on not only being logged in, but being logged in with the same
+                    username as your Minecraft account. In order to register on this site, you'll need to <b>log on
+                        to the minecraft server and use the /register command</b></p>
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <div class="sitecontainer">
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <a class="navbar-brand" href="/"><img src="{% static 'images/logo_sm.png' %}" class="img-responsive"/></a>
@@ -61,20 +85,28 @@
                             class="img-rounded avatar"/></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <form method="post" action="{% url 'loka.views.home' %}">
-                                {% csrf_token %}
-                                <table>
-                                    <tr>
-                                        <td><input name="username" type="text" class="fullwidth"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name="password" type="password" class="fullwidth"/></td>
-                                    </tr>
-                                </table>
+                            <div class="span2">
+                                <h3 class="title login">Login</h3>
 
-                                <input type="submit" value="login"/>
-                                <input type="hidden" name="next" value="{{ next }}"/>
-                            </form>
+                                <form method="post" action="{% url 'loka.views.home' %}">
+                                    {% csrf_token %}
+                                    <table>
+                                        <tr>
+                                            <td><input name="username" type="text" class="fullwidth"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name="password" type="password" class="fullwidth"/></td>
+                                        </tr>
+                                    </table>
+
+                                    <input type="submit" value="login" class="btn btn-primary btn-lg"/>
+                                    <button class="btn btn-warning btn-lg" data-toggle="modal"
+                                            data-target="#registerModal">
+                                        Register
+                                    </button>
+                                    <input type="hidden" name="next" value="{{ next }}"/>
+                                </form>
+                            </div>
                         </li>
                     </ul>
                 {% endif %}
@@ -128,7 +160,8 @@
     <footer class="footer">
         <div class="row">
             <p class="copyright">
-                <a href="https://www.facebook.com/lokaminecraft" target="_blank"><img src="/static/images/Facebook.png"/></a>
+                <a href="https://www.facebook.com/lokaminecraft" target="_blank"><img
+                        src="/static/images/Facebook.png"/></a>
                 &copy; <a href="#" target="_parent">Loka</a> 2013
                 <a href="https://twitter.com/LokaMinecraft" target="_blank"><img src="/static/images/Twitter.png"/></a>
             </p>

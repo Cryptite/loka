@@ -137,6 +137,7 @@ def dashboard(request, player_name):
 
 def registration(request, registration_id):
     user = User.objects.get(password=registration_id)
+    player = Player.objects.get_or_create(name=user.username, user=user)
     if request.POST:
         pass1 = request.POST['password']
         pass2 = request.POST['password2']
@@ -177,12 +178,10 @@ def home(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            print 'success'
-            # Redirect to a success page.
+            messages.success(request, 'Welcome back, {0}!'.format(user.username))
         else:
-            print 'invalid'
-            pass
-            # Return an 'invalid login' error message.
+            messages.warning(request, 'Login information was incorrect. Try again!')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     elif request.user.is_authenticated():
         return render_to_response('index.html', RequestContext(request, {
             'user': request.user,
