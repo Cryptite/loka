@@ -186,6 +186,6 @@ def home(request):
             'user': request.user,
             "quote": quote,
         }))
-    return render_to_response('index.html', RequestContext(request, {
+    return render_to_response('index_live.html', RequestContext(request, {
         "quote": quote,
     }))
