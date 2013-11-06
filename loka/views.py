@@ -162,7 +162,7 @@ def logout(request):
 
 
 def home(request):
-    #return render_to_response('index.html', RequestContext(request))
+    return render_to_response('index_live.html', RequestContext(request))
     quote = Quote.objects.order_by('?')
     print quote
     if len(quote) > 0:
@@ -186,6 +186,6 @@ def home(request):
             'user': request.user,
             "quote": quote,
         }))
-    return render_to_response('index_live.html', RequestContext(request, {
+    return render_to_response('index.html', RequestContext(request, {
         "quote": quote,
     }))
