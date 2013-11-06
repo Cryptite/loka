@@ -30,7 +30,7 @@ class Player(models.Model):
     rank = models.CharField(max_length=20)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
     avatar_sm = models.ImageField(upload_to='avatars/', blank=True, null=True)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, blank=True, null=True)
 
     def __unicode__(self):
         return self.name
