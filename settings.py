@@ -185,7 +185,7 @@ PASSWORD_HASHERS = (
 ###################
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'the.artifactloka@gmail.com'
+EMAIL_HOST_USER = 'the.artifactloka'
 EMAIL_HOST_PASSWORD = 'gallazius'
 EMAIL_PORT = 587
 
