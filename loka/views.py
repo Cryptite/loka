@@ -23,7 +23,6 @@ def pvp1v1(request):
 
     return render_to_response('pvp_1v1.html', RequestContext(request, {
         'players': players,
-        "quote": Quote.objects.order_by('?')[0],
     }))
 
 
@@ -157,19 +156,19 @@ def registration(request, registration_id):
 
 
 def logout(request):
-    print request
     auth.logout(request)
     messages.success(request, 'Seeya next time!')
-    return render_to_response('index.html', RequestContext(request, {
-        "quote": Quote.objects.order_by('?')[0],
-    }))
+    return render_to_response('index.html', RequestContext(request))
 
 
 def home(request):
     #return render_to_response('index.html', RequestContext(request))
-    quote = Quote.objects.order_by('?')[0]
-    if quote.author and not quote.author.avatar:
-        retrieve_avatar.delay(quote.author)
+    quote = Quote.objects.order_by('?')
+    print quote
+    if len(quote) > 0:
+        if quote.author and not quote.author.avatar:
+            retrieve_avatar.delay(quote.author)
+        quote = quote[0]
 
     if request.POST:
         username = request.POST['username']
@@ -185,8 +184,8 @@ def home(request):
     elif request.user.is_authenticated():
         return render_to_response('index.html', RequestContext(request, {
             'user': request.user,
-            "quote": Quote.objects.order_by('?')[0],
+            "quote": quote,
         }))
     return render_to_response('index.html', RequestContext(request, {
-        "quote": Quote.objects.order_by('?')[0],
+        "quote": quote,
     }))
