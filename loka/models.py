@@ -1,8 +1,13 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
 from django.db import models
 
 
 # Create your models here.
+def retrieve_avatar(self):
+    pass
+
+
 class Player(models.Model):
     name = models.CharField(max_length=30)
     arenarating = models.SmallIntegerField(blank=True, null=True)
@@ -25,9 +30,14 @@ class Player(models.Model):
     rank = models.CharField(max_length=20)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
     avatar_sm = models.ImageField(upload_to='avatars/', blank=True, null=True)
+    user = models.ForeignKey(User)
 
     def __unicode__(self):
         return self.name
+
+    #def save(self):
+    #    retrieve_avatar.delay(self)
+    #    super(Player, self).save()
 
 
 class Town(models.Model):

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2990560088">
+  <component name="DataSourceManagerImpl" format="xml" hash="1826027725">
     <data-source source="LOCAL" name="Django default" uuid="96a479fd-23a7-4e3b-aa58-51319f319bdc">
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/loka</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfccdfdfdfc4dfdedfc3dfc7dfcfdfd9dfcbdfdedfc6dfc5dfc1dfcb</user-password>
+      <jdbc-url>jdbc:mysql://vader:3306/loka</jdbc-url>
+      <user-name>jango</user-name>
+      <user-password>dfc0dfcbdfc4dfcddfc5df9bdf9b</user-password>
       <libraries>
         <library>
-          <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-license.txt</url>
+          <url>file://$PROJECT_DIR$/mysql-connector-license_2.txt</url>
         </library>
         <library>
-          <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-java-5.1.26-bin.jar</url>
+          <url>jar://$PROJECT_DIR$/mysql-connector-java-5.1.26-bin.jar!/</url>
         </library>
       </libraries>
     </data-source>
