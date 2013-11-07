@@ -61,10 +61,13 @@ def pvp1v1(request):
 
 
 def player(request, player_name):
-    player = Player.objects.get(name=player_name)
-    return render_to_response('player.html', RequestContext(request, {
-        'player': player,
-    }))
+    try:
+        player = Player.objects.get(name=player_name)
+        return render_to_response('player.html', RequestContext(request, {
+            'player': player,
+        }))
+    except Exception, e:
+        raise Http404
 
 
 def townboard(request, town_name):
