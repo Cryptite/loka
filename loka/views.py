@@ -103,7 +103,7 @@ def townhome(request, town_name):
     user_in_town = town.members.filter(name=request.user.username)
     if not request.user.is_authenticated() and not town.public:
         raise Http404
-    elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "cryptite":
+    elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "Cryptite":
         raise Http404
 
     comments = Comment.objects.filter(town=town)
