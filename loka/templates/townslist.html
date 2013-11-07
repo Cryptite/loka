@@ -19,7 +19,6 @@
     <div class="row">
         {% if towns.count > 0 %}
             {% for town in towns %}
-
                 <div class="teammember text-center">
 
                     <div class="teamimagewrap smallportfolioshortcode"><a href="#"><img
@@ -105,7 +104,16 @@
                 </div>
             {% endfor %}
         {% else %}
-            <h1>No towns have made themselves public, or you don't belong to a town yet!</h1>
+            <section class="page-section lightgrey">
+                <div class="container section-header text-center">
+                    <h1>All of Loka's towns are currently set as private.
+                        {% if not user.is_authenticated %}
+                            <br/><br/>
+                            <small>Do you belong to a town? Sign in and your town will be visible here!</small>
+                        {% endif %}
+                    </h1>
+                </div>
+            </section>
         {% endif %}
     </div>
 
