@@ -305,7 +305,8 @@ a.inverse, a:visited {
 
 .introicons h6 {
     font-weight: 400;
-    font-size: 18px;
+    font-size: 44px;
+    font-family: aleobold;
     margin: 70px 0px 20px 0px;
     color: #666666;
 }
