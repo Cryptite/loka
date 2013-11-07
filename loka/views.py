@@ -7,9 +7,19 @@ from django.core import serializers
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
+from rest_framework import viewsets
 
 from loka.models import Player, Town, Quote, Post, Thread, Comment
+from loka.serializers import TownSerializer
 from loka.tasks import retrieve_avatar
+
+
+class TownViewSet(viewsets.ModelViewSet):
+    """
+        API endpoint that allows users to be viewed or edited.
+        """
+    queryset = Town.objects.all()
+    serializer_class = TownSerializer
 
 
 def getavatar(request, player_name):
@@ -157,7 +167,6 @@ def towns(request):
 
 
 def townslist(request):
-
     #Resolve town members
     [t.resolve_players() for t in Town.objects.all() if t.members_str]
 

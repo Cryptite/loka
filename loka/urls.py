@@ -2,16 +2,19 @@ from django.conf.urls import patterns, url, include
 
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from rest_framework import viewsets, routers
+from loka.models import Town
 
 admin.autodiscover()
 
+
 ## ViewSets define the view behavior.
-#class TownViewSet(viewsets.ModelViewSet):
-#    model = Town
-#
-## Routers provide an easy way of automatically determining the URL conf
-#router = routers.DefaultRouter()
-#router.register(r'town', TownViewSet)
+class TownViewSet(viewsets.ModelViewSet):
+    model = Town
+
+# Routers provide an easy way of automatically determining the URL conf
+router = routers.DefaultRouter()
+router.register(r'town', TownViewSet)
 
 urlpatterns = patterns('',
     # Examples:
@@ -23,6 +26,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include(router.urls)),
     url(r'^$', 'loka.views.home'),
     url(r'^townslist', 'loka.views.townslist'),
     url(r'^avatar/(?P<player_name>\w+)', 'loka.views.getavatar'),
@@ -37,6 +41,7 @@ urlpatterns = patterns('',
     url(r'^town/(?P<town_name>\w+)', 'loka.views.townhome'),
     url(r'^register/(?P<registration_id>\w+)', 'loka.views.registration'),
     url(r'^logout', 'loka.views.logout'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 )
 
 urlpatterns += staticfiles_urlpatterns()
