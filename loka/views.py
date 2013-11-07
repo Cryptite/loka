@@ -12,6 +12,42 @@ from loka.models import Player, Town, Quote, Post, Thread, Comment
 from loka.tasks import retrieve_avatar
 
 
+def getavatar(request, player_name):
+    player = Player.objects.get(name=player_name)
+    retrieve_avatar(player)
+    print 'returning', "static/media/{0}".format(player.avatar)
+    return HttpResponse(json.dumps({"path": "/static/media/{0}".format(player.avatar)}),
+                        mimetype='application/javascript')
+
+
+def getquote(request):
+    quote = Quote.objects.order_by('?')
+    print quote
+    if quote:
+        quote_serialized = serializers.serialize('json', quote)
+        quote_serialized += serializers.serialize('json', quote[0].author)
+    else:
+        quote_serialized = "[]"
+    print quote_serialized
+    return HttpResponse(quote_serialized,
+                        mimetype='application/javascript')
+
+
+def deleteitem(request, item_id):
+    if request.POST['action'] == "post":
+        Post.objects.get(id=item_id).delete()
+        messages.success(request, 'Post deleted!')
+    elif request.POST['action'] == "comment":
+        Comment.objects.get(id=item_id).delete()
+        messages.success(request, 'Comment deleted!')
+    elif request.POST['action'] == "thread":
+        thread = Thread.objects.get(id=item_id)
+        [post.delete() for post in Post.objects.filter(thread=thread)]
+        thread.delete()
+        messages.success(request, "Thread deleted!")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
 def pvp(request):
     return render_to_response('pvp.html', RequestContext(request))
 
@@ -29,39 +65,6 @@ def player(request, player_name):
     return render_to_response('player.html', RequestContext(request, {
         'player': player,
     }))
-
-
-def townthread(request, town_name, thread_id):
-    print town_name, thread_id
-    town = Town.objects.get(name=town_name)
-    thread = Thread.objects.get(id=thread_id)
-    posts = Post.objects.filter(thread=thread).order_by("-date")
-
-    if request.POST:
-        Post.objects.create(thread=thread,
-                            text=request.POST['comment'],
-                            author=Player.objects.get(name=request.user.username))
-
-    return render_to_response('townthread.html', RequestContext(request, {
-        'town': town,
-        'thread': thread,
-        'posts': posts,
-    }))
-
-
-def deleteitem(request, item_id):
-    if request.POST['action'] == "post":
-        Post.objects.get(id=item_id).delete()
-        messages.success(request, 'Post deleted!')
-    elif request.POST['action'] == "comment":
-        Comment.objects.get(id=item_id).delete()
-        messages.success(request, 'Comment deleted!')
-    elif request.POST['action'] == "thread":
-        thread = Thread.objects.get(id=item_id)
-        [post.delete() for post in Post.objects.filter(thread=thread)]
-        thread.delete()
-        messages.success(request, "Thread deleted!")
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def townboard(request, town_name):
@@ -97,6 +100,23 @@ def townboard(request, town_name):
         'threads': threads,
     }))
 
+
+def townthread(request, town_name, thread_id):
+    print town_name, thread_id
+    town = Town.objects.get(name=town_name)
+    thread = Thread.objects.get(id=thread_id)
+    posts = Post.objects.filter(thread=thread).order_by("-date")
+
+    if request.POST:
+        Post.objects.create(thread=thread,
+                            text=request.POST['comment'],
+                            author=Player.objects.get(name=request.user.username))
+
+    return render_to_response('townthread.html', RequestContext(request, {
+        'town': town,
+        'thread': thread,
+        'posts': posts,
+    }))
 
 def townhome(request, town_name):
     town = Town.objects.get(name=town_name)
@@ -158,24 +178,10 @@ def townslist(request):
     }))
 
 
-def getavatar(request, player_name):
-    player = Player.objects.get(name=player_name)
-    retrieve_avatar(player)
-    return HttpResponse(json.dumps({"path": "/static/media/{0}".format(player.avatar)}),
-                        mimetype='application/javascript')
-
-
-def getquote(request):
-    quote = Quote.objects.order_by('?')
-    print quote
-    if quote:
-        quote_serialized = serializers.serialize('json', quote)
-        quote_serialized += serializers.serialize('json', quote[0].author)
-    else:
-        quote_serialized = "[]"
-    print quote_serialized
-    return HttpResponse(quote_serialized,
-                        mimetype='application/javascript')
+def logout(request):
+    auth.logout(request)
+    messages.success(request, 'Seeya next time!')
+    return render_to_response('index.html', RequestContext(request))
 
 
 def registration(request, registration_id):
@@ -203,6 +209,7 @@ def registration(request, registration_id):
             messages.success(request, 'Welcome to Loka!')
             user.save()
             user = authenticate(username=user.username, password=user.password)
+            login(request, user)
             return render_to_response('index.html', RequestContext(request, {
                 'user': user,
                 'player': player,
@@ -213,25 +220,10 @@ def registration(request, registration_id):
     }))
 
 
-def logout(request):
-    auth.logout(request)
-    messages.success(request, 'Seeya next time!')
-    return render_to_response('index.html', RequestContext(request))
-
-
-def getavatar(request, player_name):
-    player = Player.objects.get(name=player_name)
-    retrieve_avatar(player)
-    print 'returning', "static/media/{0}".format(player.avatar)
-    return HttpResponse(json.dumps({"path": "/static/media/{0}".format(player.avatar)}),
-                        mimetype='application/javascript')
-
-
 def home(request):
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
-        print username, password
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)

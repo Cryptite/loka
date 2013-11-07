@@ -499,6 +499,13 @@ span.teamposition {
     height: 25px;
 }
 
+.media img {
+    background-color: #4aaaa5;
+    border-radius: 5px;
+    width: 60px;
+    height: 60px;
+}
+
 .smallportfolioshortcode {
     height: 160px;
     overflow: hidden;

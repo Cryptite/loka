@@ -28,172 +28,161 @@
     </div>
 
     <div class="row">
-        <div class="span2">
-            {% if user.username == town.owner.name %}
-                {#            {% if user %}#}
-                <!-- Modal -->
-                <div class="modal fade" id="modal_settings" tabindex="-1" role="dialog"
-                     aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
-                                <h3 class="modal-title" id="myModalLabel">Town settings</h3>
-                            </div>
-                            <div class="modal-body">
-                                <h2>Town Privacy</h2>
-                                {% if town.public %}
-                                    <p id="visibility">Your town is visible to the public. This means your town will
-                                        show up in the Towns of Loka page. More detailed privacy settings will come
-                                        soon.</p>
-                                    <input type="submit" name="action" class="btn btn-info btn-md public"
-                                           value="Set Private">
-                                {% else %}
-                                    <p id="visibility">Your town is currently private and can only be viewed by its
-                                        members if they are logged in. Other users attempting to access your town's page
-                                        will fail.</p>
-                                    <input type="submit" name="action" class="btn btn-info btn-md public"
-                                           value="Set Public">
-                                {% endif %}
-                                <script type="application/javascript">
-                                    $('.public').click(function () {
-                                        $.ajax({
-                                            type: "POST",
-                                            url: "/town/{{ town.name }}",
-                                            data: {'town': "{{ town }}",
-                                                'csrfmiddlewaretoken': '{{csrf_token}}',
-                                                'action': "public"},
-                                            dataType: "text",
-                                            success: function (rs, e) {
-                                                var button = $('.public')[0]
-                                                var text = document.getElementById("visibility");
-                                                if (button.value == "Set Public") {
-                                                    button.value = "Set Private";
-                                                    text.innerHTML = "Your town is visible to the public";
-                                                } else {
-                                                    button.value = "Set Public";
-                                                    text.innerHTML = "Your town is currently private.";
-                                                }
-                                            },
-                                            error: function (rs, e) {
-                                                alert(rs.responseText);
-                                            }
-                                        });
-                                    })
-                                </script>
-                                <br/><br/>
-                                <small>More town settings will arrive soon!</small>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
+    <div class="span2">
+        {% if user.username == town.owner.name %}
+            {#            {% if user %}#}
+            <!-- Modal -->
+            <div class="modal fade" id="modal_settings" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            <h3 class="modal-title" id="myModalLabel">Town settings</h3>
                         </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-                <br/>
-                <button type="button" class="btn btn-primary btn-lg btn-group-justified" data-toggle="modal"
-                        data-target="#modal_settings">Town Settings
-                </button>
-            {% endif %}
+                        <div class="modal-body">
+                            <h2>Town Privacy</h2>
 
-            <h3 class="title"><span>{{ town.name }} Citizens</span></h3>
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img src="{% static 'images/eye_open.png' %}"/>
+                                </a>
 
-            <h3>Owner</h3>
-            {% if town.owner.avatar_sm %}
-                <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
-                     class="avatar-sm img-rounded">
-            {% else %}
-                <img src="{% static 'images/steve_sm.png' %}"
-                     class="avatar-sm img-rounded {{ town.owner.name }}">
-                <script type="application/javascript">
-                    $(document).ready(function () {
-                        $.ajax({
-                            type: "GET",
-                            url: "/avatar/{{ town.owner.name }}",
-                            contentType: 'application/json',
-                            complete: function (xhr, status) {
-                                if (status === 'error' || !xhr.responseText) {
-                                }
-                                else {
-                                    var data = JSON.parse(xhr.responseText);
-                                    $('.{{ town.owner.name }}').fadeOut(500, function () {
-                                        $('.{{ town.owner.name }}').attr('src', data["path"]);
-                                        $('.{{ town.owner.name }}').fadeIn(500);
-                                    });
-                                }
-                            }
-                        });
-                    })
-                </script>
-            {% endif %} {{ town.owner.name }}
+                                <div class="media-body">
+                                    <h4 class="media-heading">Public</h4>
+                                    If your town is public, all players can see your town's website, but their access
+                                    is limited to only seeing yourself as the Owner and they'll be able to post comments
+                                    on
+                                    your town's home page. Access to your Town Board is still limited to members.
+                                </div>
+                            </div>
 
-            {% if user.is_authenticated %}
-                {% if town.subowners.count > 0 %}
-                    <h3>Subowners</h3>
-                    {% for subowner in town.subowners.all %}
-                        {% if subowner.avatar_sm %}
-                            <img src="{% static 'media/' %}{{ subowner.avatar_sm }}"
-                                 class="avatar-sm img-rounded">
-                        {% else %}
-                            <img src="{% static 'images/steve_sm.png' %}"
-                                 class="avatar-sm img-rounded {{ subowner.name }}">
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img src="{% static 'images/eye_closed.png' %}"/>
+                                </a>
+
+                                <div class="media-body">
+                                    <h4 class="media-heading">Private</h4>
+                                    A Private town does not show up on the Towns of Loka page at all unless you are
+                                    logged in and a member of that town. If you wish your town to remain a secret,
+                                    choose this.
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="input-group pull-right">
+                                {% if town.public %}
+
+                                    <span>Your town is visible to the public. </span>
+                                    <input type="submit" name="action" class="btn btn-primary btn-md public"
+                                           value=" Set Private">
+                                {% else %}
+                                    <span>Your town is currently private. </span>
+                                    <input type="submit" name="action" class="btn btn-warning btn-md public"
+                                           value=" Set Public">
+                                {% endif %}
+                            </div>
                             <script type="application/javascript">
-                                $(document).ready(function () {
+                                $('.public').click(function () {
                                     $.ajax({
-                                        type: "GET",
-                                        url: "/avatar/{{ subowner.name }}",
-                                        contentType: 'application/json',
-                                        complete: function (xhr, status) {
-                                            if (status === 'error' || !xhr.responseText) {
+                                        type: "POST",
+                                        url: "/town/{{ town.name }}",
+                                        data: {'town': "{{ town }}",
+                                            'csrfmiddlewaretoken': '{{csrf_token}}',
+                                            'action': "public"},
+                                        dataType: "text",
+                                        success: function (rs, e) {
+                                            var button = $('.public')[0]
+                                            var text = document.getElementById("visibility");
+                                            if (button.value == "Set Public") {
+                                                button.value = "Set Private";
+                                            } else {
+                                                button.value = "Set Public";
                                             }
-                                            else {
-                                                var data = JSON.parse(xhr.responseText);
-                                                $('.{{ subowner.name }}').fadeOut(500, function () {
-                                                    $('.{{ subowner.name }}').attr('src', data["path"]);
-                                                    $('.{{ subowner.name }}').fadeIn(500);
-                                                });
-                                            }
+                                        },
+                                        error: function (rs, e) {
+                                            alert(rs.responseText);
                                         }
                                     });
                                 })
                             </script>
-                        {% endif %}
-                        {{ subowner.name }}<br/>
-                    {% endfor %}
-                {% endif %}
+                            <br/><br/>
+                            <small>More town settings will arrive soon!</small>
+                        </div>
 
-                <h4>Members -
-                    <small>{{ town.members.all.count }}</small>
-                </h4>
-                {% for member in town.members.all %}
-                    {% if member.avatar_sm %}
-                        <img src="{% static 'media/' %}{{ member.avatar_sm }}"
-                             class="avatar-sm img-rounded" data-toggle="tooltip" data-placement="top" title=""
-                             data-original-title="{{ member.name }}">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <br/>
+            <button type="button" class="btn btn-primary btn-lg btn-group-justified" data-toggle="modal"
+                    data-target="#modal_settings">Town Settings
+            </button>
+        {% endif %}
+
+        <h3 class="title"><span>{{ town.name }} Citizens</span></h3>
+
+        <h3>Owner</h3>
+        {% if town.owner.avatar_sm %}
+            <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                 class="avatar-sm img-rounded">
+        {% else %}
+            <img src="{% static 'images/steve_sm.png' %}"
+                 class="avatar-sm img-rounded {{ town.owner.name }}">
+            <script type="application/javascript">
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/avatar/{{ town.owner.name }}",
+                        contentType: 'application/json',
+                        complete: function (xhr, status) {
+                            if (status === 'error' || !xhr.responseText) {
+                            }
+                            else {
+                                var data = JSON.parse(xhr.responseText);
+                                $('.{{ town.owner.name }}').fadeOut(500, function () {
+                                    $('.{{ town.owner.name }}').attr('src', data["path"]);
+                                    $('.{{ town.owner.name }}').fadeIn(500);
+                                });
+                            }
+                        }
+                    });
+                })
+            </script>
+        {% endif %} {{ town.owner.name }}
+
+        {% if user.is_authenticated %}
+            {% if town.subowners.count > 0 %}
+                <h3>Subowners</h3>
+                {% for subowner in town.subowners.all %}
+                    {% if subowner.avatar_sm %}
+                        <img src="{% static 'media/' %}{{ subowner.avatar_sm }}"
+                             class="avatar-sm img-rounded">
                     {% else %}
-                        <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded {{ member.name }}"
-                             data-toggle="tooltip" data-placement="top" title=""
-                             data-original-title="{{ member.name }}">
+                        <img src="{% static 'images/steve_sm.png' %}"
+                             class="avatar-sm img-rounded {{ subowner.name }}">
                         <script type="application/javascript">
                             $(document).ready(function () {
                                 $.ajax({
                                     type: "GET",
-                                    url: "/avatar/{{ member.name }}",
+                                    url: "/avatar/{{ subowner.name }}",
                                     contentType: 'application/json',
                                     complete: function (xhr, status) {
                                         if (status === 'error' || !xhr.responseText) {
                                         }
                                         else {
                                             var data = JSON.parse(xhr.responseText);
-                                            $('.{{ member.name }}').fadeOut(500, function () {
-                                                $('.{{ member.name }}').attr('src', data["path"]);
-                                                $('.{{ member.name }}').fadeIn(500);
+                                            $('.{{ subowner.name }}').fadeOut(500, function () {
+                                                $('.{{ subowner.name }}').attr('src', data["path"]);
+                                                $('.{{ subowner.name }}').fadeIn(500);
                                             });
                                         }
                                     }
@@ -201,19 +190,57 @@
                             })
                         </script>
                     {% endif %}
+                    {{ subowner.name }}<br/>
                 {% endfor %}
             {% endif %}
-        </div>
 
-        <div class="span7">
-            {% if user.is_authenticated %}
-                <div class="townnav">
-                    <a href="/town/{{ town.name }}" type="button" class="btn btn-primary btn-md">Home</a>
-                    <a href="/town/{{ town.name }}/board" type="button" class="btn btn-primary btn-md">Town Board <span class="active badge"> {{ town.num_threads }}</span></a>
-                </div>
-            {% endif %}
-            {% block towncontent %}{% endblock %}
-        </div>
+            <h4>Members -
+                <small>{{ town.members.all.count }}</small>
+            </h4>
+            {% for member in town.members.all %}
+                {% if member.avatar_sm %}
+                    <img src="{% static 'media/' %}{{ member.avatar_sm }}"
+                         class="avatar-sm img-rounded" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="{{ member.name }}">
+                {% else %}
+                    <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded {{ member.name }}"
+                         data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="{{ member.name }}">
+                    <script type="application/javascript">
+                        $(document).ready(function () {
+                            $.ajax({
+                                type: "GET",
+                                url: "/avatar/{{ member.name }}",
+                                contentType: 'application/json',
+                                complete: function (xhr, status) {
+                                    if (status === 'error' || !xhr.responseText) {
+                                    }
+                                    else {
+                                        var data = JSON.parse(xhr.responseText);
+                                        $('.{{ member.name }}').fadeOut(500, function () {
+                                            $('.{{ member.name }}').attr('src', data["path"]);
+                                            $('.{{ member.name }}').fadeIn(500);
+                                        });
+                                    }
+                                }
+                            });
+                        })
+                    </script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="span7">
+        {% if user.is_authenticated %}
+            <div class="townnav">
+                <a href="/town/{{ town.name }}" type="button" class="btn btn-primary btn-md">Home</a>
+                <a href="/town/{{ town.name }}/board" type="button" class="btn btn-primary btn-md">Town Board <span
+                        class="active badge"> {{ town.num_threads }}</span></a>
+            </div>
+        {% endif %}
+        {% block towncontent %}{% endblock %}
+    </div>
 
     </div>
 {% endblock %}
