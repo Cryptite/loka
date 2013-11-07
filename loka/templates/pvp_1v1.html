@@ -41,12 +41,35 @@
                                     <img src="{% static 'images/down.png' %}"/></a>
                                 </td>
                             {% endif %}
-                            <td><a href="/player/{{ player.name }}">
+                            <td>{% block avatar-sm %}{% endblock %}
+                                <a href="/player/{{ player.name }}">
                                 {% if player.avatar_sm %}
                                     <img src="{% static 'media/' %}{{ player.avatar_sm }}"
                                          class="avatar-sm img-rounded">
                                 {% else %}
-                                    <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                                    <img src="{% static 'images/steve_sm.png' %}"
+                                         class="avatar-sm img-rounded {{ player.name }}">
+                                    <script type="application/javascript">
+                                        $(document).ready(function () {
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "/avatar/{{ player.name }}",
+                                                contentType: 'application/json',
+                                                complete: function (xhr, status) {
+                                                    if (status === 'error' || !xhr.responseText) {
+                                                        alert("error");
+                                                    }
+                                                    else {
+                                                        var data = JSON.parse(xhr.responseText);
+                                                        $('.{{ player.name }}').fadeOut(500, function () {
+                                                            $('.{{ player.name }}').attr('src', data["path"]);
+                                                            $('.{{ player.name }}').fadeIn(500);
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        })
+                                    </script>
                                 {% endif %}
                                 {{ player.name }}</a></td>
                             <td>{{ player.arenawins }}</td>

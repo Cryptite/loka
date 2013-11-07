@@ -667,8 +667,8 @@ img.smoothimage {
 }
 
 img.avatar-sm {
-    max-width: 30px;
-    max-height: 30px;
+    height: 30px;
+    width: 30px;
 }
 
 .footer {
@@ -848,4 +848,9 @@ img.avatar-sm {
 
 .login {
     margin-bottom: 15px;
+}
+
+.reg-avatar {
+    width: 100px;
+    height: 100px;
 }

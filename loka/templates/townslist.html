@@ -12,16 +12,16 @@
         <h1>Towns of Loka</h1>
     </div>
     <div class="row">
-        {% for town in towns %}
+        {% if towns.count > 0 %}
+            {% for town in towns %}
 
-            <div class="teammember text-center">
+                <div class="teammember text-center">
 
-                <div class="teamimagewrap smallportfolioshortcode"><a href="#"><img
-                        src="{% static 'images/arena_nagrand.jpg' %}"/></a>
-                </div>
+                    <div class="teamimagewrap smallportfolioshortcode"><a href="#"><img
+                            src="{% static 'images/arena_nagrand.jpg' %}"/></a>
+                    </div>
 
-                <h1><a class="inverse-link" href="/town/{{ town.name }}"
-                                        title="Alfie Htme Template">{{ town.name }}</a></h1>
+                    <h1><a class="inverse-link" href="/town/{{ town.name }}">{{ town.name }}</a></h1>
 
                     <span class="teamposition">
                         {% if user.username == town.owner.name.lower %}
@@ -43,9 +43,12 @@
                                 {% endif %}
                                 {{ town.owner }}</p>
                         {% endif %}</span>
-                <i class="blogpost-slide"></i>
-            </div>
-        {% endfor %}
+                    <i class="blogpost-slide"></i>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h1>No towns have made themselves public, or you don't belong to a town yet!</h1>
+        {% endif %}
     </div>
 
 {% endblock %}

@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<section class="page-section grey">
+    <div class="container padbottom30">
+
+        <div class="text-center padbottom30">
+            <h1>Quotes of Loka</h1>
+        </div>
+
+        <div class="quote">
+            <div class="quoteimage">
+                {% if quote.author.avatar %}
+                    <img class="img-rounded" src="{% static 'media/' %}{{ quote.author.avatar }}">
+                {% else %}
+                    <img class="img-rounded quoteavatar" src="{% static 'images/steve.png' %}">
+                    <script type="application/javascript">
+                        $(document).ready(function () {
+                            $.ajax({
+                                type: "GET",
+                                url: "/avatar/{{ quote.author.name }}",
+                                contentType: 'application/json',
+                                complete: function (xhr, status) {
+                                    if (status === 'error' || !xhr.responseText) {
+                                        alert("error");
+                                    }
+                                    else {
+                                        var data = JSON.parse(xhr.responseText);
+                                        $('.quoteavatar').fadeOut(500, function () {
+                                            $('.quoteavatar').attr('src', data["path"]);
+                                            $('.quoteavatar').fadeIn(500);
+                                        });
+                                    }
+                                }
+                            });
+                        })
+                    </script>
+                {% endif %}
+        </div>
+        <div class="quotetext">
+            <h4 class="title-sm"><span>
+                        {% if quote.author %}
+                            {{ quote.author }}
+                            <small> - {{ quote.author.rank }}</small>
+                        {% else %}
+                            Unknown
+                        {% endif %}</span>
+            </h4>
+
+            <p>{{ quote.text }}</p>
+            <a href="{{ quote.event_url }}">-{{ quote.event }}</a>
+
+        </div>
+    </div>
+</section>

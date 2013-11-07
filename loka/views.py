@@ -1,7 +1,9 @@
 from itertools import chain
+import json
 from django.contrib import messages, auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.core import serializers
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
@@ -17,9 +19,6 @@ def pvp(request):
 
 def pvp1v1(request):
     players = Player.objects.all().order_by("-arenarating")
-
-    #Retrieve avatars for players without them.
-    [retrieve_avatar.delay(p) for p in players if not p.avatar]
 
     return render_to_response('pvp_1v1.html', RequestContext(request, {
         'players': players,
@@ -72,10 +71,6 @@ def town(request, town_name):
         raise Http404
     threads = Thread.objects.filter(town=town).order_by("-last_updated")
 
-    #Retrieve avatars for players without them.
-    [retrieve_avatar.delay(p) for p in town.members.all() if not p.avatar]
-    [retrieve_avatar.delay(p) for p in town.subowners.all() if not p.avatar]
-
     if request.POST:
         if request.POST['action'] == "public":
             if town.public:
@@ -83,7 +78,6 @@ def town(request, town_name):
             else:
                 town.public = True
             town.save()
-            time.sleep(4)
             return HttpResponse({"something": "somethingelse"},
                                 mimetype='application/javascript')
 
@@ -110,17 +104,20 @@ def townslist(request):
         if request.user.username == "cryptite":
             townlist_query = Town.objects.all()
         else:
-            player = Player.objects.get(name=request.user.username)
+            player = Player.objects.filter(user=request.user)
+            if len(player) == 0:
+                player = Player.objects.create(user=request.user, name=request.user.username)
+            else:
+                player = player[0]
             townlist_query = list(chain(Town.objects.filter(public=1),
                                         Town.objects.filter(public=0, members__in=[player])))
     else:
         townlist_query = Town.objects.filter(public=1)
 
     #Resolve town members
-    [t.resolve_players() for t in townlist_query if t.members_str]
+    [t.resolve_players() for t in Town.objects.all() if t.members_str]
 
-    #Retrieve avatars for players without them.
-    [retrieve_avatar.delay(p.owner) for p in townlist_query if not p.owner.avatar]
+    print townlist_query
 
     return render_to_response('townslist.html', RequestContext(request, {
         'towns': townlist_query,
@@ -134,9 +131,41 @@ def dashboard(request, player_name):
     }))
 
 
+def getavatar(request, player_name):
+    player = Player.objects.get(name=player_name)
+    retrieve_avatar(player)
+    return HttpResponse(json.dumps({"path": "/static/media/{0}".format(player.avatar)}),
+                        mimetype='application/javascript')
+
+
+def getquote(request):
+    quote = Quote.objects.order_by('?')
+    print quote
+    if quote:
+        quote_serialized = serializers.serialize('json', quote)
+        quote_serialized += serializers.serialize('json', quote[0].author)
+    else:
+        quote_serialized = "[]"
+    print quote_serialized
+    return HttpResponse(quote_serialized,
+                        mimetype='application/javascript')
+
+
 def registration(request, registration_id):
-    user = User.objects.get(password=registration_id)
-    player = Player.objects.get_or_create(name=user.username, user=user)
+    try:
+        user = User.objects.get(password=registration_id)
+    except Exception, e:
+        messages.warning(request, "No such player can be registered that way.")
+        return render_to_response("index.html", RequestContext(request))
+    print 'Request is for user',user.username
+    player = Player.objects.filter(name=user.username)
+    if len(player) > 0:
+        player = player[0]
+        player.user = user
+        player.save()
+    else:
+        player = Player.objects.create(name=user.username, user=user)
+
     if request.POST:
         pass1 = request.POST['password']
         pass2 = request.POST['password2']
@@ -148,10 +177,12 @@ def registration(request, registration_id):
             user.save()
             user = authenticate(username=user.username, password=user.password)
             return render_to_response('index.html', RequestContext(request, {
-                'player': user,
+                'user': user,
+                'player': player,
             }))
     return render_to_response('register.html', RequestContext(request, {
-        'player': user,
+        'user': user,
+        'player': player,
     }))
 
 
@@ -159,17 +190,15 @@ def logout(request):
     auth.logout(request)
     messages.success(request, 'Seeya next time!')
     return render_to_response('index.html', RequestContext(request))
-
+def getavatar(request, player_name):
+    player = Player.objects.get(name=player_name)
+    retrieve_avatar(player)
+    print 'returning', "static/media/{0}".format(player.avatar)
+    return HttpResponse(json.dumps({"path": "/static/media/{0}".format(player.avatar)}),
+                        mimetype='application/javascript')
 
 def home(request):
-    return render_to_response('index_live.html', RequestContext(request))
-    quote = Quote.objects.order_by('?')
-    print quote
-    if len(quote) > 0:
-        if quote.author and not quote.author.avatar:
-            retrieve_avatar.delay(quote.author)
-        quote = quote[0]
-
+    #return render_to_response('index_live.html', RequestContext(request))
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
@@ -184,8 +213,5 @@ def home(request):
     elif request.user.is_authenticated():
         return render_to_response('index.html', RequestContext(request, {
             'user': request.user,
-            "quote": quote,
         }))
-    return render_to_response('index.html', RequestContext(request, {
-        "quote": quote,
-    }))
+    return render_to_response('index.html', RequestContext(request))

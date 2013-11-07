@@ -2,9 +2,32 @@
 {% load staticfiles %}
 {% block content %}
     <div class="jumbotron register">
-        <a href="#">
-            <img class="media-object img-rounded" src="{% static 'images/Cryptite.png' %}" alt="Cryptite">
-        </a>
+        {% if player.avatar %}
+            <img class="media-object img-rounded" src="{% static 'media/' %}{{ player.avatar }}">
+        {% else %}
+            <img class="media-object img-rounded reg-avatar" src="{% static 'images/steve.png' %}">
+            <script type="application/javascript">
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/avatar/{{ player.name }}",
+                        contentType: 'application/json',
+                        complete: function (xhr, status) {
+                            if (status === 'error' || !xhr.responseText) {
+                                alert("error");
+                            }
+                            else {
+                                var data = JSON.parse(xhr.responseText);
+                                $('.reg-avatar').fadeOut(500, function () {
+                                    $('.reg-avatar').attr('src', data["path"]);
+                                    $('.reg-avatar').fadeIn(500);
+                                });
+                            }
+                        }
+                    });
+                })
+            </script>
+        {% endif %}
 
         <div class="media-body">
             <h1>{{ player.username }}</h1>

@@ -2,6 +2,7 @@
 {% load bootstrap_toolkit %}
 {% load url from future %}
 {% load staticfiles %}
+{% load random_quote %}
 
 <html lang="en">
 <head>
@@ -49,9 +50,12 @@
             </div>
             <div class="modal-body">
 
-                <p>This site is very much dependent on not only being logged in, but being logged in with the same
-                    username as your Minecraft account. In order to register on this site, you'll need to <b>log on
-                        to the minecraft server and use the /register command</b></p>
+                <p>Parts of our website work in tandem with data from Loka itself such as access to Towns. If you live
+                    in a town, you cannot access its home page unless you register a proper account. In order to
+                    register on this site, you'll need to do the following: </p>
+                <h4>- Log on to Loka and use the /register command</h4>
+                <h4>- Click the in-game link you are provided.</h4>
+                <h4>- Finish creating your account, then enjoy the spoils!</h4>
                 </button>
             </div>
         </div>
@@ -134,44 +138,59 @@
         {% block content %}Empty page{% endblock %}
     </section>
 
-    {% if quote %}
-        <section class="page-section grey">
-            <div class="container padbottom30">
-
-                <div class="text-center padbottom30">
-                    <h1>Quotes of Loka</h1>
-                </div>
-
-                <div class="quote">
-                    <div class="quoteimage">
-                        {% if quote.author %}
-                            <img class="smoothimage" alt="quote3"
-                                 src="{% static 'media/' %}{{ quote.author.avatar }}"></div>
-                        {% else %}
-                            <img class="smoothimage" alt="quote3"
-                                 src="{% static 'images/steve.png' %}"></div>
-                        {% endif %}
-
-                <div class="quotetext">
-                    <h4 class="title-sm"><span>
-                        {% if quote.author %}
-                            {{ quote.author }}
-                            <small> - {{ quote.author.rank }}</small>
-                        {% else %}
-                            Unknown
-                        {% endif %}</span>
-                    </h4>
-
-                    <p>{{ quote.text }}</p>
-                    <a href="{{ quote.event_url }}">-{{ quote.event }}</a>
-
-                </div>
-
-            </div>
-
-
-        </section>
-    {% endif %}
+    {% get_quote %}
+    {#    <section class="page-section grey">#}
+    {#        <div class="container padbottom30">#}
+    {##}
+    {#            <div class="text-center padbottom30">#}
+    {#                <h1>Quotes of Loka</h1>#}
+    {#            </div>#}
+    {##}
+    {#            <div class="quote">#}
+    {#                <div class="quoteimage">#}
+    {#                    {% if quote.author %}#}
+    {#                        <img class="smoothimage" alt="quote3"#}
+    {#                             src="{% static 'media/' %}{{ quote.author.avatar }}"></div>#}
+    {#                    {% else %}#}
+    {#                        <img class="smoothimage" alt="quote3"#}
+    {#                             src="{% static 'images/steve.png' %}"></div>#}
+    {#                    {% endif %}#}
+    {##}
+    {#            <div class="quotetext">#}
+    {#                <h4 class="title-sm"><span>#}
+    {#                        {% if quote.author %}#}
+    {#                            {{ quote.author }}#}
+    {#                            <small> - {{ quote.author.rank }}</small>#}
+    {#                        {% else %}#}
+    {#                            Unknown#}
+    {#                        {% endif %}</span>#}
+    {#                </h4>#}
+    {##}
+    {#                <p>{{ quote.text }}</p>#}
+    {#                <a href="{{ quote.event_url }}">-{{ quote.event }}</a>#}
+    {##}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </section>#}
+    {#    <script type="application/javascript">#}
+    {#        $(document).ready(function () {#}
+    {#            $.ajax({#}
+    {#                type: "GET",#}
+    {#                url: "/getquote/",#}
+    {#                contentType: 'application/json',#}
+    {#                complete: function (xhr, status) {#}
+    {#                    if (status === 'error' || !xhr.responseText) {#}
+    {#                        alert("error");#}
+    {#                    }#}
+    {#                    else {#}
+    {#                        var data = JSON.parse(xhr.responseText);#}
+    {#                        alert(data[0]["fields"]["text"]);#}
+    {#                        alert(xhr.responseText);#}
+    {#                    }#}
+    {#                }#}
+    {#            });#}
+    {#        })#}
+    {#    </script>#}
 
     <footer class="footer">
         <div class="row">
