@@ -3,11 +3,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-# Create your models here.
-def retrieve_avatar(self):
-    pass
-
-
 class Player(models.Model):
     name = models.CharField(max_length=30)
     arenarating = models.SmallIntegerField(blank=True, null=True)

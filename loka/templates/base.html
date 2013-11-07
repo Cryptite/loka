@@ -90,11 +90,11 @@
             </li>
             <li><a href="http://loka.wikia.com/wiki/Loka_Wiki">Wiki</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right loginbutton">
             <li class="dropdown">
                 {% if user.is_authenticated %}
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <img
-                            src="{% static 'images/Cryptite.png' %}"
+                            src="{% static 'media/' %}{{ player.avatar_sm }}"
                             class="img-rounded avatar"/></a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'loka.views.logout' %}">Sign Out</a></li>

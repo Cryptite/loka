@@ -196,8 +196,8 @@ a.inverse, a:visited {
 }
 
 .navbar-nav img {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 }
 
 .avatar {
@@ -855,6 +855,10 @@ img.avatar-sm {
 
 .login {
     margin-bottom: 15px;
+}
+
+.loginbutton {
+    margin-bottom: 5px;
 }
 
 .reg-avatar {

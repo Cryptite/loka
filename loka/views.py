@@ -98,11 +98,11 @@ def townboard(request, town_name):
     return render_to_response('townboard.html', RequestContext(request, {
         'town': town,
         'threads': threads,
+        'player': Player.objects.get(name=request.user.username),
     }))
 
 
 def townthread(request, town_name, thread_id):
-    print town_name, thread_id
     town = Town.objects.get(name=town_name)
     thread = Thread.objects.get(id=thread_id)
     posts = Post.objects.filter(thread=thread).order_by("-date")
@@ -116,7 +116,9 @@ def townthread(request, town_name, thread_id):
         'town': town,
         'thread': thread,
         'posts': posts,
+        'player': Player.objects.get(name=request.user.username),
     }))
+
 
 def townhome(request, town_name):
     town = Town.objects.get(name=town_name)
@@ -126,7 +128,7 @@ def townhome(request, town_name):
     elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "Cryptite":
         raise Http404
 
-    comments = Comment.objects.filter(town=town)
+    comments = Comment.objects.filter(town=town).order_by("-date")
 
     if request.POST:
         if request.POST['action'] == "public":
@@ -146,6 +148,7 @@ def townhome(request, town_name):
     return render_to_response('townhome.html', RequestContext(request, {
         'town': town,
         'comments': comments,
+        'player': Player.objects.get(name=request.user.username),
     }))
 
 
@@ -154,6 +157,10 @@ def towns(request):
 
 
 def townslist(request):
+
+    #Resolve town members
+    [t.resolve_players() for t in Town.objects.all() if t.members_str]
+
     if request.user.is_authenticated():
         if request.user.username == "Cryptite":
             townlist_query = Town.objects.all()
@@ -165,17 +172,15 @@ def townslist(request):
                 player = player[0]
             townlist_query = list(chain(Town.objects.filter(public=1),
                                         Town.objects.filter(public=0, members__in=[player])))
+        return render_to_response('townslist.html', RequestContext(request, {
+            'towns': townlist_query,
+            'player': Player.objects.get(name=request.user.username),
+        }))
     else:
         townlist_query = Town.objects.filter(public=1)
-
-    #Resolve town members
-    [t.resolve_players() for t in Town.objects.all() if t.members_str]
-
-    print townlist_query
-
-    return render_to_response('townslist.html', RequestContext(request, {
-        'towns': townlist_query,
-    }))
+        return render_to_response('townslist.html', RequestContext(request, {
+            'towns': townlist_query,
+        }))
 
 
 def logout(request):
@@ -209,7 +214,7 @@ def registration(request, registration_id):
             messages.success(request, 'Welcome to Loka!')
             user.save()
             user = authenticate(username=user.username, password=user.password)
-            login(request, user)
+            #login(request, user)
             return render_to_response('index.html', RequestContext(request, {
                 'user': user,
                 'player': player,
@@ -234,5 +239,6 @@ def home(request):
     elif request.user.is_authenticated():
         return render_to_response('index.html', RequestContext(request, {
             'user': request.user,
+            'player': Player.objects.get(name=request.user.username),
         }))
     return render_to_response('index.html', RequestContext(request))
