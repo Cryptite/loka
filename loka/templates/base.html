@@ -2,7 +2,7 @@
 {% load bootstrap_toolkit %}
 {% load url from future %}
 {% load staticfiles %}
-{% load random_quote %}
+{% load widgets %}
 
 <html lang="en">
 <head>
@@ -93,8 +93,9 @@
         <ul class="nav navbar-nav navbar-right loginbutton">
             <li class="dropdown">
                 {% if user.is_authenticated %}
+                    {% player_avatar user as avatar %}
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <img
-                            src="{% static 'media/' %}{{ player.avatar_sm }}"
+                            src="{% static 'media/' %}{{ avatar }}"
                             class="img-rounded avatar"/></a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'loka.views.logout' %}">Sign Out</a></li>

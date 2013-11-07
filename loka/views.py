@@ -98,7 +98,6 @@ def townboard(request, town_name):
     return render_to_response('townboard.html', RequestContext(request, {
         'town': town,
         'threads': threads,
-        'player': Player.objects.get(name=request.user.username),
     }))
 
 
@@ -116,7 +115,6 @@ def townthread(request, town_name, thread_id):
         'town': town,
         'thread': thread,
         'posts': posts,
-        'player': Player.objects.get(name=request.user.username),
     }))
 
 
@@ -148,7 +146,6 @@ def townhome(request, town_name):
     return render_to_response('townhome.html', RequestContext(request, {
         'town': town,
         'comments': comments,
-        'player': Player.objects.get(name=request.user.username),
     }))
 
 
@@ -193,7 +190,7 @@ def registration(request, registration_id):
     try:
         user = User.objects.get(password=registration_id)
     except Exception, e:
-        messages.warning(request, "No such player can be registered that way.")
+        messages.warning(request, "You can't do that!")
         return render_to_response("index.html", RequestContext(request))
     print 'Request is for user', user.username
     player = Player.objects.filter(name=user.username)
@@ -217,7 +214,6 @@ def registration(request, registration_id):
             #login(request, user)
             return render_to_response('index.html', RequestContext(request, {
                 'user': user,
-                'player': player,
             }))
     return render_to_response('register.html', RequestContext(request, {
         'user': user,
@@ -239,6 +235,5 @@ def home(request):
     elif request.user.is_authenticated():
         return render_to_response('index.html', RequestContext(request, {
             'user': request.user,
-            'player': Player.objects.get(name=request.user.username),
         }))
     return render_to_response('index.html', RequestContext(request))

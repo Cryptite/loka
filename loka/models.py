@@ -120,4 +120,3 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
 admin.site.register(Quote)
-admin.site.register(Post)

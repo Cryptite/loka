@@ -3,7 +3,7 @@
 {% block content %}
     <div class="jumbotron register">
         {% if player.avatar %}
-            <img class="media-object img-rounded" src="{% static 'media/' %}{{ player.avatar }}">
+            <img class="media-object img-rounded reg-avatar" src="{% static 'media/' %}{{ player.avatar }}">
         {% else %}
             <img class="media-object img-rounded reg-avatar" src="{% static 'images/steve.png' %}">
             <script type="application/javascript">
@@ -29,8 +29,9 @@
             </script>
         {% endif %}
 
-        <div class="media-body">
-            <h1>{{ player.username }}</h1>
+        <div class="media-body reg-header">
+            <h1>Welcome, {{ player.name }}</h1>
+            <h2>Complete your registration by creating a password below!</h2><br/>
 
             <div class="container registerform">
                 <form method="post">

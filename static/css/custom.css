@@ -142,7 +142,7 @@ a.inverse, a:visited {
 }
 
 .jumbotron .town {
-    text-size: 6em;
+    font-size: 6em;
 }
 
 .jumbocontents {
@@ -150,7 +150,7 @@ a.inverse, a:visited {
 }
 
 .register {
-    background: url('/static/images/bg_vota.jpg');
+    background: url('/static/images/bg_joc.jpg');
 }
 
 .pvp {
@@ -858,12 +858,16 @@ img.avatar-sm {
 }
 
 .loginbutton {
-    margin-bottom: 5px;
+    margin: auto;
 }
 
 .reg-avatar {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
+}
+
+.reg-header h1 {
+    font-size: 3em;
 }
 
 .townnav {
