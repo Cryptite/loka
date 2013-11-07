@@ -228,7 +228,6 @@ def getavatar(request, player_name):
 
 
 def home(request):
-    return render_to_response('index_live.html', RequestContext(request))
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
