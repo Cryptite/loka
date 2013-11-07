@@ -23,7 +23,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Create a new thread</h4>
                 </div>
-                <form method="post" action="/town/{{ town.name }}">
+                <form method="post" action="/town/{{ town.name }}/board">
                     {% csrf_token %}
                     <div class="modal-body">
                         <input type="text" class="form-control" name="title" placeholder="Thread title"/>

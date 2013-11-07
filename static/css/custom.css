@@ -492,9 +492,11 @@ span.teamposition {
     float: left;
 }
 
-.blogpost-slide {
+.town-public img {
     background-color: #4aaaa5;
     color: #252525;
+    width: 25px;
+    height: 25px;
 }
 
 .smallportfolioshortcode {

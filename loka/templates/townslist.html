@@ -4,6 +4,11 @@
 
 {% block extra_head %}
     {{ form.media }}
+    <script>
+        jQuery(function ($) {
+            $(".privacy").tooltip()
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -86,7 +91,17 @@
                                 {% endif %}
                                 {{ town.owner }}</p>
                         {% endif %}</span>
-                    <i class="blogpost-slide"></i>
+                    <i class="town-public">
+                        {% if town.public %}
+                            <img src="{% static 'images/eye_open.png' %}" class="privacy" data-toggle="tooltip"
+                                 data-placement="bottom" title=""
+                                 data-original-title="{{ town.name }} is public"/>
+                        {% else %}
+                            <img src="{% static 'images/eye_closed.png' %}" class="privacy" data-toggle="tooltip"
+                                 data-placement="bottom" title=""
+                                 data-original-title="{{ town.name }} is private"/>
+                        {% endif %}
+                    </i>
                 </div>
             {% endfor %}
         {% else %}
