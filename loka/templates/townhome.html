@@ -1,0 +1,72 @@
+{% extends "townbase.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+{% load humanize %}
+
+{% block towncontent %}
+    <h2 class="title"><span>The Town of {{ town.name }}</span>
+        {% if town.motd != "null" %}
+            <small> - {{ town.motd }}</small>
+        {% endif %}
+    </h2>
+
+    {% if comments.count > 0 %}
+        {% for comment in comments %}
+            <!-- Modal -->
+            <div class="modal fade" id="modal_{{ comment.id }}" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            Are you sure you wish to delete this comment?
+                        </div>
+                        <div class="modal-footer">
+                            <form method="post" action="/deleteitem/{{ comment.id }}">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="comment">Delete
+                                    Comment
+                                </button>
+                            </form>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <div class="theblogpost">
+
+                <div class="bloginnerwrap">
+
+                    <div class="blogicons post-avatar"><img src="{% static 'media/' %}{{ comment.author.avatar_sm }}"
+                                                            class="img-rounded"/></div>
+
+                    <h3><span>{{ comment.author.name }} <small>
+                        - {{ comment.date|naturaltime }}</small></span>
+                        {% if comment.author.name == user.username %}
+                            <button type="button" class="close pull-right" data-toggle="modal"
+                                    data-target="#modal_{{ comment.id }}">&times;</button>{% endif %}
+                    </h3>
+                    <p>{{ comment.text }}</p>
+
+                </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1 class="text-center">Your town has no comments yet.</h1>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <form method="post" action="/town/{{ town.name }}">
+            {% csrf_token %}
+            <textarea class="form-control" name="text" placeholder="Add a comment"
+                      rows="2"></textarea>
+            <button type="submit" name="action" class="btn btn-primary btn-md" value="comment">Post comment</button>
+        </form>
+    {% else %}
+        <button name="action" class="btn btn-primary btn-md" disabled="disabled">Login to post comments</button>
+    {% endif %}
+{% endblock %}

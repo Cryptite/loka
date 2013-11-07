@@ -83,6 +83,9 @@ class Town(models.Model):
     def num_members(self):
         return self.members.count() + self.subowners.count() + 1
 
+    def num_threads(self):
+        return len(Thread.objects.filter(town=self))
+
 
 class Quote(models.Model):
     text = models.CharField(max_length=300)
@@ -113,6 +116,13 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.text
+
+
+class Comment(models.Model):
+    town = models.ForeignKey(Town)
+    text = models.CharField(max_length=400)
+    author = models.ForeignKey(Player)
+    date = models.DateTimeField(auto_now_add=True)
 
 admin.site.register(Quote)
 admin.site.register(Post)

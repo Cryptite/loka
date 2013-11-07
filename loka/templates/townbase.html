@@ -29,7 +29,7 @@
 
     <div class="row">
         <div class="span2">
-            {% if user.username == town.owner.name.lower %}
+            {% if user.username == town.owner.name %}
                 {#            {% if user %}#}
                 <!-- Modal -->
                 <div class="modal fade" id="modal_settings" tabindex="-1" role="dialog"
@@ -88,14 +88,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <form method="post" action="/deleteitem/{{ post.id }}">
-                                    {% csrf_token %}
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="submit" name="action" class="btn btn-primary" value="post">Save
-                                        settings
-                                    </button>
-                                </form>
-                                </button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->
@@ -112,8 +105,33 @@
             <h3 class="title"><span>{{ town.name }} Citizens</span></h3>
 
             <h3>Owner</h3>
-            <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
-                 class="avatar-sm img-rounded"> {{ town.owner.name }}
+            {% if town.owner.avatar_sm %}
+                <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                     class="avatar-sm img-rounded">
+            {% else %}
+                <img src="{% static 'images/steve_sm.png' %}"
+                     class="avatar-sm img-rounded {{ town.owner.name }}">
+                <script type="application/javascript">
+                    $(document).ready(function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "/avatar/{{ town.owner.name }}",
+                            contentType: 'application/json',
+                            complete: function (xhr, status) {
+                                if (status === 'error' || !xhr.responseText) {
+                                }
+                                else {
+                                    var data = JSON.parse(xhr.responseText);
+                                    $('.{{ town.owner.name }}').fadeOut(500, function () {
+                                        $('.{{ town.owner.name }}').attr('src', data["path"]);
+                                        $('.{{ town.owner.name }}').fadeIn(500);
+                                    });
+                                }
+                            }
+                        });
+                    })
+                </script>
+            {% endif %} {{ town.owner.name }}
 
             {% if user.is_authenticated %}
                 {% if town.subowners.count > 0 %}
@@ -123,7 +141,28 @@
                             <img src="{% static 'media/' %}{{ subowner.avatar_sm }}"
                                  class="avatar-sm img-rounded">
                         {% else %}
-                            <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                            <img src="{% static 'images/steve_sm.png' %}"
+                                 class="avatar-sm img-rounded {{ subowner.name }}">
+                            <script type="application/javascript">
+                                $(document).ready(function () {
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "/avatar/{{ subowner.name }}",
+                                        contentType: 'application/json',
+                                        complete: function (xhr, status) {
+                                            if (status === 'error' || !xhr.responseText) {
+                                            }
+                                            else {
+                                                var data = JSON.parse(xhr.responseText);
+                                                $('.{{ subowner.name }}').fadeOut(500, function () {
+                                                    $('.{{ subowner.name }}').attr('src', data["path"]);
+                                                    $('.{{ subowner.name }}').fadeIn(500);
+                                                });
+                                            }
+                                        }
+                                    });
+                                })
+                            </script>
                         {% endif %}
                         {{ subowner.name }}<br/>
                     {% endfor %}
@@ -138,13 +177,41 @@
                              class="avatar-sm img-rounded" data-toggle="tooltip" data-placement="top" title=""
                              data-original-title="{{ member.name }}">
                     {% else %}
-                        <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                        <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded {{ member.name }}"
+                             data-toggle="tooltip" data-placement="top" title=""
+                             data-original-title="{{ member.name }}">
+                        <script type="application/javascript">
+                            $(document).ready(function () {
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/avatar/{{ member.name }}",
+                                    contentType: 'application/json',
+                                    complete: function (xhr, status) {
+                                        if (status === 'error' || !xhr.responseText) {
+                                        }
+                                        else {
+                                            var data = JSON.parse(xhr.responseText);
+                                            $('.{{ member.name }}').fadeOut(500, function () {
+                                                $('.{{ member.name }}').attr('src', data["path"]);
+                                                $('.{{ member.name }}').fadeIn(500);
+                                            });
+                                        }
+                                    }
+                                });
+                            })
+                        </script>
                     {% endif %}
                 {% endfor %}
             {% endif %}
         </div>
 
         <div class="span7">
+            {% if user.is_authenticated %}
+                <div class="townnav">
+                    <a href="/town/{{ town.name }}" type="button" class="btn btn-primary btn-md">Home</a>
+                    <a href="/town/{{ town.name }}/board" type="button" class="btn btn-primary btn-md">Town Board <span class="active badge"> {{ town.num_threads }}</span></a>
+                </div>
+            {% endif %}
             {% block towncontent %}{% endblock %}
         </div>
 

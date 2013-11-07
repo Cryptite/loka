@@ -840,10 +840,7 @@ img.avatar-sm {
 .section-header h1 {
     font-size: 1.5em;
     width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 25px;
-    margin-bottom: 0px;
+    margin: 25px auto 0px;
 }
 
 .login {
@@ -853,4 +850,8 @@ img.avatar-sm {
 .reg-avatar {
     width: 100px;
     height: 100px;
+}
+
+.townnav {
+    margin-top: 5px;
 }

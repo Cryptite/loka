@@ -7,9 +7,8 @@ from django.core import serializers
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-import time
 
-from loka.models import Player, Town, Quote, Post, Thread
+from loka.models import Player, Town, Quote, Post, Thread, Comment
 from loka.tasks import retrieve_avatar
 
 
@@ -32,7 +31,7 @@ def player(request, player_name):
     }))
 
 
-def post(request, town_name, thread_id):
+def townthread(request, town_name, thread_id):
     print town_name, thread_id
     town = Town.objects.get(name=town_name)
     thread = Thread.objects.get(id=thread_id)
@@ -43,7 +42,7 @@ def post(request, town_name, thread_id):
                             text=request.POST['comment'],
                             author=Player.objects.get(name=request.user.username))
 
-    return render_to_response('post.html', RequestContext(request, {
+    return render_to_response('townthread.html', RequestContext(request, {
         'town': town,
         'thread': thread,
         'posts': posts,
@@ -54,14 +53,18 @@ def deleteitem(request, item_id):
     if request.POST['action'] == "post":
         Post.objects.get(id=item_id).delete()
         messages.success(request, 'Post deleted!')
+    elif request.POST['action'] == "comment":
+        Comment.objects.get(id=item_id).delete()
+        messages.success(request, 'Comment deleted!')
     elif request.POST['action'] == "thread":
         thread = Thread.objects.get(id=item_id)
         [post.delete() for post in Post.objects.filter(thread=thread)]
         thread.delete()
+        messages.success(request, "Thread deleted!")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-def town(request, town_name):
+def townboard(request, town_name):
     town = Town.objects.get(name=town_name)
     user_in_town = town.members.filter(name=request.user.username)
     print user_in_town
@@ -89,9 +92,40 @@ def town(request, town_name):
             Post.objects.create(thread=new_thread,
                                 text=request.POST['text'],
                                 author=author)
-    return render_to_response('town.html', RequestContext(request, {
+    return render_to_response('townboard.html', RequestContext(request, {
         'town': town,
         'threads': threads,
+    }))
+
+
+def townhome(request, town_name):
+    town = Town.objects.get(name=town_name)
+    user_in_town = town.members.filter(name=request.user.username)
+    if not request.user.is_authenticated() and not town.public:
+        raise Http404
+    elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "cryptite":
+        raise Http404
+
+    comments = Comment.objects.filter(town=town)
+
+    if request.POST:
+        if request.POST['action'] == "public":
+            if town.public:
+                town.public = False
+            else:
+                town.public = True
+            town.save()
+            return HttpResponse({"something": "somethingelse"},
+                                mimetype='application/javascript')
+
+        elif request.POST['action'] == "comment":
+            author = Player.objects.get(name=request.user.username)
+            Comment.objects.create(town=town,
+                                   text=request.POST['text'],
+                                   author=author)
+    return render_to_response('townhome.html', RequestContext(request, {
+        'town': town,
+        'comments': comments,
     }))
 
 
@@ -101,7 +135,7 @@ def towns(request):
 
 def townslist(request):
     if request.user.is_authenticated():
-        if request.user.username == "cryptite":
+        if request.user.username == "Cryptite":
             townlist_query = Town.objects.all()
         else:
             player = Player.objects.filter(user=request.user)
@@ -121,13 +155,6 @@ def townslist(request):
 
     return render_to_response('townslist.html', RequestContext(request, {
         'towns': townlist_query,
-    }))
-
-
-def dashboard(request, player_name):
-    player = Player.objects.get(name=player_name)
-    return render_to_response('player.html', RequestContext(request, {
-        'player': player,
     }))
 
 
@@ -157,7 +184,7 @@ def registration(request, registration_id):
     except Exception, e:
         messages.warning(request, "No such player can be registered that way.")
         return render_to_response("index.html", RequestContext(request))
-    print 'Request is for user',user.username
+    print 'Request is for user', user.username
     player = Player.objects.filter(name=user.username)
     if len(player) > 0:
         player = player[0]
@@ -190,6 +217,8 @@ def logout(request):
     auth.logout(request)
     messages.success(request, 'Seeya next time!')
     return render_to_response('index.html', RequestContext(request))
+
+
 def getavatar(request, player_name):
     player = Player.objects.get(name=player_name)
     retrieve_avatar(player)
@@ -197,8 +226,9 @@ def getavatar(request, player_name):
     return HttpResponse(json.dumps({"path": "/static/media/{0}".format(player.avatar)}),
                         mimetype='application/javascript')
 
+
 def home(request):
-    #return render_to_response('index_live.html', RequestContext(request))
+    return render_to_response('index_live.html', RequestContext(request))
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']

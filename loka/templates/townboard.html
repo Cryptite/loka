@@ -4,7 +4,7 @@
 {% load humanize %}
 
 {% block towncontent %}
-    <h2 class="title"><span>Town Board</span>
+    <h2 class="title"><span>{{ town.name }} Town Board</span>
         {% if town.motd != "null" %}
             <small> - {{ town.motd }}</small>
         {% endif %}
