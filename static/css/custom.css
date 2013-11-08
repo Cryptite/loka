@@ -69,8 +69,8 @@ a.inverse, a:visited {
 }
 
 .page-section lightgrey {
-    background-color: #f0efed !important;
     padding-bottom: 0px;
+    background-color: #f0efed !important;
 }
 
 /* ===== QUOTE SECTION ===== */
@@ -113,8 +113,53 @@ a.inverse, a:visited {
     border-bottom-color: #fff;
 }
 
-.navbar {
+.navbar-default {
     margin-bottom: 0px;
+    border: 0px;
+    background-color: #2a4bb2;
+}
+
+.navbar-nav {
+    margin: 0px;
+}
+
+.navbar a {
+    color: #eeeeee;
+    font-size: 14px;
+    font-size: 1.3em;
+}
+
+.navbar-default .navbar-nav > li {
+    height: 60px;
+    vertical-align: middle;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -ms-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
+}
+
+.navbar-nav > li > a {
+    line-height: 35px;
+}
+
+.navbar-default .navbar-nav > li:hover {
+    background-color: #387bc1;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #f1f1f1;
+    font-size: 1.3em;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #fff;
+    font-size: 1.3em;
+}
+
+.navbar-nav img {
+    width: 30px;
+    height: 30px;
 }
 
 .jumbotron {
@@ -158,47 +203,9 @@ a.inverse, a:visited {
     background: url('/static/images/arena.jpg');
 }
 
-.navbar-default {
-    max-height: 55px;
-    border: 0px;
-    background-color: #5071b2;
-}
-
-.navbar a {
-    max-height: 45px;
-    border-right: 1px solid #4f5a66;
-    border-left: 1px solid #6f879d;
-    color: #f1f1f1;
-}
-
-.dropdown-toggle a {
-    color: #f1f1f1;
-}
-
-.navbar-default .navbar-nav > li > a {
-    color: #f1f1f1;
-    font-size: 1.3em;
-}
-
-.navbar-default .navbar-nav > li > a:hover {
-    color: #fff;
-    font-size: 1.3em;
-}
-
-.navbar-default .navbar-brand img {
-    margin-top: -3px;
-    max-width: 101px;
-    max-height: 30px;
-}
-
 .thumbnail {
     min-height: 500px;
     border: 0px;
-}
-
-.navbar-nav img {
-    width: 30px;
-    height: 30px;
 }
 
 .avatar {
@@ -856,10 +863,6 @@ img.avatar-sm {
 
 .login {
     margin-bottom: 15px;
-}
-
-.loginbutton {
-    margin: auto;
 }
 
 .reg-avatar {

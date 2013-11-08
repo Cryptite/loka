@@ -26,7 +26,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include(router.urls)),
+    url(r'^townapi', include(router.urls)),
     url(r'^$', 'loka.views.home'),
     url(r'^townslist', 'loka.views.townslist'),
     url(r'^avatar/(?P<player_name>\w+)', 'loka.views.getavatar'),

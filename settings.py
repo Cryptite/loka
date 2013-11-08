@@ -159,6 +159,7 @@ INSTALLED_APPS = (
     #'djcelery',
     'bootstrap_toolkit',
     'loka',
+    'south',
 )
 
 PASSWORD_HASHERS = (

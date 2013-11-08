@@ -26,6 +26,7 @@ class Player(models.Model):
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
     avatar_sm = models.ImageField(upload_to='avatars/', blank=True, null=True)
     user = models.ForeignKey(User, blank=True, null=True)
+    receive_notifications = models.BooleanField(default=False, blank=False)
 
     def __unicode__(self):
         return self.name
@@ -37,7 +38,7 @@ class Player(models.Model):
 
 class Town(models.Model):
     name = models.CharField(max_length=30)
-    public = models.BooleanField()
+    public = models.BooleanField(default=False)
     tag = models.CharField(max_length=10)
     motd = models.CharField(max_length=255)
     owner = models.ForeignKey(Player, blank=True, null=True)
@@ -80,6 +81,9 @@ class Town(models.Model):
 
     def num_threads(self):
         return len(Thread.objects.filter(town=self))
+
+    def num_comments(self):
+        return len(Comment.objects.filter(town=self))
 
 
 class Quote(models.Model):

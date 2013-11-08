@@ -174,7 +174,7 @@ def townslist(request):
         if request.user.username == "Cryptite":
             townlist_query = Town.objects.all()
         else:
-            player = Player.objects.filter(user=request.user)
+            player = Player.objects.filter(name=request.user.username)
             if len(player) == 0:
                 player = Player.objects.create(user=request.user, name=request.user.username)
             else:

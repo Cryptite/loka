@@ -70,7 +70,7 @@
         <a class="navbar-brand" href="/"><img src="{% static 'images/logo_sm.png' %}" class="img-responsive"/></a>
         <ul class="nav navbar-nav">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Towns<b
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Towns <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="{% url 'loka.views.towns' %}">About</a></li>
@@ -78,30 +78,32 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">PvP<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">PvP <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="{% url 'loka.views.pvp' %}">About</a></li>
                     <li><a href="{% url 'loka.views.pvp1v1' %}">1v1 Bracket</a></li>
-                    {#                <li><a href="{% url 'loka.views.pvp2v2' %}">2v2 Bracket</a></li>#}
-                    {#                <li><a href="{% url 'loka.views.vota' %}">VotA Rankings</a></li>#}
                 </ul>
             </li>
             <li><a href="http://loka.minecraftarium.com/forums/">Forums</a>
             </li>
             <li><a href="http://loka.wikia.com/wiki/Loka_Wiki">Wiki</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right loginbutton">
+        <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 {% if user.is_authenticated %}
                     {% player_avatar user as avatar %}
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }} <img
-                            src="{% static 'media/' %}{{ avatar }}"
-                            class="img-rounded avatar"/></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
+                        {% if avatar%}
+                            <img src="{% static 'media/' %}{{ avatar }}" class="img-rounded avatar"/>
+                        {% else %}
+                            <img src="{% static 'images/steve.png' %}" class="img-rounded avatar"/>
+                        {% endif %}
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'loka.views.logout' %}">Sign Out</a></li>
                     </ul>
                 {% else %}
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <img
+                    <a href="#" class="dropdown-toggle loginbutton" data-toggle="dropdown">Sign In <img
                             src="{% static 'images/steve.png' %}"
                             class="img-rounded avatar"/></a>
                     <ul class="dropdown-menu">

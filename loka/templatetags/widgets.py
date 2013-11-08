@@ -14,8 +14,11 @@ def get_quote():
 
 @register.assignment_tag
 def player_avatar(user):
-    player = Player.objects.get(name=user.username)
-    return player.avatar
+    try:
+        player = Player.objects.get(name=user.username)
+        return player.avatar
+    except Exception, e:
+        return None
 
 #register.assignment_tag(player_avatar)
 register.inclusion_tag('quote.html')(get_quote)
