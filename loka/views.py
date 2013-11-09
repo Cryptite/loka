@@ -160,6 +160,7 @@ def townhome(request, town_name):
     return render_to_response('townhome.html', RequestContext(request, {
         'town': town,
         'comments': comments,
+        'userintown': user_in_town,
     }))
 
 

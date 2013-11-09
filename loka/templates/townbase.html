@@ -158,8 +158,7 @@
                 })
             </script>
         {% endif %} {{ town.owner.name }}
-
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and userintown.count > 0 %}
             {% if town.subowners.count > 0 %}
                 <h3>Subowners</h3>
                 {% for subowner in town.subowners.all %}
@@ -232,7 +231,7 @@
     </div>
 
     <div class="span7">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and userintown.count > 0 %}
             <div class="townnav">
                 <a href="/town/{{ town.name }}" type="button" class="btn btn-primary btn-md">Home</a>
                 <a href="/town/{{ town.name }}/board" type="button" class="btn btn-primary btn-md">Town Board <span
