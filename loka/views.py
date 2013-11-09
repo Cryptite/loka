@@ -142,13 +142,14 @@ def townhome(request, town_name):
     comments = Comment.objects.filter(town=town).order_by("-date")
 
     if request.POST:
+        print request.POST['action']
         if request.POST['action'] == "public":
             if town.public:
                 town.public = False
             else:
                 town.public = True
             town.save()
-            return HttpResponse({"something": "somethingelse"},
+            return HttpResponse({town.public: "somethingelse"},
                                 mimetype='application/javascript')
 
         elif request.POST['action'] == "comment":

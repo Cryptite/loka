@@ -97,7 +97,7 @@
                                         success: function (rs, e) {
                                             var button = $('.public')[0]
                                             var text = document.getElementById("visibility");
-                                            if (button.value == "Set Public") {
+                                            if (rs == "True") {
                                                 button.value = "Set Private";
                                             } else {
                                                 button.value = "Set Public";
