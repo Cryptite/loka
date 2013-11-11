@@ -2,8 +2,7 @@
 import os
 from unipath import Path
 
-SETTINGS_ROOT = os.path.dirname(__file__)
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 #djcelery.setup_loader()
 
 DEBUG = True
@@ -53,11 +52,11 @@ USE_L10N = True
 #########
 # PATHS #
 #########
-STATIC_ROOT = Path(SETTINGS_ROOT, "static")
+STATIC_ROOT = Path(BASE_DIR, 'static')
+MEDIA_ROOT = Path(STATIC_ROOT, 'media')
+MEDIA_URL = '/static/media/'
 STATIC_URL = '/static/'
-MEDIA_ROOT = STATIC_ROOT.child("media")
-MEDIA_URL = '/media/'
-LOGOUT_URL = '/account/logout/'
+#LOGOUT_URL = '/account/logout/'
 APPEND_SLASH = True
 
 STATICFILES_DIRS = (
@@ -158,6 +157,8 @@ INSTALLED_APPS = (
     'rest_framework',
     #'djcelery',
     'bootstrap_toolkit',
+    'easy_thumbnails',
+    'image_cropping',
     'loka',
     'south',
 )
@@ -180,6 +181,13 @@ REST_FRAMEWORK = {
     ]
 }
 
+from easy_thumbnails.conf import Settings as thumbnail_settings
+
+THUMBNAIL_PROCESSORS = (
+                           'image_cropping.thumbnail_processors.crop_corners',
+                       ) + thumbnail_settings.THUMBNAIL_PROCESSORS
+
+IMAGE_CROPPING_SIZE_WARNING = True
 
 ###################
 # EMAIL SETTINGS #
@@ -218,6 +226,14 @@ LOGGING = {
         },
     },
 }
+
+try:
+    import django_extensions
+except ImportError:
+    pass
+else:
+    INSTALLED_APPS += ['django_extensions']
+
 
 # Celery settings
 #BROKER_URL = 'redis://localhost:6379/0'

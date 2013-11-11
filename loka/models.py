@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
+from image_cropping import ImageRatioField, ImageCropField
 
 
 class Player(models.Model):
@@ -84,6 +85,12 @@ class Town(models.Model):
 
     def num_comments(self):
         return len(Comment.objects.filter(town=self))
+
+
+class TownMedia(models.Model):
+    town = models.ForeignKey(Town)
+    banner = ImageCropField(blank=True, null=True, upload_to='townimages/')
+    banner_crop = ImageRatioField('banner', '1250x250', size_warning=True)
 
 
 class Quote(models.Model):

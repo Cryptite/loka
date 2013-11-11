@@ -4,12 +4,14 @@ from django.contrib import messages, auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core import serializers
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from rest_framework import viewsets
+from loka.forms import TownBannerForm
 
-from loka.models import Player, Town, Quote, Post, Thread, Comment
+from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia
 from loka.serializers import TownSerializer
 from loka.tasks import retrieve_avatar
 
@@ -133,6 +135,14 @@ def townthread(request, town_name, thread_id):
 
 def townhome(request, town_name):
     town = Town.objects.get(name=town_name)
+    image = TownMedia.objects.filter(town=town)
+    print image
+    if image:
+        image = image[0]
+    else:
+        image = TownMedia.objects.create(town=town)
+    print image
+    form = TownBannerForm(instance=image)
     user_in_town = town.members.filter(name=request.user.username)
     if not request.user.is_authenticated() and not town.public:
         raise Http404
@@ -157,8 +167,15 @@ def townhome(request, town_name):
             Comment.objects.create(town=town,
                                    text=request.POST['text'],
                                    author=author)
+
+        elif request.POST['action'] == "banner":
+            form = TownBannerForm(request.POST, request.FILES, instance=image)
+            if form.is_valid():
+                image = form.save()
     return render_to_response('townhome.html', RequestContext(request, {
         'town': town,
+        'image': image,
+        'form': form,
         'comments': comments,
         'userintown': user_in_town,
     }))
