@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="Django default" product="MySQL" version="5.5.31-0+wheezy1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.26 ( Revision: ${bzr.revision-id} )" uuid="96a479fd-23a7-4e3b-aa58-51319f319bdc">
-    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+  <data-source source="LOCAL" name="Django default" product="MySQL" version="5.6.14" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.26 ( Revision: ${bzr.revision-id} )" uuid="96a479fd-23a7-4e3b-aa58-51319f319bdc">
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <extra-name-characters>#@</extra-name-characters>
     <identifier-quote-string>`</identifier-quote-string>
     <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-    <jdbc-url>jdbc:mysql://vader:3306/loka</jdbc-url>
-    <user-name>jango</user-name>
-    <user-password>dfc0dfcbdfc4dfcddfc5df9bdf9b</user-password>
+    <jdbc-url>jdbc:mysql://127.0.0.1:3306/loka</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>dfc9dfcbdfc6dfc6dfd3df99df9edf98</user-password>
     <libraries>
       <library>
         <url>file://$PROJECT_DIR$/mysql-connector-license_2.txt</url>
@@ -35340,6 +35340,7 @@
       <exported-key name="user_id_refs_id_40c41112" table="auth_user_groups" schema="" catalog="loka" columns="user_id"/>
       <exported-key name="user_id_refs_id_4dc23c39" table="auth_user_user_permissions" schema="" catalog="loka" columns="user_id"/>
       <exported-key name="user_id_refs_id_c0d12874" table="django_admin_log" schema="" catalog="loka" columns="user_id"/>
+      <exported-key name="user_id_refs_id_d2fcdd64" table="loka_player" schema="" catalog="loka" columns="user_id"/>
       <index name="username" unique="true" columns="username"/>
     </table>
     <table name="auth_user_groups" schema="" catalog="loka" type="TABLE">
@@ -35347,8 +35348,8 @@
       <column name="user_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="group_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="user_id_refs_id_40c41112" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="group_id_refs_id_274b862c" columns="group_id" ref-table="auth_group" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="user_id_refs_id_40c41112" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="user_id" unique="true" columns="group_id"/>
       <index name="auth_user_groups_5f412f9a" unique="false" columns="group_id"/>
       <index name="auth_user_groups_6340c63c" unique="false" columns="user_id"/>
@@ -35358,8 +35359,8 @@
       <column name="user_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="permission_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="user_id_refs_id_4dc23c39" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="permission_id_refs_id_35d9ac25" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="user_id_refs_id_4dc23c39" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="user_id" unique="true" columns="permission_id"/>
       <index name="auth_user_user_permissions_6340c63c" unique="false" columns="user_id"/>
       <index name="auth_user_user_permissions_83d7f98b" unique="false" columns="permission_id"/>
@@ -35504,6 +35505,171 @@
       <exported-key name="worker_id_refs_id_6fd8ce95" table="djcelery_taskstate" schema="" catalog="loka" columns="worker_id"/>
       <index name="hostname" unique="true" columns="hostname"/>
       <index name="djcelery_workerstate_11e400ef" unique="false" columns="last_heartbeat"/>
+    </table>
+    <table name="easy_thumbnails_source" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="modified" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="storage_hash" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="source_id_refs_id_0df57a91" table="easy_thumbnails_thumbnail" schema="" catalog="loka" columns="source_id"/>
+      <index name="easy_thumbnails_source_name_39229697_uniq" unique="true" columns="name,storage_hash"/>
+      <index name="easy_thumbnails_source_3f0464e5" unique="false" columns="storage_hash"/>
+      <index name="easy_thumbnails_source_4da47e07" unique="false" columns="name"/>
+    </table>
+    <table name="easy_thumbnails_thumbnail" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="modified" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="source_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="storage_hash" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="source_id_refs_id_0df57a91" columns="source_id" ref-table="easy_thumbnails_source" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="easy_thumbnails_thumbnail_source_id_47e6eb80_uniq" unique="true" columns="source_id,name,storage_hash"/>
+      <index name="easy_thumbnails_thumbnail_3f0464e5" unique="false" columns="storage_hash"/>
+      <index name="easy_thumbnails_thumbnail_4da47e07" unique="false" columns="name"/>
+      <index name="easy_thumbnails_thumbnail_a34b03a6" unique="false" columns="source_id"/>
+    </table>
+    <table name="loka_comment" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="town_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="text" sqlType="VARCHAR" length="400" precision="0" nullable="false" jdbcType="12"/>
+      <column name="author_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="date" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="author_id_refs_id_506f05a7" columns="author_id" ref-table="loka_player" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="town_id_refs_id_bf94438a" columns="town_id" ref-table="loka_town" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="loka_comment_850831a2" unique="false" columns="town_id"/>
+      <index name="loka_comment_e969df21" unique="false" columns="author_id"/>
+    </table>
+    <table name="loka_player" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="arenarating" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="arenawins" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="arenalosses" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="streak" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="highestrating" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="arenarating2v2" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="arenawins2v2" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="arenalosses2v2" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="streak2v2" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="highestrating2v2" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="valleyKills" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="valleyDeaths" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="valleyCaps" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="valleyWins" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="valleyLosses" sqlType="SMALLINT" length="5" precision="0" nullable="true" jdbcType="5"/>
+      <column name="deserterTime" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <column name="title" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <column name="rank" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <column name="avatar" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="avatar_sm" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="user_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="receive_notifications" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="user_id_refs_id_d2fcdd64" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="author_id_refs_id_506f05a7" table="loka_comment" schema="" catalog="loka" columns="author_id"/>
+      <exported-key name="author_id_refs_id_9c9d79fe" table="loka_post" schema="" catalog="loka" columns="author_id"/>
+      <exported-key name="author_id_refs_id_a7f1fa13" table="loka_quote" schema="" catalog="loka" columns="author_id"/>
+      <exported-key name="author_id_refs_id_337b9d23" table="loka_thread" schema="" catalog="loka" columns="author_id"/>
+      <exported-key name="owner_id_refs_id_0386c882" table="loka_town" schema="" catalog="loka" columns="owner_id"/>
+      <exported-key name="player_id_refs_id_8937afcb" table="loka_town_members" schema="" catalog="loka" columns="player_id"/>
+      <exported-key name="player_id_refs_id_8b797efd" table="loka_town_subowners" schema="" catalog="loka" columns="player_id"/>
+      <index name="loka_player_6340c63c" unique="false" columns="user_id"/>
+    </table>
+    <table name="loka_post" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="thread_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="text" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1"/>
+      <column name="author_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="date" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="author_id_refs_id_9c9d79fe" columns="author_id" ref-table="loka_player" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="thread_id_refs_id_735bd4da" columns="thread_id" ref-table="loka_thread" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="loka_post_bd1a2e3a" unique="false" columns="thread_id"/>
+      <index name="loka_post_e969df21" unique="false" columns="author_id"/>
+    </table>
+    <table name="loka_quote" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="text" sqlType="VARCHAR" length="300" precision="0" nullable="false" jdbcType="12"/>
+      <column name="author_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="event" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="event_url" sqlType="VARCHAR" length="200" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="author_id_refs_id_a7f1fa13" columns="author_id" ref-table="loka_player" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="loka_quote_e969df21" unique="false" columns="author_id"/>
+    </table>
+    <table name="loka_thread" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="town_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="title" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="author_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="last_updated" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="owner_only" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="author_id_refs_id_337b9d23" columns="author_id" ref-table="loka_player" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="town_id_refs_id_1f63fc39" columns="town_id" ref-table="loka_town" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="thread_id_refs_id_735bd4da" table="loka_post" schema="" catalog="loka" columns="thread_id"/>
+      <index name="loka_thread_850831a2" unique="false" columns="town_id"/>
+      <index name="loka_thread_e969df21" unique="false" columns="author_id"/>
+    </table>
+    <table name="loka_town" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="public" sqlType="BIT" length="0" precision="0" nullable="false" jdbcType="-7"/>
+      <column name="tag" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12"/>
+      <column name="motd" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="owner_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="owner_str" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="members_str" sqlType="VARCHAR" length="1000" precision="0" nullable="true" jdbcType="12"/>
+      <column name="subowners_str" sqlType="VARCHAR" length="300" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="owner_id_refs_id_0386c882" columns="owner_id" ref-table="loka_player" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="town_id_refs_id_bf94438a" table="loka_comment" schema="" catalog="loka" columns="town_id"/>
+      <exported-key name="town_id_refs_id_1f63fc39" table="loka_thread" schema="" catalog="loka" columns="town_id"/>
+      <exported-key name="town_id_refs_id_6101b361" table="loka_town_members" schema="" catalog="loka" columns="town_id"/>
+      <exported-key name="town_id_refs_id_ed8ef69b" table="loka_town_subowners" schema="" catalog="loka" columns="town_id"/>
+      <exported-key name="town_id_refs_id_f86fb611" table="loka_townmedia" schema="" catalog="loka" columns="town_id"/>
+      <index name="loka_town_cb902d83" unique="false" columns="owner_id"/>
+    </table>
+    <table name="loka_town_members" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="town_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="player_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="player_id_refs_id_8937afcb" columns="player_id" ref-table="loka_player" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="town_id_refs_id_6101b361" columns="town_id" ref-table="loka_town" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="town_id" unique="true" columns="player_id"/>
+      <index name="loka_town_members_850831a2" unique="false" columns="town_id"/>
+      <index name="loka_town_members_f7c6108c" unique="false" columns="player_id"/>
+    </table>
+    <table name="loka_town_subowners" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="town_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="player_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="player_id_refs_id_8b797efd" columns="player_id" ref-table="loka_player" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="town_id_refs_id_ed8ef69b" columns="town_id" ref-table="loka_town" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="town_id" unique="true" columns="player_id"/>
+      <index name="loka_town_subowners_850831a2" unique="false" columns="town_id"/>
+      <index name="loka_town_subowners_f7c6108c" unique="false" columns="player_id"/>
+    </table>
+    <table name="loka_townmedia" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="town_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="banner" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="banner_crop" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="town_id_refs_id_f86fb611" columns="town_id" ref-table="loka_town" ref-schema="" ref-catalog="loka" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="loka_townmedia_850831a2" unique="false" columns="town_id"/>
+    </table>
+    <table name="south_migrationhistory" schema="" catalog="loka" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="app_name" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="migration" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12"/>
+      <column name="applied" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="columns_priv" schema="" catalog="mysql" type="TABLE">
       <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" def="Jyc="/>

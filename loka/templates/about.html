@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ form.media }}
+    <!-- Important Owl stylesheet -->
+    <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">
+
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css' %}">
+
+    <!-- Include js plugin -->
+    <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron towns">
+        <h1>All About Loka</h1>
+
+        <h2>Everything you need to know about Loka</h2>
+    </div>
+
+    <div class="row">
+        <h2 class="title"><span>Give me the rundown, quick. </span></h2>
+
+        <div class="span8">
+            <h3>What you need to know:</h3>
+            <ul>
+                <li>
+                    <h4>We are Semi-vanilla -
+                        <small>We use custom code to achieve incredible things, but we strive to keep gameplay as
+                            close to regular Minecraft as we can.
+                        </small>
+                    </h4>
+                </li>
+                <li>
+                    <h4>We are a PvP server -
+                        <small>Killing, murdering, and any other such pvp method aside from camping are allowed on
+                            Loka.
+                        </small>
+                    </h4>
+                </li>
+                <li>
+                    <h4>We have Towns, but not those towns -
+                        <small>We don't run Towny, Factions, or any known town plugin. Our <a
+                                href="{% url 'loka.views.towns' %}">town system</a> is 100% unique
+                            and custom to Loka.
+                        </small>
+                    </h4>
+                </li>
+                <li>
+                    <h4>No Chest Protection here -
+                        <small>Hide your things well, we employ no chest protection plugins.</small>
+                    </h4>
+                </li>
+                <li>
+                    <h4>Steal Away! -
+                        <small>Thievery, stealing, coersion, manipulation. These are all allowed and found on Loka. Keep
+                            your friends close and your enemies closer, life can be very hard. There are limits, though;
+                            more about that later.
+                        </small>
+                    </h4>
+                </li>
+                <li>
+                    <h4>But no Griefing -
+                        <small>We allow stealing valuable blocks (Diamond, Lapis, Emerald, etc), but we enforce no
+                            griefing. Just because you found a house in the wilderness unprotected, doesn't mean you can
+                            take it apart. If you find chests within, though, the loot is all yours.
+                        </small>
+                    </h4>
+                </li>
+                <li>
+                    <h4>We got Story -
+                        <small>Despite all the brutality Loka can offer, the server also has <a
+                                href="http://loka.wikia.com/wiki/The_History_of_the_Server" target="_blank">a rich
+                            backstory</a
+                                >, <a href="http://loka.wikia.com/wiki/Battle_of_the_Spire" target="_blank">RP
+                            events</a>, and <a href="http://loka.wikia.com/wiki/Blight" target="_blank">uncommon oddities</a> that occur in the world. If you like to be involved in the
+                            story, Loka is your place.
+                        </small>
+                    </h4>
+                </li>
+                <li>
+                    <h4>Competitive much? -
+                        <small>Loka hosts a number of pvp scenarios if you like to whet your appetite in a competitive
+                            arena or battleground. We take our PvP seriously too from <a
+                                    href="{% url 'loka.views.pvp1v1' %}" target="_blank">ELO-rated Arenas</a> to
+                            end-of-season rewards including titles and custom horses. Show us what you got.
+                        </small>
+                    </h4>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>$(document).ready(function () {
+
+        $("#slider_arena").owlCarousel({
+            slideSpeed: 600,
+            paginationSpeed: 600,
+            singleItem: true,
+            autoPlay: 5000 //Set AutoPlay to 3 seconds
+        });
+
+        $("#slider_townbenefits").owlCarousel({
+            slideSpeed: 300,
+            paginationSpeed: 400,
+            singleItem: true
+        });
+
+    });</script>
+
+{% endblock %}

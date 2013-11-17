@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1826027725">
+  <component name="DataSourceManagerImpl" format="xml" hash="3989125711">
     <data-source source="LOCAL" name="Django default" uuid="96a479fd-23a7-4e3b-aa58-51319f319bdc">
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://vader:3306/loka</jdbc-url>
-      <user-name>jango</user-name>
-      <user-password>dfc0dfcbdfc4dfcddfc5df9bdf9b</user-password>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/loka</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfc9dfcbdfc6dfc6dfd3df99df9edf98</user-password>
       <libraries>
         <library>
           <url>file://$PROJECT_DIR$/mysql-connector-license_2.txt</url>

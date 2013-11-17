@@ -91,6 +91,8 @@ class TownMedia(models.Model):
     town = models.ForeignKey(Town)
     banner = ImageCropField(blank=True, null=True, upload_to='townimages/')
     banner_crop = ImageRatioField('banner', '1250x250', size_warning=True)
+    list_banner = ImageCropField(blank=True, null=True, upload_to='townlistimages/')
+    list_banner_crop = ImageRatioField('list_banner', '250x150', size_warning=True)
 
 
 class Quote(models.Model):

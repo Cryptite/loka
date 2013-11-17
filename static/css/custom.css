@@ -877,3 +877,7 @@ img.avatar-sm {
 .townnav {
     margin-top: 5px;
 }
+
+strong {
+    font-weight: 600;
+}

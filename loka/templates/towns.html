@@ -26,13 +26,17 @@
         <section class="page-section lightgrey">
             <div class="container padbottom30 section-header">
                 <br/>
+
                 <div class="span2"><img src="{% static 'images/icon-towns.png' %}" class="pull-right"/></div>
                 <h1>Loka's towns feature a one-of-a-kind generator system. Through custom code, Loka gives you a
-                    unique township experience with control over your town you won't find anywhere else.</h1>
+                    unique township experience with control over your town you won't find anywhere else.
+                </h1>
             </div>
         </section>
 
-        <h2 class="title"><span>Town Generators </span></h2>
+        <h2 class="title"><span>Town Generators </span><a href="{% url 'loka.views.townslist' %}"
+                                                          class="btn btn-success btn-lg pull-right">View the
+            Towns of Loka!</a></h2>
 
         <div class="span5">
 
@@ -50,18 +54,12 @@
                     your
                     vaults.</p>
             </div>
-            <br/><br/>
-
-            <a href="{% url 'loka.views.townslist' %}"
-               class="btn btn-success btn-lg btn-group-justified">View the Towns of Loka!</a>
         </div>
 
         <div class="span6">
             <div id="slider_arena" class="owl-carousel">
                 <div><img class="smoothimage" alt="Nagrand Arena"
-                          src="{% static 'images/arena_nagrand.jpg' %}" height="400"></div>
-                <div><img class="smoothimage" alt="Blade's Edge Arena"
-                          src="{% static 'images/arena_blade.jpg' %}" height="400"></div>
+                          src="{% static 'images/town_helrune.jpg' %}" height="300"></div>
             </div>
         </div>
 
@@ -84,17 +82,6 @@
                 <p>By paying an additional cost, your town can activate nether protection that protects the
                     equivalent sector of the nether for your town. This grants your town an extra layer of security
                     and prevents a variety of nether-entry methods.</p>
-            </div>
-
-            <div class="feature feature-left">
-
-                <i><img src="{% static 'images/icon-ghast.png' %}"/></i>
-
-                <h3>Rank-based Build Priviledges</h3>
-
-                <p>Bubble generators allow town owners to define regions within their own town borders where only
-                    members with a specific rank may build. This allows towns to define districts where veteran town
-                    members can build without worrying about new members undoing their fine work.</p>
             </div>
         </div>
         <div class="span5">
@@ -119,6 +106,17 @@
                     spawn. Because warping and other teleports are extremely rare on Loka, town portals grant members
                     quick travel back to spawn</p>
             </div>
+
+            <div class="feature feature-right">
+
+                <i><img src="{% static 'images/icon-ghast.png' %}"/></i>
+
+                <h3>Rank-based Build Priviledges</h3>
+
+                <p>Bubble generators allow town owners to define regions within their own town borders where only
+                    members with a specific rank may build. This allows towns to define districts where veteran town
+                    members can build without worrying about new members undoing their fine work.</p>
+            </div>
         </div>
 
     </div>
@@ -135,8 +133,7 @@
         $("#slider_townbenefits").owlCarousel({
             slideSpeed: 300,
             paginationSpeed: 400,
-            singleItem: true,
-            autoHeight: true
+            singleItem: true
         });
 
     });</script>

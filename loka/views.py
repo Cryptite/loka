@@ -181,6 +181,10 @@ def townhome(request, town_name):
     }))
 
 
+def about(request):
+    return render_to_response('about.html', RequestContext(request))
+
+
 def towns(request):
     return render_to_response('towns.html', RequestContext(request))
 

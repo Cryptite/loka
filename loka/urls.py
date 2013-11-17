@@ -31,6 +31,7 @@ urlpatterns = patterns('',
     url(r'^townslist', 'loka.views.townslist'),
     url(r'^avatar/(?P<player_name>\w+)', 'loka.views.getavatar'),
     url(r'^getquote', 'loka.views.getquote'),
+    url(r'^about', 'loka.views.about'),
     url(r'^towns', 'loka.views.towns'),
     url(r'^pvp1v1', 'loka.views.pvp1v1'),
     url(r'^pvp', 'loka.views.pvp'),
@@ -41,7 +42,7 @@ urlpatterns = patterns('',
     url(r'^town/(?P<town_name>\w+)', 'loka.views.townhome'),
     url(r'^register/(?P<registration_id>\w+)', 'loka.views.registration'),
     url(r'^logout', 'loka.views.logout'),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 )
 
 urlpatterns += staticfiles_urlpatterns()
