@@ -5,7 +5,7 @@
 
 {% block towncontent %}
     <h2 class="title"><span>The Town of {{ town.name }}</span>
-        {% if town.motd != "null" %}
+        {% if town.motd != "null" and user.is_authenticated and userintown.count > 0 %}
             <small> - {{ town.motd }}</small>
         {% endif %}
     </h2>
