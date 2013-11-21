@@ -159,6 +159,7 @@ INSTALLED_APPS = (
     'bootstrap_toolkit',
     'easy_thumbnails',
     'image_cropping',
+    'ajaxuploader',
     'loka',
     'south',
 )
@@ -176,9 +177,9 @@ REST_FRAMEWORK = {
 
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    #'DEFAULT_PERMISSION_CLASSES': [
+    #    'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    #]
 }
 
 from easy_thumbnails.conf import Settings as thumbnail_settings
@@ -227,12 +228,12 @@ LOGGING = {
     },
 }
 
-try:
-    import django_extensions
-except ImportError:
-    pass
-else:
-    INSTALLED_APPS += ['django_extensions']
+#try:
+#    import django_extensions
+#except ImportError:
+#    pass
+#else:
+#    INSTALLED_APPS += ['django_extensions']
 
 
 # Celery settings
