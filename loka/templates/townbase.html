@@ -7,12 +7,40 @@
     {{ form.media }}
     <!-- Important Owl stylesheet -->
     <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">
-
     <!-- Default Theme -->
     <link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css' %}">
-
     <!-- Include js plugin -->
     <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
+
+    <script src="{% static 'ajaxuploader/js/fileuploader.js' %}"></script>
+    <link href="{% static 'ajaxuploader/css/fileuploader.css' %}" media="screen" rel="stylesheet" type="text/css"/>
+
+{#    <script>#}
+{#        $(function () {#}
+{#            var uploader = new qq.FileUploader({#}
+{#                action: "{% url "my_ajax_upload" %}",#}
+{#                element: $('#file-uploader')[0],#}
+{#                multiple: true,#}
+{#                onComplete: function (id, fileName, responseJSON) {#}
+{#                    if (responseJSON.success) {#}
+{#                        alert("success!");#}
+{#                    } else {#}
+{#                        alert("upload failed!");#}
+{#                    }#}
+{#                },#}
+{#                onAllComplete: function (uploads) {#}
+{#                    // uploads is an array of maps#}
+{#                    // the maps look like this: {file: FileObject, response: JSONServerResponse}#}
+{#                    alert("All complete!");#}
+{#                },#}
+{#                params: {#}
+{#                    'csrf_token': '{{ csrf_token }}',#}
+{#                    'csrf_name': 'csrfmiddlewaretoken',#}
+{#                    'csrf_xname': 'X-CSRFToken'#}
+{#                }#}
+{#            });#}
+{#        });#}
+{#    </script>#}
 
     <script>
         jQuery(function ($) {
@@ -59,6 +87,13 @@
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse in">
                                 <div class="panel-body">
+{#                                    <div id="file-uploader">#}
+{#                                        <noscript>#}
+{#                                            <p>Please enable JavaScript to use file uploader.</p>#}
+{#                                        </noscript>#}
+{#                                    </div>#}
+
+
                                     <form method="post" id="cropping_form" action="/town/{{ town.name }}"
                                           enctype="multipart/form-data">
                                         {% csrf_token %}
@@ -314,7 +349,5 @@
         </div>
     {% endif %}
     {% block towncontent %}{% endblock %}
-</div>
-
 </div>
 {% endblock %}

@@ -4,11 +4,13 @@ from django.contrib import messages, auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core import serializers
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
+from django.middleware.csrf import get_token
+from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from rest_framework import viewsets
+from rest_framework import status, generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from loka.forms import TownBannerForm
 
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia
@@ -16,12 +18,17 @@ from loka.serializers import TownSerializer
 from loka.tasks import retrieve_avatar
 
 
-class TownViewSet(viewsets.ModelViewSet):
-    """
-        API endpoint that allows users to be viewed or edited.
-        """
+class TownDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Town.objects.all()
     serializer_class = TownSerializer
+
+
+def start(request):
+    csrf_token = get_token(request)
+    return render_to_response('import.html',
+        {'csrf_token': csrf_token}, context_instance = RequestContext(request))
+#
+#import_uploader = AjaxFileUploader()
 
 
 def getavatar(request, player_name):
