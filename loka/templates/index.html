@@ -1,16 +1,24 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% block extra_head %}
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+{% endblock %}
 {% block content %}
 
     <div class="jumbotron">
         <img src="{% static 'images/logo.png' %}" class="img-responsive"/>
 
-        <h1>The New World</h1>
+        <h1>1.7 Fresh World!</h1>
 
+        <div id="getting-started"></div>
+        <script type="text/javascript">
+            $('#getting-started').countdown('2013/12/7 12:00:00', function (event) {
+                $(this).html(event.strftime('%Hh %Mm %Ss'));
+            });
+        </script>
         <h2>iron.minecraftarium.com</h2>
-
-        <h3>New 1.7 World, Tomorrow, Dec 6th, 12pm CST (GMT-6)</h3>
     </div>
+
     <br/>
     <div class="container">
         <div class="row text-center">

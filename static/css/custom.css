@@ -192,7 +192,7 @@ a.inverse, a:visited {
 }
 
 .jumbocontents {
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .register {
@@ -880,4 +880,13 @@ img.avatar-sm {
 
 strong {
     font-weight: 600;
+}
+
+#getting-started {
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 1), 0 0 30px rgba(0, 0, 0, .4);
+    font-family: aleobold;
+    font-size: 4em;
+    text-align: center;
 }
