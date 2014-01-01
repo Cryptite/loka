@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3989125711">
-    <data-source source="LOCAL" name="Django default" uuid="96a479fd-23a7-4e3b-aa58-51319f319bdc">
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/loka</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfc9dfcbdfc6dfc6dfd3df99df9edf98</user-password>
+  <component name="DataSourceManagerImpl" format="xml" hash="1543487162">
+    <data-source source="LOCAL" name="lokadb" uuid="3d19c07d-26a1-47c6-949c-6461e5961f05">
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\dev\loka\lokadb</jdbc-url>
       <libraries>
         <library>
-          <url>file://$PROJECT_DIR$/mysql-connector-license_2.txt</url>
+          <url>jar://$PROJECT_DIR$/sqlitejdbc-v056.jar!/</url>
         </library>
         <library>
-          <url>jar://$PROJECT_DIR$/mysql-connector-java-5.1.26-bin.jar!/</url>
+          <url>file://$PROJECT_DIR$/zentus-sqlite-license.txt</url>
         </library>
       </libraries>
     </data-source>

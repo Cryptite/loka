@@ -8,27 +8,30 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.middleware.csrf import get_token
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from rest_framework import status, generics
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import generics
 from loka.forms import TownBannerForm
 
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia
-from loka.serializers import TownSerializer
+from loka.serializers import TownSerializer, UserSerializer
 from loka.tasks import retrieve_avatar
 
 
 class TownDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Town.objects.all()
     serializer_class = TownSerializer
+    lookup_field = "name"
+
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = "username"
 
 
 def start(request):
     csrf_token = get_token(request)
     return render_to_response('import.html',
-        {'csrf_token': csrf_token}, context_instance = RequestContext(request))
-#
-#import_uploader = AjaxFileUploader()
+                              {'csrf_token': csrf_token}, context_instance=RequestContext(request))
 
 
 def getavatar(request, player_name):
@@ -143,14 +146,14 @@ def townthread(request, town_name, thread_id):
 def townhome(request, town_name):
     town = Town.objects.get(name=town_name)
     image = TownMedia.objects.filter(town=town)
-    print image
     if image:
         image = image[0]
     else:
         image = TownMedia.objects.create(town=town)
-    print image
     form = TownBannerForm(instance=image)
     user_in_town = town.members.filter(name=request.user.username)
+    if request.user.username == "Cryptite":
+        user_in_town = User.objects.filter(username="Cryptite")
     if not request.user.is_authenticated() and not town.public:
         raise Http404
     elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "Cryptite":
@@ -197,9 +200,6 @@ def towns(request):
 
 
 def townslist(request):
-    #Resolve town members
-    [t.resolve_players() for t in Town.objects.all() if t.members_str]
-
     if request.user.is_authenticated():
         if request.user.username == "Cryptite":
             townlist_query = Town.objects.all()
@@ -234,7 +234,7 @@ def registration(request, registration_id):
     except Exception, e:
         messages.warning(request, "You can't do that!")
         return render_to_response("index.html", RequestContext(request))
-    print 'Request is for user', user.username
+
     player = Player.objects.filter(name=user.username)
     if len(player) > 0:
         player = player[0]

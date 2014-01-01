@@ -32,22 +32,19 @@ class Player(models.Model):
     def __unicode__(self):
         return self.name
 
-    #def save(self):
-    #    retrieve_avatar.delay(self)
-    #    super(Player, self).save()
+        #def save(self):
+        #    retrieve_avatar.delay(self)
+        #    super(Player, self).save()
 
 
 class Town(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, primary_key=True, unique=True)
     public = models.BooleanField(default=False)
-    tag = models.CharField(max_length=10)
-    motd = models.CharField(max_length=255)
+    tag = models.CharField(max_length=10, blank=True, null=True)
+    motd = models.CharField(max_length=255, blank=True, null=True)
     owner = models.ForeignKey(Player, blank=True, null=True)
-    owner_str = models.CharField(max_length=30)
     members = models.ManyToManyField(Player, related_name="members", blank=True, null=True)
-    members_str = models.CharField(max_length=1000, blank=True, null=True)
     subowners = models.ManyToManyField(Player, related_name="subowners", blank=True, null=True)
-    subowners_str = models.CharField(max_length=300)
 
     def __unicode__(self):
         return self.name
@@ -67,6 +64,9 @@ class Town(models.Model):
         self.save()
 
     def set_many_field(self, source_list, destination_field):
+        if source_list == "":
+            return
+
         member_list = [m for m in source_list.split(",") if not m == ""]
         for m in member_list:
             player = Player.objects.filter(name=m)
@@ -131,5 +131,6 @@ class Comment(models.Model):
     text = models.CharField(max_length=400)
     author = models.ForeignKey(Player)
     date = models.DateTimeField(auto_now_add=True)
+
 
 admin.site.register(Quote)
