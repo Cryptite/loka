@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1543487162">
+  <component name="DataSourceManagerImpl" format="xml" hash="3862041744">
     <data-source source="LOCAL" name="lokadb" uuid="3d19c07d-26a1-47c6-949c-6461e5961f05">
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\dev\loka\lokadb</jdbc-url>

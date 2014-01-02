@@ -25,26 +25,36 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
             # Update existing instance
             print 'Via existing instance'
             instance.name = attrs.get('name', instance.name)
-            instance.motd = attrs.get('motd', instance.motd)
-            instance.owner = self.resolve_owner(attrs.get('owner'))
-            instance.set_many_field(attrs.get("subowners"), instance.subowners)
-            instance.set_many_field(attrs.get("members"), instance.members)
             return instance
 
         # Create new instance
-        town = Town.objects.create(name=attrs.get("name"),
-                                   motd=attrs.get("motd"),
-                                   owner=self.resolve_owner(attrs.get("owner")))
-        town.set_many_field(attrs.get("subowners"), town.subowners)
-        town.set_many_field(attrs.get("members"), town.members)
-        # return town
+        return Town(**attrs)
+
+    def validate(self, attrs):
+        attrs["owner"] = self.resolve_owner(attrs.get("owner"))
+        # attrs["members"] = self.list_to_many(attrs.get("members"))
+        # attrs["subowners"] = self.list_to_many(attrs.get("subowners"))
+        return super(TownSerializer, self).validate(attrs)
+
+    def list_to_many(self, list):
+        member_list = [m for m in list.split(",") if not m == ""]
+        many = []
+        for m in member_list:
+            player = Player.objects.filter(name=m)
+            if player:
+                many.append(player[0])
+            else:
+                print 'Creating', m
+                many.append(Player.objects.create(name=m))
+        return many
+
 
     def save(self, **kwargs):
-        print 'SAVE',kwargs
+        print 'SAVE', kwargs
         return super(TownSerializer, self).save(**kwargs)
 
     def save_object(self, obj, **kwargs):
-        print 'SAVE_OBJECT',obj,kwargs
+        print 'SAVE_OBJECT', obj, kwargs
         super(TownSerializer, self).save_object(obj, **kwargs)
 
 

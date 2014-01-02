@@ -42,26 +42,12 @@ class Town(models.Model):
     public = models.BooleanField(default=False)
     tag = models.CharField(max_length=10, blank=True, null=True)
     motd = models.CharField(max_length=255, blank=True, null=True)
-    owner = models.ForeignKey(Player, blank=True, null=True)
-    members = models.ManyToManyField(Player, related_name="members", blank=True, null=True)
+    owner = models.ForeignKey(Player)
+    members = models.ManyToManyField(Player, related_name="members")
     subowners = models.ManyToManyField(Player, related_name="subowners", blank=True, null=True)
 
     def __unicode__(self):
         return self.name
-
-    def resolve_players(self):
-        print 'Resolving', self.name, "for", self.owner_str
-        owner_player = Player.objects.filter(name=self.owner_str)
-        if owner_player:
-            self.owner = owner_player[0]
-        else:
-            self.owner = Player.objects.create(name=self.owner_str)
-        self.set_many_field(self.members_str, self.members)
-        self.set_many_field(self.subowners_str, self.subowners)
-
-        #A terrible hack, but set to none so the view knows when resolve needs calling again.
-        self.members_str = None
-        self.save()
 
     def set_many_field(self, source_list, destination_field):
         if source_list == "":
