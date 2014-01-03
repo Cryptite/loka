@@ -27,13 +27,23 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
             instance.name = attrs.get('name', instance.name)
             return instance
 
-        # Create new instance
-        return Town(**attrs)
+        owner = attrs.get("owner")
+        subowners = attrs.get("subowners")
+        members = attrs.get("members")
+        del attrs["owner"]
+        del attrs["subowners"]
+        del attrs["members"]
+
+        town = Town(**attrs)
+        town.owner = self.resolve_owner(owner)
+        town.set_many_field(members, town.members)
+        town.set_many_field(subowners, town.subowners)
+        return town
 
     def validate(self, attrs):
         attrs["owner"] = self.resolve_owner(attrs.get("owner"))
-        # attrs["members"] = self.list_to_many(attrs.get("members"))
-        # attrs["subowners"] = self.list_to_many(attrs.get("subowners"))
+    #     attrs["members"] = self.list_to_many(attrs.get("members"))
+    #     attrs["subowners"] = self.list_to_many(attrs.get("subowners"))
         return super(TownSerializer, self).validate(attrs)
 
     def list_to_many(self, list):

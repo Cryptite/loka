@@ -199,4 +199,11 @@
       <primary-key columns="id"/>
     </table>
   </data-source>
+  <data-source source="LOCAL" name="Django default" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="97835cb9-8c11-45c4-b4d0-7bf6f0ef07e9">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://127.0.0.1:3306/loka</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>dfc9dfcbdfc6dfc6dfd3df99df9edf98</user-password>
+    <libraries/>
+  </data-source>
 </component>
