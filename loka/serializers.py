@@ -40,34 +40,6 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
         town.set_many_field(subowners, town.subowners)
         return town
 
-    def validate(self, attrs):
-        attrs["owner"] = self.resolve_owner(attrs.get("owner"))
-    #     attrs["members"] = self.list_to_many(attrs.get("members"))
-    #     attrs["subowners"] = self.list_to_many(attrs.get("subowners"))
-        return super(TownSerializer, self).validate(attrs)
-
-    def list_to_many(self, list):
-        member_list = [m for m in list.split(",") if not m == ""]
-        many = []
-        for m in member_list:
-            player = Player.objects.filter(name=m)
-            if player:
-                many.append(player[0])
-            else:
-                print 'Creating', m
-                many.append(Player.objects.create(name=m))
-        return many
-
-
-    def save(self, **kwargs):
-        print 'SAVE', kwargs
-        return super(TownSerializer, self).save(**kwargs)
-
-    def save_object(self, obj, **kwargs):
-        print 'SAVE_OBJECT', obj, kwargs
-        super(TownSerializer, self).save_object(obj, **kwargs)
-
-
     def resolve_owner(self, owner_name):
         print "Resolving owner: ", owner_name
         owner = Player.objects.filter(name=owner_name)
@@ -111,3 +83,55 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('username', 'password', 'email')
         lookup_field = "username"
+
+
+class PlayerSerializer(serializers.HyperlinkedModelSerializer):
+    pk = serializers.Field()
+    name = serializers.CharField(max_length=30)
+    arenarating = serializers.IntegerField()
+    arenawins = serializers.IntegerField()
+    arenalosses = serializers.IntegerField()
+    streak = serializers.IntegerField()
+    highestrating = serializers.IntegerField()
+    arenarating2v2 = serializers.IntegerField()
+    arenawins2v2 = serializers.IntegerField()
+    arenalosses2v2 = serializers.IntegerField()
+    streak2v2 = serializers.IntegerField()
+    highestrating2v2 = serializers.IntegerField()
+    valleyKills = serializers.IntegerField()
+    valleyDeaths = serializers.IntegerField()
+    valleyCaps = serializers.IntegerField()
+    valleyWins = serializers.IntegerField()
+    valleyLosses = serializers.IntegerField()
+    title = serializers.CharField(max_length=20, required=False)
+    rank = serializers.CharField(max_length=20, required=False)
+
+    def restore_object(self, attrs, instance=None):
+        """
+        Create or update a new snippet instance, given a dictionary
+        of deserialized field values.
+
+        Note that if we don't define this method, then deserializing
+        data will simply return a dictionary of items.
+        """
+        if instance:
+        #     Update existing instance
+            print 'Via existing instance'
+            instance.name = attrs.get('name', instance.name)
+            # instance.password = attrs.get('password', instance.password)
+            # instance.email = attrs.get('email', instance.email)
+            return instance
+
+        # Create new instance
+        player = Player(**attrs)
+        user_object = User.objects.filter(username=attrs.get("name"))
+        if user_object:
+            player.user = user_object[0]
+        return Player(**attrs)
+
+    class Meta:
+        model = User
+        fields = ('name', 'arenarating', 'arenawins', 'arenalosses', 'streak', 'highestrating',
+                  'arenarating2v2', 'arenawins2v2', 'arenalosses2v2', 'streak2v2', 'highestrating2v2',
+                  'valleyKills', 'valleyDeaths', 'valleyCaps', 'valleyWins', 'valleyLosses', 'title', 'rank')
+        lookup_field = "name"

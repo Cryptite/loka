@@ -12,7 +12,7 @@ from rest_framework import generics
 from loka.forms import TownBannerForm
 
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia
-from loka.serializers import TownSerializer, UserSerializer
+from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer
 from loka.tasks import retrieve_avatar
 
 
@@ -26,6 +26,12 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = "username"
+
+
+class PlayerDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
+    lookup_field = "name"
 
 
 def start(request):
