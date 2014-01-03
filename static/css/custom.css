@@ -475,6 +475,10 @@ a.inverse, a:visited {
     line-height: 30px;
 }
 
+.teammember h1 {
+    font-size: 32px;
+}
+
 .teammember:hover {
     border-bottom: 1px solid #4aaaa5;
 }
