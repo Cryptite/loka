@@ -77,6 +77,7 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
             # Update existing instance
             print 'Via existing instance'
             instance.name = attrs.get('name', instance.name)
+            instance.motd = attrs.get('motd', instance.motd)
             return instance
 
         owner = attrs.get("owner")

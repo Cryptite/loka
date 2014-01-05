@@ -45,10 +45,6 @@ class Town(models.Model):
     members = models.ManyToManyField(Player, related_name="members")
     subowners = models.ManyToManyField(Player, related_name="subowners", blank=True, null=True)
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        super(Town, self).save(force_insert, force_update, using, update_fields)
-
-
     def __unicode__(self):
         return self.name
 
