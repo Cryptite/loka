@@ -37,13 +37,17 @@ class Player(models.Model):
 
 
 class Town(models.Model):
-    name = models.CharField(max_length=30, primary_key=True, unique=True)
+    name = models.CharField(max_length=30)
     public = models.BooleanField(default=False)
     tag = models.CharField(max_length=10, blank=True, null=True)
     motd = models.CharField(max_length=255, blank=True, null=True)
     owner = models.ForeignKey(Player)
     members = models.ManyToManyField(Player, related_name="members")
     subowners = models.ManyToManyField(Player, related_name="subowners", blank=True, null=True)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super(Town, self).save(force_insert, force_update, using, update_fields)
+
 
     def __unicode__(self):
         return self.name

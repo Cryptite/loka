@@ -20,6 +20,18 @@ class TownDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Town.objects.all()
     serializer_class = TownSerializer
     lookup_field = "name"
+    members = ""
+    subowners = ""
+
+    def put(self, request, *args, **kwargs):
+        self.members = request.DATA["members"]
+        self.subowners = request.DATA["subowners"]
+        return super(TownDetail, self).put(request, *args, **kwargs)
+
+    def post_save(self, obj, created=False):
+        obj.set_many_field(self.members, obj.members)
+        obj.set_many_field(self.subowners, obj.subowners)
+        super(TownDetail, self).post_save(obj, created)
 
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
