@@ -4,6 +4,7 @@ from django.contrib import messages, auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core import serializers
+from django.db.models import Q
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.middleware.csrf import get_token
 from django.shortcuts import render_to_response
@@ -93,9 +94,25 @@ def pvp(request):
 
 
 def pvp1v1(request):
-    players = Player.objects.all().order_by("-arenarating")
+    players = Player.objects.filter(Q(arenawins__gt=1) | Q(arenalosses__gt=1)).order_by("-arenarating")
 
     return render_to_response('pvp_1v1.html', RequestContext(request, {
+        'players': players,
+    }))
+
+
+def pvp2v2(request):
+    players = Player.objects.filter(Q(arenawins2v2__gt=1) | Q(arenalosses2v2__gt=1)).order_by("-arenarating2v2")
+
+    return render_to_response('pvp_2v2.html', RequestContext(request, {
+        'players': players,
+    }))
+
+
+def pvpvota(request):
+    players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyKills")
+
+    return render_to_response('pvp_vota.html', RequestContext(request, {
         'players': players,
     }))
 

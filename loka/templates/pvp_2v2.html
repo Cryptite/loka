@@ -12,7 +12,7 @@
 {% block content %}
 
     <div class="jumbotron pvp">
-        <h1>1v1 Arena Bracket</h1>
+        <h1>2v2 Arena Bracket</h1>
     </div>
     <div class="container">
         <div class=".col-md-4">
@@ -29,14 +29,14 @@
                 <tbody>
                 {% for player in players %}
                     <tr>
-                        {% if player.streak > 0 %}
-                            <td><a href="#" class="streak" title="{{ player.streak }} win streak"
+                        {% if player.streak2v2 > 0 %}
+                            <td><a href="#" class="streak" title="{{ player.streak2v2 }} win streak"
                                    data-original-title="Tooltip">{{ forloop.counter }} <img
                                     src="{% static 'images/up.png' %}"></a>
                             </td>
                         {% else %}
                             <td><a href="#" class="streak" data-toggle="tooltip"
-                                   title="{{ player.streak }} loss streak">{{ forloop.counter }}
+                                   title="{{ player.streak2v2 }} loss streak">{{ forloop.counter }}
                                 <img src="{% static 'images/down.png' %}"/></a>
                             </td>
                         {% endif %}
@@ -70,9 +70,9 @@
                                     </script>
                                 {% endif %}
                                 {{ player.name }}</a></td>
-                        <td>{{ player.arenawins }}</td>
-                        <td>{{ player.arenalosses }}</td>
-                        <td>{{ player.arenarating }}</td>
+                        <td>{{ player.arenawins2v2 }}</td>
+                        <td>{{ player.arenalosses2v2 }}</td>
+                        <td>{{ player.arenarating2v2 }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

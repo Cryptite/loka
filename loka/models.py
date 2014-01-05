@@ -63,7 +63,7 @@ class Town(models.Model):
         print '{0} members resolved for {1}'.format(len(member_list), self.name)
 
     def num_members(self):
-        return self.members.count() + self.subowners.count() + 1
+        return self.members.count()
 
     def num_threads(self):
         return len(Thread.objects.filter(town=self))

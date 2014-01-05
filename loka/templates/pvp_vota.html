@@ -12,7 +12,7 @@
 {% block content %}
 
     <div class="jumbotron pvp">
-        <h1>1v1 Arena Bracket</h1>
+        <h1>Valley of the Artifacts Rankings</h1>
     </div>
     <div class="container">
         <div class=".col-md-4">
@@ -23,23 +23,15 @@
                     <th>Player</th>
                     <th>Wins</th>
                     <th>Losses</th>
-                    <th>Rating</th>
+                    <th>Caps</th>
+                    <th>Kills</th>
+                    <th>Deaths</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for player in players %}
                     <tr>
-                        {% if player.streak > 0 %}
-                            <td><a href="#" class="streak" title="{{ player.streak }} win streak"
-                                   data-original-title="Tooltip">{{ forloop.counter }} <img
-                                    src="{% static 'images/up.png' %}"></a>
-                            </td>
-                        {% else %}
-                            <td><a href="#" class="streak" data-toggle="tooltip"
-                                   title="{{ player.streak }} loss streak">{{ forloop.counter }}
-                                <img src="{% static 'images/down.png' %}"/></a>
-                            </td>
-                        {% endif %}
+                        <td><a href="#">{{ forloop.counter }}</a></td>
                         <td>{% block avatar-sm %}{% endblock %}
                             <a href="/player/{{ player.name }}">
                                 {% if player.avatar_sm %}
@@ -70,14 +62,19 @@
                                     </script>
                                 {% endif %}
                                 {{ player.name }}</a></td>
-                        <td>{{ player.arenawins }}</td>
-                        <td>{{ player.arenalosses }}</td>
-                        <td>{{ player.arenarating }}</td>
+                        <td>{{ player.valleyWins }}</td>
+                        <td>{{ player.valleyLosses }}</td>
+                        <td>{{ player.valleyCaps }}</td>
+                        <td>{{ player.valleyKills }}</td>
+                        <td>{{ player.valleyDeaths }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
                 <tfoot>
                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
