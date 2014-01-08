@@ -37,9 +37,24 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
         if instance:
         #     Update existing instance
             print 'Via existing instance'
-            instance.name = attrs.get('name', instance.name)
-            # instance.password = attrs.get('password', instance.password)
-            # instance.email = attrs.get('email', instance.email)
+            instance.name = attrs.get('name')
+            instance.arenarating = attrs.get('arenarating')
+            instance.arenawins = attrs.get('arenawins')
+            instance.arenalosses = attrs.get('arenalosses')
+            instance.streak = attrs.get('streak')
+            instance.highestrating = attrs.get('highestrating')
+            instance.arenarating2v2 = attrs.get('arenarating2v2')
+            instance.arenawins2v2 = attrs.get('arenawins2v2')
+            instance.arenalosses2v2 = attrs.get('arenalosses2v2')
+            instance.streak2v2 = attrs.get('streak2v2')
+            instance.highestrating2v2 = attrs.get('highestrating2v2')
+            instance.valleyKills = attrs.get('valleyKills')
+            instance.valleyDeaths = attrs.get('valleyDeaths')
+            instance.valleyCaps = attrs.get('valleyCaps')
+            instance.valleyWins = attrs.get('valleyWins')
+            instance.valleyLosses = attrs.get('valleyLosses')
+            instance.title = attrs.get('title')
+            instance.rank = attrs.get('rank')
             return instance
 
         # Create new instance
@@ -77,7 +92,8 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
             # Update existing instance
             print 'Via existing instance'
             instance.name = attrs.get('name', instance.name)
-            instance.motd = attrs.get('motd', instance.motd)
+            instance.motd = attrs.get('motd')
+            instance.owner = self.resolve_owner(attrs.get("owner"))
             return instance
 
         owner = attrs.get("owner")

@@ -53,6 +53,7 @@ class Town(models.Model):
             return
 
         member_list = [m for m in source_list.split(",") if not m == ""]
+        destination_field.clear()
         for m in member_list:
             player = Player.objects.filter(name=m)
             if player:
