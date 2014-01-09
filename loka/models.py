@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
 from image_cropping import ImageRatioField, ImageCropField
 
 
@@ -31,9 +32,23 @@ class Player(models.Model):
     def __unicode__(self):
         return self.name
 
-        #def save(self):
-        #    retrieve_avatar.delay(self)
-        #    super(Player, self).save()
+    def get_1v1_rank(self):
+        players = Player.objects.filter(Q(arenawins__gt=1) | Q(arenalosses__gt=1)).order_by("-arenarating")
+        return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
+
+    def get_2v2_rank(self):
+        players = Player.objects.filter(Q(arenawins2v2__gt=1) | Q(arenalosses2v2__gt=1)).order_by("-arenarating2v2")
+        return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
+
+    def get_vota_rank(self):
+        players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyKills")
+        return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
+
+    def get_1v1_color_rank(self):
+        return (self.highestrating - 1500) / 50
+
+    def get_2v2_color_rank(self):
+        return (self.highestrating2v2 - 1500) / 50
 
 
 class Town(models.Model):

@@ -7,137 +7,135 @@
 {% endblock %}
 
 {% block content %}
-
-    <div class="media well">
-        <a class="pull-left" href="#">
-            {% if player.avatar_sm %}
-                <img src="{% static 'media/' %}{{ player.avatar_sm }}"
-                     class="media-object img-rounded">
-            {% else %}
-                <img src="{% static 'images/steve_sm.png' %}"
-                     class="avatar-sm img-rounded {{ player.name }}">
-                <script type="application/javascript">
-                    $(document).ready(function () {
-                        $.ajax({
-                            type: "GET",
-                            url: "/avatar/{{ player.name }}",
-                            contentType: 'application/json',
-                            complete: function (xhr, status) {
-                                if (status === 'error' || !xhr.responseText) {
-                                }
-                                else {
-                                    var data = JSON.parse(xhr.responseText);
-                                    $('.{{ player.name }}').fadeOut(500, function () {
-                                        $('.{{ player.name }}').attr('src', data["path"]);
-                                        $('.{{ player.name }}').fadeIn(500);
-                                    });
-                                }
+    <h1 class="player-header">
+        {% if player.avatar %}
+            <img src="{% static 'media/' %}{{ player.avatar }}"
+                 class="reg-avatar img-rounded">
+        {% else %}
+            <img src="{% static 'images/steve_sm.png' %}"
+                 class="reg-avatar img-rounded {{ player.name }}">
+            <script type="application/javascript">
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/avatar/{{ player.name }}",
+                        contentType: 'application/json',
+                        complete: function (xhr, status) {
+                            if (status === 'error' || !xhr.responseText) {
                             }
-                        });
-                    })
-                </script>
-            {% endif %}
-        </a>
+                            else {
+                                var data = JSON.parse(xhr.responseText);
+                                $('.{{ player.name }}').fadeOut(500, function () {
+                                    $('.{{ player.name }}').attr('src', data["path"]);
+                                    $('.{{ player.name }}').fadeIn(500);
+                                });
+                            }
+                        }
+                    });
+                })
+            </script>
+        {% endif %}{{ player.name }}
+        {% if player.title %}
+            <small>{{ player.title }}</small>
+        {% endif %}
+    </h1>
 
-        <div class="media-body">
-            <h1 class="media-heading">{{ player.name }}
-                {% if player.title %}
-                    <small>{{ player.title }}</small>
-                {% endif %}
-            </h1>
-            <div class="col-sm-1 col-md-3 text-center">
-                <h2 class="rating">{{ player.arenarating }}</h2>
+    <div class="player-section text-center bracket{{ player.get_1v1_color_rank }}">
 
-                <h3>1v1 rating</h3>
-            </div>
-            {% if player.arenawins2v2 > 0 or player.arenalosses2v2 > 0 %}
-                <div class="col-sm-1 col-md-3 text-center">
-                    <h2 class="rating">{{ player.arenarating2v2 }}</h2>
-
-                    <h3>2v2 rating</h3>
-                </div>
-            {% endif %}
-            <div class="col-sm-1 col-md-3">
-                <h2 class="rating text-center">#1</h2>
-
-                <h3 class="text-center">VotA Rank</h3>
-            </div>
+        <div class="player-sectionwrap smallportfolioshortcode"><img
+                src="{% static 'images/arena_nagrand.jpg' %}"/>
         </div>
+                    <span class="teamposition">
+                        <h1>1v1 Arena</h1>
+
+                        {% if player.arenawins > 0 or player.arenalosses > 0 %}
+                            <h1>Rating:
+                                <small>{{ player.arenarating }}</small>
+                            </h1>
+                            <h1>
+                                <small>W/L:</small>
+                                {{ player.arenawins }} - {{ player.arenalosses }}
+                            </h1>
+                            {% if player.highestrating > 1500 %}
+                                <h1>
+                                    <small>Highest Rating:</small>
+                                    {{ player.highestrating }}
+                                </h1>
+                            {% endif %}
+                            </span>
+                            <i class="rank{{ player.get_1v1_color_rank }}">
+                                <small>Rank {{ player.get_1v1_rank }}</small>
+                            </i>
+                        {% else %}
+                            <br/>
+                            <h1 class="subtle">No 1v1 <br/>games played</h1>
+                            </span>
+                        {% endif %}
     </div>
 
-    <div class="col-sm-1 col-md-4 text-center stats">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h1>1v1 Arena</h1></div>
-            <div class="panel-body">
-                <h2>
-                    <small>Rank:</small>
-                    #1
-                </h2>
-                <h2>
-                    <small>Streak:</small>
-                    {{ player.streak }}
-                    {% if player.streak > 0 %}
-                        <img src="{% static 'images/up.png' %}"/>
-                    {% else %}
-                        <img src="{% static 'images/down.png' %}"/>
-                    {% endif %}
-                </h2>
-                <h2>
-                    <small>W/L:</small>
-                    {{ player.arenawins }} - {{ player.arenalosses }}</h2>
-                <h2>
-                    <small>Highest Rating:</small>
-                    {{ player.highestrating }}</h2>
-            </div>
+    <div class="player-section text-center bracket{{ player.get_2v2_color_rank }}">
+
+        <div class="player-sectionwrap smallportfolioshortcode"><img
+                src="{% static 'images/arena_blade.jpg' %}"/>
         </div>
+                    <span class="teamposition">
+                        <h1>2v2 Arena</h1>
+
+                        {% if player.arenawins2v2 > 0 or player.arenalosses2v2 > 0 %}
+                            <h1>Rating:
+                                <small>{{ player.arenarating2v2 }}</small>
+                            </h1>
+                            <h2>
+                                <small>W/L:</small>
+                                {{ player.arenawins2v2 }} - {{ player.arenalosses2v2 }}
+                            </h2>
+                            {% if player.highestrating2v2 > 1500 %}
+                                <h2>
+                                    <small>Highest Rating:</small>
+                                    {{ player.highestrating2v2 }}
+                                </h2>
+                            {% endif %}
+                            </span>
+                            <i class="rank{{ player.get_2v2_color_rank }}">
+                                <p>Rank {{ player.get_2v2_rank }}</p>
+                            </i>
+                        {% else %}
+                            <br/>
+                            <h1 class="subtle">No 2v2 <br/>games played</h1>
+                            </span>
+                        {% endif %}
     </div>
 
-    <div class="col-sm-1 col-md-4 text-center stats">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h1>2v2 Arena</h1></div>
-            <div class="panel-body">
-                <h2>
-                    <small>Rank:</small>
-                    #1
-                </h2>
-                <h2>
-                    <small>Streak:</small>
-                    {{ player.streak2v2 }}
-                    {% if player.streak2v2 > 0 %}
-                        <img src="{% static 'images/up.png' %}"/>
-                    {% else %}
-                        <img src="{% static 'images/down.png' %}"/>
-                    {% endif %}
-                </h2>
-                <h2>
-                    <small>W/L:</small>
-                    {{ player.arenawins2v2 }} - {{ player.arenalosses2v2 }}</h2>
-                <h2>
-                    <small>Highest Rating:</small>
-                    {{ player.highestrating2v2 }}</h2>
-            </div>
-        </div>
-    </div>
+    <div class="player-section text-center bracket0">
 
-    <div class="col-sm-1 col-md-4 text-center stats">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h1>VotA</h1></div>
-            <div class="panel-body">
-                <h2>
-                    <small>Rank:</small>
-                    #1
-                </h2>
-                <h2>
-                    <small>W/L:</small>
-                    {{ player.valleyWins }} - {{ player.valleyLosses }}</h2>
-                <h2>
-                    <small>K/D:</small>
-                    {{ player.valleyKills }} - {{ player.valleyDeaths }}</h2>
-                <h2>
-                    <small>Caps:</small>
-                    {{ player.valleyCaps }}</h2>
-            </div>
+        <div class="player-sectionwrap smallportfolioshortcode"><img
+                src="{% static 'images/bg_vota1.jpg' %}"/>
         </div>
+                    <span class="teamposition">
+                        <h1>VotA</h1>
+
+                        {% if player.valleyWins > 0 or player.valleyLosses > 0 %}
+                            <h1>
+                                <small>W/L:</small>
+                                {{ player.valleyWins }} - {{ player.valleyLosses }}
+                            </h1>
+                            <h1>
+                                <small>K/D:</small>
+                                {{ player.valleyKills }} - {{ player.valleyDeaths }}
+                            </h1>
+                            <h1>
+                                <small>Caps:</small>
+                                {{ player.valleyCaps }}
+                            </h1>
+                            </span>
+                            <i class="rank0">
+                                Rank {{ player.get_vota_rank }}
+                            </i>
+                        {% else %}
+                            <br/>
+                            <h1 class="subtle">No VotA <br/>games played</h1>
+                            </span>
+                        {% endif %}
     </div>
 
 {% endblock %}

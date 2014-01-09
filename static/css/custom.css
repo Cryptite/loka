@@ -164,7 +164,7 @@ a.inverse, a:visited {
 
 .jumbotron {
     margin-bottom: 0;
-    background: url('/static/images/darkspawn.jpg');
+    background: url('/static/images/bg.png');
 }
 
 .intro {
@@ -201,6 +201,10 @@ a.inverse, a:visited {
 
 .pvp {
     background: url('/static/images/arena.jpg');
+}
+
+.towns {
+    background: url('/static/images/bg.png');
 }
 
 .thumbnail {
@@ -893,4 +897,185 @@ strong {
     font-family: aleobold;
     font-size: 4em;
     text-align: center;
+}
+
+/* ===== Profile Section ===== */
+
+.player-section {
+    position: relative;
+    float: left;
+    margin: 10px 25px 50px;
+    width: 350px;
+    height: 470px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: white;
+    -webkit-transition: border .3s ease-in-out;
+    -moz-transition: border .3s ease-in-out;
+    -o-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -border-radius: 5px;
+}
+
+.player-section > i {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    margin: 0px 0px -15px -40px;
+    width: 80px;
+    height: 30px;
+    border-radius: 3px;
+    color: #999;
+    color: white;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.player-section h1 {
+    font-size: 40px;
+}
+
+.player-section h1 small {
+    font-size: 35px;
+}
+
+.player-sectionwrap {
+    overflow: hidden;
+    width: 100%;
+    height: 180px;
+}
+
+.player-sectionwrap img {
+    width: 100%;
+    height: auto;
+    border: 0;
+    border-radius: 5px 5px 0px 0px;
+}
+
+span.teamposition {
+    float: left;
+    padding: 0px 0px 15px 0px;
+    width: 100%;
+    color: #939393;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.bracket0 {
+    border-bottom: 2px solid #4aaaa5;
+}
+
+.bracket1 {
+    border-bottom: 6px solid #faffa5;
+}
+
+.bracket2 {
+    border-bottom: 6px solid #ffc240;
+}
+
+.bracket3 {
+    border-bottom: 6px solid #53ff5f;
+}
+
+.bracket4 {
+    border-bottom: 6px solid #1eac0b;
+}
+
+.bracket5 {
+    border-bottom: 6px solid #64fff2;
+}
+
+.bracket6 {
+    border-bottom: 6px solid #4278ff;
+}
+
+.bracket7 {
+    border-bottom: 6px solid #fa92ff;
+}
+
+.bracket8 {
+    border-bottom: 6px solid #ff3b2f;
+}
+
+.bracket9 {
+    border-bottom: 6px solid #c7ccc5;
+}
+
+.bracket10 {
+    border-bottom: 6px solid #8c8f8e;
+}
+
+.bracket11 {
+    border-bottom: 6px solid #161616;
+}
+
+.rank0 {
+    background-color: #4aaaa5;
+}
+
+.rank1 {
+    background-color:  #faffa5;
+}
+
+.rank2 {
+    background-color:  #ffc240;
+}
+
+.rank3 {
+    background-color:  #53ff5f;
+}
+
+.rank4 {
+    background-color:  #1eac0b;
+}
+
+.rank5 {
+    background-color:  #64fff2;
+}
+
+.rank6 {
+    background-color:  #4278ff;
+}
+
+.rank7 {
+    background-color:  #fa92ff;
+}
+
+.rank8 {
+    background-color:  #ff3b2f;
+}
+
+.rank9 {
+    background-color:  #c7ccc5;
+}
+
+.rank10 {
+    background-color:  #8c8f8e;
+}
+
+.rank11 {
+    background-color:  #161616;
+}
+
+.rank1 small {
+    color: #666;
+}
+
+.subtle {
+    color: #aaa;
+}
+
+.player-header {
+    padding: 10px;
+    margin-top: 0px;
+    background-color: #eee;
+    font-size: 5em;
+}
+
+.player-header small {
+    color: #bbb;
+    font-size: .7em;
+    padding-left: 10px;
 }

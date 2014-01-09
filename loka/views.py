@@ -53,7 +53,7 @@ def start(request):
                               {'csrf_token': csrf_token}, context_instance=RequestContext(request))
 
 
-def getavatar(request, player_name):
+def get_avatar(request, player_name):
     player = Player.objects.get(name=player_name)
     retrieve_avatar(player)
     print 'returning', "static/media/{0}".format(player.avatar)
@@ -237,7 +237,7 @@ def towns(request):
 def townslist(request):
     if request.user.is_authenticated():
         if request.user.username == "Cryptite":
-            townlist_query = Town.objects.all()
+            townlist_query = Town.objects.all().order_by("name")
         else:
             player = Player.objects.filter(name=request.user.username)
             if len(player) == 0:
@@ -245,7 +245,7 @@ def townslist(request):
             else:
                 player = player[0]
             townlist_query = list(chain(Town.objects.filter(public=1),
-                                        Town.objects.filter(public=0, members__in=[player])))
+                                        Town.objects.filter(public=0, members__in=[player]).order_by("name")))
         return render_to_response('townslist.html', RequestContext(request, {
             'towns': townlist_query,
             'player': Player.objects.get(name=request.user.username),

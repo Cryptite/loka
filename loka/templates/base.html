@@ -106,6 +106,7 @@
                         {% endif %}
                     </a>
                     <ul class="dropdown-menu">
+                    <li><a href="/player/{{ user.username }}">PvP Profile</a></li>
                         <li><a href="{% url 'loka.views.logout' %}">Sign Out</a></li>
                     </ul>
                 {% else %}
