@@ -21,6 +21,7 @@
                 <tr>
                     <th>#</th>
                     <th>Player</th>
+                    <th>Score</th>
                     <th>Wins</th>
                     <th>Losses</th>
                     <th>Caps</th>
@@ -62,6 +63,7 @@
                                     </script>
                                 {% endif %}
                                 {{ player.name }}</a></td>
+                        <td>{{ player.valleyScore }}</td>
                         <td>{{ player.valleyWins }}</td>
                         <td>{{ player.valleyLosses }}</td>
                         <td>{{ player.valleyCaps }}</td>
@@ -72,6 +74,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

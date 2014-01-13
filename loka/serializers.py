@@ -23,6 +23,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     valleyCaps = serializers.IntegerField()
     valleyWins = serializers.IntegerField()
     valleyLosses = serializers.IntegerField()
+    valleyScore = serializers.IntegerField()
     title = serializers.CharField(max_length=20, required=False)
     rank = serializers.CharField(max_length=20, required=False)
 
@@ -53,6 +54,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
             instance.valleyCaps = attrs.get('valleyCaps')
             instance.valleyWins = attrs.get('valleyWins')
             instance.valleyLosses = attrs.get('valleyLosses')
+            instance.valleyScore = attrs.get('valleyScore')
             instance.title = attrs.get('title')
             instance.rank = attrs.get('rank')
             return instance
@@ -104,7 +106,6 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
         town = Town(**attrs)
         town.owner = self.resolve_owner(owner)
         return town
-
 
     def resolve_owner(self, owner_name):
         print "Resolving owner: ", owner_name
