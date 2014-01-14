@@ -7,12 +7,31 @@
     <script type="text/javascript">
         $(".streak").tooltip();
     </script>
+    <script type="application/javascript">
+        $(function () {
+            $("#search").autocomplete({
+                source: "/api/search/",
+                select: function (event, ui) {
+                    window.location = ui.item.url;
+                },
+                minLength: 2
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
 
     <div class="jumbotron pvp">
         <h1>1v1 Arena Bracket</h1>
+    </div>
+    <div class="navbar">
+        <ul>
+            <div class="input-group ui-widget">
+                <span class="input-group-addon">Search</span>
+                <input type="text" class="form-control" placeholder="Playername" id="search">
+            </div>
+        </ul>
     </div>
     <div class="container">
         <div class=".col-md-4">
@@ -31,12 +50,12 @@
                     <tr>
                         {% if player.streak > 0 %}
                             <td><a href="#" class="streak" title="{{ player.streak }} win streak"
-                                   data-original-title="Tooltip">{{ forloop.counter }} <img
+                                   data-original-title="Tooltip">{{ player.get_1v1_rank }} <img
                                     src="{% static 'images/up.png' %}"></a>
                             </td>
                         {% else %}
                             <td><a href="#" class="streak" data-toggle="tooltip"
-                                   title="{{ player.streak }} loss streak">{{ forloop.counter }}
+                                   title="{{ player.streak }} loss streak">{{ player.get_1v1_rank }}
                                 <img src="{% static 'images/down.png' %}"/></a>
                             </td>
                         {% endif %}
@@ -87,6 +106,27 @@
                 </tfoot>
             </table>
         </div>
+        <ul class="pagination">
+            {% if players.has_previous %}
+                <li><a href="?page={{ players.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">&laquo;</a></li>
+            {% endif %}
+
+            {% for num in players.paginator.page_range %}
+                {% ifequal num players.number %}
+                    <li class="active"><a href="#">{{ num }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ num }}">{{ num }}</a></li>
+                {% endifequal %}
+            {% endfor %}
+
+            {% if players.has_next %}
+                <li><a href="?page={{ players.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><a href="#">&raquo;</a></li>
+            {% endif %}
+        </ul>
     </div>
 
 {% endblock %}

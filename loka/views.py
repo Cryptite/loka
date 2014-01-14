@@ -4,6 +4,7 @@ from django.contrib import messages, auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core import serializers
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.middleware.csrf import get_token
@@ -95,6 +96,17 @@ def pvp(request):
 
 def pvp1v1(request):
     players = Player.objects.filter(Q(arenawins__gt=1) | Q(arenalosses__gt=1)).order_by("-arenarating")
+    paginator = Paginator(players, 25) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        players = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        players = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        players = paginator.page(paginator.num_pages)
 
     return render_to_response('pvp_1v1.html', RequestContext(request, {
         'players': players,
@@ -314,3 +326,21 @@ def home(request):
             'user': request.user,
         }))
     return render_to_response('index.html', RequestContext(request))
+
+
+def search(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        players = Player.objects.filter(name__icontains=q)[:20]
+        results = []
+        for player in players:
+            search_json = {'id': player.id,
+                           'label': player.name,
+                           'value': player.name,
+                           'url': "player/"+player.name}
+            results.append(search_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from loka.models import Town, Player
+from loka.models import Town, Player, ArenaMatch
 
 __author__ = 'tmiller'
 
@@ -148,5 +148,48 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
+        fields = ('username', 'password', 'email')
+        lookup_field = "username"
+
+
+class ArenaMatchSerializer(serializers.HyperlinkedModelSerializer):
+    pk = serializers.Field()
+    date = serializers.DateTimeField()
+    loser = serializers.CharField(max_length=50)
+    winner = serializers.CharField(max_length=50)
+    loser_rating = serializers.IntegerField()
+    winner_rating = serializers.IntegerField()
+    rating_change = serializers.IntegerField()
+    loser_damage = serializers.IntegerField()
+    winner_damage = serializers.IntegerField()
+    length = serializers.IntegerField()
+
+    def restore_object(self, attrs, instance=None):
+        """
+        Create or update a new snippet instance, given a dictionary
+        of deserialized field values.
+
+        Note that if we don't define this method, then deserializing
+        data will simply return a dictionary of items.
+        """
+        if instance:
+            # Update existing instance
+            print 'Via existing instance'
+            instance.date = attrs.get('date', instance.date)
+            instance.loser = attrs.get('loser', instance.loser)
+            instance.winner = attrs.get('winner', instance.winner)
+            instance.loser_rating = attrs.get('loser_rating', instance.loser_rating)
+            instance.winner_rating = attrs.get('winner_rating', instance.winner_rating)
+            instance.rating_change = attrs.get('rating_change', instance.rating_change)
+            instance.loser_damage = attrs.get('loser_damage', instance.loser_damage)
+            instance.winner_damage = attrs.get('winner_damage', instance.winner_damage)
+            instance.length = attrs.get('length', instance.length)
+            return instance
+
+        # Create new instance
+        return ArenaMatch(**attrs)
+
+    class Meta:
+        model = ArenaMatch
         fields = ('username', 'password', 'email')
         lookup_field = "username"

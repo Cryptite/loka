@@ -22,7 +22,7 @@ class Player(models.Model):
     valleyCaps = models.SmallIntegerField(blank=True, null=True)
     valleyWins = models.SmallIntegerField(blank=True, null=True)
     valleyLosses = models.SmallIntegerField(blank=True, null=True)
-    valleyScore = models.SmallIntegerField(blank=True, null=True)
+    # valleyScore = models.SmallIntegerField(blank=True, null=True)
     title = models.CharField(max_length=20, blank=True, null=True)
     rank = models.CharField(max_length=20, blank=True, null=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
@@ -134,5 +134,16 @@ class Comment(models.Model):
     author = models.ForeignKey(Player)
     date = models.DateTimeField(auto_now_add=True)
 
+
+class ArenaMatch(models.Model):
+    date = models.DateTimeField(auto_now_add=True)
+    loser = models.ForeignKey(Player, related_name="loser")
+    winner = models.ForeignKey(Player, related_name="winner")
+    loser_rating = models.IntegerField()
+    winner_rating = models.IntegerField()
+    rating_change = models.IntegerField()
+    loser_damage = models.IntegerField()
+    winner_damage = models.IntegerField()
+    length = models.IntegerField()
 
 admin.site.register(Quote)
