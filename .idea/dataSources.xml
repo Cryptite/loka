@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3553788235">
-    <data-source source="LOCAL" name="lokadb" uuid="3d19c07d-26a1-47c6-949c-6461e5961f05">
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\dev\loka\lokadb</jdbc-url>
-      <libraries>
-        <library>
-          <url>jar://$PROJECT_DIR$/sqlitejdbc-v056.jar!/</url>
-        </library>
-        <library>
-          <url>file://$PROJECT_DIR$/zentus-sqlite-license.txt</url>
-        </library>
-      </libraries>
-    </data-source>
+  <component name="DataSourceManagerImpl" format="xml" hash="3850088550">
     <data-source source="LOCAL" name="Django default" uuid="97835cb9-8c11-45c4-b4d0-7bf6f0ef07e9">
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/loka</jdbc-url>
       <user-name>root</user-name>
       <user-password>dfc9dfcbdfc6dfc6dfd3df99df9edf98</user-password>
-      <libraries />
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-license.txt</url>
+        </library>
+        <library>
+          <url>jar://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-java-5.1.26-bin.jar!/</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>

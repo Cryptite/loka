@@ -4,10 +4,10 @@
     <option name="ANALYSIS_IN_BACKGROUND" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="902be2fd-e545-4f44-9adb-f54d3e356d63" name="Default" comment="">
+    <list default="true" id="902be2fd-e545-4f44-9adb-f54d3e356d63" name="Default" comment="PVP Players implemented">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loka/serializers.py" afterPath="$PROJECT_DIR$/loka/serializers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loka/models.py" afterPath="$PROJECT_DIR$/loka/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="loka.iws" />
@@ -36,40 +36,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/loka/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="23" selection-start="2699" selection-end="2699" vertical-scroll-proportion="0.765" vertical-offset="323" max-vertical-offset="2669">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pvp_1v1.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loka/templates/pvp_1v1.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="55" column="34" selection-start="1794" selection-end="1794" vertical-scroll-proportion="-35.96154" vertical-offset="0" max-vertical-offset="2329">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="player.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loka/templates/player.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="88" column="19" selection-start="3699" selection-end="3699" vertical-scroll-proportion="-0.0" vertical-offset="1496" max-vertical-offset="2482">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="0" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="4386">
+              <folding>
+                <element signature="e#36#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loka/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="74" selection-start="2211" selection-end="2211" vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="986">
+            <state line="36" column="85" selection-start="1649" selection-end="1649" vertical-scroll-proportion="0.0" vertical-offset="159" max-vertical-offset="1054">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/loka/models.py">
+      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loka/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="0" selection-start="2396" selection-end="2396" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2159">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serializers.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/loka/serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="26" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.0" vertical-offset="199" max-vertical-offset="1972">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LOKA_TOWN" pinned="false" current="true" current-in-tab="true">
-        <entry file="dbDummy://dbtable:/da804765/3d19c07d-26a1-47c6-949c-6461e5961f05/..LOKA_TOWN">
-          <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
+            <state line="13" column="22" selection-start="363" selection-end="363" vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="3026">
               <folding />
             </state>
           </provider>
@@ -78,26 +95,10 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loka/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="242" column="9" selection-start="8671" selection-end="8671" vertical-scroll-proportion="0.0" vertical-offset="4114" max-vertical-offset="4862">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="townhome.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/loka/templates/townhome.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1309">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="townbase.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/loka/templates/townbase.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="269" column="33" selection-start="13833" selection-end="13833" vertical-scroll-proportion="0.0" vertical-offset="4437" max-vertical-offset="6086">
-              <folding />
+            <state line="124" column="103" selection-start="4432" selection-end="4432" vertical-scroll-proportion="0.0" vertical-offset="1789" max-vertical-offset="5967">
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -122,22 +123,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/loka/templates/base.html" />
-        <option value="$PROJECT_DIR$/static/css/custom.css" />
-        <option value="$PROJECT_DIR$/loka/templates/about.html" />
+        <option value="dbtable:/da804765/97835cb9-8c11-45c4-b4d0-7bf6f0ef07e9/loka..auth_user" />
+        <option value="$PROJECT_DIR$/loka/templates/pvp_1v1.html" />
+        <option value="$PROJECT_DIR$/loka/templates/pvp_2v2.html" />
+        <option value="$PROJECT_DIR$/loka/templates/pvp_vota.html" />
+        <option value="$PROJECT_DIR$/loka/serializers.py" />
         <option value="$PROJECT_DIR$/loka/templates/towns.html" />
-        <option value="dbtable:/da804765/96a479fd-23a7-4e3b-aa58-51319f319bdc/loka..loka_townmedia" />
-        <option value="$PROJECT_DIR$/local_settings.py" />
-        <option value="dbtable:/da804765/96a479fd-23a7-4e3b-aa58-51319f319bdc/loka..loka_town" />
-        <option value="dbtable:/da804765/3d19c07d-26a1-47c6-949c-6461e5961f05/..LOKA_TOWN_MEMBERS" />
+        <option value="$PROJECT_DIR$/loka/templates/pvp.html" />
+        <option value="$PROJECT_DIR$/loka/templates/townslist.html" />
+        <option value="$PROJECT_DIR$/static/css/custom.css" />
+        <option value="$PROJECT_DIR$/loka/templates/player.html" />
+        <option value="$USER_HOME$/Loka/Lib/site-packages/ajax_search/views.py" />
         <option value="$PROJECT_DIR$/loka/urls.py" />
         <option value="$PROJECT_DIR$/loka/views.py" />
-        <option value="$PROJECT_DIR$/loka/templates/townbase.html" />
-        <option value="dbtable:/da804765/3d19c07d-26a1-47c6-949c-6461e5961f05/..AUTH_USER" />
-        <option value="dbtable:/da804765/3d19c07d-26a1-47c6-949c-6461e5961f05/..LOKA_PLAYER" />
+        <option value="$PROJECT_DIR$/settings.py" />
+        <option value="$PROJECT_DIR$/loka/templates/base.html" />
         <option value="$PROJECT_DIR$/loka/models.py" />
-        <option value="dbtable:/da804765/3d19c07d-26a1-47c6-949c-6461e5961f05/..LOKA_TOWN" />
-        <option value="$PROJECT_DIR$/loka/serializers.py" />
       </list>
     </option>
   </component>
@@ -173,6 +174,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -204,8 +206,22 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="owl-carousel" />
+              <option name="myItemId" value="loka" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="loka" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -222,6 +238,14 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="custom-theme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -234,6 +258,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="loka" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="loka" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="loka" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="loka" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templatetags" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -257,7 +299,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -290,6 +331,17 @@
     <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
   </component>
+  <component name="PublishConfig" serverName="Loka Web" serverId="ada3c3c6-8b4a-4f34-9c84-24c98537c95b">
+    <servers>
+      <server id="ada3c3c6-8b4a-4f34-9c84-24c98537c95b">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </server>
+    </servers>
+  </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings />
@@ -297,18 +349,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\dev\loka" />
       <recent name="C:\dev\loka\loka\templates" />
+      <recent name="C:\dev\loka" />
       <recent name="C:\Users\tmiller\PycharmProjects\loka\static\images" />
       <recent name="C:\Users\tmiller\PycharmProjects\loka\loka\templates" />
       <recent name="C:\Users\tmiller\PycharmProjects\loka\loka" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\loka\static\css" />
       <recent name="C:\Users\tmiller\PycharmProjects\loka\static\images" />
       <recent name="C:\Users\tmiller\PycharmProjects\loka\loka\static\images" />
       <recent name="C:\Users\tmiller\PycharmProjects\loka\loka\static" />
       <recent name="C:\Users\Tom\PycharmProjects\loka\loka\static\images" />
-      <recent name="C:\Users\Tom\PycharmProjects\loka\loka" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.loka">
@@ -522,6 +574,11 @@
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="windows-1252" />
+    <option name="myConnectionType" value="DEPLOYMENT_SERVER" />
+    <option name="myConnectionId" value="ada3c3c6-8b4a-4f34-9c84-24c98537c95b" />
+  </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
@@ -601,32 +658,84 @@
       <created>1388638993663</created>
       <updated>1388638993663</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fix the serialization issue; thanks SO">
+      <created>1388725388520</created>
+      <updated>1388725388520</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Smaller town name size on listing page.">
+      <created>1388757914958</created>
+      <updated>1388757914958</updated>
+    </task>
+    <task id="LOCAL-00017" summary="PVP Players implemented">
+      <created>1388765515548</created>
+      <updated>1388765515548</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Hopefully fixed towns, woo">
+      <created>1388937074690</created>
+      <updated>1388937074690</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Motd update">
+      <created>1388937817902</created>
+      <updated>1388937817902</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fixed town member count&#10;Added 2v2, VotA rankings">
+      <created>1388950025042</created>
+      <updated>1388950025042</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Updates to player page">
+      <created>1388982468503</created>
+      <updated>1388982468503</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Fix not-updating fields">
+      <created>1389213826707</created>
+      <updated>1389213826707</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Redid the player page, cleaned up some stuff, added other stuff, made stuff neat">
+      <created>1389225746697</created>
+      <updated>1389225746697</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Fix 2v2 player page rank color">
+      <created>1389225975729</created>
+      <updated>1389225975729</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Implement valleyScore">
+      <created>1389742521499</created>
+      <updated>1389742521499</updated>
+    </task>
+    <task id="LOCAL-00026" summary="No ajax search module">
+      <created>1389742714423</created>
+      <updated>1389742714423</updated>
+    </task>
+    <task id="LOCAL-00027" summary="jQuery bootstrap ui css">
+      <created>1389743142725</created>
+      <updated>1389743142725</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930845" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32976446" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19166666" sideWeight="0.5910064" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.70021415" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1625" sideWeight="0.5910064" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19166666" sideWeight="0.7034261" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18333334" sideWeight="0.6702356" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1625" sideWeight="0.6702356" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40899357" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40899357" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29657388" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2751606" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930845" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32711306" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32655245" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33809" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6702356" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39956093" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -650,119 +759,127 @@
     <MESSAGE value="Cropping images started" />
     <MESSAGE value="Rest API works, woot." />
     <MESSAGE value="Dances with serializers. Call in the heith" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dances with serializers. Call in the heith" />
+    <MESSAGE value="Fix the serialization issue; thanks SO" />
+    <MESSAGE value="Smaller town name size on listing page." />
+    <MESSAGE value="PVP Players implemented" />
+    <MESSAGE value="Hopefully fixed towns, woo" />
+    <MESSAGE value="Motd update" />
+    <MESSAGE value="Fixed town member count&#10;Added 2v2, VotA rankings" />
+    <MESSAGE value="Updates to player page" />
+    <MESSAGE value="Fix not-updating fields" />
+    <MESSAGE value="Redid the player page, cleaned up some stuff, added other stuff, made stuff neat" />
+    <MESSAGE value="Fix 2v2 player page rank color" />
+    <MESSAGE value="Implement valleyScore" />
+    <MESSAGE value="No ajax search module" />
+    <MESSAGE value="jQuery bootstrap ui css" />
+    <option name="LAST_COMMIT_MESSAGE" value="jQuery bootstrap ui css" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/loka/templates/townhome.html">
+    <entry file="file://$PROJECT_DIR$/loka/templates/townslist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1309">
-          <folding />
-        </state>
+        <state line="15" column="31" selection-start="296" selection-end="296" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="2125" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/loka/templates/townbase.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="269" column="33" selection-start="13833" selection-end="13833" vertical-scroll-proportion="0.0" vertical-offset="4437" max-vertical-offset="6086">
+        <state line="46" column="37" selection-start="1881" selection-end="1881" vertical-scroll-proportion="0.3536" vertical-offset="561" max-vertical-offset="6086" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loka/templates/pvp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="47" selection-start="2676" selection-end="2676" vertical-scroll-proportion="0.952" vertical-offset="612" max-vertical-offset="1683" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Loka/Lib/site-packages/ajax_search/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="651" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Loka/Lib/site-packages/ajax_search/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="895" selection-end="2887" vertical-scroll-proportion="0.05015674" vertical-offset="2" max-vertical-offset="1156" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="166" column="42" selection-start="3645" selection-end="3645" vertical-scroll-proportion="0.24357542" vertical-offset="2604" max-vertical-offset="18462">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loka/templates/townbase.html">
+    <entry file="file://$PROJECT_DIR$/loka/templates/player.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="269" column="33" selection-start="13833" selection-end="13833" vertical-scroll-proportion="0.0" vertical-offset="4437" max-vertical-offset="6086">
+        <state line="88" column="19" selection-start="3699" selection-end="3699" vertical-scroll-proportion="0.0" vertical-offset="1328" max-vertical-offset="2482">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loka/templates/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="41" selection-start="2552" selection-end="2552" vertical-scroll-proportion="0.0" vertical-offset="1122" max-vertical-offset="2040" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loka/templates/towns.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="10" selection-start="618" selection-end="618" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="2482" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Loka/Lib/site-packages/rest_framework/fields.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="8" selection-start="3552" selection-end="3552" vertical-scroll-proportion="0.33236575" vertical-offset="1522" max-vertical-offset="16405">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loka/ajax.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="689" />
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/da804765/3d19c07d-26a1-47c6-949c-6461e5961f05/..LOKA_TOWN_MEMBERS">
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/loka/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="74" selection-start="2211" selection-end="2211" vertical-scroll-proportion="0.0" vertical-offset="104" max-vertical-offset="884">
+        <state line="36" column="85" selection-start="1649" selection-end="1649" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1054">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loka/templates/townhome.html">
+    <entry file="file://$USER_HOME$/Loka/Lib/site-packages/ajax_search/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="707" max-vertical-offset="1309">
+        <state line="5" column="4" selection-start="100" selection-end="175" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/da804765/3d19c07d-26a1-47c6-949c-6461e5961f05/..AUTH_USER">
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loka/templates/townbase.html">
+    <entry file="file://$USER_HOME$/Loka/Lib/site-packages/ajax_search/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="269" column="33" selection-start="13833" selection-end="13833" vertical-scroll-proportion="0.0" vertical-offset="4437" max-vertical-offset="6086">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="638">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/loka/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="242" column="9" selection-start="8671" selection-end="8671" vertical-scroll-proportion="0.0" vertical-offset="3655" max-vertical-offset="4607">
+        <state line="124" column="103" selection-start="4432" selection-end="4432" vertical-scroll-proportion="0.0" vertical-offset="1789" max-vertical-offset="5967">
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local_settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="4386">
+          <folding>
+            <element signature="e#36#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loka/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="22" selection-start="363" selection-end="363" vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="3026">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loka/templates/pvp_1v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="34" selection-start="1794" selection-end="1794" vertical-scroll-proportion="-35.96154" vertical-offset="0" max-vertical-offset="2329">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/loka/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="2396" selection-end="2396" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="2108">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loka/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="26" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.0" vertical-offset="199" max-vertical-offset="1972">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/da804765/3d19c07d-26a1-47c6-949c-6461e5961f05/..LOKA_TOWN">
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+        <state line="50" column="23" selection-start="2699" selection-end="2699" vertical-scroll-proportion="0.765" vertical-offset="323" max-vertical-offset="2669">
           <folding />
         </state>
       </provider>
