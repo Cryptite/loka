@@ -22,7 +22,7 @@ class Player(models.Model):
     valleyCaps = models.SmallIntegerField(blank=True, null=True)
     valleyWins = models.SmallIntegerField(blank=True, null=True)
     valleyLosses = models.SmallIntegerField(blank=True, null=True)
-    # valleyScore = models.SmallIntegerField(blank=True, null=True)
+    valleyScore = models.SmallIntegerField(blank=True, null=True)
     title = models.CharField(max_length=20, blank=True, null=True)
     rank = models.CharField(max_length=20, blank=True, null=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
@@ -42,7 +42,7 @@ class Player(models.Model):
         return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
 
     def get_vota_rank(self):
-        players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyKills")
+        players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyScore")
         return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
 
     def get_1v1_color_rank(self):

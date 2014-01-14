@@ -160,6 +160,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'image_cropping',
     'ajaxuploader',
+    'ajax_search',
     'loka',
     'south',
 )
@@ -189,6 +190,11 @@ THUMBNAIL_PROCESSORS = (
                        ) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
 IMAGE_CROPPING_SIZE_WARNING = True
+
+AJAX_SEARCH_LIMIT = 8
+AJAX_SEARCH_HELPER = 'app.views.search_helper'
+SEARCH_RESULT_TEMPLATE = 'search_results.html'
+
 
 ###################
 # EMAIL SETTINGS #

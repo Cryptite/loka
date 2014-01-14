@@ -122,7 +122,7 @@ def pvp2v2(request):
 
 
 def pvpvota(request):
-    players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyKills")
+    players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyScore")
 
     return render_to_response('pvp_vota.html', RequestContext(request, {
         'players': players,
