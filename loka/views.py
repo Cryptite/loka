@@ -13,8 +13,8 @@ from django.template.context import RequestContext
 from rest_framework import generics
 from loka.forms import TownBannerForm
 
-from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia
-from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer
+from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch
+from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer
 from loka.tasks import retrieve_avatar
 
 
@@ -46,6 +46,11 @@ class PlayerDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
     lookup_field = "name"
+
+
+class ArenaMatchDetail(generics.CreateAPIView):
+    queryset = ArenaMatch.objects.all()
+    serializer_class = ArenaMatchSerializer
 
 
 def start(request):
@@ -229,6 +234,7 @@ def townhome(request, town_name):
             form = TownBannerForm(request.POST, request.FILES, instance=image)
             if form.is_valid():
                 image = form.save()
+
     return render_to_response('townhome.html', RequestContext(request, {
         'town': town,
         'image': image,

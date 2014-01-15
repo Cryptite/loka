@@ -95,7 +95,7 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
             print 'Via existing instance'
             instance.name = attrs.get('name', instance.name)
             instance.motd = attrs.get('motd')
-            instance.owner = self.resolve_owner(attrs.get("owner"))
+            instance.owner = resolve_player(attrs.get("owner"))
             return instance
 
         owner = attrs.get("owner")
@@ -104,16 +104,8 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
         del attrs["subowners"]
 
         town = Town(**attrs)
-        town.owner = self.resolve_owner(owner)
+        town.owner = resolve_player(owner)
         return town
-
-    def resolve_owner(self, owner_name):
-        print "Resolving owner: ", owner_name
-        owner = Player.objects.filter(name=owner_name)
-        if not owner:
-            return Player.objects.create(name=owner_name)
-        else:
-            return owner[0]
 
     class Meta:
         model = Town
@@ -186,10 +178,26 @@ class ArenaMatchSerializer(serializers.HyperlinkedModelSerializer):
             instance.length = attrs.get('length', instance.length)
             return instance
 
-        # Create new instance
-        return ArenaMatch(**attrs)
+        winner = attrs.get("winner")
+        loser = attrs.get("loser")
+        del attrs["winner"]
+        del attrs["loser"]
+
+        arena_match = ArenaMatch(**attrs)
+        arena_match.winner = resolve_player(winner)
+        arena_match.loser = resolve_player(loser)
+        return
 
     class Meta:
         model = ArenaMatch
         fields = ('username', 'password', 'email')
         lookup_field = "username"
+
+
+def resolve_player(player_name):
+    print "Resolving player: ", player_name
+    owner = Player.objects.filter(name=player_name)
+    if not owner:
+        return Player.objects.create(name=player_name)
+    else:
+        return owner[0]

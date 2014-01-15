@@ -85,15 +85,15 @@
                             <h1>Rating:
                                 <small>{{ player.arenarating2v2 }}</small>
                             </h1>
-                            <h2>
+                            <h1>
                                 <small>W/L:</small>
                                 {{ player.arenawins2v2 }} - {{ player.arenalosses2v2 }}
-                            </h2>
+                            </h1>
                             {% if player.highestrating2v2 > 1500 %}
-                                <h2>
+                                <h1>
                                     <small>Highest Rating:</small>
                                     {{ player.highestrating2v2 }}
-                                </h2>
+                                </h1>
                             {% endif %}
                             </span>
                             <i class="rank{{ player.get_2v2_color_rank }}">

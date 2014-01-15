@@ -45,12 +45,6 @@ class Player(models.Model):
         players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyScore")
         return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
 
-    def get_vota_score(self):
-        if not self.valleyScore:
-            self.valleyScore = self.valleyCaps * 3 + self.valleyKills - self.valleyDeaths
-            self.save()
-        return self.valleyCaps * 3 + self.valleyKills - self.valleyDeaths
-
     def get_1v1_color_rank(self):
         return (self.highestrating - 1500) / 50
 
