@@ -49,12 +49,15 @@
 
     {% if not town.description %}
         <h1 class="text-center">Your town board is blank!</h1>
-        <h2 class="text-center">
-            <small>You should <a href="#" data-toggle="modal"
-                                 data-target="#modal_board">fill your board out </a> so people can learn more about your
-                town.
-            </small>
-        </h2>
+        {% if user.username == town.owner.name %}
+            <h2 class="text-center">
+                <small>You should <a href="#" data-toggle="modal"
+                                     data-target="#modal_board">fill your board out </a> so people can learn more about
+                    your
+                    town.
+                </small>
+            </h2>
+        {% endif %}
     {% else %}
         {% autoescape off %}{{ town.description }}{% endautoescape %}
     {% endif %}
