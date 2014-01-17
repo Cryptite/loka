@@ -52,6 +52,7 @@ urlpatterns = patterns('',
                        url(r'^logout', 'loka.views.logout'),
                        url(r'start$', 'loka.views.start', name="start"),
                        #url(r'ajax-upload$', views.import_uploader, name="my_ajax_upload"),
+                       (r'^tinymce/', include('tinymce.urls')),
                        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 )
 

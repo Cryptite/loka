@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Q
 from image_cropping import ImageRatioField, ImageCropField
-
+from tinymce import models as tinymce_models
 
 class Player(models.Model):
     name = models.CharField(max_length=30)
@@ -55,6 +55,7 @@ class Player(models.Model):
 class Town(models.Model):
     name = models.CharField(max_length=30)
     public = models.BooleanField(default=False)
+    description = tinymce_models.HTMLField()
     tag = models.CharField(max_length=10, blank=True, null=True)
     motd = models.CharField(max_length=255, blank=True, null=True)
     owner = models.ForeignKey(Player)

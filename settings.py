@@ -160,9 +160,12 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'image_cropping',
     'ajaxuploader',
+    'tinymce',
     'loka',
     'south',
 )
+
+DJANGO_WYSIWYG_FLAVOR = "tinymce"
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
