@@ -6,11 +6,60 @@
 {% block towncontent %}
     <h2 class="title"><span>The Town of {{ town.name }}</span>
         {% if town.motd != "null" and user.is_authenticated and userintown.count > 0 %}
-            <small> - {{ town.motd }}</small>
+            {% if town.motd %}
+                <small> - {{ town.motd }}</small>
+            {% endif %}
+            <button type="submit" class="btn btn-primary btn-small pull-right" data-toggle="modal"
+                    data-target="#modal_board">Update Board
+            </button>
         {% endif %}
     </h2>
 
-    <textarea class="desc"></textarea>
+    <div class="modal fade" id="modal_board" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1>
+                        <small>Fill out your town board below.</small>
+                    </h1>
+                    <p>Your town board is an area where you can fill out and format information about your town so that
+                        people have a way to learn about your town. It's your Town's own advertisement page!</p>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/town/{{ town.name }}">
+                        {% csrf_token %}
+                        <textarea class="desc" name="description">
+                            {% if town.description %}
+                                {% autoescape off %}{{ town.description }}{% endautoescape %}
+                            {% endif %}
+                        </textarea>
+                        <br/>
+                        <button type="submit pull-right" name="action" class="btn btn-primary btn-md"
+                                value="description">Update Board
+                        </button>
+                        <button type="button pull-right" class="btn btn-default" data-dismiss="modal">Cancel
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if not town.description %}
+        <h1 class="text-center">Your town board is blank!</h1>
+        <h2 class="text-center">
+            <small>You should <a href="#" data-toggle="modal"
+                                 data-target="#modal_board">fill your board out </a> so people can learn more about your
+                town.
+            </small>
+        </h2>
+    {% else %}
+        {% autoescape off %}{{ town.description }}{% endautoescape %}
+    {% endif %}
+
+    <br/>
 
     {% if comments.count > 0 %}
         {% for comment in comments %}
@@ -59,8 +108,9 @@
             </div>
         {% endfor %}
     {% else %}
-        <h1 class="text-center">Your town has no comments yet.</h1>
+        <p>Be the first to comment about {{ town.name }}.</p>
     {% endif %}
+
     {% if user.is_authenticated %}
         <form method="post" action="/town/{{ town.name }}">
             {% csrf_token %}

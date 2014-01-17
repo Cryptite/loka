@@ -144,7 +144,7 @@ def player(request, player_name):
         raise Http404
 
 
-def townboard(request, town_name):
+def townforum(request, town_name):
     town = Town.objects.get(name=town_name)
     user_in_town = town.members.filter(name=request.user.username)
     print user_in_town
@@ -172,7 +172,7 @@ def townboard(request, town_name):
             Post.objects.create(thread=new_thread,
                                 text=request.POST['text'],
                                 author=author)
-    return render_to_response('townboard.html', RequestContext(request, {
+    return render_to_response('townforum.html', RequestContext(request, {
         'town': town,
         'threads': threads,
     }))
@@ -234,6 +234,10 @@ def townhome(request, town_name):
             form = TownBannerForm(request.POST, request.FILES, instance=image)
             if form.is_valid():
                 image = form.save()
+
+        elif request.POST['action'] == "description":
+            town.description = request.POST['description']
+            town.save()
 
     return render_to_response('townhome.html', RequestContext(request, {
         'town': town,

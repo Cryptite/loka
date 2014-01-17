@@ -7,7 +7,11 @@
     <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
     <script>
         tinymce.init({selector: 'textarea.desc',
-        menu: {}});
+            menu: {},
+            plugins: "preview",
+            toolbar: "styleselect | hr bold italic | outdent indent bullist numlist | spellchecker | preview",
+            content_css: "{% static 'css/custom.css' %}"
+        });
     </script>
     {{ form.media }}
     <!-- Important Owl stylesheet -->
@@ -348,7 +352,7 @@
     {% if user.is_authenticated and userintown.count > 0 %}
         <div class="townnav">
             <a href="/town/{{ town.name }}" type="button" class="btn btn-primary btn-md">Home</a>
-            <a href="/town/{{ town.name }}/board" type="button" class="btn btn-primary btn-md">Town Board <span
+            <a href="/town/{{ town.name }}/board" type="button" class="btn btn-primary btn-md">Town Forum <span
                     class="active badge"> {{ town.num_threads }}</span></a>
         </div>
     {% endif %}
