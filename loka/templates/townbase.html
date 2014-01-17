@@ -352,7 +352,7 @@
     {% if user.is_authenticated and userintown.count > 0 %}
         <div class="townnav">
             <a href="/town/{{ town.name }}" type="button" class="btn btn-primary btn-md">Home</a>
-            <a href="/town/{{ town.name }}/board" type="button" class="btn btn-primary btn-md">Town Forum <span
+            <a href="/town/{{ town.name }}/forum" type="button" class="btn btn-primary btn-md">Town Forum <span
                     class="active badge"> {{ town.num_threads }}</span></a>
         </div>
     {% endif %}

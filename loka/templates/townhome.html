@@ -9,9 +9,11 @@
             {% if town.motd %}
                 <small> - {{ town.motd }}</small>
             {% endif %}
-            <button type="submit" class="btn btn-primary btn-small pull-right" data-toggle="modal"
-                    data-target="#modal_board">Update Board
-            </button>
+            {% if user.username == town.owner.name %}
+                <button type="submit" class="btn btn-primary btn-small pull-right" data-toggle="modal"
+                        data-target="#modal_board">Update Board
+                </button>
+            {% endif %}
         {% endif %}
     </h2>
 
