@@ -5,8 +5,8 @@ from unipath import Path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 #djcelery.setup_loader()
 
-DEBUG = True
-TEMPLATE_DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = False
 
 ADMINS = (
     ('Tom Miller', 'cryptite@gmail.com'),
