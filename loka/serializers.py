@@ -190,8 +190,7 @@ class ArenaMatchSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ArenaMatch
-        fields = (
-        'date', 'loser', 'winner', 'loser_rating', 'winner_rating', 'rating_change', 'loser_damage', 'winner_damage',
+        fields = ('loser', 'winner', 'loser_rating', 'winner_rating', 'rating_change', 'loser_damage', 'winner_damage',
         'length')
 
 
