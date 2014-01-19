@@ -146,7 +146,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 class ArenaMatchSerializer(serializers.HyperlinkedModelSerializer):
     pk = serializers.Field()
-    date = serializers.DateTimeField()
+    date = serializers.DateTimeField(required=False)
     loser = serializers.CharField(max_length=50)
     winner = serializers.CharField(max_length=50)
     loser_rating = serializers.IntegerField()
@@ -186,12 +186,13 @@ class ArenaMatchSerializer(serializers.HyperlinkedModelSerializer):
         arena_match = ArenaMatch(**attrs)
         arena_match.winner = resolve_player(winner)
         arena_match.loser = resolve_player(loser)
-        return
+        return arena_match
 
     class Meta:
         model = ArenaMatch
-        fields = ('username', 'password', 'email')
-        lookup_field = "username"
+        fields = (
+        'date', 'loser', 'winner', 'loser_rating', 'winner_rating', 'rating_change', 'loser_damage', 'winner_damage',
+        'length')
 
 
 def resolve_player(player_name):
