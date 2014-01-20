@@ -175,6 +175,7 @@ def townforum(request, town_name):
     return render_to_response('townforum.html', RequestContext(request, {
         'town': town,
         'threads': threads,
+        'userintown': user_in_town
     }))
 
 

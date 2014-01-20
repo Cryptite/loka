@@ -36,7 +36,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
         data will simply return a dictionary of items.
         """
         if instance:
-        #     Update existing instance
+            #     Update existing instance
             print 'Via existing instance'
             instance.name = attrs.get('name')
             instance.arenarating = attrs.get('arenarating')
@@ -70,7 +70,8 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('name', 'arenarating', 'arenawins', 'arenalosses', 'streak', 'highestrating',
                   'arenarating2v2', 'arenawins2v2', 'arenalosses2v2', 'streak2v2', 'highestrating2v2',
-                  'valleyKills', 'valleyDeaths', 'valleyCaps', 'valleyWins', 'valleyLosses', 'title', 'rank')
+                  'valleyKills', 'valleyDeaths', 'valleyCaps', 'valleyWins', 'valleyLosses', 'valleyScore', 'title',
+                  'rank')
         lookup_field = "name"
 
 
@@ -191,7 +192,7 @@ class ArenaMatchSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ArenaMatch
         fields = ('loser', 'winner', 'loser_rating', 'winner_rating', 'rating_change', 'loser_damage', 'winner_damage',
-        'length')
+                  'length')
 
 
 def resolve_player(player_name):
