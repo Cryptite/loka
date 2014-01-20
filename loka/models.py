@@ -5,6 +5,7 @@ from django.db.models import Q
 from image_cropping import ImageRatioField, ImageCropField
 from tinymce import models as tinymce_models
 
+
 class Player(models.Model):
     name = models.CharField(max_length=30)
     arenarating = models.SmallIntegerField(blank=True, null=True)
@@ -45,11 +46,34 @@ class Player(models.Model):
         players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyScore")
         return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
 
+    def get_vota_score(self):
+        return self.valleyCaps * 3 + self.valleyKills - self.valleyDeaths
+
     def get_1v1_color_rank(self):
         return (self.highestrating - 1500) / 50
 
     def get_2v2_color_rank(self):
         return (self.highestrating2v2 - 1500) / 50
+
+    def has_1v1_history(self):
+        return ArenaMatch.objects.filter(Q(winner=self) | Q(loser=self))
+
+    def get_1v1_chart_labels(self):
+        matches = ArenaMatch.objects.filter(Q(winner=self) | Q(loser=self)).count()
+        labels = ""
+        for x in range(matches):
+            labels += "'',"
+        return labels[:-1]
+
+    def get_1v1_chart_ratings(self):
+        matches = ArenaMatch.objects.filter(Q(winner=self) | Q(loser=self))
+        labels = ""
+        for x in matches:
+            if x.winner is self:
+                labels += '{0},'.format(x.winner_rating)
+            else:
+                labels += '{0},'.format(x.loser_rating)
+        return labels[:-1]
 
 
 class Town(models.Model):

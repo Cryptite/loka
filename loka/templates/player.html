@@ -4,6 +4,7 @@
 
 {% block extra_head %}
     {{ form.media }}
+    <script src="/static/js/Chart.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -71,6 +72,29 @@
                             <h1 class="subtle">No 1v1 <br/>games played</h1>
                             </span>
                         {% endif %}
+        {% if player.has_1v1_history %}
+            <h2><small>Match History</small></h2>
+            <canvas id="canvas" height="75" width="350"></canvas>
+            <script>
+                var lineChartData = {
+                    labels: [{{ player.get_1v1_chart_labels|safe }}],
+                    datasets: [
+                        {
+                            fillColor: "rgba(151,187,205,0.5)",
+                            strokeColor: "rgba(151,187,205,1)",
+                            pointColor: "rgba(151,187,205,1)",
+                            pointStrokeColor: "#fff",
+                            data: [{{player.get_1v1_chart_ratings}}]
+                        }
+                    ]
+                }
+                var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData,
+                        {scaleShowGridLines: false,
+                            scaleFontSize: 10,
+                            scaleFontColor: "#aaa",
+                            pointDotRadius: 1});
+            </script>
+        {% endif %}
     </div>
 
     <div class="player-section text-center bracket{{ player.get_2v2_color_rank }}">
