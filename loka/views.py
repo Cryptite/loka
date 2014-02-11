@@ -100,12 +100,7 @@ def pvp(request):
 
 
 def pvp1v1(request):
-    #Temporarily only showing those with > 10 games for season tabulation
-    query = Player.objects.filter(Q(arenawins__gt=1) | Q(arenalosses__gt=1)).order_by("-arenarating")
-    players = []
-    for p in query:
-        if p.arenawins + p.arenalosses > 10:
-            players.append(p)
+    players = Player.objects.filter(Q(arenawins__gt=1) | Q(arenalosses__gt=1)).order_by("-arenarating")
     paginator = Paginator(players, 25) # Show 25 contacts per page
 
     page = request.GET.get('page')
