@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+{% load humanize %}
+
+{% block content %}
+    <h2 class="title"><span>Issue Tracker</span>
+        <small>A breakdown of all bug reports and feature requests for Loka's custom plugins.</small>
+        <!-- Button trigger modal -->
+        {% if user.is_authenticated %}
+            <button class="btn btn-primary btn-md pull-right newthread" data-toggle="modal" data-target="#myModal">
+                Create a New Issue
+            </button>
+        {% else %}
+            <button class="btn btn-primary btn-md pull-right newthread" disabled="disabled">
+                Login to create issues
+            </button>
+        {% endif %}
+    </h2>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Create a new issue</h4>
+                </div>
+                <form method="post" action="/issues">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary">
+                                <input type="radio" name="feature" id="feature"> Feature Request
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="bug" id="bug"> Bug
+                            </label>
+                        </div>
+                        <input type="text" class="form-control" name="title" placeholder="Issue title"/>
+                        <textarea class="form-control" name="text" placeholder="Please describe the issue here."
+                                  rows="3"></textarea>
+                        <button type="submit" name="action" class="btn btn-primary" value="issue">Create Issue</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    {% if issues.count > 0 %}
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Type</th>
+                <th>Issue</th>
+                <th>Reporter</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for issue in issues %}
+                <tr>
+                    <td width="20%">{% if issue.type == "1" %}
+                        <span class="label label-danger">Bug</span>
+                    {% else %}
+                        <span class="label label-primary">Feature Request</span>
+                    {% endif %}</td>
+                    <td width="75%">
+                        <h4>
+                            <small>{{ issue.id }}</small>
+                            <a href="/issues/{{ issue.id }}"
+                               title="{{ issue.description }}">{{ issue.title }}</a></h4>
+                    </td>
+                    <td>{{ issue.reporter.name }}</td>
+                    <td>{{ issue.status }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tfoot>
+        </table>
+
+    {% else %}
+        <h1 class="text-center">No outstanding issues yet! <br/>
+            {% if user.is_authenticated %}
+                Go ahead and
+                <a href="#" data-toggle="modal" data-target="#myModal">
+                    add one!
+                </a>
+            {% endif %}
+        </h1>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+{% load humanize %}
+
+{% block content %}
+    <h2 class="title"><span>Issue {{ issue.id }} - {{ issue.title }}</span>
+    </h2>
+
+    <div class="span5">
+
+        <h3>{% if issue.type == "1" %}
+            <span class="label label-danger">Bug</span>
+        {% else %}
+            <span class="label label-primary">Feature Request</span>
+        {% endif %}Bug thingie
+            <div class="pull-right"><h4>Status: {{ issue.status }}</h4></div>
+        </h3>
+        <h5>Reported by: {{ issue.reporter }} {{ issue.created }}</h5>
+    </div>
+
+    <br/><br/><br/>
+
+    {% if comments.count > 0 %}
+        {% for comment in comments %}
+            <!-- Modal -->
+            <div class="modal fade" id="modal_{{ comment.id }}" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            Are you sure you wish to delete this comment?
+                        </div>
+                        <div class="modal-footer">
+                            <form method="post" action="/deleteitem/{{ comment.id }}">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="comment">Delete
+                                    Comment
+                                </button>
+                            </form>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <div class="theblogpost">
+
+                <div class="bloginnerwrap">
+
+                    <div class="blogicons post-avatar"><img src="{% static 'media/' %}{{ comment.author.avatar_sm }}"
+                                                            class="img-rounded"/></div>
+
+                    <h3><span>{{ comment.author.name }} <small>
+                        - {{ comment.date|naturaltime }}</small></span>
+                        {% if comment.author.name == user.username %}
+                            <button type="button" class="close pull-right" data-toggle="modal"
+                                    data-target="#modal_{{ comment.id }}">&times;</button>{% endif %}
+                    </h3>
+                    <p>{{ comment.text }}</p>
+
+                </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Be the first to comment about {{ town.name }}.</p>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <form method="post" action="/town/{{ town.name }}">
+            {% csrf_token %}
+            <textarea class="form-control" name="text" placeholder="Add a comment"
+                      rows="2"></textarea>
+            <button type="submit" name="action" class="btn btn-primary btn-md" value="comment">Post comment</button>
+        </form>
+    {% else %}
+        <button name="action" class="btn btn-primary btn-md" disabled="disabled">Login to post comments</button>
+    {% endif %}
+
+{% endblock %}

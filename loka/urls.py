@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, url, include
-
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from rest_framework import viewsets, routers
+
 from loka import views
 from loka.models import Town
 
@@ -45,6 +45,8 @@ urlpatterns = patterns('',
                        url(r'^pvp', 'loka.views.pvp'),
                        url(r'^deleteitem/(?P<item_id>\d+)', 'loka.views.deleteitem'),
                        url(r'^player/(?P<player_name>\w+)', 'loka.views.player'),
+                       url(r'^issue/(?P<issue_id>\d+)', 'loka.views.issue'),
+                       url(r'^issues', 'loka.views.issuelist'),
                        url(r'^town/(?P<town_name>\w+)/thread/(?P<thread_id>\d+)', 'loka.views.townthread'),
                        url(r'^town/(?P<town_name>\w+)/forum', 'loka.views.townforum'),
                        url(r'^town/(?P<town_name>\w+)', 'loka.views.townhome'),

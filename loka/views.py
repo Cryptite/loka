@@ -1,5 +1,6 @@
 from itertools import chain
 import json
+
 from django.contrib import messages, auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
@@ -11,9 +12,9 @@ from django.middleware.csrf import get_token
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from rest_framework import generics
-from loka.forms import TownBannerForm
 
-from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch
+from loka.forms import TownBannerForm
+from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue
 from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer
 from loka.tasks import retrieve_avatar
 
@@ -101,7 +102,7 @@ def pvp(request):
 
 def pvp1v1(request):
     players = Player.objects.filter(Q(arenawins__gt=1) | Q(arenalosses__gt=1)).order_by("-arenarating")
-    paginator = Paginator(players, 25) # Show 25 contacts per page
+    paginator = Paginator(players, 25)  # Show 25 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -143,6 +144,53 @@ def player(request, player_name):
         player = Player.objects.get(name=player_name)
         return render_to_response('player.html', RequestContext(request, {
             'player': player,
+        }))
+    except Exception, e:
+        raise Http404
+
+
+def issuelist(request):
+    issues = Issue.objects.all().order_by("-created")
+
+    if request.POST:
+        if request.POST['action'] == "issue":
+            type = 0
+            if 'bug' in request.POST:
+                type = 1
+            elif 'feature' in request.POST:
+                type = 2
+            author = Player.objects.get(name=request.user.username)
+            Issue.objects.create(description=request.POST['text'],
+                                 title=request.POST['title'],
+                                 type=type,
+                                 reporter=author)
+
+            #     if town.public:
+            #         town.public = False
+            #     else:
+            #         town.public = True
+            #     town.save()
+            #     return HttpResponse({"something": "somethingelse"},
+            #                         mimetype='application/javascript')
+            #
+            # elif request.POST['action'] == "thread":
+            #     author = Player.objects.get(name=request.user.username)
+            #     new_thread = Thread.objects.create(town=town,
+            #                                        title=request.POST['title'],
+            #                                        author=author)
+            #     Post.objects.create(thread=new_thread,
+            #                         text=request.POST['text'],
+            #                         author=author)
+    return render_to_response('issues.html', RequestContext(request, {
+        'issues': issues,
+    }))
+
+
+def issue(request, issue_id):
+    try:
+        issue = Issue.objects.get(id=issue_id)
+        return render_to_response('issue.html', RequestContext(request, {
+            'issue': issue,
         }))
     except Exception, e:
         raise Http404
@@ -352,7 +400,7 @@ def search(request):
             search_json = {'id': player.id,
                            'label': player.name,
                            'value': player.name,
-                           'url': "player/"+player.name}
+                           'url': "player/" + player.name}
             results.append(search_json)
         data = json.dumps(results)
     else:

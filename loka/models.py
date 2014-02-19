@@ -6,6 +6,20 @@ from image_cropping import ImageRatioField, ImageCropField
 from tinymce import models as tinymce_models
 
 
+REPORT_CHOICES = (
+    (1, "Bug"),
+    (2, "Feature Request")
+)
+
+REPORT_STATUS = (
+    (1, "New"),
+    (2, "Accepted"),
+    (3, "Rejected"),
+    (4, "Resolved"),
+    (5, "Closed")
+)
+
+
 class Player(models.Model):
     name = models.CharField(max_length=30)
     arenarating = models.SmallIntegerField(blank=True, null=True)
@@ -170,6 +184,23 @@ class ArenaMatch(models.Model):
     loser_damage = models.IntegerField()
     winner_damage = models.IntegerField()
     length = models.IntegerField()
+
+
+class Issue(models.Model):
+    type = models.CharField(max_length=2, choices=REPORT_CHOICES)
+    title = models.CharField(max_length=300)
+    description = models.TextField()
+    reporter = models.ForeignKey(Player)
+    status = models.CharField(max_length=2, choices=REPORT_STATUS, default=1)
+    created = models.DateTimeField(auto_now_add=True)
+    resolved = models.DateTimeField(blank=True, null=True)
+
+
+class IssueComment(models.Model):
+    issue = models.ForeignKey(Issue)
+    text = models.CharField(max_length=400)
+    author = models.ForeignKey(Player)
+    date = models.DateTimeField(auto_now_add=True)
 
 
 admin.site.register(Quote)
