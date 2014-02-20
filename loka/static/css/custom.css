@@ -32,6 +32,18 @@ body {
     font-size: 16px;
 }
 
+.ccaption {
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 1), 0 0 30px rgba(0, 0, 0, .4);
+    font-family: aleoregular;
+    font-size: 2em;
+}
+
+.carousel-caption {
+    bottom: 40%;
+}
+
 h1 {
     color: #666;
     font-family: aleobold;
@@ -96,6 +108,12 @@ a.inverse, a:visited {
     float: right;
     font-size: 12px;
     font-weight: 300;
+}
+
+.issuecomments {
+    width: 70%;
+    padding: 0px 30%;
+    margin: auto;
 }
 
 .navbar-default .navbar-nav > .dropdown > a .caret {

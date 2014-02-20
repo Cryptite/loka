@@ -57,6 +57,7 @@
             <thead>
             <tr>
                 <th>Type</th>
+                <th></th>
                 <th>Issue</th>
                 <th>Reporter</th>
                 <th>Status</th>
@@ -70,10 +71,14 @@
                     {% else %}
                         <span class="label label-primary">Feature Request</span>
                     {% endif %}</td>
-                    <td width="75%">
+                    <td>
                         <h4>
                             <small>{{ issue.id }}</small>
-                            <a href="/issues/{{ issue.id }}"
+                        </h4>
+                    </td>
+                    <td width="75%">
+                        <h4>
+                            <a href="/issue/{{ issue.id }}"
                                title="{{ issue.description }}">{{ issue.title }}</a></h4>
                     </td>
                     <td>{{ issue.reporter.name }}</td>
@@ -83,6 +88,7 @@
             </tbody>
             <tfoot>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

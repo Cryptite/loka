@@ -14,7 +14,7 @@ from django.template.context import RequestContext
 from rest_framework import generics
 
 from loka.forms import TownBannerForm
-from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue
+from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle
 from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer
 from loka.tasks import retrieve_avatar
 
@@ -374,6 +374,8 @@ def registration(request, registration_id):
 
 
 def home(request):
+    news = BannerArticle.objects.all()
+    print news
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
@@ -387,8 +389,11 @@ def home(request):
     elif request.user.is_authenticated():
         return render_to_response('index.html', RequestContext(request, {
             'user': request.user,
+            'news': news,
         }))
-    return render_to_response('index.html', RequestContext(request))
+    return render_to_response('index.html', RequestContext(request, {
+        "news": news,
+    }))
 
 
 def search(request):

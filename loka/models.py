@@ -146,6 +146,18 @@ class Quote(models.Model):
         return self.text
 
 
+class BannerArticle(models.Model):
+    title = models.CharField(max_length=50)
+    header = models.CharField(max_length=50)
+    text = models.CharField(max_length=150)
+    url = models.URLField(blank=True, null=True)
+    url_text = models.CharField(blank=True, null=True, max_length=30)
+    background = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.title
+
+
 class Thread(models.Model):
     town = models.ForeignKey(Town)
     title = models.CharField(max_length=255)
@@ -204,3 +216,4 @@ class IssueComment(models.Model):
 
 
 admin.site.register(Quote)
+admin.site.register(BannerArticle)

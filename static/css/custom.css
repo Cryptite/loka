@@ -32,6 +32,22 @@ body {
     font-family: aleoregular, serif;
 }
 
+.ccaption {
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 1), 0 0 30px rgba(0, 0, 0, .4);
+    font-family: aleoregular;
+    font-size: 4em;
+}
+
+.ccaption h1 {
+    font-size: 2em;
+}
+
+.carousel-caption {
+    bottom: 15%;
+}
+
 h1 {
     color: #666;
     font-family: aleobold;
@@ -101,6 +117,12 @@ a.inverse, a:visited {
     width: 76%;
     font-weight: 300;
     font-size: 12px;
+}
+
+.issuecomments {
+    margin: auto;
+    padding: 0px 30%;
+    width: 70%;
 }
 
 .navbar-default .navbar-nav > .dropdown > a .caret {
