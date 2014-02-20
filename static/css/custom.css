@@ -45,7 +45,8 @@ body {
 }
 
 .carousel-caption {
-    bottom: 15%;
+    bottom: 8%;
+    padding-bottom: 10px;
 }
 
 h1 {

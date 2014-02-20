@@ -148,7 +148,7 @@ class Quote(models.Model):
 
 class BannerArticle(models.Model):
     title = models.CharField(max_length=50)
-    header = models.CharField(max_length=50)
+    header = models.CharField(max_length=50, blank=True, null=True)
     text = models.CharField(max_length=150)
     url = models.URLField(blank=True, null=True)
     url_text = models.CharField(blank=True, null=True, max_length=30)

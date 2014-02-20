@@ -6,21 +6,23 @@
 {% block content %}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
-        <ol class="carousel-indicators">
-            {% for article in news %}
-                <li data-target="#myCarousel" data-slide-to="{{ article.count }}" class=""></li>
-            {% endfor %}
-        </ol>
+        {#        <ol class="carousel-indicators">#}
+        {#            {% for article in news %}#}
+        {#                <li data-target="#myCarousel" data-slide-to="{{ article.count }}" class=""></li>#}
+        {#            {% endfor %}#}
+        {#        </ol>#}
         <div class="carousel-inner">
             {% for article in news %}
                 <div class="item active">
-                    <img src="{% static 'images/banners/header_vota1.jpg' %}">
+                    <img src="{{ article.background }}">
 
                     <div class="container">
                         <div class="carousel-caption">
                             <h1 class="ccaption">{{ article.title }}</h1>
 
-                            <h2>{{ article.header }}</h2>
+                            {% if article.header %}
+                                <h2>{{ article.header }}</h2>
+                            {% endif %}
 
                             <p>{{ article.text }}</p>
 
