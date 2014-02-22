@@ -12,11 +12,11 @@ REPORT_CHOICES = (
 )
 
 REPORT_STATUS = (
-    (1, "New"),
-    (2, "Accepted"),
-    (3, "Rejected"),
-    (4, "Resolved"),
-    (5, "Closed")
+    (1, u"New"),
+    (2, u"Accepted"),
+    (3, u"Rejected"),
+    (4, u"Resolved"),
+    (5, u"Closed")
 )
 
 
@@ -214,6 +214,9 @@ class Issue(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     resolved = models.DateTimeField(blank=True, null=True)
 
+    def __unicode__(self):
+        return self.title
+
 
 class IssueComment(models.Model):
     issue = models.ForeignKey(Issue)
@@ -223,4 +226,5 @@ class IssueComment(models.Model):
 
 
 admin.site.register(Quote)
+admin.site.register(Issue)
 admin.site.register(BannerArticle)

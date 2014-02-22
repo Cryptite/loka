@@ -14,7 +14,7 @@ from django.template.context import RequestContext
 from rest_framework import generics
 
 from loka.forms import TownBannerForm
-from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle
+from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, IssueComment
 from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer
 from loka.tasks import retrieve_avatar
 
@@ -189,10 +189,20 @@ def issuelist(request):
 def issue(request, issue_id):
     try:
         issue = Issue.objects.get(id=issue_id)
+        comments = IssueComment.objects.filter(issue=issue)
+
+        if request.POST and request.POST['action'] == "comment":
+            author = Player.objects.get(name=request.user.username)
+            IssueComment.objects.create(issue=issue,
+                                        text=request.POST['text'],
+                                        author=author)
+
         return render_to_response('issue.html', RequestContext(request, {
             'issue': issue,
+            'comments': comments
         }))
     except Exception, e:
+        print e
         raise Http404
 
 
@@ -387,6 +397,7 @@ def home(request):
             messages.warning(request, 'Login information was incorrect. Try again!')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     elif request.user.is_authenticated():
+        check_player_exists(request.user.username)
         return render_to_response('index.html', RequestContext(request, {
             'user': request.user,
             'news': news,
@@ -394,6 +405,13 @@ def home(request):
     return render_to_response('index.html', RequestContext(request, {
         "news": news,
     }))
+
+
+def check_player_exists(name):
+    player_obj, created = Player.objects.get_or_create(name=name)
+    if created:
+        print 'Created: ', player_obj, created
+        retrieve_avatar(player_obj)
 
 
 def search(request):

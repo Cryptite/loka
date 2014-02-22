@@ -5,28 +5,35 @@
 
 {% block content %}
 
+    <div class="span7">
+        <div class="townnav">
+            <a href="/issues/" type="button" class="btn btn-primary btn-md">Issues</a>
+            <a href="#" type="button" class="btn btn-default btn-md">Issue {{ issue.id }}</a>
+        </div>
+    </div>
 
     <section class="page-section">
         <div class="container padbottom30">
 
-            <h2 class="title"><span>Issue {{ issue.id }} - {{ issue.title }}</span>
+            <h2 class="title"><span>{% if issue.type == "1" %}
+                <span class="label label-danger">Bug</span>
+            {% else %}
+                <span class="label label-primary">Feature Request</span>
+            {% endif %} - {{ issue.title }}</span>
             </h2>
 
-            <div class="span5">
-
-                <h3>{% if issue.type == "1" %}
-                    <span class="label label-danger">Bug</span>
-                {% else %}
-                    <span class="label label-primary">Feature Request</span>
-                {% endif %}Bug thingie
-                    <div class="pull-right"><h4>Status: {{ issue.status }}</h4></div>
-                </h3>
-                <h5>Reported by: {{ issue.reporter }} {{ issue.created }}</h5>
+            <div class="span6">
+                <h2 class="title">Issue Description
+                    <small> - <a href="#" type="button" class="btn btn-default btn-md disabled">New</a></small>
+                </h2>
+                <h5>Reported by: {{ issue.reporter }}
+                    <small>{{ issue.created|naturaltime }}</small>
+                </h5>
+                <h3>{{ issue.description }}</h3>
             </div>
 
-            <br/><br/><br/>
-
-            <div class="issuecomments">
+            <div class="span3">
+                <h2 class="title">Issue Comments</h2>
                 {% if comments.count > 0 %}
                     {% for comment in comments %}
                         <!-- Modal -->
@@ -80,8 +87,8 @@
                 {% endif %}
 
                 {% if user.is_authenticated %}
-                    <form method="post" action="/town/{{ town.name }}">
-                        {% csrf_token %}
+                    <form method="post" action="/issue/{{ issue.id }}">
+                    {% csrf_token %}
                         <textarea class="form-control" name="text" placeholder="Add a comment"
                                   rows="2"></textarea>
                         <button type="submit" name="action" class="btn btn-primary btn-md" value="comment">Post
