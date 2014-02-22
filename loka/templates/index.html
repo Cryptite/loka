@@ -13,7 +13,7 @@
         </ol>
         <div class="carousel-inner">
             {% for article in news %}
-                {% if forloop.first %}
+                {% if forloop.last %}
                     <div class="item active">
                 {% else %}
                     <div class="item">
