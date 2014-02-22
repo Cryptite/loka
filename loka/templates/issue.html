@@ -3,7 +3,57 @@
 {% load bootstrap_toolkit %}
 {% load humanize %}
 
+{% block extra_head %}
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script>
+        tinymce.init({selector: 'textarea.desc',
+            menu: {},
+            plugins: "preview",
+            toolbar: "styleselect | hr bold italic | outdent indent bullist numlist | spellchecker | preview",
+            content_css: "{% static 'css/custom.css' %}"
+        });
+    </script>
+{% endblock %}
+
 {% block content %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Issue</h4>
+                </div>
+                <form method="post" action="/issue/{{ issue.id }}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary">
+                                <input type="radio" name="feature" id="feature"> Feature Request
+                            </label>
+                            <label class="btn btn-warning">
+                                <input type="radio" name="bug" id="bug"> Bug
+                            </label>
+                        </div>
+                        <input type="text" class="form-control" name="title" placeholder="Issue title"
+                               value="{{ issue.title }}"/>
+                        <textarea class="desc" name="text" placeholder="Please describe the issue here."
+                                  rows="3">
+                            {% autoescape off %}{{ issue.description }}{% endautoescape %}
+                        </textarea>
+
+                        <button type="submit" name="action" class="btn btn-primary" value="issue">Update Issue</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
     <div class="span7">
         <div class="townnav">
@@ -16,20 +66,28 @@
         <div class="container padbottom30">
 
             <h2 class="title"><span>{% if issue.type == "1" %}
-                <span class="label label-danger">Bug</span>
+                <span class="label label-warning">Bug</span>
             {% else %}
                 <span class="label label-primary">Feature Request</span>
-            {% endif %} - {{ issue.title }}</span>
+            {% endif %} - {{ issue.title }}
+
+            </span>
             </h2>
 
             <div class="span6">
                 <h2 class="title">Issue Description
-                    <small> - <a href="#" type="button" class="btn btn-default btn-md disabled">New</a></small>
+
+                    <div class="pull-right">
+                        <button type="pull-right" data-toggle="modal" name="action" class="btn btn-warning btn-sm"
+                                value="description" data-target="#myModal">Edit Issue
+                        </button>
+                    </div>
                 </h2>
+                <h3>{% autoescape off %}{{ issue.description }}{% endautoescape %}</h3>
+                <br/>
                 <h5>Reported by: {{ issue.reporter }}
                     <small>{{ issue.created|naturaltime }}</small>
                 </h5>
-                <h3>{{ issue.description }}</h3>
             </div>
 
             <div class="span3">
@@ -88,7 +146,7 @@
 
                 {% if user.is_authenticated %}
                     <form method="post" action="/issue/{{ issue.id }}">
-                    {% csrf_token %}
+                        {% csrf_token %}
                         <textarea class="form-control" name="text" placeholder="Add a comment"
                                   rows="2"></textarea>
                         <button type="submit" name="action" class="btn btn-primary btn-md" value="comment">Post

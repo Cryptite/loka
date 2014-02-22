@@ -458,7 +458,7 @@ a.inverse, a:visited {
 
 .span3 {
     float: left;
-    margin-left: 50px;
+    margin-left: 35px;
     width: 340px;
 }
 
@@ -636,7 +636,7 @@ span.teamposition {
 .btn-warning {
     border: 0px;
     border-radius: 2px;
-    background-color: #e5a979;
+    background-color: #e56537;
     background-image: none !important;
     -webkit-box-shadow: 0 -3px #DD6F47 inset;
     -moz-box-shadow: 0 -3px #DD6F47 inset;

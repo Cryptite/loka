@@ -3,6 +3,18 @@
 {% load bootstrap_toolkit %}
 {% load humanize %}
 
+{% block extra_head %}
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script>
+        tinymce.init({selector: 'textarea.desc',
+            menu: {},
+            plugins: "preview",
+            toolbar: "styleselect | hr bold italic | outdent indent bullist numlist | spellchecker | preview",
+            content_css: "{% static 'css/custom.css' %}"
+        });
+    </script>
+{% endblock %}
+
 {% block content %}
     <h2 class="title"><span>Issue Tracker</span>
         <small>A breakdown of all bug reports and feature requests for Loka's custom plugins.</small>
@@ -34,13 +46,14 @@
                             <label class="btn btn-primary">
                                 <input type="radio" name="feature" id="feature"> Feature Request
                             </label>
-                            <label class="btn btn-primary">
-                                <input type="radio" name="bug" id="bug"> Bug
+                            <label class="btn btn-warning">
+                            <input type="radio" name="bug" id="bug"> Bug
                             </label>
                         </div>
                         <input type="text" class="form-control" name="title" placeholder="Issue title"/>
-                        <textarea class="form-control" name="text" placeholder="Please describe the issue here."
+                        <textarea class="desc" name="text" placeholder="Please describe the issue here."
                                   rows="3"></textarea>
+
                         <button type="submit" name="action" class="btn btn-primary" value="issue">Create Issue</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </button>
@@ -66,7 +79,7 @@
             <tbody>
             {% for issue in issues %}
                 <tr>
-                    <td width="20%">{% if issue.type == "1" %}
+                    <td width="17%">{% if issue.type == "1" %}
                         <span class="label label-danger">Bug</span>
                     {% else %}
                         <span class="label label-primary">Feature Request</span>

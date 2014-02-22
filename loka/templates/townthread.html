@@ -45,7 +45,7 @@
                         <button type="button" class="close pull-right" data-toggle="modal"
                                 data-target="#modal_{{ post.id }}">&times;</button>{% endif %}
                 </h3>
-                <p>{{ post.text }}</p>
+                <p>{% autoescape off %}{{ post.description }}{% endautoescape %}</p>
 
             </div>
 

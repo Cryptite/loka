@@ -178,7 +178,7 @@ class Thread(models.Model):
 
 class Post(models.Model):
     thread = models.ForeignKey(Thread)
-    text = models.TextField()
+    description = tinymce_models.HTMLField()
     author = models.ForeignKey(Player)
     date = models.DateTimeField(auto_now_add=True)
 
@@ -208,7 +208,7 @@ class ArenaMatch(models.Model):
 class Issue(models.Model):
     type = models.CharField(max_length=2, choices=REPORT_CHOICES)
     title = models.CharField(max_length=300)
-    description = models.TextField()
+    description = tinymce_models.HTMLField()
     reporter = models.ForeignKey(Player)
     status = models.CharField(max_length=2, choices=REPORT_STATUS, default=1)
     created = models.DateTimeField(auto_now_add=True)

@@ -14,7 +14,8 @@ from django.template.context import RequestContext
 from rest_framework import generics
 
 from loka.forms import TownBannerForm
-from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, IssueComment
+from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
+    IssueComment
 from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer
 from loka.tasks import retrieve_avatar
 
@@ -191,11 +192,31 @@ def issue(request, issue_id):
         issue = Issue.objects.get(id=issue_id)
         comments = IssueComment.objects.filter(issue=issue)
 
-        if request.POST and request.POST['action'] == "comment":
-            author = Player.objects.get(name=request.user.username)
-            IssueComment.objects.create(issue=issue,
-                                        text=request.POST['text'],
-                                        author=author)
+        if request.POST:
+            if request.POST['action'] == "comment":
+                author = Player.objects.get(name=request.user.username)
+                IssueComment.objects.create(issue=issue,
+                                            text=request.POST['text'],
+                                            author=author)
+
+                # send_mail('Subject here', 'Here is the message.', 'from@example.com',
+                #           [User.objects.get(username=issue.reporter.name).email], fail_silently=False)
+
+            if request.POST['action'] == "issue":
+                type = 0
+                if 'bug' in request.POST:
+                    type = 1
+                elif 'feature' in request.POST:
+                    type = 2
+
+                issue.description = request.POST['text']
+                issue.title = request.POST['title']
+                issue.type = type
+                issue.save()
+
+            if request.POST['action'] == "close":
+                issue.status = 5
+                issue.save()
 
         return render_to_response('issue.html', RequestContext(request, {
             'issue': issue,
@@ -232,7 +253,7 @@ def townforum(request, town_name):
                                                title=request.POST['title'],
                                                author=author)
             Post.objects.create(thread=new_thread,
-                                text=request.POST['text'],
+                                description=request.POST['text'],
                                 author=author)
     return render_to_response('townforum.html', RequestContext(request, {
         'town': town,
