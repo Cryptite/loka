@@ -13,81 +13,88 @@
         </ol>
         <div class="carousel-inner">
             {% for article in news %}
-                <div class="item">
-                <img src="{{ article.background }}">
+                {% if forloop.first %}
+                    <div class="item active">
+                {% else %}
+                    <div class="item">
+                {% endif %}
+            <img src="{{ article.background }}">
 
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1 class="ccaption">{{ article.title }}</h1>
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1 class="ccaption">{{ article.title }}</h1>
 
-                            {% if article.header %}
-                                <h2>{{ article.header }}</h2>
-                            {% endif %}
+                    {% if article.header %}
+                        <h2>{{ article.header }}</h2>
+                    {% endif %}
 
-                            <p>{{ article.text }}</p>
+                    <p>{{ article.text }}</p>
 
-                            {% if article.url %}
-                                <p><a class="btn btn-lg btn-primary" href="{{ article.url }}"
-                                      role="button">{{ article.url_text }}</a></p>
-                            {% endif %}
-                        </div>
-                    </div>
+                    {% if article.url %}
+                        <p><a class="btn btn-lg btn-primary" href="{{ article.url }}"
+                              role="button">{{ article.url_text }}</a></p>
+                    {% endif %}
                 </div>
+            </div>
+            </div>
             {% endfor %}
 
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span
+                    class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next"><span
+                    class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span
-                class="glyphicon glyphicon-chevron-left"></span></a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next"><span
-                class="glyphicon glyphicon-chevron-right"></span></a>
-    </div>
 
-    <br/>
-    <div class="container">
-        <div class="row text-center">
+        <br/>
 
-            <div class="span3">
-                <div class="introicons">
+        <div class="container">
+            <div class="row text-center">
 
-                    <i><img src="{% static 'images/icon-towns.png' %}"/></i>
-                    <h6 class="inverse-font">Towns</h6>
+                <div class="span3">
+                    <div class="introicons">
 
-                    <p>Loka provides a unique town-building system based off of real resources. Power your generator,
-                        protect your town, but hide your wealth well.</p>
+                        <i><img src="{% static 'images/icon-towns.png' %}"/></i>
+                        <h6 class="inverse-font">Towns</h6>
 
-                    <p><a href="{% url 'loka.views.towns' %}" class="btn btn-primary btn-lg btn-group-justified">Learn
-                        about Towns</a></p>
+                        <p>Loka provides a unique town-building system based off of real resources. Power your
+                            generator,
+                            protect your town, but hide your wealth well.</p>
+
+                        <p><a href="{% url 'loka.views.towns' %}" class="btn btn-primary btn-lg btn-group-justified">Learn
+                            about Towns</a></p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="span3">
-                <div class="introicons">
+                <div class="span3">
+                    <div class="introicons">
 
-                    <i><img src="{% static 'images/icon-sword.png' %}"/></i>
-                    <h6 class="inverse-font">PvP</h6>
+                        <i><img src="{% static 'images/icon-sword.png' %}"/></i>
+                        <h6 class="inverse-font">PvP</h6>
 
-                    <p>Prove your worth in a variety of our rated arenas. Expand your bragging rights through our Elo
-                        system and become the ultimate gladiator!</p>
+                        <p>Prove your worth in a variety of our rated arenas. Expand your bragging rights through our
+                            Elo
+                            system and become the ultimate gladiator!</p>
 
-                    <p><a href="{% url 'loka.views.pvp' %}" class="btn btn-warning btn-lg btn-group-justified">Learn
-                        about PvP</a></p>
+                        <p><a href="{% url 'loka.views.pvp' %}" class="btn btn-warning btn-lg btn-group-justified">Learn
+                            about PvP</a></p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="span3">
-                <div class="introicons">
+                <div class="span3">
+                    <div class="introicons">
 
-                    <i><img src="{% static 'images/icon-map.png' %}"/></i>
-                    <h6 class="inverse-font">Lore</h6>
+                        <i><img src="{% static 'images/icon-map.png' %}"/></i>
+                        <h6 class="inverse-font">Lore</h6>
 
-                    <p>Loka has a rich and continuing history. Will you discover the secret of the Ancients, the
-                        Artifacts, and the Unbound Ones?.</p>
+                        <p>Loka has a rich and continuing history. Will you discover the secret of the Ancients, the
+                            Artifacts, and the Unbound Ones?.</p>
 
-                    <p><a href="http://loka.wikia.com/wiki/Loka_Wiki"
-                          class="btn btn-success btn-lg btn-group-justified">Delve into our Story</a></p>
+                        <p><a href="http://loka.wikia.com/wiki/Loka_Wiki"
+                              class="btn btn-success btn-lg btn-group-justified">Delve into our Story</a></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 {% endblock %}
