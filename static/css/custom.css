@@ -1039,47 +1039,47 @@ span.teamposition {
 }
 
 .rank1 {
-    background-color:  #faffa5;
+    background-color: #faffa5;
 }
 
 .rank2 {
-    background-color:  #ffc240;
+    background-color: #ffc240;
 }
 
 .rank3 {
-    background-color:  #53ff5f;
+    background-color: #53ff5f;
 }
 
 .rank4 {
-    background-color:  #1eac0b;
+    background-color: #1eac0b;
 }
 
 .rank5 {
-    background-color:  #64fff2;
+    background-color: #64fff2;
 }
 
 .rank6 {
-    background-color:  #4278ff;
+    background-color: #4278ff;
 }
 
 .rank7 {
-    background-color:  #fa92ff;
+    background-color: #fa92ff;
 }
 
 .rank8 {
-    background-color:  #ff3b2f;
+    background-color: #ff3b2f;
 }
 
 .rank9 {
-    background-color:  #c7ccc5;
+    background-color: #c7ccc5;
 }
 
 .rank10 {
-    background-color:  #8c8f8e;
+    background-color: #8c8f8e;
 }
 
 .rank11 {
-    background-color:  #161616;
+    background-color: #161616;
 }
 
 .rank1 small {
@@ -1101,4 +1101,49 @@ span.teamposition {
     color: #bbb;
     font-size: .7em;
     padding-left: 10px;
+}
+
+.issue {
+    display: inline;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    margin-bottom: -4px;
+    padding: 12px;
+    min-width: 100px;
+}
+
+.issue-New {
+    background-color: #ffffff;
+    color: #040404;
+    border: 0px;
+}
+
+.issue-Accepted {
+    background-color: #33c32f;
+}
+
+.issue-Rejected {
+    background-color: #994931;
+}
+
+.issue-Resolved {
+    background-color: #2a4bb2;
+}
+
+.issue-Closed {
+    background-color: #949992;
+}
+
+.issue-Bug {
+    background-color: #99140c;
+}
+
+.issue-Feature {
+    background-color: #2a4bb2;
 }

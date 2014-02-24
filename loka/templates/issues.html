@@ -47,7 +47,7 @@
                                 <input type="radio" name="feature" id="feature"> Feature Request
                             </label>
                             <label class="btn btn-warning">
-                            <input type="radio" name="bug" id="bug"> Bug
+                                <input type="radio" name="bug" id="bug"> Bug
                             </label>
                         </div>
                         <input type="text" class="form-control" name="title" placeholder="Issue title"/>
@@ -79,11 +79,8 @@
             <tbody>
             {% for issue in issues %}
                 <tr>
-                    <td width="17%">{% if issue.type == "1" %}
-                        <span class="label label-danger">Bug</span>
-                    {% else %}
-                        <span class="label label-primary">Feature Request</span>
-                    {% endif %}</td>
+                    <td width="13%"><label
+                            class="issue issue-{{ issue.get_type_display }}">{{ issue.get_type_display }}</label></td>
                     <td>
                         <h4>
                             <small>{{ issue.id }}</small>
@@ -95,7 +92,8 @@
                                title="{{ issue.description }}">{{ issue.title }}</a></h4>
                     </td>
                     <td>{{ issue.reporter.name }}</td>
-                    <td><a href="#" type="button" class="btn btn-default btn-md disabled">New</a></td>
+                    <td><label class="issue issue-{{ issue.get_status_display }}">{{ issue.get_status_display }}</label>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

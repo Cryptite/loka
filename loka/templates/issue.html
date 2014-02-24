@@ -65,23 +65,21 @@
     <section class="page-section">
         <div class="container padbottom30">
 
-            <h2 class="title"><span>{% if issue.type == "1" %}
-                <span class="label label-warning">Bug</span>
-            {% else %}
-                <span class="label label-primary">Feature Request</span>
-            {% endif %} - {{ issue.title }}
-
+            <h2 class="title"><span>
+                <label class="issue issue-{{ issue.get_status_display }}">{{ issue.get_status_display }}</label> - {{ issue.title }}
             </span>
             </h2>
 
             <div class="span6">
                 <h2 class="title">Issue Description
 
-                    <div class="pull-right">
+                    {% if request.user.is_authenticated and issue.reporter.name == request.user.usename or request.user.username == "Cryptite" %}
+                        <div class="pull-right">
                         <button type="pull-right" data-toggle="modal" name="action" class="btn btn-warning btn-sm"
                                 value="description" data-target="#myModal">Edit Issue
                         </button>
-                    </div>
+
+                        </div>{% endif %}
                 </h2>
                 <h3>{% autoescape off %}{{ issue.description }}{% endautoescape %}</h3>
                 <br/>

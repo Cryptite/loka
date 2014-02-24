@@ -220,6 +220,7 @@ def issue(request, issue_id):
 
         return render_to_response('issue.html', RequestContext(request, {
             'issue': issue,
+            'status': issue.get_status_display(),
             'comments': comments
         }))
     except Exception, e:

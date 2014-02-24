@@ -7,16 +7,16 @@ from tinymce import models as tinymce_models
 
 
 REPORT_CHOICES = (
-    (1, "Bug"),
-    (2, "Feature Request")
+    ("1", "Bug"),
+    ("2", "Feature Request")
 )
 
 REPORT_STATUS = (
-    (1, u"New"),
-    (2, u"Accepted"),
-    (3, u"Rejected"),
-    (4, u"Resolved"),
-    (5, u"Closed")
+    ("1", "New"),
+    ("2", "Accepted"),
+    ("3", "Rejected"),
+    ("4", "Resolved"),
+    ("5", "Closed")
 )
 
 
@@ -206,11 +206,11 @@ class ArenaMatch(models.Model):
 
 
 class Issue(models.Model):
-    type = models.CharField(max_length=2, choices=REPORT_CHOICES)
+    type = models.CharField(max_length=1, choices=REPORT_CHOICES)
     title = models.CharField(max_length=300)
     description = tinymce_models.HTMLField()
     reporter = models.ForeignKey(Player)
-    status = models.CharField(max_length=2, choices=REPORT_STATUS, default=1)
+    status = models.CharField(max_length=1, choices=REPORT_STATUS, default=1)
     created = models.DateTimeField(auto_now_add=True)
     resolved = models.DateTimeField(blank=True, null=True)
 
