@@ -1122,6 +1122,11 @@ span.teamposition {
     min-width: 100px;
 }
 
+.issue-sm > .issue {
+    font-weight: 500;
+    padding: 6px;
+}
+
 .issue-New {
     background-color: #ffffff;
     color: #040404;

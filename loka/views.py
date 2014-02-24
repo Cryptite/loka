@@ -15,7 +15,7 @@ from rest_framework import generics
 
 from loka.forms import TownBannerForm
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
-    IssueComment
+    IssueComment, ISSUE_STATUS
 from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer
 from loka.tasks import retrieve_avatar
 
@@ -203,25 +203,26 @@ def issue(request, issue_id):
                 #           [User.objects.get(username=issue.reporter.name).email], fail_silently=False)
 
             if request.POST['action'] == "issue":
-                type = 0
                 if 'bug' in request.POST:
-                    type = 1
+                    issue.type = "1"
                 elif 'feature' in request.POST:
-                    type = 2
+                    issue.type = "2"
+
+                for choice_id, choice in ISSUE_STATUS:
+                    print choice_id, choice
+                    if choice in request.POST:
+                        issue.status = choice_id
+                        break
 
                 issue.description = request.POST['text']
                 issue.title = request.POST['title']
-                issue.type = type
-                issue.save()
-
-            if request.POST['action'] == "close":
-                issue.status = 5
                 issue.save()
 
         return render_to_response('issue.html', RequestContext(request, {
             'issue': issue,
             'status': issue.get_status_display(),
-            'comments': comments
+            'comments': comments,
+            'status_choices': ISSUE_STATUS
         }))
     except Exception, e:
         print e

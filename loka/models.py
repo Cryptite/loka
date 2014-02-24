@@ -6,12 +6,12 @@ from image_cropping import ImageRatioField, ImageCropField
 from tinymce import models as tinymce_models
 
 
-REPORT_CHOICES = (
+ISSUE_TYPE = (
     ("1", "Bug"),
     ("2", "Feature Request")
 )
 
-REPORT_STATUS = (
+ISSUE_STATUS = (
     ("1", "New"),
     ("2", "Accepted"),
     ("3", "Rejected"),
@@ -206,11 +206,11 @@ class ArenaMatch(models.Model):
 
 
 class Issue(models.Model):
-    type = models.CharField(max_length=1, choices=REPORT_CHOICES)
+    type = models.CharField(max_length=1, choices=ISSUE_TYPE)
     title = models.CharField(max_length=300)
     description = tinymce_models.HTMLField()
     reporter = models.ForeignKey(Player)
-    status = models.CharField(max_length=1, choices=REPORT_STATUS, default=1)
+    status = models.CharField(max_length=1, choices=ISSUE_STATUS, default=1)
     created = models.DateTimeField(auto_now_add=True)
     resolved = models.DateTimeField(blank=True, null=True)
 

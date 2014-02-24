@@ -32,18 +32,32 @@
                         <div class="btn-group" data-toggle="buttons">
                             {% if issue.type == "1" %}
                                 <label class="btn btn-warning active">
+                                <input type="radio" name="bug" id="bug" checked="True"> Bug
                             {% else %}
                                 <label class="btn btn-warning">
+                                <input type="radio" name="bug" id="bug"> Bug
                             {% endif %}
-                            <input type="radio" name="bug" id="bug"> Bug
                             </label>
                             {% if issue.type == "2" %}
                                 <label class="btn btn-primary active">
+                                <input type="radio" name="feature" id="feature" checked="True"> Feature Request
                             {% else %}
                                 <label class="btn btn-primary">
+                                <input type="radio" name="feature" id="feature"> Feature Request
                             {% endif %}
-                            <input type="radio" name="feature" id="feature"> Feature Request
                             </label>
+                        </div>
+                        <div class="btn-group pull-right" data-toggle="buttons">
+                            {% for choice_id, choice_label in status_choices %}
+                                {% if issue.type == choice_id %}
+                                    <label class="btn btn-primary active">
+                                {% else %}
+                                    <label class="btn btn-primary">
+                                {% endif %}
+                            <input type="radio" name="{{ choice_label }}"
+                                   id="{{ choice_label }}"> {{ choice_label }}
+                            </label>
+                            {% endfor %}
                         </div>
                         <input type="text" class="form-control" name="title" placeholder="Issue title"
                                value="{{ issue.title }}"/>
@@ -86,6 +100,7 @@
                             <button type="pull-right" data-toggle="modal" name="action" class="btn btn-warning btn-sm"
                                     value="description" data-target="#myModal">Edit Issue
                             </button>
+                            <label class="issue issue-{{ issue.get_type_display }}">{{ issue.get_type_display }}</label>
 
                         </div>{% endif %}
                 </h2>
