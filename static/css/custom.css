@@ -749,6 +749,10 @@ img.avatar-sm {
     border: 5px solid #2a7caa;
 }
 
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0px;
+}
+
 /* ===== BLOG SECTION ===== */
 
 .theblogpost {

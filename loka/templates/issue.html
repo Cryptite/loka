@@ -30,11 +30,19 @@
                     {% csrf_token %}
                     <div class="modal-body">
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary">
-                                <input type="radio" name="feature" id="feature"> Feature Request
+                            {% if issue.type == "1" %}
+                                <label class="btn btn-warning active">
+                            {% else %}
+                                <label class="btn btn-warning">
+                            {% endif %}
+                            <input type="radio" name="bug" id="bug"> Bug
                             </label>
-                            <label class="btn btn-warning">
-                                <input type="radio" name="bug" id="bug"> Bug
+                            {% if issue.type == "2" %}
+                                <label class="btn btn-primary active">
+                            {% else %}
+                                <label class="btn btn-primary">
+                            {% endif %}
+                            <input type="radio" name="feature" id="feature"> Feature Request
                             </label>
                         </div>
                         <input type="text" class="form-control" name="title" placeholder="Issue title"
@@ -75,9 +83,9 @@
 
                     {% if request.user.is_authenticated and issue.reporter.name == request.user.usename or request.user.username == "Cryptite" %}
                         <div class="pull-right">
-                        <button type="pull-right" data-toggle="modal" name="action" class="btn btn-warning btn-sm"
-                                value="description" data-target="#myModal">Edit Issue
-                        </button>
+                            <button type="pull-right" data-toggle="modal" name="action" class="btn btn-warning btn-sm"
+                                    value="description" data-target="#myModal">Edit Issue
+                            </button>
 
                         </div>{% endif %}
                 </h2>
@@ -89,7 +97,7 @@
             </div>
 
             <div class="span5">
-            <h2 class="title">Issue Comments</h2>
+                <h2 class="title">Issue Comments</h2>
                 {% if comments.count > 0 %}
                     {% for comment in comments %}
                         <!-- Modal -->

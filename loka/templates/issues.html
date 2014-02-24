@@ -88,8 +88,7 @@
                     </td>
                     <td width="75%">
                         <h4>
-                            <a href="/issue/{{ issue.id }}"
-                               title="{{ issue.description }}">{{ issue.title }}</a></h4>
+                            <a href="/issue/{{ issue.id }}">{{ issue.title }}</a></h4>
                     </td>
                     <td>{{ issue.reporter.name }}</td>
                     <td><label class="issue issue-{{ issue.get_status_display }}">{{ issue.get_status_display }}</label>
