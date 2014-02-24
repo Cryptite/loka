@@ -761,7 +761,7 @@ img.avatar-sm {
 .theblogpost h3 {
     margin: 0px;
     margin-bottom: 5px;
-    padding: 0px;
+    padding: 5px;
     border-bottom: 2px dotted #DFDFDF;
     color: #666666;
     font-weight: 400;
