@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+
 from loka.models import Town, Player, ArenaMatch
+
 
 __author__ = 'tmiller'
 
@@ -24,6 +26,14 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     valleyWins = serializers.IntegerField()
     valleyLosses = serializers.IntegerField()
     valleyScore = serializers.IntegerField()
+    overloadKills = serializers.IntegerField()
+    overloadDeaths = serializers.IntegerField()
+    overloadCaps = serializers.IntegerField()
+    overloadWins = serializers.IntegerField()
+    overloadLosses = serializers.IntegerField()
+    overloadScore = serializers.IntegerField()
+    arrowShots = serializers.IntegerField()
+    arrowHits = serializers.IntegerField()
     title = serializers.CharField(max_length=20, required=False)
     rank = serializers.CharField(max_length=20, required=False)
 
@@ -55,6 +65,14 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
             instance.valleyWins = attrs.get('valleyWins')
             instance.valleyLosses = attrs.get('valleyLosses')
             instance.valleyScore = attrs.get('valleyScore')
+            instance.overloadKills = attrs.get('overloadKills')
+            instance.overloadDeaths = attrs.get('overloadDeaths')
+            instance.overloadCaps = attrs.get('overloadCaps')
+            instance.overloadWins = attrs.get('overloadWins')
+            instance.overloadLosses = attrs.get('overloadLosses')
+            instance.overloadScore = attrs.get('overloadScore')
+            instance.arrowShots = attrs.get('arrowShots')
+            instance.arrowHits = attrs.get('arrowHits')
             instance.title = attrs.get('title')
             instance.rank = attrs.get('rank')
             return instance
@@ -71,7 +89,8 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('name', 'arenarating', 'arenawins', 'arenalosses', 'streak', 'highestrating',
                   'arenarating2v2', 'arenawins2v2', 'arenalosses2v2', 'streak2v2', 'highestrating2v2',
                   'valleyKills', 'valleyDeaths', 'valleyCaps', 'valleyWins', 'valleyLosses', 'valleyScore', 'title',
-                  'rank')
+                  'rank', 'overloadKills', 'overloadDeaths', 'overloadCaps', 'overloadWins', 'overloadLosses',
+                  'overloadScore', 'arrowHits', 'arrowShots')
         lookup_field = "name"
 
 
