@@ -28,7 +28,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     valleyScore = serializers.IntegerField()
     overloadKills = serializers.IntegerField()
     overloadDeaths = serializers.IntegerField()
-    overloadCaps = serializers.IntegerField()
+    overloadOverloads = serializers.IntegerField()
     overloadWins = serializers.IntegerField()
     overloadLosses = serializers.IntegerField()
     overloadScore = serializers.IntegerField()
@@ -67,7 +67,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
             instance.valleyScore = attrs.get('valleyScore')
             instance.overloadKills = attrs.get('overloadKills')
             instance.overloadDeaths = attrs.get('overloadDeaths')
-            instance.overloadCaps = attrs.get('overloadCaps')
+            instance.overloadOverloads = attrs.get('overloadOverloads')
             instance.overloadWins = attrs.get('overloadWins')
             instance.overloadLosses = attrs.get('overloadLosses')
             instance.overloadScore = attrs.get('overloadScore')
@@ -89,7 +89,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('name', 'arenarating', 'arenawins', 'arenalosses', 'streak', 'highestrating',
                   'arenarating2v2', 'arenawins2v2', 'arenalosses2v2', 'streak2v2', 'highestrating2v2',
                   'valleyKills', 'valleyDeaths', 'valleyCaps', 'valleyWins', 'valleyLosses', 'valleyScore', 'title',
-                  'rank', 'overloadKills', 'overloadDeaths', 'overloadCaps', 'overloadWins', 'overloadLosses',
+                  'rank', 'overloadKills', 'overloadDeaths', 'overloadOverloads', 'overloadWins', 'overloadLosses',
                   'overloadScore', 'arrowHits', 'arrowShots')
         lookup_field = "name"
 
