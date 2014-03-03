@@ -43,6 +43,7 @@ class Player(models.Model):
     overloadOverloads = models.SmallIntegerField(blank=True, null=True)
     overloadKills = models.SmallIntegerField(blank=True, null=True)
     overloadDeaths = models.SmallIntegerField(blank=True, null=True)
+    overloadScore = models.SmallIntegerField(blank=True, null=True)
     arrowShots = models.SmallIntegerField(blank=True, null=True)
     arrowHits = models.SmallIntegerField(blank=True, null=True)
     title = models.CharField(max_length=20, blank=True, null=True)
@@ -75,7 +76,7 @@ class Player(models.Model):
         return self.valleyCaps * 3 + self.valleyKills - self.valleyDeaths
 
     def get_overload_score(self):
-        return self.overloadCaps * 3 + self.overloadKills - self.overloadDeaths
+        return self.overloadOverloads * 3 + self.overloadKills - self.overloadDeaths
 
     def get_1v1_color_rank(self):
         return (self.highestrating - 1500) / 50
@@ -234,4 +235,5 @@ class IssueComment(models.Model):
 
 admin.site.register(Quote)
 admin.site.register(Issue)
+admin.site.register(Player)
 admin.site.register(BannerArticle)
