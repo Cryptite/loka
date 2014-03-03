@@ -67,8 +67,15 @@ class Player(models.Model):
         players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyScore")
         return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
 
+    def get_overload_rank(self):
+        players = Player.objects.filter(Q(overloadWins__gt=1) | Q(overloadLosses__gt=1)).order_by("-overloadScore")
+        return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
+
     def get_vota_score(self):
         return self.valleyCaps * 3 + self.valleyKills - self.valleyDeaths
+
+    def get_overload_score(self):
+        return self.overloadCaps * 3 + self.overloadKills - self.overloadDeaths
 
     def get_1v1_color_rank(self):
         return (self.highestrating - 1500) / 50
