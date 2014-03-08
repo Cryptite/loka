@@ -141,6 +141,18 @@ def pvpvota(request):
     }))
 
 
+def pvpoverload(request):
+    players = Player.objects.filter(Q(overloadWins__gt=1) | Q(overloadLosses__gt=1)).order_by("-overloadScore")
+    for p in players:
+        if not p.overloadScore:
+            p.overloadScore = p.get_overload_score()
+            p.save()
+
+    return render_to_response('pvp_overload.html', RequestContext(request, {
+        'players': players,
+    }))
+
+
 def player(request, player_name):
     try:
         player = Player.objects.get(name=player_name)

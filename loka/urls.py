@@ -6,6 +6,7 @@ from rest_framework import viewsets, routers
 from loka import views
 from loka.models import Town
 
+
 admin.autodiscover()
 
 
@@ -40,6 +41,7 @@ urlpatterns = patterns('',
                        url(r'^about', 'loka.views.about'),
                        url(r'^towns', 'loka.views.towns'),
                        url(r'^pvpvota', 'loka.views.pvpvota'),
+                       url(r'^pvpoverload', 'loka.views.pvpoverload'),
                        url(r'^pvp2v2', 'loka.views.pvp2v2'),
                        url(r'^pvp1v1', 'loka.views.pvp1v1'),
                        url(r'^pvp', 'loka.views.pvp'),

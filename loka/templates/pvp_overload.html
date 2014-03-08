@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ form.media }}
+    <script type="text/javascript">
+        $(".streak").tooltip();
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron pvp">
+        <h1>Overload Rankings</h1>
+    </div>
+    <div class="container">
+        <div class=".col-md-4">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Overloads</th>
+                    <th>Kills</th>
+                    <th>Deaths</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td><a href="#">{{ forloop.counter }}</a></td>
+                        <td>{% block avatar-sm %}{% endblock %}
+                            <a href="/player/{{ player.name }}">
+                                {% if player.avatar_sm %}
+                                    <img src="{% static 'media/' %}{{ player.avatar_sm }}"
+                                         class="avatar-sm img-rounded">
+                                {% else %}
+                                    <img src="{% static 'images/steve_sm.png' %}"
+                                         class="avatar-sm img-rounded {{ player.name }}">
+                                    <script type="application/javascript">
+                                        $(document).ready(function () {
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "/avatar/{{ player.name }}",
+                                                contentType: 'application/json',
+                                                complete: function (xhr, status) {
+                                                    if (status === 'error' || !xhr.responseText) {
+                                                    }
+                                                    else {
+                                                        var data = JSON.parse(xhr.responseText);
+                                                        $('.{{ player.name }}').fadeOut(500, function () {
+                                                            $('.{{ player.name }}').attr('src', data["path"]);
+                                                            $('.{{ player.name }}').fadeIn(500);
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        })
+                                    </script>
+                                {% endif %}
+                                {{ player.name }}</a></td>
+                        <td>{{ player.overloadScore }}</td>
+                        <td>{{ player.overloadWins }}</td>
+                        <td>{{ player.overloadLosses }}</td>
+                        <td>{{ player.overloadOverloads }}</td>
+                        <td>{{ player.overloadKills }}</td>
+                        <td>{{ player.overloadDeaths }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
