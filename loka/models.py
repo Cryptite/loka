@@ -5,6 +5,8 @@ from django.db.models import Q
 from image_cropping import ImageRatioField, ImageCropField
 from tinymce import models as tinymce_models
 
+from loka.core.email_messages import issue_comment, issue_status_change
+
 
 ISSUE_TYPE = (
     ("1", "Bug"),
@@ -223,6 +225,29 @@ class Issue(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def send_comment_email(self):
+        for commenter in self.get_all_commenters():
+            print 'Emailing', commenter.name
+            user = User.objects.get(username=commenter.name)
+            issue_comment(commenter.name, self.title, self.id,
+                          user.email)
+
+    def send_status_change_email(self):
+        for commenter in self.get_all_commenters():
+            print 'Emailing', commenter.name
+            user = User.objects.get(username=commenter.name)
+            issue_status_change(commenter.name, self.title, self.id,
+                                self.get_status_display(),
+                                user.email)
+
+    def get_all_commenters(self):
+        comments = IssueComment.objects.filter(issue=self)
+        commenters = []
+        for comment in comments:
+            if not comment.author in commenters:
+                commenters.append(comment.author)
+        return commenters
 
 
 class IssueComment(models.Model):

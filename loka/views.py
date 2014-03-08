@@ -13,6 +13,7 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from rest_framework import generics
 
+from loka.core.email_messages import issue_created
 from loka.forms import TownBannerForm
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
     IssueComment, ISSUE_STATUS
@@ -161,10 +162,12 @@ def issuelist(request):
             elif 'feature' in request.POST:
                 type = 2
             author = Player.objects.get(name=request.user.username)
-            Issue.objects.create(description=request.POST['text'],
-                                 title=request.POST['title'],
-                                 type=type,
-                                 reporter=author)
+            new_issue = Issue.objects.create(description=request.POST['text'],
+                                             title=request.POST['title'],
+                                             type=type,
+                                             reporter=author)
+
+            issue_created(author.name, new_issue.title, new_issue.id)
 
             #     if town.public:
             #         town.public = False
@@ -199,8 +202,7 @@ def issue(request, issue_id):
                                             text=request.POST['text'],
                                             author=author)
 
-                # send_mail('Subject here', 'Here is the message.', 'from@example.com',
-                #           [User.objects.get(username=issue.reporter.name).email], fail_silently=False)
+                issue.send_comment_email()
 
             if request.POST['action'] == "issue":
                 if 'bug' in request.POST:
@@ -217,6 +219,8 @@ def issue(request, issue_id):
                 issue.description = request.POST['text']
                 issue.title = request.POST['title']
                 issue.save()
+
+                issue.send_status_change_email()
 
         return render_to_response('issue.html', RequestContext(request, {
             'issue': issue,

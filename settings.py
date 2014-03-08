@@ -1,6 +1,8 @@
 # Django settings for loka project.
 import os
+
 from unipath import Path
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 #djcelery.setup_loader()
@@ -18,14 +20,21 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'django', # Or path to database file if using sqlite3.
-        'USER': 'django', # Not used with sqlite3.
-        'PASSWORD': 'chahPHe6', # Not used with sqlite3.
-        'HOST': 'localhost', # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '3306', # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql',
+        # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'django',  # Or path to database file if using sqlite3.
+        'USER': 'django',  # Not used with sqlite3.
+        'PASSWORD': 'chahPHe6',  # Not used with sqlite3.
+        'HOST': 'localhost',  # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'lokaminecraft@gmail.com'
+EMAIL_HOST_PASSWORD = 'gallazius'
+EMAIL_PORT = 587
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -139,9 +148,9 @@ ROOT_URLCONF = 'loka.urls'
 WSGI_APPLICATION = 'loka.wsgi.application'
 
 TEMPLATE_DIRS = (
-# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-# Always use forward slashes, even on Windows.
-# Don't forget to use absolute paths, not relative paths.
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
 )
 
 INSTALLED_APPS = (
