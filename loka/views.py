@@ -164,19 +164,20 @@ def player(request, player_name):
 
 
 def issuelist(request):
-    issues = Issue.objects.all().order_by("-created")
+    issues = Issue.objects.all().exclude(status="5").order_by("-created")
+    closed_issues = Issue.objects.filter(status="5")
 
     if request.POST:
         if request.POST['action'] == "issue":
-            type = 0
+            bug_type = 0
             if 'bug' in request.POST:
-                type = 1
+                bug_type = 1
             elif 'feature' in request.POST:
-                type = 2
+                bug_type = 2
             author = Player.objects.get(name=request.user.username)
             new_issue = Issue.objects.create(description=request.POST['text'],
                                              title=request.POST['title'],
-                                             type=type,
+                                             type=bug_type,
                                              reporter=author)
 
             issue_created(author.name, new_issue.title, new_issue.id)
@@ -199,6 +200,7 @@ def issuelist(request):
             #                         author=author)
     return render_to_response('issues.html', RequestContext(request, {
         'issues': issues,
+        'closed_issues': closed_issues
     }))
 
 
