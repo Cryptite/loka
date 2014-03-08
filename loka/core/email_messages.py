@@ -28,10 +28,10 @@ def issue_created(author, issue, id):
            "You can view the new issue here: http://loka.minecraftarium.com/issue/{id}".format(author=author,
                                                                                                issue=issue,
                                                                                                id=id)
-    mail_admins('Loka Issues - New Issue Created', body, fail_silently=False)
+    mail_admins('Loka Issues - New Issue Created', body, fail_silently=True)
 
 
 def send_message(subject, body, recipients):
     #TODO: Perhaps thread this at some point
     send_mail(subject, body, 'lokaminecraft@gmail.com',
-              [recipients], fail_silently=False)
+              [recipients], fail_silently=True)
