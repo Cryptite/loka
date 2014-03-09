@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.middleware.csrf import get_token
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from rest_framework import generics
 
@@ -89,6 +89,9 @@ def deleteitem(request, item_id):
         messages.success(request, 'Post deleted!')
     elif request.POST['action'] == "comment":
         Comment.objects.get(id=item_id).delete()
+        messages.success(request, 'Comment deleted!')
+    elif request.POST['action'] == "issuecomment":
+        IssueComment.objects.get(id=item_id).delete()
         messages.success(request, 'Comment deleted!')
     elif request.POST['action'] == "thread":
         thread = Thread.objects.get(id=item_id)
@@ -300,7 +303,7 @@ def townthread(request, town_name, thread_id):
 
 
 def townhome(request, town_name):
-    town = Town.objects.get(name=town_name)
+    town = get_object_or_404(Town, name=town_name)
     image = TownMedia.objects.filter(town=town)
     if image:
         image = image[0]
@@ -311,9 +314,9 @@ def townhome(request, town_name):
     if request.user.username == "Cryptite":
         user_in_town = User.objects.filter(username="Cryptite")
     if not request.user.is_authenticated() and not town.public:
-        raise Http404
+        townslist(request)
     elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "Cryptite":
-        raise Http404
+        townslist(request)
 
     comments = Comment.objects.filter(town=town).order_by("-date")
 
