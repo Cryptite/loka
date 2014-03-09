@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.middleware.csrf import get_token
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
 from rest_framework import generics
 
@@ -314,9 +314,9 @@ def townhome(request, town_name):
     if request.user.username == "Cryptite":
         user_in_town = User.objects.filter(username="Cryptite")
     if not request.user.is_authenticated() and not town.public:
-        townslist(request)
+        return redirect('townslist.html')
     elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "Cryptite":
-        townslist(request)
+        return redirect('townslist.html')
 
     comments = Comment.objects.filter(town=town).order_by("-date")
 
