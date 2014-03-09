@@ -314,9 +314,9 @@ def townhome(request, town_name):
     if request.user.username == "Cryptite":
         user_in_town = User.objects.filter(username="Cryptite")
     if not request.user.is_authenticated() and not town.public:
-        return redirect('townslist.html')
+        return redirect('/townslist.html')
     elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "Cryptite":
-        return redirect('townslist.html')
+        return redirect('/townslist.html')
 
     comments = Comment.objects.filter(town=town).order_by("-date")
 
