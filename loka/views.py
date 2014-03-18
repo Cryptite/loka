@@ -16,8 +16,9 @@ from rest_framework import generics
 from loka.core.email_messages import issue_created
 from loka.forms import TownBannerForm
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
-    IssueComment, ISSUE_STATUS
-from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer
+    IssueComment, ISSUE_STATUS, Achievement, PlayerAchievements
+from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer, \
+    PlayerAchievementsSerializer, AchievementSerializer
 from loka.tasks import retrieve_avatar
 
 
@@ -51,9 +52,29 @@ class PlayerDetail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = "name"
 
 
+class PlayerAchievementsDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PlayerAchievements.objects.all()
+    serializer_class = PlayerAchievementsSerializer
+    lookup_field = "name"
+    achievements = ""
+
+    def put(self, request, *args, **kwargs):
+        self.achievements = request.DATA["achievements"]
+        return super(PlayerAchievementsDetail, self).put(request, *args, **kwargs)
+
+    def post_save(self, obj, created=False):
+        obj.set_achievements(self.achievements, obj.achievements)
+        super(PlayerAchievementsDetail, self).post_save(obj, created)
+
+
 class ArenaMatchDetail(generics.CreateAPIView):
     queryset = ArenaMatch.objects.all()
     serializer_class = ArenaMatchSerializer
+
+
+class AchievementDetail(generics.CreateAPIView):
+    queryset = Achievement.objects.all()
+    serializer_class = AchievementSerializer
 
 
 def start(request):
@@ -314,14 +335,12 @@ def townhome(request, town_name):
     if request.user.username == "Cryptite":
         user_in_town = User.objects.filter(username="Cryptite")
     if not request.user.is_authenticated() and not town.public:
-        townlist_query = Town.objects.filter(public=1)
         return render_to_response('townslist.html', RequestContext(request, {
-            'towns': townlist_query,
+            'towns': Town.objects.filter(public=1),
         }))
     elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "Cryptite":
-        townlist_query = Town.objects.filter(public=1)
         return render_to_response('townslist.html', RequestContext(request, {
-            'towns': townlist_query,
+            'towns': Town.objects.filter(public=1),
         }))
 
     comments = Comment.objects.filter(town=town).order_by("-date")

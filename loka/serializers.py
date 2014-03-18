@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from loka.models import Town, Player, ArenaMatch
+from loka.models import Town, Player, ArenaMatch, PlayerAchievements, Achievement
 
 
 __author__ = 'tmiller'
@@ -92,6 +92,77 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
                   'rank', 'overloadKills', 'overloadDeaths', 'overloadOverloads', 'overloadWins', 'overloadLosses',
                   'overloadScore', 'arrowHits', 'arrowShots')
         lookup_field = "name"
+
+
+class SinglePlayerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Player
+        lookup_field = "name"
+
+
+class PlayerAchievementsSerializer(serializers.HyperlinkedModelSerializer):
+    name = SinglePlayerSerializer()
+    achievements = serializers.CharField()
+
+    def restore_object(self, attrs, instance=None):
+        """
+        Create or update a new snippet instance, given a dictionary
+        of deserialized field values.
+
+        Note that if we don't define this method, then deserializing
+        data will simply return a dictionary of items.
+        """
+        if instance:
+            # Update existing instance
+            print 'Via existing instance'
+            instance.player = resolve_player(attrs.get("name"))
+            return instance
+
+        # player_name = attrs.get("name")
+
+        # del attrs["name"]
+        del attrs["achievements"]
+
+        player_achievements = PlayerAchievements(**attrs)
+        # player_achievements.player = resolve_player(player_name)
+        return player_achievements
+
+    class Meta:
+        model = PlayerAchievements
+        fields = ("name", "achievements")
+        lookup_field = "name"
+
+
+class AchievementSerializer(serializers.HyperlinkedModelSerializer):
+    name = serializers.CharField(max_length=25)
+    title = serializers.CharField(max_length=50)
+    type = serializers.CharField(max_length=15)
+    description = serializers.CharField()
+
+    def restore_object(self, attrs, instance=None):
+        """
+        Create or update a new snippet instance, given a dictionary
+        of deserialized field values.
+
+        Note that if we don't define this method, then deserializing
+        data will simply return a dictionary of items.
+        """
+        print attrs
+        if instance:
+            # Update existing instance
+            print 'Via existing instance'
+            instance.name = attrs.get("name")
+            instance.title = attrs.get("title")
+            instance.type = attrs.get("type")
+            instance.description = attrs.get("description")
+            return instance
+
+        achievement = Achievement(**attrs)
+        return achievement
+
+    class Meta:
+        model = Achievement
+        fields = ('name', "title", "type", "description")
 
 
 class TownSerializer(serializers.HyperlinkedModelSerializer):
@@ -216,8 +287,8 @@ class ArenaMatchSerializer(serializers.HyperlinkedModelSerializer):
 
 def resolve_player(player_name):
     print "Resolving player: ", player_name
-    owner = Player.objects.filter(name=player_name)
-    if not owner:
+    player = Player.objects.filter(name=player_name)
+    if not player:
         return Player.objects.create(name=player_name)
     else:
-        return owner[0]
+        return player[0]

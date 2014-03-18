@@ -300,7 +300,7 @@ a.inverse, a:visited {
 /* intro icons */
 .introicons {
     position: relative;
-    margin: 60px 0px;
+    margin: 30px 0px;
     padding: 14px;
     border-radius: 5px;
     background-color: #fbfbfb;
@@ -464,8 +464,8 @@ a.inverse, a:visited {
 
 .span2 {
     float: left;
-    margin-left: 30px;
-    width: 250px;
+    margin-left: 15px;
+    width: 200px;
 }
 
 /* ===== TEAM MEMBERS SECTION ===== */

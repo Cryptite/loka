@@ -107,6 +107,35 @@ class Player(models.Model):
         return labels[:-1]
 
 
+class Achievement(models.Model):
+    name = models.CharField(max_length=25)
+    title = models.CharField(max_length=40)
+    description = models.CharField(max_length=150)
+    type = models.CharField(max_length=15)
+
+
+class UnlockedAchievement(models.Model):
+    achievement = models.ForeignKey(Achievement)
+    date = models.DateTimeField()
+
+
+class PlayerAchievements(models.Model):
+    name = models.ForeignKey(Player, related_name="player")
+    achievements = models.ManyToManyField(UnlockedAchievement, related_name="achievements", blank=True, null=True)
+
+    def set_achievements(self, achievements_list, destination_field):
+        if achievements_list == "":
+            return
+
+        achievements_list = [a for a in achievements_list.split(",") if not a == ""]
+        destination_field.clear()
+        for a in achievements_list:
+            achievement = Achievement.objects.filter(name=a)
+            if achievement:
+                destination_field.add(achievement[0])
+        print '{0} achievements resolved for {1}'.format(len(achievements_list), self.player.name)
+
+
 class Town(models.Model):
     name = models.CharField(max_length=30)
     public = models.BooleanField(default=False)
