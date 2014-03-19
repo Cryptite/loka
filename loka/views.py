@@ -384,6 +384,14 @@ def about(request):
     return render_to_response('about.html', RequestContext(request))
 
 
+def donate(request):
+    return render_to_response('donate.html', RequestContext(request))
+
+
+def thankyou(request):
+    return render_to_response('thankyou.html', RequestContext(request))
+
+
 def towns(request):
     return render_to_response('towns.html', RequestContext(request))
 

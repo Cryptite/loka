@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+
+{% block extra_head %}
+    {{ form.media }}
+    <!-- Important Owl stylesheet -->
+    <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">
+
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css' %}">
+
+    <!-- Include js plugin -->
+    <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron towns">
+        <h1>Thank You!</h1>
+    </div>
+
+    <div class="container">
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-12">
+                <h1 class="featurette-heading">From the Bottom of our Hearts<br/></h1>
+
+                <p class="lead">Thank you so much for supporting our wonderful server! If you donated $5 or more USD, we
+                    will add Lil' Bat to your account as soon as we can!</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
