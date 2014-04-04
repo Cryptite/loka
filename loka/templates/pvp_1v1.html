@@ -7,31 +7,12 @@
     <script type="text/javascript">
         $(".streak").tooltip();
     </script>
-    <script type="application/javascript">
-        $(function () {
-            $("#search").autocomplete({
-                source: "/api/search/",
-                select: function (event, ui) {
-                    window.location = ui.item.url;
-                },
-                minLength: 2
-            });
-        });
-    </script>
 {% endblock %}
 
 {% block content %}
 
     <div class="jumbotron pvp">
         <h1>1v1 Arena Bracket</h1>
-    </div>
-    <div class="navbar">
-        <ul>
-            <div class="input-group ui-widget">
-                <span class="input-group-addon">Search</span>
-                <input type="text" class="form-control" placeholder="Playername" id="search">
-            </div>
-        </ul>
     </div>
     <div class="container">
         <div class=".col-md-4">

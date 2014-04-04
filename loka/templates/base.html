@@ -37,6 +37,17 @@
         })();
 
     </script>
+    <script type="application/javascript">
+        $(function () {
+            $("#search").autocomplete({
+                source: "/api/search/",
+                select: function (event, ui) {
+                    window.location = ui.item.url;
+                },
+                minLength: 2
+            });
+        });
+    </script>
     {% block extra_head %}{% endblock %}
 </head>
 
@@ -69,7 +80,7 @@
 <!-- /.modal -->
 
 <div class="sitecontainer">
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar navbar-default navbar-static-top" role="navigation" style="z-index: 0">
         <a class="navbar-brand" href="/"><img src="{% static 'images/logo_sm.png' %}" class="img-responsive"/></a>
         <ul class="nav navbar-nav">
             <li class="dropdown">
@@ -98,6 +109,13 @@
             <li><a href="http://loka.wikia.com/wiki/Loka_Wiki">Wiki</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" id="search"
+                           style="margin-bottom: 0px;">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </form>
             <li class="dropdown">
                 {% if user.is_authenticated %}
                     {% player_avatar user as avatar %}
