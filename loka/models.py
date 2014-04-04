@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
@@ -109,31 +111,44 @@ class Player(models.Model):
 
 class Achievement(models.Model):
     name = models.CharField(max_length=25)
+    category = models.CharField(max_length=30)
     title = models.CharField(max_length=40)
     description = models.CharField(max_length=150)
     type = models.CharField(max_length=15)
 
 
 class UnlockedAchievement(models.Model):
+    player = models.ForeignKey(Player, related_name="unlockedplayerachievement")
     achievement = models.ForeignKey(Achievement)
     date = models.DateTimeField()
 
 
 class PlayerAchievements(models.Model):
-    name = models.ForeignKey(Player, related_name="player")
+    player = models.ForeignKey(Player, related_name="player")
     achievements = models.ManyToManyField(UnlockedAchievement, related_name="achievements", blank=True, null=True)
 
-    def set_achievements(self, achievements_list, destination_field):
+    def resolve_achievements(self, achievements_list):
         if achievements_list == "":
             return
 
-        achievements_list = [a for a in achievements_list.split(",") if not a == ""]
-        destination_field.clear()
-        for a in achievements_list:
-            achievement = Achievement.objects.filter(name=a)
+        self.achievements.clear()
+        for name, timestamp in achievements_list.iteritems():
+            achievement = Achievement.objects.filter(name=name)
             if achievement:
-                destination_field.add(achievement[0])
-        print '{0} achievements resolved for {1}'.format(len(achievements_list), self.player.name)
+                time = datetime.datetime.fromtimestamp(float(timestamp) / 1000.0)
+                unlocked_achievement = UnlockedAchievement.objects.create(player=self.player,
+                                                                          achievement=achievement[0],
+                                                                          date=time)
+                self.achievements.add(unlocked_achievement)
+        print 'Achievements resolved for {}'.format(self.player.name)
+
+    def get_total_achievement_percentage(self):
+        return int((float(self.achievements.count()) / float(Achievement.objects.count())) * 100.0)
+
+    def get_total_achievement_string(self):
+        return "{}/{} {}%".format(self.achievements.count(),
+                                  Achievement.objects.count(),
+                                  self.get_total_achievement_percentage())
 
 
 class Town(models.Model):

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load bootstrap_toolkit %}
+{% load achievement_tags %}
 
 {% block extra_head %}
     {{ form.media }}
@@ -41,11 +42,181 @@
         {% endif %}
     </h1>
 
-    <div class="player-section text-center bracket{{ player.get_1v1_color_rank }}">
+    <div class="container">
+    <div class="bs-example bs-example-tabs">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">Achievements</a></li>
+        <li><a href="#profile" data-toggle="tab">PvP Statistics</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="home">
+        <div class="row featurette">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 class="featurette-heading">Total Earned - <span
+                        class="text-muted">{{ achievements.get_total_achievement_string }}</span></h1>
 
-        <div class="player-sectionwrap smallportfolioshortcode"><img
-                src="{% static 'images/arena_nagrand.jpg' %}"/>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar"
+                         aria-valuenow="{{ achievements.get_total_achievement_percentage }}"
+                         aria-valuemin="0" aria-valuemax="100"
+                         style="width: {{ achievements.get_total_achievement_percentage }}%;">
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">General Achievements</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <h3><a href="/player/{{ player.name }}/achievements/general">General -
+                            <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "general" %}</small>
+                        </a>
+                        </h3>
+
+                        <div class="progress">
+                            <div class="progress-bar center-text" role="progressbar"
+                                 aria-valuenow="{% get_achievement_percentage_by_category player.name "general" %}"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {% get_achievement_percentage_by_category player.name "general" %}%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3><a href="/player/{{ player.name }}/achievements/home">Home -
+                            <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "home" %}</small>
+                        </a>
+                        </h3>
+
+                        <div class="progress">
+                            <div class="progress-bar center-text" role="progressbar"
+                                 aria-valuenow="{% get_achievement_percentage_by_category player.name "home" %}"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {% get_achievement_percentage_by_category player.name "home" %}%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3><a href="/player/{{ player.name }}/achievements/market">Market -
+                            <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "market" %}</small>
+                        </a>
+                        </h3>
+
+                        <div class="progress">
+                            <div class="progress-bar center-text" role="progressbar"
+                                 aria-valuenow="{% get_achievement_percentage_by_category player.name "market" %}"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {% get_achievement_percentage_by_category player.name "market" %}%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3><a href="/player/{{ player.name }}/achievements/brewmaster">Brewmaster -
+                            <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "brewmaster" %}</small>
+                        </a>
+                        </h3>
+
+                        <div class="progress">
+                            <div class="progress-bar center-text" role="progressbar"
+                                 aria-valuenow="{% get_achievement_percentage_by_category player.name "brewmaster" %}"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {% get_achievement_percentage_by_category player.name "brewmaster" %}%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3><a href="/player/{{ player.name }}/achievements/legendary">Legendary -
+                            <small class="btn-group-vertical">{% get_earned_number_achievements_by_category player.name "legendary" %}</small>
+                        </a>
+                        </h3>
+
+                        <div class="progress">
+                            <div class="progress-bar center-text" role="progressbar"
+                                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"
+                                 style="width: {% get_earned_number_achievements_by_category player.name "legendary" %}%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">PvP Achievements</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <h3><a href="/player/{{ player.name }}/achievements/pvp">General -
+                            <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "pvp" %}</small>
+                        </a>
+                        </h3>
+
+                        <div class="progress">
+                            <div class="progress-bar center-text" role="progressbar"
+                                 aria-valuenow="{% get_achievement_percentage_by_category player.name "pvp" %}"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {% get_achievement_percentage_by_category player.name "pvp" %}%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3><a href="/player/{{ player.name }}/achievements/vota">VotA -
+                            <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "vota" %}</small>
+                        </a>
+                        </h3>
+
+                        <div class="progress">
+                            <div class="progress-bar center-text" role="progressbar"
+                                 aria-valuenow="{% get_achievement_percentage_by_category player.name "vota" %}"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {% get_achievement_percentage_by_category player.name "vota" %}%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3><a href="/player/{{ player.name }}/achievements/overload">Overload -
+                            <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "overload" %}</small>
+                        </a>
+                        </h3>
+
+                        <div class="progress">
+                            <div class="progress-bar center-text" role="progressbar"
+                                 aria-valuenow="{% get_achievement_percentage_by_category player.name "overload" %}"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {% get_achievement_percentage_by_category player.name "overload" %}%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3><a href="/player/{{ player.name }}/achievements/worldpvp">World PvP -
+                            <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "worldpvp" %}</small>
+                        </a>
+                        </h3>
+
+                        <div class="progress">
+                            <div class="progress-bar center-text" role="progressbar"
+                                 aria-valuenow="{% get_achievement_percentage_by_category player.name "worldpvp" %}"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {% get_achievement_percentage_by_category player.name "worldpvp" %}%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile">
+        <div class="player-section text-center bracket{{ player.get_1v1_color_rank }}">
+
+            <div class="player-sectionwrap smallportfolioshortcode"><img
+                    src="{% static 'images/arena_nagrand.jpg' %}"/>
+            </div>
                     <span class="teamposition">
                         <h1>1v1 Arena</h1>
 
@@ -72,36 +243,38 @@
                             <h1 class="subtle">No 1v1 <br/>games played</h1>
                             </span>
                         {% endif %}
-        {% if player.has_1v1_history %}
-            <h2><small>Match History</small></h2>
-            <canvas id="canvas" height="75" width="350"></canvas>
-            <script>
-                var lineChartData = {
-                    labels: [{{ player.get_1v1_chart_labels|safe }}],
-                    datasets: [
-                        {
-                            fillColor: "rgba(151,187,205,0.5)",
-                            strokeColor: "rgba(151,187,205,1)",
-                            pointColor: "rgba(151,187,205,1)",
-                            pointStrokeColor: "#fff",
-                            data: [{{player.get_1v1_chart_ratings}}]
-                        }
-                    ]
-                }
-                var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData,
-                        {scaleShowGridLines: false,
-                            scaleFontSize: 10,
-                            scaleFontColor: "#aaa",
-                            pointDotRadius: 1});
-            </script>
-        {% endif %}
-    </div>
-
-    <div class="player-section text-center bracket{{ player.get_2v2_color_rank }}">
-
-        <div class="player-sectionwrap smallportfolioshortcode"><img
-                src="{% static 'images/arena_blade.jpg' %}"/>
+            {% if player.has_1v1_history %}
+                <h2>
+                    <small>Match History</small>
+                </h2>
+                <canvas id="canvas" height="75" width="350"></canvas>
+                <script>
+                    var lineChartData = {
+                        labels: [{{ player.get_1v1_chart_labels|safe }}],
+                        datasets: [
+                            {
+                                fillColor: "rgba(151,187,205,0.5)",
+                                strokeColor: "rgba(151,187,205,1)",
+                                pointColor: "rgba(151,187,205,1)",
+                                pointStrokeColor: "#fff",
+                                data: [{{player.get_1v1_chart_ratings}}]
+                            }
+                        ]
+                    }
+                    var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData,
+                            {scaleShowGridLines: false,
+                                scaleFontSize: 10,
+                                scaleFontColor: "#aaa",
+                                pointDotRadius: 1});
+                </script>
+            {% endif %}
         </div>
+
+        <div class="player-section text-center bracket{{ player.get_2v2_color_rank }}">
+
+            <div class="player-sectionwrap smallportfolioshortcode"><img
+                    src="{% static 'images/arena_blade.jpg' %}"/>
+            </div>
                     <span class="teamposition">
                         <h1>2v2 Arena</h1>
 
@@ -128,13 +301,13 @@
                             <h1 class="subtle">No 2v2 <br/>games played</h1>
                             </span>
                         {% endif %}
-    </div>
-
-    <div class="player-section text-center bracket0">
-
-        <div class="player-sectionwrap smallportfolioshortcode"><img
-                src="{% static 'images/bg_vota1.jpg' %}"/>
         </div>
+
+        <div class="player-section text-center bracket0">
+
+            <div class="player-sectionwrap smallportfolioshortcode"><img
+                    src="{% static 'images/bg_vota1.jpg' %}"/>
+            </div>
                     <span class="teamposition">
                         <h1>VotA</h1>
 
@@ -160,6 +333,11 @@
                             <h1 class="subtle">No VotA <br/>games played</h1>
                             </span>
                         {% endif %}
+        </div>
+    </div>
+    <div class="tab-pane fade in active" id="home">
+    </div>
+    </div>
     </div>
 
 {% endblock %}

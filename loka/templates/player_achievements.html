@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+{% load achievement_tags %}
+{% load humanize %}
+
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="player-header">
+        {% if player.avatar %}
+            <a href="/player/{{ player.name }}"><img src="{% static 'media/' %}{{ player.avatar }}"
+                                                     class="reg-avatar img-rounded"></a>
+        {% else %}
+            <a href="/player/{{ player.name }}"><img src="{% static 'images/steve_sm.png' %}"
+                                                     class="reg-avatar img-rounded {{ player.name }}"></a>
+            <script type="application/javascript">
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/avatar/{{ player.name }}",
+                        contentType: 'application/json',
+                        complete: function (xhr, status) {
+                            if (status === 'error' || !xhr.responseText) {
+                            }
+                            else {
+                                var data = JSON.parse(xhr.responseText);
+                                $('.{{ player.name }}').fadeOut(500, function () {
+                                    $('.{{ player.name }}').attr('src', data["path"]);
+                                    $('.{{ player.name }}').fadeIn(500);
+                                });
+                            }
+                        }
+                    });
+                })
+            </script>
+        {% endif %}{{ player.name }}
+        {% if player.title %}
+            <small>{{ player.title }}</small>
+        {% endif %}
+    </h1>
+
+    <div class="container">
+        <div class="bs-example bs-example-tabs">
+            <ul id="myTab" class="nav nav-tabs">
+                <li><a href="/player/{{ player.name }}">Back to Player</a></li>
+            </ul>
+        </div>
+
+        <div class="row featurette">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>{{ category|title }} Achievements</h1>
+
+                <h2 class="featurette-heading">Total Earned - <span
+                        class="text-muted">{% if category == "legendary" %}
+                    {% get_earned_number_achievements_by_category player.name category %}
+                {% else %}
+                    {% get_achievement_string_by_category player.name category %}
+                {% endif %}</span></h2>
+
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar"
+                         aria-valuenow="{% get_earned_number_achievements_by_category player.name category %}"
+                         aria-valuemin="0" aria-valuemax="100"
+                         style="width: {% get_achievement_percentage_by_category player.name category %}%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if category == "legendary" %}
+            <div class="col-md-10 col-md-offset-1"><h3>
+                Legendary Achievements are earned through rare feats and are surrounded in mystery. As such, only
+                earned
+                legendary achievements are listed here. Finding them is a great success in itself!</h3>
+            </div>{% endif %}
+
+        <table class="table table-hover">
+            {% for achievement in achievements %}
+                <tr>
+                    <td>
+                        <div class="col-md-7 col-md-offset-1">
+                            <h3 class="featurette-heading">{{ achievement.achievement.title }}</h3>
+
+                            <p>{{ achievement.achievement.description }}</p>
+
+                        </div>
+                        <div class="col-md-3">
+                            <h2>
+                                <small>Earned {{ achievement.date|naturaltime }}</small>
+                            </h2>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            {% if not category == "legendary" %}{% for achievement in locked_achievements %}
+                <tr>
+                    <td>
+                        <div class="col-md-7 col-md-offset-1">
+                            <h3 class="featurette-heading text-muted">{{ achievement.title }}</h3>
+
+                            <p class="text-muted">{{ achievement.description }}</p>
+
+                        </div>
+                        <div class="col-md-3">
+                            <h2>
+                                <small>Not Yet Earned</small>
+                            </h2>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}{% endif %}
+        </table>
+    </div>
+
+{% endblock %}

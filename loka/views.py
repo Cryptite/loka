@@ -12,13 +12,14 @@ from django.middleware.csrf import get_token
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from rest_framework import generics
+from rest_framework.status import HTTP_201_CREATED
 
 from loka.core.email_messages import issue_created
 from loka.forms import TownBannerForm
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
-    IssueComment, ISSUE_STATUS, Achievement, PlayerAchievements
+    IssueComment, ISSUE_STATUS, Achievement, PlayerAchievements, UnlockedAchievement
 from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer, \
-    PlayerAchievementsSerializer, AchievementSerializer
+    PlayerAchievementsSerializer, AchievementSerializer, resolve_player
 from loka.tasks import retrieve_avatar
 
 
@@ -52,19 +53,18 @@ class PlayerDetail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = "name"
 
 
-class PlayerAchievementsDetail(generics.RetrieveUpdateDestroyAPIView):
+class PlayerAchievementsDetail(generics.ListCreateAPIView):
     queryset = PlayerAchievements.objects.all()
     serializer_class = PlayerAchievementsSerializer
     lookup_field = "name"
-    achievements = ""
 
-    def put(self, request, *args, **kwargs):
-        self.achievements = request.DATA["achievements"]
-        return super(PlayerAchievementsDetail, self).put(request, *args, **kwargs)
-
-    def post_save(self, obj, created=False):
-        obj.set_achievements(self.achievements, obj.achievements)
-        super(PlayerAchievementsDetail, self).post_save(obj, created)
+    def create(self, request, *args, **kwargs):
+        data = request.DATA
+        player = resolve_player(data["player"])
+        player_achievements, created = PlayerAchievements.objects.get_or_create(player=player)
+        player_achievements.resolve_achievements(data["achievements"])
+        player_achievements.save()
+        return HttpResponse(status=HTTP_201_CREATED)
 
 
 class ArenaMatchDetail(generics.CreateAPIView):
@@ -180,10 +180,35 @@ def pvpoverload(request):
 def player(request, player_name):
     try:
         player = Player.objects.get(name=player_name)
+        achievements = PlayerAchievements.objects.get(player=player)
         return render_to_response('player.html', RequestContext(request, {
             'player': player,
+            'achievements': achievements
         }))
     except Exception, e:
+        raise Http404
+
+
+def player_achievements(request, player_name, category):
+    try:
+        print player_name, category
+        player = Player.objects.get(name=player_name)
+        achievements = UnlockedAchievement.objects.filter(player=Player.objects.get(name=player),
+                                                          achievement__category=category)
+
+        #Resolve achievements that aren't earned
+        achievement_names = [achievement.achievement.name for achievement in achievements]
+        locked_achievements = [a for a in Achievement.objects.filter(category=category) if
+                               not a.name in achievement_names]
+
+        return render_to_response('player_achievements.html', RequestContext(request, {
+            'player': player,
+            'category': category,
+            'achievements': achievements,
+            'locked_achievements': locked_achievements
+        }))
+    except Exception, e:
+        print e
         raise Http404
 
 

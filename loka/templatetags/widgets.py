@@ -1,9 +1,12 @@
 from django import template
+
 from loka.models import Quote, Player
+
 
 __author__ = 'tmiller'
 
 register = template.Library()
+
 
 #@register.inclusion_tag("quote.html")
 def get_quote():
@@ -11,6 +14,7 @@ def get_quote():
     if len(quotes) > 0:
         return {'quote': Quote.objects.order_by('?')[0]}
     return {'quote': []}
+
 
 @register.assignment_tag
 def player_avatar(user):
