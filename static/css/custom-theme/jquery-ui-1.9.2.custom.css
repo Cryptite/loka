@@ -522,7 +522,11 @@
 /* right-aligned */
 .ui-menu .ui-menu-icon { position: static; float: right; }
 
-.ui-menu { width: 200px; margin-bottom: 2em; }
+.ui-menu {
+    width: 200px;
+    margin-bottom: 2em;
+    z-index: 2
+}
 
 /*
  * jQuery UI Button 1.8.16
