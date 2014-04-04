@@ -525,7 +525,7 @@ def search(request):
             search_json = {'id': player.id,
                            'label': player.name,
                            'value': player.name,
-                           'url': "player/" + player.name}
+                           'url': "/player/" + player.name}
             results.append(search_json)
         data = json.dumps(results)
     else:
