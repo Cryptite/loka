@@ -180,10 +180,7 @@ def pvpoverload(request):
 def player(request, player_name):
     try:
         player = resolve_player(player_name)
-        try:
-            achievements = PlayerAchievements.objects.get(player=player)
-        except Exception, e:
-            achievements = {}
+        achievements, created = PlayerAchievements.objects.get_or_create(player=player)
         return render_to_response('player.html', RequestContext(request, {
             'player': player,
             'achievements': achievements
