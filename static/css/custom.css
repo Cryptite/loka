@@ -1156,3 +1156,15 @@ span.teamposition {
 .issue-Feature {
     background-color: #2a4bb2;
 }
+
+.achievement-common {
+    color: #666;
+}
+
+.achievement-rare {
+    color: #428bca;
+}
+
+.achievement-legendary {
+    color: #ffc240;
+}
