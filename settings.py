@@ -208,11 +208,11 @@ IMAGE_CROPPING_SIZE_WARNING = True
 ###################
 # EMAIL SETTINGS #
 ###################
-#EMAIL_USE_TLS = True
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_HOST_USER = 'the.artifactloka@gmail.com'
-#EMAIL_HOST_PASSWORD = 'gallazius'
-#EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'the.artifactloka@gmail.com'
+EMAIL_HOST_PASSWORD = 'gallazius'
+EMAIL_PORT = 587
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
