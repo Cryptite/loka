@@ -136,9 +136,9 @@ class PlayerAchievements(models.Model):
             achievement = Achievement.objects.filter(name=name)
             if achievement and not UnlockedAchievement.objects.exists(achievement=achievement[0]):
                 time = datetime.datetime.fromtimestamp(float(timestamp) / 1000.0)
-                unlocked_achievement = UnlockedAchievement.objects.create(player=self.player,
-                                                                          achievement=achievement[0],
-                                                                          date=time)
+                unlocked_achievement, created = UnlockedAchievement.objects.get_or_create(player=self.player,
+                                                                                          achievement=achievement[0],
+                                                                                          date=time)
                 self.achievements.add(unlocked_achievement)
         print 'Achievements resolved for {}'.format(self.player.name)
 
