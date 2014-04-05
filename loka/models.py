@@ -131,15 +131,17 @@ class PlayerAchievements(models.Model):
         if achievements_list == "":
             return
 
-        self.achievements.clear()
+        # self.achievements.clear()
         for name, timestamp in achievements_list.iteritems():
             achievement = Achievement.objects.filter(name=name)
-            if achievement and not UnlockedAchievement.objects.exists(achievement=achievement[0]):
+            if achievement:
                 time = datetime.datetime.fromtimestamp(float(timestamp) / 1000.0)
                 unlocked_achievement, created = UnlockedAchievement.objects.get_or_create(player=self.player,
                                                                                           achievement=achievement[0],
                                                                                           date=time)
-                self.achievements.add(unlocked_achievement)
+                # Only add created achievements, otherwise we already have a record of the player having the achievement
+                if created:
+                    self.achievements.add(unlocked_achievement)
         print 'Achievements resolved for {}'.format(self.player.name)
 
     def get_total_achievement_percentage(self):
