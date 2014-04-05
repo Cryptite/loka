@@ -70,11 +70,17 @@ class Player(models.Model):
 
     def get_vota_rank(self):
         players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyScore")
-        return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
+        if players:
+            return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
+        else:
+            return 0
 
     def get_overload_rank(self):
         players = Player.objects.filter(Q(overloadWins__gt=1) | Q(overloadLosses__gt=1)).order_by("-overloadScore")
-        return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
+        if players:
+            return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
+        else:
+            return 0
 
     def get_vota_score(self):
         return self.valleyCaps * 3 + self.valleyKills - self.valleyDeaths
