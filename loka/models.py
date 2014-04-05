@@ -134,7 +134,7 @@ class PlayerAchievements(models.Model):
         self.achievements.clear()
         for name, timestamp in achievements_list.iteritems():
             achievement = Achievement.objects.filter(name=name)
-            if achievement:
+            if achievement and not UnlockedAchievement.objects.exists(achievement=achievement[0]):
                 time = datetime.datetime.fromtimestamp(float(timestamp) / 1000.0)
                 unlocked_achievement = UnlockedAchievement.objects.create(player=self.player,
                                                                           achievement=achievement[0],
