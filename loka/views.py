@@ -186,6 +186,7 @@ def player(request, player_name):
             'achievements': achievements
         }))
     except Exception, e:
+        print e
         raise Http404
 
 
