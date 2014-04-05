@@ -314,8 +314,5 @@ class ArenaMatchSerializer(serializers.HyperlinkedModelSerializer):
 
 def resolve_player(player_name):
     print "Resolving player: ", player_name
-    player = Player.objects.filter(name=player_name)
-    if not player:
-        return Player.objects.create(name=player_name)
-    else:
-        return player[0]
+    player, created = Player.objects.get_or_create(name=player_name)
+    return player
