@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="24038800">
-    <data-source source="LOCAL" name="MySQL - loka@vader" uuid="22a1186a-3e49-4a10-85cd-723f5b538f0a">
+  <component name="DataSourceManagerImpl" format="xml" hash="599946067">
+    <data-source source="LOCAL" name="Data Source" uuid="c8618d98-32ec-4661-a2c2-59cfabfc273a">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://vader:3306/loka</jdbc-url>
-      <user-name>jango</user-name>
-      <user-password>dfc0dfcbdfc4dfcddfc5df9bdf9b</user-password>
-      <driver-properties>
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="tinyInt1isBit" value="false" />
-      </driver-properties>
-      <libraries />
+      <jdbc-url>jdbc:mysql://localhost</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfc9dfcbdfc6dfc6dfd3df99df9edf98</user-password>
+      <libraries>
+        <library>
+          <url>jar://$PROJECT_DIR$/mysql-connector-java-5.1.26-bin.jar!/</url>
+        </library>
+        <library>
+          <url>file://$PROJECT_DIR$/mysql-connector-license.txt</url>
+        </library>
+      </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Django default" uuid="93dddf0c-5c67-4877-85cb-2c5db946ea6d">
+    <data-source source="LOCAL" name="Django default" uuid="f77646aa-317c-4b43-b06b-af0a89475a3f">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/django</jdbc-url>
@@ -22,7 +25,10 @@
       <user-password>dfc9dfc2dfcbdfc2dffadfe2dfcfdf9c</user-password>
       <libraries>
         <library>
-          <url>file://$USER_HOME$/.PyCharm20/config/jdbc-drivers/mysql-connector-java-5.1.18-bin.jar</url>
+          <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-license.txt</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-java-5.1.26-bin.jar</url>
         </library>
       </libraries>
     </data-source>
