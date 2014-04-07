@@ -71,7 +71,7 @@ class Player(models.Model):
     def get_vota_rank(self):
         players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyScore")
         print 'vota players?', players
-        if players:
+        if self in players:
             return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
         else:
             return 0
