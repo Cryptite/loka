@@ -178,16 +178,16 @@ def pvpoverload(request):
 
 
 def player(request, player_name):
-    # try:
-    player = resolve_player(player_name)
-    achievements, created = PlayerAchievements.objects.get_or_create(player=player)
-    return render_to_response('player.html', RequestContext(request, {
-        'player': player,
-        'achievements': achievements
-    }))
-    # except Exception, e:
-    #     print e
-    #     raise Http404
+    try:
+        player = resolve_player(player_name)
+        achievements, created = PlayerAchievements.objects.get_or_create(player=player)
+        return render_to_response('player.html', RequestContext(request, {
+            'player': player,
+            'achievements': achievements
+        }))
+    except Exception, e:
+        print e
+        raise Http404
 
 
 def player_achievements(request, player_name, category):
