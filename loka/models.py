@@ -109,7 +109,7 @@ class Player(models.Model):
         matches = ArenaMatch.objects.filter(Q(winner=self) | Q(loser=self))
         labels = ""
         for x in matches:
-            if x.winner is self:
+            if x.winner.name is self.name:
                 print "{} beat {} while rated {}".format(self.name, x.loser.name, x.winner.arenarating)
                 labels += '{0},'.format(x.winner_rating)
             else:
