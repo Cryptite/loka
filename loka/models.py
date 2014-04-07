@@ -107,12 +107,13 @@ class Player(models.Model):
 
     def get_1v1_chart_ratings(self):
         matches = ArenaMatch.objects.filter(Q(winner=self) | Q(loser=self))
+        print '{} total matches'.format(matches.count())
         labels = ""
         for x in matches:
             print "{}({}) beat {}({}) at {}".format(x.winner.name,
-                                                    x.winner.arenarating,
+                                                    x.winner_rating,
                                                     x.loser.name,
-                                                    x.loser.arenarating,
+                                                    x.loser_rating,
                                                     x.date)
             if x.winner.name == self.name:
                 # print "{} beat {} while rated {}".format(self.name, x.loser.name, x.winner.arenarating)
