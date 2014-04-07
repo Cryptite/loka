@@ -61,24 +61,24 @@ class Player(models.Model):
         return self.name
 
     def get_1v1_rank(self):
-        players = Player.objects.filter(Q(arenawins__gt=1) | Q(arenalosses__gt=1)).order_by("-arenarating")
+        players = Player.objects.filter(Q(arenawins__gt=0) | Q(arenalosses__gt=0)).order_by("-arenarating")
         return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
 
     def get_2v2_rank(self):
-        players = Player.objects.filter(Q(arenawins2v2__gt=1) | Q(arenalosses2v2__gt=1)).order_by("-arenarating2v2")
+        players = Player.objects.filter(Q(arenawins2v2__gt=0) | Q(arenalosses2v2__gt=0)).order_by("-arenarating2v2")
         return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
 
     def get_vota_rank(self):
-        players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyScore")
-        print 'vota players?', players
+        players = Player.objects.filter(Q(valleyWins__gt=0) | Q(valleyLosses__gt=0)).order_by("-valleyScore")
+        # print 'vota players?', players
         if self in players:
             return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
         else:
             return 0
 
     def get_overload_rank(self):
-        players = Player.objects.filter(Q(overloadWins__gt=1) | Q(overloadLosses__gt=1)).order_by("-overloadScore")
-        if players:
+        players = Player.objects.filter(Q(overloadWins__gt=0) | Q(overloadLosses__gt=0)).order_by("-overloadScore")
+        if self in players:
             return [index for index, player in enumerate(players) if player.name == self.name][0] + 1
         else:
             return 0
