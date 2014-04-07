@@ -110,7 +110,7 @@ class Player(models.Model):
         labels = ""
         for x in matches:
             print "{} beat {}".format(x.winner.name, x.loser.name)
-            if x.winner.name is self.name:
+            if x.winner.name == self.name:
                 print "{} beat {} while rated {}".format(self.name, x.loser.name, x.winner.arenarating)
                 labels += '{0},'.format(x.winner_rating)
             else:
