@@ -127,7 +127,7 @@ def pvp(request):
 
 
 def pvp1v1(request):
-    players = Player.objects.filter(Q(arenawins__gt=1) | Q(arenalosses__gt=1)).order_by("-arenarating")
+    players = Player.objects.filter(Q(arenawins__gt=0) | Q(arenalosses__gt=0)).order_by("-arenarating")
     paginator = Paginator(players, 25)  # Show 25 contacts per page
 
     page = request.GET.get('page')
@@ -146,7 +146,7 @@ def pvp1v1(request):
 
 
 def pvp2v2(request):
-    players = Player.objects.filter(Q(arenawins2v2__gt=1) | Q(arenalosses2v2__gt=1)).order_by("-arenarating2v2")
+    players = Player.objects.filter(Q(arenawins2v2__gt=0) | Q(arenalosses2v2__gt=0)).order_by("-arenarating2v2")
 
     return render_to_response('pvp_2v2.html', RequestContext(request, {
         'players': players,
@@ -154,7 +154,7 @@ def pvp2v2(request):
 
 
 def pvpvota(request):
-    players = Player.objects.filter(Q(valleyWins__gt=1) | Q(valleyLosses__gt=1)).order_by("-valleyScore")
+    players = Player.objects.filter(Q(valleyWins__gt=0) | Q(valleyLosses__gt=0)).order_by("-valleyScore")
     for p in players:
         if not p.valleyScore:
             p.valleyScore = p.get_vota_score()
@@ -166,7 +166,7 @@ def pvpvota(request):
 
 
 def pvpoverload(request):
-    players = Player.objects.filter(Q(overloadWins__gt=1) | Q(overloadLosses__gt=1)).order_by("-overloadScore")
+    players = Player.objects.filter(Q(overloadWins__gt=0) | Q(overloadLosses__gt=0)).order_by("-overloadScore")
     for p in players:
         if not p.overloadScore:
             p.overloadScore = p.get_overload_score()
