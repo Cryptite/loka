@@ -228,12 +228,6 @@
                                 <small>W/L:</small>
                                 {{ player.arenawins }} - {{ player.arenalosses }}
                             </h1>
-                            {% if player.highestrating > 1500 %}
-                                <h1>
-                                    <small>Highest Rating:</small>
-                                    {{ player.highestrating }}
-                                </h1>
-                            {% endif %}
                             </span>
                             <i class="rank{{ player.get_1v1_color_rank }}">
                                 <small>Rank {{ player.get_1v1_rank }}</small>
@@ -286,12 +280,6 @@
                                 <small>W/L:</small>
                                 {{ player.arenawins2v2 }} - {{ player.arenalosses2v2 }}
                             </h1>
-                            {% if player.highestrating2v2 > 1500 %}
-                                <h1>
-                                    <small>Highest Rating:</small>
-                                    {{ player.highestrating2v2 }}
-                                </h1>
-                            {% endif %}
                             </span>
                             <i class="rank{{ player.get_2v2_color_rank }}">
                                 <small>Rank {{ player.get_2v2_rank }}</small>
