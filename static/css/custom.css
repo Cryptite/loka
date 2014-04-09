@@ -230,6 +230,22 @@ a.inverse, a:visited {
     background: url('/static/images/bg.png');
 }
 
+.header-town {
+    background: url('/static/images/banners/header_town.jpg');
+}
+
+.header-arena {
+    background: url('/static/images/banners/header_arena.jpg');
+}
+
+.header-overload {
+    background: url('/static/images/banners/header_overload.jpg');
+}
+
+.header-vota {
+    background: url('/static/images/banners/header_vota.jpg');
+}
+
 .thumbnail {
     min-height: 500px;
     border: 0px;
