@@ -11,7 +11,7 @@ register = template.Library()
 @register.simple_tag
 def get_earned_achievements_by_category(player, category):
     return UnlockedAchievement.objects.filter(player=Player.objects.get(name=player),
-                                              achievement__category=category).order_by("-date")
+                                              achievement__category=category).order_by("date")
 
 
 @register.simple_tag
