@@ -997,6 +997,48 @@ strong {
     border-radius: 5px 5px 0px 0px;
 }
 
+.match-section {
+    position: relative;
+    float: left;
+    margin: 5px 15px 10px;
+    width: 218px;
+    height: 100px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: white;
+    -webkit-transition: border .3s ease-in-out;
+    -moz-transition: border .3s ease-in-out;
+    -o-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -border-radius: 5px;
+}
+
+.match-player {
+    width: 100px;
+    height: 100%;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.match-avatar {
+    width: 55px;
+    height: 55px;
+}
+
+.winner {
+    float: left;
+}
+
+.loser {
+    float: right;
+}
+
 span.teamposition {
     float: left;
     padding: 0px 0px 15px 0px;

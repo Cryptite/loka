@@ -1,10 +1,11 @@
 from django.conf.urls import patterns, url, include
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from rest_framework import viewsets, routers
 
+from rest_framework import viewsets, routers
 from loka import views
 from loka.models import Town
+from sitemap import LokaSitemap
 
 
 admin.autodiscover()
@@ -13,6 +14,10 @@ admin.autodiscover()
 ## ViewSets define the view behavior.
 class TownViewSet(viewsets.ModelViewSet):
     model = Town
+
+sitemaps = {
+    'static': LokaSitemap,
+}
 
 # Routers provide an easy way of automatically determining the URL conf
 router = routers.DefaultRouter()
@@ -64,6 +69,8 @@ urlpatterns = patterns('',
                        #url(r'ajax-upload$', views.import_uploader, name="my_ajax_upload"),
                        (r'^tinymce/', include('tinymce.urls')),
                        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+                       (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+
 )
 
 urlpatterns += staticfiles_urlpatterns()
