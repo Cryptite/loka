@@ -1000,8 +1000,8 @@ strong {
 .match-section {
     position: relative;
     float: left;
-    margin: 5px 15px 10px;
-    width: 218px;
+    margin: 20px 4px;
+    width: 240px;
     height: 100px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -1016,27 +1016,63 @@ strong {
 }
 
 .match-player {
-    width: 100px;
-    height: 100%;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    -border-radius: 5px;
-    border-radius: 5px;
-    overflow: hidden;
-    font-size: 12px;
+    width: 50%;
+    padding: 5px;
+    position: absolute;
+    top: 20%;
 }
 
 .match-avatar {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
 }
 
 .winner {
     float: left;
+    left: 0%;
 }
 
 .loser {
     float: right;
+    right: 0%;
+}
+
+div.match-text-winner {
+    position: absolute;
+    width: 100%;
+    top: 0%;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 5px;
+}
+
+div.match-text-loser {
+    position: absolute;
+    width: 98%;
+    bottom: 0%;
+    font-size: 16px;
+    text-align: right;
+}
+
+p.match-ratingchange {
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    font-size: 20px;
+    color: #999;
+}
+
+span.match-date {
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+    left: 5%;
+    font-size: 12px;
+    color: #999;
+}
+
+h4.match-player-rating {
+    margin: 5px;
 }
 
 span.teamposition {
@@ -1049,51 +1085,51 @@ span.teamposition {
 }
 
 .bracket0 {
-    border-bottom: 2px solid #4aaaa5;
+    border-bottom: 4px solid #4aaaa5;
 }
 
 .bracket1 {
-    border-bottom: 6px solid #faffa5;
+    border-bottom: 4px solid #faffa5;
 }
 
 .bracket2 {
-    border-bottom: 6px solid #ffc240;
+    border-bottom: 4px solid #ffc240;
 }
 
 .bracket3 {
-    border-bottom: 6px solid #53ff5f;
+    border-bottom: 4px solid #53ff5f;
 }
 
 .bracket4 {
-    border-bottom: 6px solid #1eac0b;
+    border-bottom: 4px solid #1eac0b;
 }
 
 .bracket5 {
-    border-bottom: 6px solid #64fff2;
+    border-bottom: 4px solid #64fff2;
 }
 
 .bracket6 {
-    border-bottom: 6px solid #4278ff;
+    border-bottom: 4px solid #4278ff;
 }
 
 .bracket7 {
-    border-bottom: 6px solid #fa92ff;
+    border-bottom: 4px solid #fa92ff;
 }
 
 .bracket8 {
-    border-bottom: 6px solid #ff3b2f;
+    border-bottom: 4px solid #ff3b2f;
 }
 
 .bracket9 {
-    border-bottom: 6px solid #c7ccc5;
+    border-bottom: 4px solid #c7ccc5;
 }
 
 .bracket10 {
-    border-bottom: 6px solid #8c8f8e;
+    border-bottom: 4px solid #8c8f8e;
 }
 
 .bracket11 {
-    border-bottom: 6px solid #161616;
+    border-bottom: 4px solid #161616;
 }
 
 .rank0 {

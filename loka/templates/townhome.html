@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load bootstrap_toolkit %}
 {% load humanize %}
-
+{% block title %}Loka Town - {{ town.name }}{% endblock %}
 {% block towncontent %}
     <h2 class="title"><span>The Town of {{ town.name }}</span>
         {% if town.motd != "null" and user.is_authenticated and userintown.count > 0 %}

@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load bootstrap_toolkit %}
-
+{% load humanize %}
+{% block title %}Loka Minecraft - 1v1 Bracket{% endblock %}
 {% block extra_head %}
     {{ form.media }}
     <script type="text/javascript">
@@ -14,9 +15,11 @@
     <div class="jumbotron header-arena">
         <h1>1v1 Arena Bracket</h1>
     </div>
-    <section class="page-section grey">
+    <section class="row">
         {% for match in matches %}
-            <div class="match-section text-center bracket{{ player.get_1v1_color_rank }}">
+            <div class="match-section text-center">
+                <div class="match-text-winner"><a href="/player/{{ match.winner.name }}">{{ match.winner.name }}</a>
+                    [{{ match.winner_rating }}] <span class="text-muted">defeated</span></div>
                 <div class="match-player winner">
                     {% if match.winner.avatar %}
                         <img src="{% static 'media/' %}{{ match.winner.avatar }}"
@@ -45,9 +48,9 @@
                             })
                         </script>
                     {% endif %}
-                    <br/><p>{{ match.winner.name }}
-                    <br/><h4>{{ match.winner_rating }}</h4></p>
                 </div>
+                <p class="match-ratingchange">+{{ match.rating_change }}</p>
+
                 <div class="match-player loser">
                     {% if match.loser.avatar %}
                         <img src="{% static 'media/' %}{{ match.loser.avatar }}"
@@ -76,9 +79,9 @@
                             })
                         </script>
                     {% endif %}
-                    <br/><p>{{ match.loser.name }}
-                    <br/><h4>{{ match.loser_rating }}</h4></p>
                 </div>
+                <div class="match-text-loser">[{{ match.loser_rating }}] <a
+                        href="/player/{{ match.loser.name }}">{{ match.loser.name }}</a></div>
             </div>
         {% endfor %}
     </section>

@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load bootstrap_toolkit %}
 {% load achievement_tags %}
-
+{% block title %}Loka Minecraft - {{ player.name }}{% endblock %}
 {% block extra_head %}
     {{ form.media }}
     <script src="/static/js/Chart.min.js"></script>
