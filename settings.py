@@ -110,6 +110,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
     #'dajaxice.finders.DajaxiceFinder',
     #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
@@ -166,6 +167,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'compressor',
     'rest_framework',
     #'djcelery',
     'bootstrap_toolkit',
