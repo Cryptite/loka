@@ -179,7 +179,7 @@ INSTALLED_APPS = (
     'south',
 )
 
-COMPRESSOR_ENABLED = True
+COMPRESS_ENABLED = True
 
 DJANGO_WYSIWYG_FLAVOR = "tinymce"
 
