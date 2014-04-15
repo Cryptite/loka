@@ -129,7 +129,7 @@ def pvp(request):
 def pvp1v1(request):
     players = Player.objects.filter(Q(arenawins__gt=0) | Q(arenalosses__gt=0)).order_by("-arenarating")
     paginator = Paginator(players, 25)  # Show 25 contacts per page
-    matches = ArenaMatch.objects.all()[:5]
+    matches = ArenaMatch.objects.order_by("-id")[:5]
 
     page = request.GET.get('page')
     try:
