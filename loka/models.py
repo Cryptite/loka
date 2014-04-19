@@ -66,6 +66,8 @@ class Player(models.Model):
         avatar_path = Path(os.getcwd(), "static/media/" + str(self.avatar))
         avatar_sm_path = Path(os.getcwd(), "static/media/" + str(self.avatar_sm))
 
+        print "{} exists: {}".format(avatar_path, avatar_path.exists())
+
         if not avatar_path.exists() or not avatar_sm_path.exists():
             print "Wiping avatars for", self.name
             self.avatar = None
