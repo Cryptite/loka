@@ -4,20 +4,12 @@
 {% block title %}Loka Minecraft - Town System{% endblock %}
 {% block extra_head %}
     {{ form.media }}
-    <!-- Important Owl stylesheet -->
-    <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">
-
-    <!-- Default Theme -->
-    <link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css' %}">
-
-    <!-- Include js plugin -->
-    <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 
     <div class="jumbotron header-town">
-    <h1>Our Town System</h1>
+        <h1>Our Town System</h1>
 
         <h2>Discover Loka's Unique Town System!</h2>
     </div>
@@ -38,7 +30,7 @@
                                                           class="btn btn-success btn-lg pull-right">View the
             Towns of Loka!</a></h2>
 
-        <div class="span5">
+        <div class="span6">
 
             <div class="feature feature-left">
 
@@ -56,11 +48,9 @@
             </div>
         </div>
 
-        <div class="span6">
-            <div id="slider_arena" class="owl-carousel">
-                <div><img class="smoothimage" alt="Nagrand Arena"
-                          src="{% static 'images/town_helrune.jpg' %}" height="300"></div>
-            </div>
+        <div class="span5">
+            <img class="smoothimage" alt="Nagrand Arena"
+                 src="{% static 'images/town_helrune.jpg' %}" height="300">
         </div>
 
     </div>
@@ -69,10 +59,9 @@
         <h2 class="title"><span>Town Benefits</span></h2>
 
         <div class="span6">
-            <div id="slider_townbenefits" class="owl-carousel">
-                <div><img class="smoothimage" alt="Valley of the Artifacts"
-                          src="{% static 'images/bg.png' %}" height="400"></div>
-            </div>
+            <img class="smoothimage" alt="Valley of the Artifacts"
+                 src="{% static 'images/townbuilding.jpg' %}" height="400">
+
             <div class="feature feature-left">
 
                 <i><img src="{% static 'images/icon-ghast.png' %}"/></i>

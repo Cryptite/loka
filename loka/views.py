@@ -91,6 +91,11 @@ def get_avatar(request, player_name):
                         mimetype='application/javascript')
 
 
+def check_player_avatars(objects):
+    for player in objects:
+        player.check_avatar()
+
+
 def getquote(request):
     quote = Quote.objects.order_by('?')
     print quote
@@ -128,6 +133,8 @@ def pvp(request):
 
 def pvp1v1(request):
     players = Player.objects.filter(Q(arenawins__gt=0) | Q(arenalosses__gt=0)).order_by("-arenarating")
+    check_player_avatars(players)
+
     paginator = Paginator(players, 25)  # Show 25 contacts per page
     matches = ArenaMatch.objects.order_by("-id")[:5]
 
@@ -149,7 +156,7 @@ def pvp1v1(request):
 
 def pvp2v2(request):
     players = Player.objects.filter(Q(arenawins2v2__gt=0) | Q(arenalosses2v2__gt=0)).order_by("-arenarating2v2")
-
+    check_player_avatars(players)
     return render_to_response('pvp_2v2.html', RequestContext(request, {
         'players': players,
     }))
@@ -158,6 +165,7 @@ def pvp2v2(request):
 def pvpvota(request):
     players = Player.objects.filter(Q(valleyWins__gt=0) | Q(valleyLosses__gt=0)).order_by("-valleyScore")
     for p in players:
+        p.check_avatar()
         if not p.valleyScore:
             p.valleyScore = p.get_vota_score()
             p.save()
@@ -170,6 +178,7 @@ def pvpvota(request):
 def pvpoverload(request):
     players = Player.objects.filter(Q(overloadWins__gt=0) | Q(overloadLosses__gt=0)).order_by("-overloadScore")
     for p in players:
+        p.check_avatar()
         if not p.overloadScore:
             p.overloadScore = p.get_overload_score()
             p.save()
@@ -182,6 +191,7 @@ def pvpoverload(request):
 def player(request, player_name):
     try:
         player = resolve_player(player_name)
+        player.check_avatar()
         achievements, created = PlayerAchievements.objects.get_or_create(player=player)
         return render_to_response('player.html', RequestContext(request, {
             'player': player,
@@ -353,6 +363,9 @@ def townthread(request, town_name, thread_id):
 
 def townhome(request, town_name):
     town = get_object_or_404(Town, name=town_name)
+    if town:
+        check_player_avatars(town.members.all())
+
     image = TownMedia.objects.filter(town=town)
     if image:
         image = image[0]
@@ -436,12 +449,19 @@ def townslist(request):
                 player = player[0]
             townlist_query = list(chain(Town.objects.filter(public=1),
                                         Town.objects.filter(public=0, members__in=[player]).order_by("name")))
+            for town in townlist_query:
+                check_player_avatars(town.members.all())
+
         return render_to_response('townslist.html', RequestContext(request, {
             'towns': townlist_query,
             'player': Player.objects.get(name=request.user.username),
         }))
     else:
         townlist_query = Town.objects.filter(public=1)
+
+        for town in townlist_query:
+            check_player_avatars(town.members.all())
+
         return render_to_response('townslist.html', RequestContext(request, {
             'towns': townlist_query,
         }))

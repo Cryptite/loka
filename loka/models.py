@@ -1,4 +1,5 @@
 import datetime
+import os
 
 from django.contrib import admin
 from django.contrib.auth.models import User
@@ -6,6 +7,7 @@ from django.db import models
 from django.db.models import Q
 from image_cropping import ImageRatioField, ImageCropField
 from tinymce import models as tinymce_models
+from unipath import Path
 
 from loka.core.email_messages import issue_comment, issue_status_change
 
@@ -59,6 +61,16 @@ class Player(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def check_avatar(self):
+        avatar_path = Path(os.getcwd(), "static/media/" + str(self.avatar))
+        avatar_sm_path = Path(os.getcwd(), "static/media/" + str(self.avatar_sm))
+
+        if not avatar_path.exists() or not avatar_sm_path.exists():
+            print "Wiping avatars for", self.name
+            self.avatar = None
+            self.avatar_sm = None
+            self.save()
 
     def get_1v1_rank(self):
         players = Player.objects.filter(Q(arenawins__gt=0) | Q(arenalosses__gt=0)).order_by("-arenarating")

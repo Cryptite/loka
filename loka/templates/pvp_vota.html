@@ -4,9 +4,7 @@
 {% block title %}Loka Minecraft - VotA Rankings{% endblock %}
 {% block extra_head %}
     {{ form.media }}
-    <script type="text/javascript">
-        $(".streak").tooltip();
-    </script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
 {% endblock %}
 
 {% block content %}
