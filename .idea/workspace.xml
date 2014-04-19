@@ -43,8 +43,10 @@
       <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/loka/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="70" selection-start="2968" selection-end="2968" vertical-scroll-proportion="0.69686985" vertical-offset="546" max-vertical-offset="5661">
-              <folding />
+            <state line="65" column="30" selection-start="2837" selection-end="2837" vertical-scroll-proportion="0.6408567" vertical-offset="716" max-vertical-offset="5831">
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1249,8 +1251,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/loka/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="70" selection-start="2968" selection-end="2968" vertical-scroll-proportion="0.69686985" vertical-offset="546" max-vertical-offset="5661">
-          <folding />
+        <state line="65" column="30" selection-start="2837" selection-end="2837" vertical-scroll-proportion="0.6408567" vertical-offset="716" max-vertical-offset="5831">
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

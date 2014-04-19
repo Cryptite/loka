@@ -1,5 +1,4 @@
 import datetime
-import os
 
 from django.contrib import admin
 from django.contrib.auth.models import User
@@ -63,8 +62,8 @@ class Player(models.Model):
         return self.name
 
     def check_avatar(self):
-        avatar_path = Path(os.getcwd(), "static/media/" + str(self.avatar))
-        avatar_sm_path = Path(os.getcwd(), "static/media/" + str(self.avatar_sm))
+        avatar_path = Path("/var/www/loka3/static/media/" + str(self.avatar))
+        avatar_sm_path = Path("/var/www/loka3/static/media/" + str(self.avatar_sm))
 
         print "{} exists: {}".format(avatar_path, avatar_path.exists())
 
