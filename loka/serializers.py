@@ -97,6 +97,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
 class AchievementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Achievement
+        lookup_field = "name"
 
 
 class UnlockedAchievementSerializer(serializers.ModelSerializer):

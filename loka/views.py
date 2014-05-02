@@ -72,9 +72,10 @@ class ArenaMatchDetail(generics.CreateAPIView):
     serializer_class = ArenaMatchSerializer
 
 
-class AchievementDetail(generics.CreateAPIView):
+class AchievementDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Achievement.objects.all()
     serializer_class = AchievementSerializer
+    lookup_field = "name"
 
 
 def start(request):
@@ -217,7 +218,7 @@ def player_achievements(request, player_name, category):
         return render_to_response('player_achievements.html', RequestContext(request, {
             'player': player,
             'category': category,
-            'achievements': achievements,
+            'achievements': reversed(achievements),
             'locked_achievements': locked_achievements
         }))
     except Exception, e:
