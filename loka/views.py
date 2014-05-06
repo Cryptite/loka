@@ -413,6 +413,11 @@ def townhome(request, town_name):
             town.description = request.POST['description']
             town.save()
 
+        elif request.POST['action'] == "delete" and request.user.username == "Cryptite":
+            print 'Delete', town.name
+            town.delete()
+            return townslist(request)
+
     return render_to_response('townhome.html', RequestContext(request, {
         'town': town,
         'image': image,
@@ -455,6 +460,7 @@ def townslist(request):
 
         return render_to_response('townslist.html', RequestContext(request, {
             'towns': townlist_query,
+            'townmedia': TownMedia.objects.all(),
             'player': Player.objects.get(name=request.user.username),
         }))
     else:

@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load bootstrap_toolkit %}
+{% load widgets %}
+{% load cropping thumbnail %}
 {% block title %}Loka Minecraft - Towns of Loka{% endblock %}
 {% block extra_head %}
     {{ form.media }}
@@ -21,8 +23,20 @@
             {% for town in towns %}
                 <div class="teammember text-center">
 
-                    <div class="teamimagewrap smallportfolioshortcode"><a href="#"><img
-                            src="{% static 'images/arena_nagrand.jpg' %}"/></a>
+                    <div class="teamimagewrap smallportfolioshortcode">
+                        <a href="/town/{{ town.name }}">
+                            {% if town.name|has_town_banner != None %}
+                                {% with image=town.name|has_town_banner %}
+                                    {% if image.banner %}
+                                        <img src="{% thumbnail image.banner 500x300 detail %}"/>
+                                    {% else %}
+                                        <img src="{% static 'images/town_helrune.jpg' %}"/>
+                                    {% endif %}
+                                {% endwith %}
+                            {% else %}
+                                <img src="{% static 'images/town_helrune.jpg' %}"/>
+                            {% endif %}
+                        </a>
                     </div>
 
                     <h1><a class="inverse-link" href="/town/{{ town.name }}">{{ town.name }}</a></h1>

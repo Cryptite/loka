@@ -534,7 +534,7 @@ a.inverse, a:visited {
 
 .teamimagewrap img {
     width: 100%;
-    height: auto;
+    height: 150px;
     border: 0;
     border-radius: 5px 5px 0px 0px;
 }

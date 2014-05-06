@@ -87,7 +87,7 @@
                                             <input class="image-ratio"
                                                    data-adapt-rotation="false"
                                                    data-allow-fullsize="false"
-                                                   data-height="250"
+                                                   data-height="400"
                                                    data-image-field="banner"
                                                    data-my-name="banner_crop"
                                                    data-size-warning="true"
@@ -322,6 +322,13 @@
             <a href="/town/{{ town.name }}" type="button" class="btn btn-primary btn-md">Home</a>
             <a href="/town/{{ town.name }}/forum" type="button" class="btn btn-primary btn-md">Town Forum <span
                     class="active badge"> {{ town.num_threads }}</span></a>
+
+            <form method="post" action="/town/{{ town.name }}">
+                {% csrf_token %}
+                <button href="#" type="submit pull-right" name="action" class="btn btn-warning btn-md"
+                        value="delete">Delete Town
+                </button>
+            </form>
         </div>
     {% endif %}
     {% block towncontent %}{% endblock %}
