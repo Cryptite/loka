@@ -374,8 +374,8 @@ def townhome(request, town_name):
         image = TownMedia.objects.create(town=town)
     form = TownBannerForm(instance=image)
     user_in_town = town.members.filter(name=request.user.username)
-    if request.user.username == "Cryptite":
-        user_in_town = User.objects.filter(username="Cryptite")
+    if request.user.username == "Cryptite" or request.user.username == "Magpieman":
+        user_in_town = User.objects.filter(username=request.user.username)
     if not request.user.is_authenticated() and not town.public:
         return render_to_response('townslist.html', RequestContext(request, {
             'towns': Town.objects.filter(public=1),
@@ -445,7 +445,7 @@ def towns(request):
 
 def townslist(request):
     if request.user.is_authenticated():
-        if request.user.username == "Cryptite":
+        if request.user.username == "Cryptite" or request.user.username == "Magpieman":
             townlist_query = Town.objects.all().order_by("name")
         else:
             player = Player.objects.filter(name=request.user.username)
