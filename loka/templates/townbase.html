@@ -33,8 +33,11 @@
         <div class="jumbotron">
     {% endif %}
 <h1>{{ town.name }}</h1>
-
-<h2>{{ town.num_members }} members</h2>
+{% if user.is_authenticated and userintown.count > 0 %}
+    <h2>{{ town.num_members }} members</h2>
+{% else %}
+    <br/><br/>
+{% endif %}
 </div>
 
 <div class="span2">
@@ -129,70 +132,11 @@
 
                                         <div class="media-body">
                                             <h4 class="media-heading">Public</h4>
-                                            If your town is public, all players can see your town's website, but their
-                                            access
-                                            is limited to only seeing yourself as the Owner and they'll be able to post
-                                            comments
-                                            on
-                                            your town's home page. Access to your Town Board is still limited to
-                                            members.
+                                            Better town privacy settings are coming soon. For now, however, your town
+                                            forum and your subowners/members are always private and only visible to town
+                                            members who are logged in.
                                         </div>
                                     </div>
-
-                                    <div class="media">
-                                        <a class="pull-left" href="#">
-                                            <img src="{% static 'images/eye_closed.png' %}"/>
-                                        </a>
-
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Private</h4>
-                                            A Private town does not show up on the Towns of Loka page at all unless you
-                                            are
-                                            logged in and a member of that town. If you wish your town to remain a
-                                            secret,
-                                            choose this.
-                                        </div>
-                                    </div>
-                                    <br/>
-
-                                    <div class="input-group pull-right">
-                                        {% if town.public %}
-
-                                            <span>Your town is visible to the public. </span>
-                                            <input type="submit" name="action" class="btn btn-primary btn-md public"
-                                                   value=" Set Private">
-                                        {% else %}
-                                            <span>Your town is currently private. </span>
-                                            <input type="submit" name="action" class="btn btn-warning btn-md public"
-                                                   value=" Set Public">
-                                        {% endif %}
-                                    </div>
-                                    <script type="application/javascript">
-                                        $('.public').click(function () {
-                                            $.ajax({
-                                                type: "POST",
-                                                url: "/town/{{ town.name }}",
-                                                data: {'town': "{{ town }}",
-                                                    'csrfmiddlewaretoken': '{{csrf_token}}',
-                                                    'action': "public"},
-                                                dataType: "text",
-                                                success: function (rs, e) {
-                                                    var button = $('.public')[0]
-                                                    var text = document.getElementById("visibility");
-                                                    if (rs == "True") {
-                                                        button.value = "Set Private";
-                                                    } else {
-                                                        button.value = "Set Public";
-                                                    }
-                                                },
-                                                error: function (rs, e) {
-                                                    alert(rs.responseText);
-                                                }
-                                            });
-                                        })
-                                    </script>
-                                    <br/><br/>
-                                    <small>More town settings will arrive soon!</small>
                                 </div>
                             </div>
                         </div>

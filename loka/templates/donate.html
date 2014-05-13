@@ -15,7 +15,7 @@
     <div class="container">
         <hr class="featurette-divider">
         <div class="row featurette">
-            <div class="col-md-7">
+            <div class="col-md-12">
                 <h1 class="featurette-heading">An awful lot of coffee went into this<br/><span
                         class="text-muted">Lend a hand to help your server developers!</span></h1>
 
@@ -29,7 +29,21 @@
                     to
                     players. That said, however, everybody loves perks!</p>
 
-                <br/>
+                <p class="lead">
+
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="NY45XVG7395NL">
+                    <input type="submit" name="submit" value="Donate through PayPal"
+                           class="btn btn-primary btn-lg center-block"/>
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1"
+                         height="1">
+                </form>
+                </p>
+            </div>
+            <div class="col-md-7">
+
+            <br/>
 
                 <h2>With any donation of $5 USD or more, players will gain access use of all of the following pets:</h2>
 
@@ -66,22 +80,26 @@
                 <p>Donator pets are passive, unkillable and follow only their owners around. Additionally, they only
                     appear within Spawn. Switching between them is done by using the in-game command, <span
                             class="text-info">/pets</span></p>
-
-                <p class="lead">
-
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="NY45XVG7395NL">
-                <input type="submit" name="submit" value="Donate through PayPal"
-                       class="btn btn-primary btn-lg center-block"/>
-                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1"
-                         height="1">
-                </form>
-                </p>
             </div>
             <div class="col-md-5">
                 <br/><br/><br/><br/>
                 <img class="featurette-image img-responsive smoothimage" src="{% static 'images/batpet.jpg' %}">
+            </div>
+        </div>
+        <div class="row featurette">
+            <br/>
+
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive smoothimage" src="{% static 'images/batpet.jpg' %}">
+            </div>
+            <div class="col-md-7">
+                <h2>With any donation of $15 USD or more, earn the ability to set one of your horses as a Skeletal or
+                    Zombie horse!</h2>
+
+                <p>The use of <span class="text-info">/horse</span> grants you the ability to set the horse you are
+                    currently riding as a Zombie or a Skeleton horse. This can only be used on one horse at a time. Any
+                    previously undead horses will be restored to their natural state if a different one is set as
+                    undead.</p>
             </div>
         </div>
     </div>

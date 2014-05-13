@@ -183,7 +183,7 @@ class PlayerAchievements(models.Model):
 
 class Town(models.Model):
     name = models.CharField(max_length=30)
-    public = models.BooleanField(default=False)
+    public = models.BooleanField(default=True)
     description = tinymce_models.HTMLField()
     tag = models.CharField(max_length=10, blank=True, null=True)
     motd = models.CharField(max_length=255, blank=True, null=True)
