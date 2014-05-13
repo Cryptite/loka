@@ -1,4 +1,3 @@
-from itertools import chain
 import json
 
 from django.contrib import messages, auth
@@ -11,9 +10,9 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.middleware.csrf import get_token
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
+
 from rest_framework import generics
 from rest_framework.status import HTTP_201_CREATED
-
 from loka.core.email_messages import issue_created
 from loka.forms import TownBannerForm
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
@@ -444,34 +443,16 @@ def towns(request):
 
 
 def townslist(request):
-    if request.user.is_authenticated():
-        if request.user.username == "Cryptite" or request.user.username == "Magpieman":
-            townlist_query = Town.objects.all().order_by("name")
-        else:
-            player = Player.objects.filter(name=request.user.username)
-            if len(player) == 0:
-                player = Player.objects.create(user=request.user, name=request.user.username)
-            else:
-                player = player[0]
-            townlist_query = list(chain(Town.objects.filter(public=1),
-                                        Town.objects.filter(public=0, members__in=[player]).order_by("name")))
-            for town in townlist_query:
-                check_player_avatars(town.members.all())
+    townlist_query = Town.objects.all().order_by("name")
 
-        return render_to_response('townslist.html', RequestContext(request, {
-            'towns': townlist_query,
-            'townmedia': TownMedia.objects.all(),
-            'player': Player.objects.get(name=request.user.username),
-        }))
-    else:
-        townlist_query = Town.objects.filter(public=1)
+    for town in townlist_query:
+        check_player_avatars(town.members.all())
 
-        for town in townlist_query:
-            check_player_avatars(town.members.all())
-
-        return render_to_response('townslist.html', RequestContext(request, {
-            'towns': townlist_query,
-        }))
+    return render_to_response('townslist.html', RequestContext(request, {
+        'towns': townlist_query,
+        'townmedia': TownMedia.objects.all(),
+        'player': Player.objects.get(name=request.user.username),
+    }))
 
 
 def logout(request):
