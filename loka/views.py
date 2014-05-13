@@ -1,6 +1,7 @@
 import json
 
 from django.contrib import messages, auth
+
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core import serializers
@@ -450,8 +451,7 @@ def townslist(request):
 
     return render_to_response('townslist.html', RequestContext(request, {
         'towns': townlist_query,
-        'townmedia': TownMedia.objects.all(),
-        'player': Player.objects.get(name=request.user.username),
+        'townmedia': TownMedia.objects.all()
     }))
 
 
