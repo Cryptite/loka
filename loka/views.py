@@ -1,7 +1,6 @@
 import json
 
 from django.contrib import messages, auth
-
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core import serializers
@@ -498,7 +497,7 @@ def registration(request, registration_id):
 
 def home(request):
     news = BannerArticle.objects.all()
-    print news
+    print request.POST
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
