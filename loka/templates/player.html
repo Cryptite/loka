@@ -27,9 +27,10 @@
                             }
                             else {
                                 var data = JSON.parse(xhr.responseText);
-                                $('.{{ player.name }}').fadeOut(500, function () {
-                                    $('.{{ player.name }}').attr('src', data["path"]);
-                                    $('.{{ player.name }}').fadeIn(500);
+                                var player = $('.{{ player.name }}');
+                                player.fadeOut(500, function () {
+                                    player.attr('src', data["path"]);
+                                    player.fadeIn(500);
                                 });
                             }
                         }
