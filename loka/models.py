@@ -254,7 +254,7 @@ class Thread(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(Player)
     last_updated = models.DateTimeField(auto_now_add=True)
-    owner_only = models.BooleanField()
+    owner_only = models.BooleanField(default=False)
 
     def num_posts(self):
         return Post.objects.filter(thread=self).count()
