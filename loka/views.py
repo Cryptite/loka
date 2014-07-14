@@ -10,9 +10,9 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.middleware.csrf import get_token
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
-
 from rest_framework import generics
 from rest_framework.status import HTTP_201_CREATED
+
 from loka.core.email_messages import issue_created
 from loka.forms import TownBannerForm
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
@@ -351,7 +351,7 @@ def townthread(request, town_name, thread_id):
 
     if request.POST:
         Post.objects.create(thread=thread,
-                            text=request.POST['comment'],
+                            description=request.POST['comment'],
                             author=Player.objects.get(name=request.user.username))
 
     return render_to_response('townthread.html', RequestContext(request, {

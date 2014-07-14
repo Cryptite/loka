@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load bootstrap_toolkit %}
 {% load humanize %}
-
+{% block title %}{{ town.name }} - {{ thread.title }}{% endblock %}
 {% block towncontent %}
     <h3 class="title"><span><a href="/town/{{ town.name }}">{{ town.name }}</a> > {{ thread.title }} <small>
         - {{ posts.count }} post{{ posts.count|pluralize }}
@@ -54,8 +54,8 @@
 
     <form method="post" action="/town/{{ town.name }}/thread/{{ thread.id }}">
         {% csrf_token %}
-        <textarea class="form-control" name="comment" placeholder="Add a comment"
+        <textarea class="form-control" name="comment" placeholder="Post a reply"
                   rows="2"></textarea>
-        <button type="submit" name="action" class="btn btn-info btn-md" value="post">Post comment</button>
+        <button type="submit" name="action" class="btn btn-info btn-md" value="post">Post reply</button>
     </form>
 {% endblock %}
