@@ -5,10 +5,10 @@ from unipath import Path
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-#djcelery.setup_loader()
+# djcelery.setup_loader()
 
 DEBUG = True
-TEMPLATE_DEBUG = True 
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['loka.minecraftarium.com']
 
@@ -209,6 +209,9 @@ THUMBNAIL_PROCESSORS = (
 
 IMAGE_CROPPING_SIZE_WARNING = True
 
+SOUTH_MIGRATION_MODULES = {
+    'easy_thumbnails': 'easy_thumbnails.south_migrations',
+}
 
 ###################
 # EMAIL SETTINGS #
