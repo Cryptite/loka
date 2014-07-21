@@ -152,8 +152,8 @@
                     <h3 class="panel-title">PvP Achievements</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="col-md-8">
-                        <h3><a href="/player/{{ player.name }}/achievements/pvp">General -
+                    <div class="col-md-4">
+                    <h3><a href="/player/{{ player.name }}/achievements/pvp">General -
                             <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "pvp" %}</small>
                         </a>
                         </h3>
@@ -167,7 +167,21 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <h3><a href="/player/{{ player.name }}/achievements/worldpvp">World PvP -
+                        <h3><a href="/player/{{ player.name }}/achievements/arenas">Arenas -
+                            <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "arenas" %}</small>
+                        </a>
+                        </h3>
+
+                        <div class="progress">
+                            <div class="progress-bar center-text" role="progressbar"
+                                 aria-valuenow="{% get_achievement_percentage_by_category player.name "arenas" %}"
+                                 aria-valuemin="0" aria-valuemax="100"
+                                 style="width: {% get_achievement_percentage_by_category player.name "arenas" %}%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    <h3><a href="/player/{{ player.name }}/achievements/worldpvp">World PvP -
                             <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "worldpvp" %}</small>
                         </a>
                         </h3>
