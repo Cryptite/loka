@@ -181,6 +181,12 @@ class PlayerAchievements(models.Model):
                                   self.get_total_achievement_percentage())
 
 
+class Alliance(models.Model):
+    name = models.CharField(max_length=40)
+    leader = models.ForeignKey(Town)
+    towns = models.ManyToManyField(Town, related_name="alliancetowns")
+
+
 class Town(models.Model):
     name = models.CharField(max_length=30)
     public = models.BooleanField(default=True)
@@ -190,6 +196,8 @@ class Town(models.Model):
     owner = models.ForeignKey(Player)
     members = models.ManyToManyField(Player, related_name="members")
     subowners = models.ManyToManyField(Player, related_name="subowners", blank=True, null=True)
+    level = models.IntegerField()
+    alliance = models.ForeignKey(Alliance)
 
     def __unicode__(self):
         return self.name
