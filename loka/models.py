@@ -196,7 +196,7 @@ class Town(models.Model):
     owner = models.ForeignKey(Player)
     members = models.ManyToManyField(Player, related_name="members")
     subowners = models.ManyToManyField(Player, related_name="subowners", blank=True, null=True)
-    # level = models.IntegerField()
+    level = models.IntegerField(default=1)
     # alliance = models.ForeignKey(Alliance)
 
     def __unicode__(self):
