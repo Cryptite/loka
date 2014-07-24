@@ -7,13 +7,8 @@ from unipath import Path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # djcelery.setup_loader()
 
-<<<<<<< HEAD
 DEBUG = False
 TEMPLATE_DEBUG = False
-=======
-DEBUG = True
-TEMPLATE_DEBUG = True
->>>>>>> e8cb49a0bf9635b2971507d0e60296e6354563d4
 
 ALLOWED_HOSTS = ['loka.minecraftarium.com']
 
