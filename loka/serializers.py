@@ -199,6 +199,7 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.CharField(max_length=50)
     subowners = serializers.CharField(required=False)
     members = serializers.CharField()
+    level = serializers.IntegerField()
 
     def restore_object(self, attrs, instance=None):
         """
@@ -215,6 +216,7 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
             instance.name = attrs.get('name', instance.name)
             instance.motd = attrs.get('motd')
             instance.owner = resolve_player(attrs.get("owner"))
+            instance.level = attrs.get('level')
             return instance
 
         owner = attrs.get("owner")
@@ -228,7 +230,7 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Town
-        fields = ('name', "motd", "owner", "subowners", "members")
+        fields = ('name', "motd", "owner", "subowners", "members", "level")
         lookup_field = "name"
 
 
