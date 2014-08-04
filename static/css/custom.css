@@ -1604,7 +1604,7 @@ textarea,
     display: none;
 }
 
-form .search {
+.search {
     width: 200px;
     height: 40px;
     margin: 100px auto 0;
@@ -1612,7 +1612,7 @@ form .search {
     margin-top: 10px;
 }
 
-form .icon, form .submit {
+.search-icon, .search-submit {
     width: 35px;
     height: 35px;
     background: #d75813;
@@ -1624,7 +1624,7 @@ form .icon, form .submit {
     0px 8px 10px rgba(0, 0, 0, 0.5);
 }
 
-form .submit {
+.search-submit {
     background: #009bff;
     cursor: pointer;
     box-shadow: 0px 5px #0276c1,
@@ -1632,7 +1632,7 @@ form .submit {
 }
 
 /* Now, we'll create a search (magnifying glass) icon using pseudo elements */
-form .icon:after, form .submit:after {
+.search-icon:after, .search-submit:after {
     content: '';
     position: absolute;
     width: 13px;
@@ -1643,7 +1643,7 @@ form .icon:after, form .submit:after {
     top: 9px;
 }
 
-form .icon:before, form .submit:before {
+.search-icon:before, .search-submit:before {
     content: '';
     position: absolute;
     height: 8px;
@@ -1658,7 +1658,7 @@ form .icon:before, form .submit:before {
 }
 
 /* Styling the input */
-form #search {
+#search {
     -webkit-appearance: none;
     height: 35px;
     width: 0;

@@ -100,10 +100,10 @@
 
                 <!-- Alos, a label for it so that we can style it however we want it-->
                 <input id="submit" value="" type="submit">
-                <label for="submit" class="submit"></label>
+                <label for="submit" class="search-submit"></label>
 
                 <!-- trigger button and input -->
-                <a href="javascript: void(0)" class="icon"></a>
+                <a href="javascript: void(0)" class="search-icon"></a>
                 <input type="search" name="Search" id="search" placeholder="Search">
             </form>
 
@@ -188,10 +188,10 @@
                 minLength: 2
             });
 
-            $(".icon").click(function () {
+            $(".search-icon").click(function () {
                 var icon = $(this),
                         input = icon.parent().find("#search"),
-                        submit = icon.parent().find(".submit"),
+                        submit = icon.parent().find(".search-submit"),
                         is_submit_clicked = false;
 
                 // Animate the input field
