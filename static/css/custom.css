@@ -1604,7 +1604,7 @@ textarea,
     display: none;
 }
 
-form {
+form .search {
     width: 200px;
     height: 40px;
     margin: 100px auto 0;
