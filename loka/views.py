@@ -10,9 +10,9 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.middleware.csrf import get_token
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
+
 from rest_framework import generics
 from rest_framework.status import HTTP_201_CREATED
-
 from loka.core.email_messages import issue_created
 from loka.forms import TownBannerForm
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
@@ -209,7 +209,7 @@ def player_achievements(request, player_name, category):
         achievements = UnlockedAchievement.objects.filter(player=Player.objects.get(name=player),
                                                           achievement__category=category)
 
-        #Resolve achievements that aren't earned
+        # Resolve achievements that aren't earned
         achievement_names = [achievement.achievement.name for achievement in achievements]
         locked_achievements = [a for a in Achievement.objects.filter(category=category) if
                                not a.name in achievement_names]
@@ -244,7 +244,7 @@ def issuelist(request):
 
             issue_created(author.name, new_issue.title, new_issue.id)
 
-            #     if town.public:
+            # if town.public:
             #         town.public = False
             #     else:
             #         town.public = True
@@ -340,6 +340,20 @@ def townforum(request, town_name):
     return render_to_response('townforum.html', RequestContext(request, {
         'town': town,
         'threads': threads,
+        'userintown': user_in_town
+    }))
+
+
+def towngallery(request, town_name):
+    town = Town.objects.get(name=town_name)
+    user_in_town = town.members.filter(name=request.user.username)
+    print user_in_town
+    # if not request.user.is_authenticated() and not town.public:
+    # raise Http404
+    # elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "cryptite":
+    #     raise Http404
+
+    return render_to_response('towngallery.html', RequestContext(request, {
         'userintown': user_in_town
     }))
 
@@ -485,7 +499,7 @@ def registration(request, registration_id):
             messages.success(request, 'Welcome to Loka!')
             user.save()
             user = authenticate(username=user.username, password=user.password)
-            #login(request, user)
+            # login(request, user)
             return render_to_response('index.html', RequestContext(request, {
                 'user': user,
             }))

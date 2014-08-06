@@ -11,9 +11,10 @@ from sitemap import LokaSitemap
 admin.autodiscover()
 
 
-## ViewSets define the view behavior.
+# # ViewSets define the view behavior.
 class TownViewSet(viewsets.ModelViewSet):
     model = Town
+
 
 sitemaps = {
     'static': LokaSitemap,
@@ -61,6 +62,7 @@ urlpatterns = patterns('',
                        url(r'^issue/(?P<issue_id>\d+)', 'loka.views.issue'),
                        url(r'^issues', 'loka.views.issuelist'),
                        url(r'^town/(?P<town_name>\w+)/thread/(?P<thread_id>\d+)', 'loka.views.townthread'),
+                       url(r'^town/(?P<town_name>\w+)/gallery', 'loka.views.towngallery'),
                        url(r'^town/(?P<town_name>\w+)/forum', 'loka.views.townforum'),
                        url(r'^town/(?P<town_name>\w+)', 'loka.views.townhome'),
                        url(r'^register/(?P<registration_id>\w+)', 'loka.views.registration'),

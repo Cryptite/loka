@@ -1,0 +1,124 @@
+{% extends "townbase.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+{% load humanize %}
+{% block title %}Loka Town - {{ town.name }} Gallery{% endblock %}
+{% block towncontent %}
+    <h2 class="title"><span>{{ town.name }} Town Gallery</span>
+        {% if town.motd != "null" %}
+            <small> - {{ town.motd }}</small>
+        {% endif %}
+        <!-- Button trigger modal -->
+        <button class="btn btn-primary btn-md pull-right newthread" data-toggle="modal" data-target="#myModal">
+            Upload Images
+        </button>
+    </h2>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Create a new thread</h4>
+                </div>
+                <form method="post" action="/town/{{ town.name }}/forum">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <input type="text" class="form-control" name="title" placeholder="Thread title"/>
+                        <textarea class="desc" name="text" placeholder="Post your comment here!"
+                                  rows="3"></textarea>
+                        <button type="submit" name="action" class="btn btn-primary" value="thread">New Thread</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    {#    <span class="thread-category">Owner board</span>#}
+    {#    <div class="theblogpost">#}
+    {##}
+    {#        <div class="thread-category-wrap">#}
+    {##}
+    {#            <h3>Private forum</h3>#}
+    {##}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+    {% if threads.count > 0 %}
+        {% for thread in threads %}
+            <!-- Modal -->
+            <div class="modal fade" id="modal_{{ thread.id }}" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            Are you sure you wish to delete this thread? All posts within will be deleted as well!
+                        </div>
+                        <div class="modal-footer">
+                            <form method="post" action="/deleteitem/{{ thread.id }}">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="thread">Delete Thread
+                            </form>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <div class="theblogpost">
+
+                <div class="bloginnerwrap">
+
+                    <div class="blogicons blogpost-image postcount" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="{{ thread.num_posts }} posts">
+                        <p>{{ thread.num_posts }}
+                            <small>post{{ thread.num_posts|pluralize }}</small>
+                        </p>
+                    </div>
+
+                    <h3><span><a class="inverse-link"
+                                 href="/town/{{ town.name }}/thread/{{ thread.id }}">{{ thread.title }}</a>
+                    </span>
+                        {% if thread.author.name == user.username %}
+                            <button type="button" class="close pull-right" data-toggle="modal"
+                                    data-target="#modal_{{ thread.id }}">&times;</button>{% endif %}
+                    </h3>
+
+                    <p><img src="{% static 'media/' %}{{ thread.author.avatar_sm }}"
+                            class="img-rounded"/> {{ thread.author.name }}
+                        <small>- {{ thread.last_updated|naturaltime }}</small>
+                    </p>
+
+                </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1 class="text-center">Your town has no images yet. <br/>
+            Go ahead and
+            <a href="#" data-toggle="modal" data-target="#myModal">
+                upload some!
+            </a>
+        </h1>
+        <a
+                class="caption"
+                href="http://cargocollective.com/jaimemartinez/Illustration"
+                data-title="The Artifact"
+                data-description="The Middle Artifact in the Valley of the Artifacts BG">
+
+            <img src="{% static 'images/bg_vota1.jpg' %}" alt="Illustration of Smug Eagle">
+
+        </a>
+    {% endif %}
+    {#    <span class="thread-category">Public board</span>#}
+{% endblock %}

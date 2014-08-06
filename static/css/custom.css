@@ -1673,3 +1673,50 @@ textarea,
     box-shadow: 0px 5px #bbb,
     0px 8px 10px rgba(0, 0, 0, 0.5);
 }
+
+/* Caption images */
+.caption {
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+}
+
+.caption img {
+    display: block;
+    max-width: 100%;
+}
+
+.caption::before,
+.caption::after {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    padding: 20px;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+
+.caption::before {
+    content: attr(data-title);
+    top: 0;
+    height: 30%;
+    background: #a21f00;
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.caption::after {
+    content: '\201C' attr(data-description) '\201D';
+    top: 30%;
+    height: 70%;
+    background: #db2e00;
+    font-size: 16px;
+    text-align: right;
+}
+
+.caption:hover::before,
+.caption:hover::after {
+    opacity: 1;
+}
