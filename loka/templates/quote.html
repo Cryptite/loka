@@ -18,17 +18,17 @@
                             $(document).ready(function () {
                                 $.ajax({
                                     type: "GET",
-                                    url: "/avatar/{{ quote.author.name }}",
+                                    url: "/avatar/{{ winner.name }}",
                                     contentType: 'application/json',
                                     complete: function (xhr, status) {
                                         if (status === 'error' || !xhr.responseText) {
-                                            alert("error");
                                         }
                                         else {
                                             var data = JSON.parse(xhr.responseText);
-                                            $('.quoteavatar').fadeOut(500, function () {
-                                                $('.quoteavatar').attr('src', data["path"]);
-                                                $('.quoteavatar').fadeIn(500);
+                                            var dom = $('.quoteavatar');
+                                            dom.fadeOut(500, function () {
+                                                dom.attr('src', data["path"]);
+                                                dom.fadeIn(500);
                                             });
                                         }
                                     }
@@ -41,7 +41,6 @@
                     <h4 class="title-sm"><span>
                         {% if quote.author %}
                             {{ quote.author }}
-                            <small> - {{ quote.author.rank }}</small>
                         {% else %}
                             Unknown
                         {% endif %}</span>
