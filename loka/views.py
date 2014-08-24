@@ -131,6 +131,10 @@ def pvp(request):
     return render_to_response('pvp.html', RequestContext(request))
 
 
+def map(request):
+    return render_to_response('map.html', RequestContext(request))
+
+
 def pvp1v1(request):
     players = Player.objects.filter(Q(arenawins__gt=0) | Q(arenalosses__gt=0)).order_by("-arenarating")
     check_player_avatars(players)
