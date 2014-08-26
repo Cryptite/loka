@@ -63,6 +63,8 @@ class PlayerAchievementsDetail(generics.ListCreateAPIView):
         player_achievements, created = PlayerAchievements.objects.get_or_create(player=player)
         player_achievements.resolve_achievements(data["achievements"])
         player_achievements.save()
+
+        retrieve_avatar(player)
         return HttpResponse(status=HTTP_201_CREATED)
 
 
