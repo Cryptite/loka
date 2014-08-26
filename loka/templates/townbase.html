@@ -270,8 +270,8 @@
 
             <form method="post" action="/town/{{ town.name }}">
                 {% csrf_token %}
-                <button type="button" name="action" class="btn btn-warning btn-md"
-                   value="delete">Delete Town
+                <button href="#" type="submit pull-right" name="action" class="btn btn-warning btn-md"
+                        value="delete">Delete Town
                 </button>
             </form>
         </div>
