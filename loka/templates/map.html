@@ -44,7 +44,11 @@
 
         {% for territory in territories %}
             {% if territory.town.has_territories and territory.latitude and territory.longitude %}
-                L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
+                {% if territory.conflicted %}
+                    L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'red', fillColor: 'red', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
+                {% else %}
+                    L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
+                {% endif %}
             {% endif %}
         {% endfor %}
     </script>
