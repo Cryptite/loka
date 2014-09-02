@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, url, include
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
 from rest_framework import viewsets, routers
+
 from loka import views
 from loka.models import Town
 from sitemap import LokaSitemap
@@ -36,6 +36,7 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^api/town', include(router.urls)),
                        url(r'^api/town/(?P<name>\w+)/$', views.TownDetail.as_view()),
+                       url(r'^api/territory/(?P<name>\w+)/$', views.TerritoryDetail.as_view()),
                        url(r'^api/user/(?P<username>\w+)/$', views.UserDetail.as_view()),
                        url(r'^api/player/(?P<name>\w+)/$', views.PlayerDetail.as_view()),
                        url(r'^api/arenamatch', views.ArenaMatchDetail.as_view()),
@@ -55,7 +56,7 @@ urlpatterns = patterns('',
                        url(r'^pvp2v2', 'loka.views.pvp2v2'),
                        url(r'^pvp1v1', 'loka.views.pvp1v1'),
                        url(r'^pvp', 'loka.views.pvp'),
-                       url(r'^map', 'loka.views.map'),
+                       url(r'^map', 'loka.views.map_page'),
                        url(r'^deleteitem/(?P<item_id>\d+)', 'loka.views.deleteitem'),
                        url(r'^player/(?P<player_name>\w+)/achievements/(?P<category>\w+)',
                            'loka.views.player_achievements'),

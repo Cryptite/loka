@@ -186,7 +186,6 @@ class PlayerAchievements(models.Model):
 #     leader = models.ForeignKey(Town)
 #     towns = models.ManyToManyField(Town, related_name="alliancetowns")
 
-
 class Town(models.Model):
     name = models.CharField(max_length=30)
     public = models.BooleanField(default=True)
@@ -197,6 +196,8 @@ class Town(models.Model):
     members = models.ManyToManyField(Player, related_name="members")
     subowners = models.ManyToManyField(Player, related_name="subowners", blank=True, null=True)
     level = models.IntegerField(default=1)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
     # alliance = models.ForeignKey(Alliance)
 
     def __unicode__(self):
@@ -233,6 +234,14 @@ class TownMedia(models.Model):
     banner_crop = ImageRatioField('banner', '1250x250', size_warning=True)
     list_banner = ImageCropField(blank=True, null=True, upload_to='townlistimages/')
     list_banner_crop = ImageRatioField('list_banner', '250x150', size_warning=True)
+
+
+class Territory(models.Model):
+    name = models.CharField(max_length=50)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    conflicted = models.BooleanField(default=False)
+    town = models.ForeignKey(Town)
 
 
 class Quote(models.Model):

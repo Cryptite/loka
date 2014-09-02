@@ -16,9 +16,9 @@ from rest_framework.status import HTTP_201_CREATED
 from loka.core.email_messages import issue_created
 from loka.forms import TownBannerForm
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
-    IssueComment, ISSUE_STATUS, Achievement, PlayerAchievements, UnlockedAchievement
+    IssueComment, ISSUE_STATUS, Achievement, PlayerAchievements, UnlockedAchievement, Territory
 from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer, \
-    PlayerAchievementsSerializer, AchievementSerializer, resolve_player
+    PlayerAchievementsSerializer, AchievementSerializer, resolve_player, TerritorySerializer
 from loka.tasks import retrieve_avatar
 
 
@@ -38,6 +38,12 @@ class TownDetail(generics.RetrieveUpdateDestroyAPIView):
         obj.set_many_field(self.members, obj.members)
         obj.set_many_field(self.subowners, obj.subowners)
         super(TownDetail, self).post_save(obj, created)
+
+
+class TerritoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Territory.objects.all()
+    serializer_class = TerritorySerializer
+    lookup_field = "name"
 
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -134,8 +140,11 @@ def pvp(request):
     return render_to_response('pvp.html', RequestContext(request))
 
 
-def map(request):
-    return render_to_response('map.html', RequestContext(request))
+def map_page(request):
+    return render_to_response('map.html', RequestContext(request, {
+        'towns': Town.objects.all(),
+        'territories': Territory.objects.all(),
+    }))
 
 
 def pvp1v1(request):
@@ -251,9 +260,9 @@ def issuelist(request):
             issue_created(author.name, new_issue.title, new_issue.id)
 
             # if town.public:
-            #         town.public = False
-            #     else:
-            #         town.public = True
+            # town.public = False
+            # else:
+            # town.public = True
             #     town.save()
             #     return HttpResponse({"something": "somethingelse"},
             #                         mimetype='application/javascript')
@@ -357,7 +366,7 @@ def towngallery(request, town_name):
     # if not request.user.is_authenticated() and not town.public:
     # raise Http404
     # elif request.user.is_authenticated() and not town.public and not user_in_town and not request.user.username == "cryptite":
-    #     raise Http404
+    # raise Http404
 
     return render_to_response('towngallery.html', RequestContext(request, {
         'userintown': user_in_town

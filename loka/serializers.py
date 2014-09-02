@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from loka.models import Town, Player, ArenaMatch, PlayerAchievements, Achievement, UnlockedAchievement
+from loka.models import Town, Player, ArenaMatch, PlayerAchievements, Achievement, UnlockedAchievement, Territory
 
 
 __author__ = 'tmiller'
@@ -200,6 +200,8 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
     subowners = serializers.CharField(required=False)
     members = serializers.CharField()
     level = serializers.IntegerField()
+    latitude = serializers.FloatField()
+    longitude = serializers.FloatField()
 
     def restore_object(self, attrs, instance=None):
         """
@@ -217,6 +219,8 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
             instance.motd = attrs.get('motd')
             instance.owner = resolve_player(attrs.get("owner"))
             instance.level = attrs.get('level')
+            instance.latitude = attrs.get('latitude')
+            instance.longitude = attrs.get('longitude')
             return instance
 
         owner = attrs.get("owner")
@@ -230,7 +234,45 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Town
-        fields = ('name', "motd", "owner", "subowners", "members", "level")
+        fields = ('name', "motd", "owner", "subowners", "members", "level", "latitude", "longitude")
+        lookup_field = "name"
+
+
+class TerritorySerializer(serializers.HyperlinkedModelSerializer):
+    name = serializers.CharField(max_length=50)
+    latitude = serializers.FloatField()
+    longitude = serializers.FloatField()
+    conflicted = serializers.BooleanField(default=False)
+    town = serializers.CharField(max_length=50)
+
+    def restore_object(self, attrs, instance=None):
+        """
+        Create or update a new snippet instance, given a dictionary
+        of deserialized field values.
+
+        Note that if we don't define this method, then deserializing
+        data will simply return a dictionary of items.
+        """
+        print attrs
+        if instance:
+            # Update existing instance
+            print 'Via existing instance'
+            instance.name = attrs.get('name', instance.name)
+            instance.latitude = attrs.get('latitude')
+            instance.longitude = attrs.get('longitude')
+            instance.conflicted = attrs.get('conflicted')
+            return instance
+
+        town_name = attrs.get("town")
+        del attrs["town"]
+
+        territory = Territory(**attrs)
+        territory.town = resolve_town(town_name)
+        return territory
+
+    class Meta:
+        model = Territory
+        fields = ('name', "latitude", "longitude", "conflicted", "town")
         lookup_field = "name"
 
 
@@ -319,3 +361,8 @@ def resolve_player(player_name):
     print "Resolving player: ", player_name
     player, created = Player.objects.get_or_create(name=player_name)
     return player
+
+
+def resolve_town(town_name):
+    town, created = Town.objects.get_or_create(name=town_name)
+    return town
