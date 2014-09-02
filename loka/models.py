@@ -183,7 +183,7 @@ class PlayerAchievements(models.Model):
 
 # class Alliance(models.Model):
 # name = models.CharField(max_length=40)
-#     leader = models.ForeignKey(Town)
+# leader = models.ForeignKey(Town)
 #     towns = models.ManyToManyField(Town, related_name="alliancetowns")
 
 class Town(models.Model):
@@ -226,6 +226,9 @@ class Town(models.Model):
 
     def num_comments(self):
         return len(Comment.objects.filter(town=self))
+
+    def has_territories(self):
+        return Territory.objects.filter(town=self).count() > 0
 
 
 class TownMedia(models.Model):
