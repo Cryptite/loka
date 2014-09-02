@@ -38,13 +38,13 @@
         {% for town in towns %}
             {% if town.has_territories %}
                 L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('{{ town.name }}');
-                L.circle([{{ town.latitude }}, {{ town.longitude }}], 800.0, { color: 'red', fillColor: '#f03', fillOpacity: 0.9}).addTo(map).bindPopup('{{ town.name }}');
+                L.circle([{{ town.latitude }}, {{ town.longitude }}], 1000.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.9}).addTo(map).bindPopup('{{ town.name }}');
             {% endif %}
         {% endfor %}
 
         {% for territory in territories %}
             {% if territory.town.has_territories %}
-                L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 500.0, { color: 'red', fillColor: '#f03', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
+                L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
             {% endif %}
         {% endfor %}
     </script>
