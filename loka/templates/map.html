@@ -9,6 +9,11 @@
 {% endblock %}
 
 {% block content %}
+    <div class="jumbotron territories">
+        <h1>Territory Map</h1>
+
+        <h2>A live representation of Territory Control in Loka</h2>
+    </div><br/>
     <div id="map" style="width: 100%; height: 700px; position: relative;" class="leaflet-container leaflet-fade-anim"
          tabindex="0">
     </div>
@@ -45,7 +50,7 @@
         {% for territory in territories %}
             {% if territory.town.has_territories and territory.latitude and territory.longitude %}
                 {% if territory.conflicted %}
-                    L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'red', fillColor: 'red', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
+                    L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'red', fillColor: 'red', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory (Under Attack)');
                 {% else %}
                     L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
                 {% endif %}

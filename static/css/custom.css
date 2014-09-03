@@ -230,6 +230,10 @@ a.inverse, a:visited {
     background: url('/static/images/bg.png');
 }
 
+.territories {
+    background: url('/static/images/banners/territories.jpg');
+}
+
 .header-town {
     background: url('/static/images/banners/header_town.jpg');
 }
