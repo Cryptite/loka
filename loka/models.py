@@ -181,11 +181,6 @@ class PlayerAchievements(models.Model):
                                   self.get_total_achievement_percentage())
 
 
-# class Alliance(models.Model):
-# name = models.CharField(max_length=40)
-# leader = models.ForeignKey(Town)
-#     towns = models.ManyToManyField(Town, related_name="alliancetowns")
-
 class Town(models.Model):
     name = models.CharField(max_length=30)
     public = models.BooleanField(default=True)
@@ -229,6 +224,27 @@ class Town(models.Model):
 
     def has_territories(self):
         return Territory.objects.filter(town=self).count() > 0
+
+
+class Alliance(models.Model):
+    name = models.CharField(max_length=40)
+    leader = models.ForeignKey(Town)
+    towns = models.ManyToManyField(Town, related_name="alliancetowns")
+
+    def set_many_field(self, source_list, destination_field):
+        if source_list == "":
+            return
+
+        member_list = [m for m in source_list.split(",") if not m == ""]
+        destination_field.clear()
+        for m in member_list:
+            town = Town.objects.filter(name=m)
+            if town:
+                destination_field.add(town[0])
+            else:
+                print 'Creating', m
+                destination_field.add(Town.objects.create(name=m))
+        print '{0} towns resolved for {1}'.format(len(member_list), self.name)
 
 
 class TownMedia(models.Model):

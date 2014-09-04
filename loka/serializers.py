@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from loka.models import Town, Player, ArenaMatch, PlayerAchievements, Achievement, UnlockedAchievement, Territory
+from loka.models import Town, Player, ArenaMatch, PlayerAchievements, Achievement, UnlockedAchievement, Territory, \
+    Alliance
 
 
 __author__ = 'tmiller'
@@ -235,6 +236,41 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Town
         fields = ('name', "motd", "owner", "subowners", "members", "level", "latitude", "longitude")
+        lookup_field = "name"
+
+
+class AllianceSerializer(serializers.HyperlinkedModelSerializer):
+    name = serializers.CharField(max_length=50)
+    leader = serializers.CharField(max_length=255, required=False)
+    towns = serializers.CharField()
+
+    def restore_object(self, attrs, instance=None):
+        """
+        Create or update a new snippet instance, given a dictionary
+        of deserialized field values.
+
+        Note that if we don't define this method, then deserializing
+        data will simply return a dictionary of items.
+        """
+        print attrs
+        if instance:
+            # Update existing instance
+            print 'Via existing instance'
+            instance.name = attrs.get('name', instance.name)
+            instance.leader = resolve_town(attrs.get("leader"))
+            return instance
+
+        leader = attrs.get("leader")
+        del attrs["leader"]
+        del attrs["towns"]
+
+        alliance = Alliance(**attrs)
+        alliance.leader = resolve_town(leader)
+        return alliance
+
+    class Meta:
+        model = Alliance
+        fields = ('name', "leader", "towns")
         lookup_field = "name"
 
 

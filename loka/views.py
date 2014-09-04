@@ -16,9 +16,9 @@ from rest_framework.status import HTTP_201_CREATED
 from loka.core.email_messages import issue_created
 from loka.forms import TownBannerForm
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
-    IssueComment, ISSUE_STATUS, Achievement, PlayerAchievements, UnlockedAchievement, Territory
+    IssueComment, ISSUE_STATUS, Achievement, PlayerAchievements, UnlockedAchievement, Territory, Alliance
 from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer, \
-    PlayerAchievementsSerializer, AchievementSerializer, resolve_player, TerritorySerializer
+    PlayerAchievementsSerializer, AchievementSerializer, resolve_player, TerritorySerializer, AllianceSerializer
 from loka.tasks import retrieve_avatar
 
 
@@ -38,6 +38,21 @@ class TownDetail(generics.RetrieveUpdateDestroyAPIView):
         obj.set_many_field(self.members, obj.members)
         obj.set_many_field(self.subowners, obj.subowners)
         super(TownDetail, self).post_save(obj, created)
+
+
+class AllianceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Alliance.objects.all()
+    serializer_class = AllianceSerializer
+    lookup_field = "name"
+    towns = ""
+
+    def put(self, request, *args, **kwargs):
+        self.towns = request.DATA["towns"]
+        return super(AllianceDetail, self).put(request, *args, **kwargs)
+
+    def post_save(self, obj, created=False):
+        obj.set_many_field(self.towns, obj.towns)
+        super(AllianceDetail, self).post_save(obj, created)
 
 
 class TerritoryDetail(generics.RetrieveUpdateDestroyAPIView):
