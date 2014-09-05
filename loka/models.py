@@ -191,6 +191,7 @@ class Town(models.Model):
     members = models.ManyToManyField(Player, related_name="members")
     subowners = models.ManyToManyField(Player, related_name="subowners", blank=True, null=True)
     level = models.IntegerField(default=1)
+    strength = models.IntegerField(default=0)
     latitude = models.FloatField()
     longitude = models.FloatField()
     # alliance = models.ForeignKey(Alliance)
@@ -224,6 +225,13 @@ class Town(models.Model):
 
     def has_territories(self):
         return Territory.objects.filter(town=self).count() > 0
+
+    def get_alliance(self):
+        for alliance in Alliance.objects.all():
+            if self in alliance.towns:
+                return alliance
+
+        return None
 
 
 class Alliance(models.Model):
