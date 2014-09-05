@@ -497,8 +497,8 @@ def townslist(request):
             alliance_towns.append(town)
     solo_towns = [town for town in townlist_query if not town in alliance_towns]
 
-    for town in townlist_query:
-        check_player_avatars(town.members.all())
+    # for town in townlist_query:
+    # check_player_avatars(town.members.all())
 
     return render_to_response('townslist2.html', RequestContext(request, {
         'alliances': alliances,

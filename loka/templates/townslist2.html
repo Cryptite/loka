@@ -9,7 +9,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}"/>
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}"/>#}
     {#    <link rel="stylesheet" type="text/css" href="css/demo.css"/>#}
     <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}"/>
     <script src="{% static 'js/modernizr.custom.js' %}"></script>
@@ -21,212 +21,11 @@
         <h1>Towns of Loka</h1>
     </div>
 
-
-    {#    {% for alliance in alliances %}#}
-    {#        <div class="row">#}
-    {#            <h1>{{ alliance.name }} Alliance -#}
-    {#                <small>{{ alliance.towns.all.count }} Towns</small>#}
-    {#            </h1>#}
-    {#            {% for town in alliance.towns.all %}#}
-    {#                <div class="teammember text-center">#}
-    {##}
-    {#                    <div class="teamimagewrap smallportfolioshortcode">#}
-    {#                        <a href="/town/{{ town.name }}">#}
-    {#                            {% if town.name|has_town_banner != None %}#}
-    {#                                {% with image=town.name|has_town_banner %}#}
-    {#                                    {% if image.banner %}#}
-    {#                                        <img src="{% thumbnail image.banner 500x300 detail %}"/>#}
-    {#                                    {% else %}#}
-    {#                                        <img src="{% static 'images/town_helrune.jpg' %}"/>#}
-    {#                                    {% endif %}#}
-    {#                                {% endwith %}#}
-    {#                            {% else %}#}
-    {#                                <img src="{% static 'images/town_helrune.jpg' %}"/>#}
-    {#                            {% endif %}#}
-    {#                        </a>#}
-    {#                    </div>#}
-    {##}
-    {#                    <h1><a class="inverse-link" href="/town/{{ town.name }}">{{ town.name }}</a></h1>#}
-    {##}
-    {#                        <span class="teamposition">#}
-    {#                            {% if user.username == town.owner.name.lower %}#}
-    {#                                <p>#}
-    {#                                    {% if town.owner.avatar_sm %}#}
-    {#                                        <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"#}
-    {#                                             class="avatar-sm img-rounded">#}
-    {#                                    {% else %}#}
-    {#                                        <img src="{% static 'images/steve_sm.png' %}"#}
-    {#                                             class="avatar-sm img-rounded {{ town.owner.name }}">#}
-    {#                                        <script type="application/javascript">#}
-    {#                                            $(document).ready(function () {#}
-    {#                                                $.ajax({#}
-    {#                                                    type: "GET",#}
-    {#                                                    url: "/avatar/{{ town.owner.name }}",#}
-    {#                                                    contentType: 'application/json',#}
-    {#                                                    complete: function (xhr, status) {#}
-    {#                                                        if (status === 'error' || !xhr.responseText) {#}
-    {#                                                        }#}
-    {#                                                        else {#}
-    {#                                                            var data = JSON.parse(xhr.responseText);#}
-    {#                                                            $('.{{ town.owner.name }}').fadeOut(500, function () {#}
-    {#                                                                $('.{{ town.owner.name }}').attr('src', data["path"]);#}
-    {#                                                                $('.{{ town.owner.name }}').fadeIn(500);#}
-    {#                                                            });#}
-    {#                                                        }#}
-    {#                                                    }#}
-    {#                                                });#}
-    {#                                            })#}
-    {#                                        </script>#}
-    {#                                    {% endif %}#}
-    {#                                    You!#}
-    {#                                </p>#}
-    {#                            {% else %}#}
-    {#                                <p>#}
-    {#                                    {% if town.owner.avatar_sm %}#}
-    {#                                        <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"#}
-    {#                                             class="avatar-sm img-rounded">#}
-    {#                                    {% else %}#}
-    {#                                        <img src="{% static 'images/steve_sm.png' %}"#}
-    {#                                             class="avatar-sm img-rounded {{ town.owner.name }}">#}
-    {#                                        <script type="application/javascript">#}
-    {#                                            $(document).ready(function () {#}
-    {#                                                $.ajax({#}
-    {#                                                    type: "GET",#}
-    {#                                                    url: "/avatar/{{ town.owner.name }}",#}
-    {#                                                    contentType: 'application/json',#}
-    {#                                                    complete: function (xhr, status) {#}
-    {#                                                        if (status === 'error' || !xhr.responseText) {#}
-    {#                                                        }#}
-    {#                                                        else {#}
-    {#                                                            var data = JSON.parse(xhr.responseText);#}
-    {#                                                            $('.{{ town.owner.name }}').fadeOut(500, function () {#}
-    {#                                                                $('.{{ town.owner.name }}').attr('src', data["path"]);#}
-    {#                                                                $('.{{ town.owner.name }}').fadeIn(500);#}
-    {#                                                            });#}
-    {#                                                        }#}
-    {#                                                    }#}
-    {#                                                });#}
-    {#                                            })#}
-    {#                                        </script>#}
-    {#                                    {% endif %}#}
-    {#                                    {{ town.owner }}</p>#}
-    {#                            {% endif %}</span>#}
-    {#                </div>#}
-    {#            {% endfor %}#}
-    {#        </div>#}
-    {#    {% endfor %}#}
-    {##}
-    {#    <div class="row">#}
-    {#        {% if towns.count > 0 %}#}
-    {#            <h1>Wild Towns -#}
-    {#                <small>{{ towns.count }} Towns</small>#}
-    {#            </h1>#}
-    {#            {% for town in towns %}#}
-    {#                <div class="teammember text-center">#}
-    {##}
-    {#                    <div class="teamimagewrap smallportfolioshortcode">#}
-    {#                        <a href="/town/{{ town.name }}">#}
-    {#                            {% if town.name|has_town_banner != None %}#}
-    {#                                {% with image=town.name|has_town_banner %}#}
-    {#                                    {% if image.banner %}#}
-    {#                                        <img src="{% thumbnail image.banner 500x300 detail %}"/>#}
-    {#                                    {% else %}#}
-    {#                                        <img src="{% static 'images/town_helrune.jpg' %}"/>#}
-    {#                                    {% endif %}#}
-    {#                                {% endwith %}#}
-    {#                            {% else %}#}
-    {#                                <img src="{% static 'images/town_helrune.jpg' %}"/>#}
-    {#                            {% endif %}#}
-    {#                        </a>#}
-    {#                    </div>#}
-    {##}
-    {#                    <h1><a class="inverse-link" href="/town/{{ town.name }}">{{ town.name }}</a></h1>#}
-    {##}
-    {#                        <span class="teamposition">#}
-    {#                            {% if user.username == town.owner.name.lower %}#}
-    {#                                <p>#}
-    {#                                    {% if town.owner.avatar_sm %}#}
-    {#                                        <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"#}
-    {#                                             class="avatar-sm img-rounded">#}
-    {#                                    {% else %}#}
-    {#                                        <img src="{% static 'images/steve_sm.png' %}"#}
-    {#                                             class="avatar-sm img-rounded {{ town.owner.name }}">#}
-    {#                                        <script type="application/javascript">#}
-    {#                                            $(document).ready(function () {#}
-    {#                                                $.ajax({#}
-    {#                                                    type: "GET",#}
-    {#                                                    url: "/avatar/{{ town.owner.name }}",#}
-    {#                                                    contentType: 'application/json',#}
-    {#                                                    complete: function (xhr, status) {#}
-    {#                                                        if (status === 'error' || !xhr.responseText) {#}
-    {#                                                        }#}
-    {#                                                        else {#}
-    {#                                                            var data = JSON.parse(xhr.responseText);#}
-    {#                                                            $('.{{ town.owner.name }}').fadeOut(500, function () {#}
-    {#                                                                $('.{{ town.owner.name }}').attr('src', data["path"]);#}
-    {#                                                                $('.{{ town.owner.name }}').fadeIn(500);#}
-    {#                                                            });#}
-    {#                                                        }#}
-    {#                                                    }#}
-    {#                                                });#}
-    {#                                            })#}
-    {#                                        </script>#}
-    {#                                    {% endif %}#}
-    {#                                    You!#}
-    {#                                </p>#}
-    {#                            {% else %}#}
-    {#                                <p>#}
-    {#                                        {% if town.owner.avatar_sm %}#}
-    {#                                            <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"#}
-    {#                                                 class="avatar-sm img-rounded">#}
-    {#                                        {% else %}#}
-    {#                                            <img src="{% static 'images/steve_sm.png' %}"#}
-    {#                                                 class="avatar-sm img-rounded {{ town.owner.name }}">#}
-    {#                                            <script type="application/javascript">#}
-    {#                                                $(document).ready(function () {#}
-    {#                                                    $.ajax({#}
-    {#                                                        type: "GET",#}
-    {#                                                        url: "/avatar/{{ town.owner.name }}",#}
-    {#                                                        contentType: 'application/json',#}
-    {#                                                        complete: function (xhr, status) {#}
-    {#                                                            if (status === 'error' || !xhr.responseText) {#}
-    {#                                                            }#}
-    {#                                                            else {#}
-    {#                                                                var data = JSON.parse(xhr.responseText);#}
-    {#                                                                $('.{{ town.owner.name }}').fadeOut(500, function () {#}
-    {#                                                                    $('.{{ town.owner.name }}').attr('src', data["path"]);#}
-    {#                                                                    $('.{{ town.owner.name }}').fadeIn(500);#}
-    {#                                                                });#}
-    {#                                                            }#}
-    {#                                                        }#}
-    {#                                                    });#}
-    {#                                                })#}
-    {#                                            </script>#}
-    {#                                        {% endif %}#}
-    {#                                    {{ town.owner }}</p>#}
-    {#                            {% endif %}</span>#}
-    {#                </div>#}
-    {#            {% endfor %}#}
-    {#        {% else %}#}
-    {#            <section class="page-section lightgrey">#}
-    {#                <div class="container section-header text-center">#}
-    {#                    <h1>All of Loka's towns are currently set as private.#}
-    {#                        {% if not user.is_authenticated %}#}
-    {#                            <br/><br/>#}
-    {#                            <small>Do you belong to a town? Sign in and your town will be visible here!</small>#}
-    {#                        {% endif %}#}
-    {#                    </h1>#}
-    {#                </div>#}
-    {#            </section>#}
-    {#        {% endif %}#}
-    {#    </div>#}
-
     <div class="container">
+        {% for alliance in alliances %}
+            <section class="grid-wrap">
 
-        <section class="grid-wrap">
-
-            <ul class="grid swipe-right" id="grid">
-                {% for alliance in alliances %}
+                <ul class="grid swipe-right" id="grid-{{ alliance.name }}">
                     <li class="title-box">
                         <h2>{{ alliance.name }} Alliance</h2>
                     </li>
@@ -238,11 +37,11 @@
                                         {% if image.banner %}
                                             <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"/>
                                         {% else %}
-                                            <img src="{% static 'images/town_helrune.jpg' %}" alt="dummy"/>
+                                            <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
                                         {% endif %}
                                     {% endwith %}
                                 {% else %}
-                                    <img src="{% static 'images/town_helrune.jpg' %}" alt="dummy"/>
+                                    <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
                                 {% endif %}
                                 <h3>{{ town.name }}
                                     {% if town.owner.avatar_sm %}
@@ -262,9 +61,10 @@
                                                         }
                                                         else {
                                                             var data = JSON.parse(xhr.responseText);
-                                                            $('.{{ town.owner.name }}').fadeOut(500, function () {
-                                                                $('.{{ town.owner.name }}').attr('src', data["path"]);
-                                                                $('.{{ town.owner.name }}').fadeIn(500);
+                                                            var selector = ".{{ town.owner.name }}";
+                                                            $(selector).fadeOut(500, function () {
+                                                                $(selector).attr('src', data["path"]);
+                                                                $(selector).fadeIn(500);
                                                             });
                                                         }
                                                     }
@@ -276,10 +76,14 @@
                             </a>
                         </li>
                     {% endfor %}
-                {% endfor %}
+                </ul>
+            </section>
+        {% endfor %}
 
+        <section class="grid-wrap">
+            <ul class="grid swipe-right" id="grid-wildtowns">
                 <li class="title-box">
-                    <h2>Free Towns</h2>
+                    <h2>Wild Towns</h2>
                 </li>
                 {% for town in towns %}
                     <li>
@@ -289,11 +93,11 @@
                                     {% if image.banner %}
                                         <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"/>
                                     {% else %}
-                                        <img src="{% static 'images/town_helrune.jpg' %}" alt="dummy"/>
+                                        <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
                                     {% endif %}
                                 {% endwith %}
                             {% else %}
-                                <img src="{% static 'images/town_helrune.jpg' %}" alt="dummy"/>
+                                <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
                             {% endif %}
                             <h3>{{ town.name }}
                                 {% if town.owner.avatar_sm %}
@@ -313,9 +117,10 @@
                                                     }
                                                     else {
                                                         var data = JSON.parse(xhr.responseText);
-                                                        $('.{{ town.owner.name }}').fadeOut(500, function () {
-                                                            $('.{{ town.owner.name }}').attr('src', data["path"]);
-                                                            $('.{{ town.owner.name }}').fadeIn(500);
+                                                        var selector = ".{{ town.owner.name }}";
+                                                        $(selector).fadeOut(500, function () {
+                                                            $(selector).attr('src', data["path"]);
+                                                            $(selector).fadeIn(500);
                                                         });
                                                     }
                                                 }
@@ -328,7 +133,6 @@
                     </li>
                 {% endfor %}
             </ul>
-
         </section>
 
     </div>
@@ -340,7 +144,12 @@
     <script src="{% static 'js/gridScrollFx.js' %}"></script>
 
     <script>
-        new GridScrollFx(document.getElementById('grid'), {
+        {% for alliance in alliances %}
+            new GridScrollFx(document.getElementById('grid-{{ alliance.name }}'), {
+                viewportFactor: 0.4
+            });
+        {% endfor %}
+        new GridScrollFx(document.getElementById('grid-wildtowns'), {
             viewportFactor: 0.4
         });
     </script>
