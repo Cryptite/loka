@@ -278,7 +278,7 @@ def issuelist(request):
             # town.public = False
             # else:
             # town.public = True
-            #     town.save()
+            # town.save()
             #     return HttpResponse({"something": "somethingelse"},
             #                         mimetype='application/javascript')
             #
@@ -488,12 +488,21 @@ def towns(request):
 
 def townslist(request):
     townlist_query = Town.objects.all().order_by("name")
+    alliances = Alliance.objects.all().order_by("name")
+    alliance_towns = []
+    for alliance in alliances:
+        print "Trying", alliance.name
+        for town in alliance.towns.all():
+            print "Adding", town.name
+            alliance_towns.append(town)
+    solo_towns = [town for town in townlist_query if not town in alliance_towns]
 
     for town in townlist_query:
         check_player_avatars(town.members.all())
 
-    return render_to_response('townslist.html', RequestContext(request, {
-        'towns': townlist_query,
+    return render_to_response('townslist2.html', RequestContext(request, {
+        'alliances': alliances,
+        'towns': solo_towns,
         'townmedia': TownMedia.objects.all()
     }))
 
