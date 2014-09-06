@@ -110,7 +110,6 @@ def start(request):
 def get_avatar(request, player_name):
     player = Player.objects.get(name=player_name)
     retrieve_avatar(player)
-    print 'returning', "static/media/{0}".format(player.avatar)
     return HttpResponse(json.dumps({"path": "/static/media/{0}".format(player.avatar)}),
                         mimetype='application/javascript')
 
@@ -156,8 +155,10 @@ def pvp(request):
 
 
 def map_page(request):
+    strength_towns = [town for town in Town.objects.filter(Q(strength__gt=0)).order_by("-strength")]
     return render_to_response('map.html', RequestContext(request, {
         'towns': Town.objects.all(),
+        'strength_towns': strength_towns,
         'territories': Territory.objects.all(),
     }))
 
@@ -279,7 +280,7 @@ def issuelist(request):
             # else:
             # town.public = True
             # town.save()
-            #     return HttpResponse({"something": "somethingelse"},
+            # return HttpResponse({"something": "somethingelse"},
             #                         mimetype='application/javascript')
             #
             # elif request.POST['action'] == "thread":

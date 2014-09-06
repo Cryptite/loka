@@ -233,6 +233,11 @@ class Town(models.Model):
 
         return None
 
+    def get_list_name(self):
+        if len(self.name) > 13:
+            return self.name[:13] + "..."
+        return self.name
+
 
 class Alliance(models.Model):
     name = models.CharField(max_length=40)

@@ -9,17 +9,6 @@
 {% endblock %}
 
 {% block content %}
-    <div class="jumbotron territories">
-        <h1>Territory Map</h1>
-
-        <h2>A live representation of Territory Control in Loka</h2>
-    </div><br/>
-    <section class="page-section lightgrey">
-        <div class="container padbottom30 section-header">
-            <h3>This map is still in beta and as such is likely to show false or inaccurate data. Just thought you
-                should know!</h3>
-        </div>
-    </section>
     <div id="map" style="width: 100%; height: 700px; position: relative;" class="leaflet-container leaflet-fade-anim"
          tabindex="0">
     </div>
@@ -46,10 +35,13 @@
 
         map.setView([0, 0], 3);
 
+        L.marker([-.002252642, .002252642]).addTo(map).bindPopup('Spawn').openPopup();
+        L.circle([-.002252642, .002252642], 700.0, {color: 'blue', fillColor: 'blue'}).addTo(map).bindPopup('Spawn');
+
         {% for town in towns %}
             {% if town.has_territories and town.latitude and town.longitude %}
                 L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('{{ town.name }}');
-                L.circle([{{ town.latitude }}, {{ town.longitude }}], 1000.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.9}).addTo(map).bindPopup('{{ town.name }}');
+                L.circle([{{ town.latitude }}, {{ town.longitude }}], 1000.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.4}).addTo(map).bindPopup('{{ town.name }}');
             {% endif %}
         {% endfor %}
 
@@ -62,5 +54,16 @@
                 {% endif %}
             {% endif %}
         {% endfor %}
+
+        {#        var popup = L.popup();#}
+        {##}
+        {#        function onMapClick(e) {#}
+        {#            popup#}
+        {#                    .setLatLng(e.latlng)#}
+        {#                    .setContent("You clicked the map at " + e.latlng.toString())#}
+        {#                    .openOn(map);#}
+        {#        }#}
+        {##}
+        {#        map.on('click', onMapClick);#}
     </script>
 {% endblock %}

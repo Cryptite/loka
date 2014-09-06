@@ -1,8 +1,17 @@
 .grid-wrap {
     clear: both;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 0 10px;
     max-width: 100%;
+    background: #fefefe;
+    border-radius: 10px;
+}
+
+.grid-wrap h1 {
+    color: #8c8f8e;
+    top: 20px;
+    left: 20px;
+    position: relative;
 }
 
 .grid {
@@ -127,11 +136,34 @@
     bottom: 0;
     left: 0;
     margin: 0;
-    padding: 2px;
+    padding: 10px;
     width: 100%;
-    background: #2E3444;
     color: #D3EEE2;
+    text-align: left;
+    letter-spacing: 1px;
+    font-weight: 800;
+    font-size: 1.5em;
+    -webkit-transition: -webkit-transform 0.2s, color 0.2s;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.normal {
+    background: #2E3444;
+}
+
+.leader {
+    background: #4e5873;
+}
+
+.grid li p {
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    position: absolute;
     text-align: right;
+    color: #a6bbb2;
     letter-spacing: 1px;
     font-weight: 800;
     font-size: 1em;
@@ -155,6 +187,13 @@
 
 /* Hover effects */
 .grid li.shown:hover h3 {
+    color: #fff;
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+}
+
+/* Hover effects */
+.grid li.shown:hover p {
     color: #fff;
     -webkit-transform: translate3d(0, -30px, 0);
     transform: translate3d(0, -30px, 0);
@@ -293,12 +332,14 @@
 
 /* Hide image and title and show at half time */
 .js .grid li img,
-.js .grid li h3 {
+.js .grid li h3,
+.js .gfid li p {
     visibility: hidden;
 }
 
 .grid li.animate img,
-.grid li.animate h3 {
+.grid li.animate h3,
+.grid li.animate p {
     -webkit-animation: showMe 1.5s step-end forwards;
     animation: showMe 1.5s step-end forwards;
 }
@@ -322,6 +363,7 @@
 }
 
 .grid li.shown img,
-.grid li.shown h3 {
+.grid li.shown h3,
+.grid li.shown p {
     visibility: visible;
 }
