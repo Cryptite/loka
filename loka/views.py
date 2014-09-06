@@ -501,7 +501,7 @@ def townslist(request):
     # for town in townlist_query:
     # check_player_avatars(town.members.all())
 
-    return render_to_response('townslist2.html', RequestContext(request, {
+    return render_to_response('townslist.html', RequestContext(request, {
         'alliances': alliances,
         'towns': solo_towns,
         'townmedia': TownMedia.objects.all()

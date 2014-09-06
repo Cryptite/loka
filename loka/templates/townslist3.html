@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+{% load widgets %}
+{% load cropping thumbnail %}
+{% block title %}Loka Minecraft - Towns of Loka{% endblock %}
+{% block extra_head %}
+    {{ form.media }}
+    <script>
+        jQuery(function ($) {
+            $(".privacy").tooltip()
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron towns">
+        <h1>Towns of Loka</h1>
+    </div>
+
+
+    {% for alliance in alliances %}
+        <div class="row">
+            <h1>{{ alliance.name }} Alliance -
+                <small>{{ alliance.towns.all.count }} Towns</small>
+            </h1>
+            {% for town in alliance.towns.all %}
+                <div class="teammember text-center">
+
+                    <div class="teamimagewrap smallportfolioshortcode">
+                        <a href="/town/{{ town.name }}">
+                            {% if town.name|has_town_banner != None %}
+                                {% with image=town.name|has_town_banner %}
+                                    {% if image.banner %}
+                                        <img src="{% thumbnail image.banner 500x300 detail %}"/>
+                                    {% else %}
+                                        <img src="{% static 'images/town_helrune.jpg' %}"/>
+                                    {% endif %}
+                                {% endwith %}
+                            {% else %}
+                                <img src="{% static 'images/town_helrune.jpg' %}"/>
+                            {% endif %}
+                        </a>
+                    </div>
+
+                    <h1><a class="inverse-link" href="/town/{{ town.name }}">{{ town.name }}</a></h1>
+
+                    <span class="teamposition">
+                        {% if user.username == town.owner.name.lower %}
+                            <p>
+                                {% if town.owner.avatar_sm %}
+                                    <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                                         class="avatar-sm img-rounded">
+                                {% else %}
+                                    <img src="{% static 'images/steve_sm.png' %}"
+                                         class="avatar-sm img-rounded {{ town.owner.name }}">
+                                    <script type="application/javascript">
+                                        $(document).ready(function () {
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "/avatar/{{ town.owner.name }}",
+                                                contentType: 'application/json',
+                                                complete: function (xhr, status) {
+                                                    if (status === 'error' || !xhr.responseText) {
+                                                    }
+                                                    else {
+                                                        var data = JSON.parse(xhr.responseText);
+                                                        $('.{{ town.owner.name }}').fadeOut(500, function () {
+                                                            $('.{{ town.owner.name }}').attr('src', data["path"]);
+                                                            $('.{{ town.owner.name }}').fadeIn(500);
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        })
+                                    </script>
+                                {% endif %}
+                                You!
+                            </p>
+                        {% else %}
+                            <p>
+                                {% if town.owner.avatar_sm %}
+                                    <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                                         class="avatar-sm img-rounded">
+                                {% else %}
+                                    <img src="{% static 'images/steve_sm.png' %}"
+                                         class="avatar-sm img-rounded {{ town.owner.name }}">
+                                    <script type="application/javascript">
+                                        $(document).ready(function () {
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "/avatar/{{ town.owner.name }}",
+                                                contentType: 'application/json',
+                                                complete: function (xhr, status) {
+                                                    if (status === 'error' || !xhr.responseText) {
+                                                    }
+                                                    else {
+                                                        var data = JSON.parse(xhr.responseText);
+                                                        $('.{{ town.owner.name }}').fadeOut(500, function () {
+                                                            $('.{{ town.owner.name }}').attr('src', data["path"]);
+                                                            $('.{{ town.owner.name }}').fadeIn(500);
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        })
+                                    </script>
+                                {% endif %}
+                                {{ town.owner }}</p>
+                        {% endif %}</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        {% if towns.count > 0 %}
+            <h1>Wild Towns -
+                <small>{{ towns.count }} Towns</small>
+            </h1>
+            {% for town in towns %}
+                <div class="teammember text-center">
+
+                    <div class="teamimagewrap smallportfolioshortcode">
+                        <a href="/town/{{ town.name }}">
+                            {% if town.name|has_town_banner != None %}
+                                {% with image=town.name|has_town_banner %}
+                                    {% if image.banner %}
+                                        <img src="{% thumbnail image.banner 500x300 detail %}"/>
+                                    {% else %}
+                                        <img src="{% static 'images/town_helrune.jpg' %}"/>
+                                    {% endif %}
+                                {% endwith %}
+                            {% else %}
+                                <img src="{% static 'images/town_helrune.jpg' %}"/>
+                            {% endif %}
+                        </a>
+                    </div>
+
+                    <h1><a class="inverse-link" href="/town/{{ town.name }}">{{ town.name }}</a></h1>
+
+                    <span class="teamposition">
+                        {% if user.username == town.owner.name.lower %}
+                            <p>
+                                {% if town.owner.avatar_sm %}
+                                    <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                                         class="avatar-sm img-rounded">
+                                {% else %}
+                                    <img src="{% static 'images/steve_sm.png' %}"
+                                         class="avatar-sm img-rounded {{ town.owner.name }}">
+                                    <script type="application/javascript">
+                                        $(document).ready(function () {
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "/avatar/{{ town.owner.name }}",
+                                                contentType: 'application/json',
+                                                complete: function (xhr, status) {
+                                                    if (status === 'error' || !xhr.responseText) {
+                                                    }
+                                                    else {
+                                                        var data = JSON.parse(xhr.responseText);
+                                                        $('.{{ town.owner.name }}').fadeOut(500, function () {
+                                                            $('.{{ town.owner.name }}').attr('src', data["path"]);
+                                                            $('.{{ town.owner.name }}').fadeIn(500);
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        })
+                                    </script>
+                                {% endif %}
+                                You!
+                            </p>
+                        {% else %}
+                            <p>
+                                {% if town.owner.avatar_sm %}
+                                    <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                                         class="avatar-sm img-rounded">
+                                {% else %}
+                                    <img src="{% static 'images/steve_sm.png' %}"
+                                         class="avatar-sm img-rounded {{ town.owner.name }}">
+                                    <script type="application/javascript">
+                                        $(document).ready(function () {
+                                            $.ajax({
+                                                type: "GET",
+                                                url: "/avatar/{{ town.owner.name }}",
+                                                contentType: 'application/json',
+                                                complete: function (xhr, status) {
+                                                    if (status === 'error' || !xhr.responseText) {
+                                                    }
+                                                    else {
+                                                        var data = JSON.parse(xhr.responseText);
+                                                        $('.{{ town.owner.name }}').fadeOut(500, function () {
+                                                            $('.{{ town.owner.name }}').attr('src', data["path"]);
+                                                            $('.{{ town.owner.name }}').fadeIn(500);
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        })
+                                    </script>
+                                {% endif %}
+                                {{ town.owner }}</p>
+                        {% endif %}</span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <section class="page-section lightgrey">
+                <div class="container section-header text-center">
+                    <h1>All of Loka's towns are currently set as private.
+                        {% if not user.is_authenticated %}
+                            <br/><br/>
+                            <small>Do you belong to a town? Sign in and your town will be visible here!</small>
+                        {% endif %}
+                    </h1>
+                </div>
+            </section>
+        {% endif %}
+    </div>
+
+{% endblock %}
