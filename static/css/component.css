@@ -74,6 +74,14 @@
     border: none;
 }
 
+.imgcenter {
+    left: 65%;
+    position: relative;
+    margin-left: -100%;
+    width: 500px;
+    height: 200px;
+}
+
 .grid li > a {
     position: relative;
     overflow: hidden;

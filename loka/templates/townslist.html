@@ -33,7 +33,8 @@
                             {% if alliance.leader.name|has_town_banner != None %}
                                 {% with image=alliance.leader.name|has_town_banner %}
                                     {% if image.banner %}
-                                        <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"/>
+                                        <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
+                                             class="imgcenter"/>
                                     {% else %}
                                         <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
                                     {% endif %}
@@ -53,7 +54,8 @@
                                     {% if town.name|has_town_banner != None %}
                                         {% with image=town.name|has_town_banner %}
                                             {% if image.banner %}
-                                                <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"/>
+                                                <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
+                                                     class="imgcenter"/>
                                             {% else %}
                                                 <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
                                             {% endif %}
@@ -81,7 +83,8 @@
                             {% if town.name|has_town_banner != None %}
                                 {% with image=town.name|has_town_banner %}
                                     {% if image.banner %}
-                                        <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"/>
+                                        <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
+                                             class="imgcenter"/>
                                     {% else %}
                                         <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
                                     {% endif %}
