@@ -74,7 +74,7 @@
     border: none;
 }
 
-.imgcenter img {
+.imgcenter {
     left: 100%;
     position: relative;
     margin-left: -100%;
