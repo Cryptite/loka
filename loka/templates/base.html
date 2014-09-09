@@ -7,234 +7,502 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock %}</title>
-
-    <meta name="description"
-          content="An incredibly customized Minecraft experience that includes advanced and powerful Town building, Marketing, PvP. Join us and forge your story on Loka today!">
-    <meta name="author" content="Tom Miller">
-    {% compress css %}
-        <!-- Bootstrap -->
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
-        <link href="{% static 'css/custom.css' %}" rel="stylesheet" media="screen">
-    {% endcompress %}
-    {% block extra_head %}{% endblock %}
-
-    <script type="text/javascript">
-
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-38840432-1']);
-        _gaq.push(['_trackPageview']);
-
-        (function () {
-            var ga = document.createElement('script');
-            ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
-        })();
-
-    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Halcyon Days - An Exclusive Freebie for Codrops by Peter Finlan.</title>
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/queries.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 </head>
-
-<body>
-
-<!-- Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2>Log on to the server!</h2>
-            </div>
-            <div class="modal-body">
-
-                <p>Parts of our website work in tandem with data from Loka itself such as access to Towns. If you live
-                    in a town, you cannot access its home page unless you register a proper account. In order to
-                    register on this site, you'll need to do the following: </p>
-                <h4>- Log on to Loka and use the /register command</h4>
-                <h4>- Click the in-game link you are provided.</h4>
-                <h4>- Finish creating your account, then enjoy the spoils!</h4>
-                </button>
+<body id="top">
+<header id="home">
+    <nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+                    <nav class="pull">
+                        <ul class="top-nav">
+                            <li><a href="#intro">Introduction <span class="indicator"><i class="fa fa-angle-right"></i></span></a>
+                            </li>
+                            <li><a href="#features">Major Features <span class="indicator"><i
+                                    class="fa fa-angle-right"></i></span></a></li>
+                            <li><a href="#about">About Loka <span class="indicator"><i
+                                    class="fa fa-angle-right"></i></span></a>
+                            </li>
+                            <li><a href="#team">Team <span class="indicator"><i
+                                    class="fa fa-angle-right"></i></span></a></li>
+                            <li><a href="#contact">Get in Touch <span class="indicator"><i
+                                    class="fa fa-angle-right"></i></span></a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
-        <!-- /.modal-content -->
+    </nav>
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-right navicon">
+                    <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeInDown heroTitle">Loka Minecraft</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right timeofday">
+                    <p class="animated fadeInUp delay-05s">It's nighttime on Loka.</p>
+                </div>
+            </div>
+
+            {#              <div class="row">#}
+            {#                <div class="col-md-6 col-md-offset-3 text-center">#}
+            {#                  <a href="http://tympanus.net/codrops/?p=19439" class="learn-more-btn">Back to the article</a>#}
+            {#                </div>#}
+            {#              </div>#}
+        </div>
+    </section>
+</header>
+<section class="intro text-center section-padding" id="intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 wp1">
+                <h1 class="arrow">The Minecraft Server you've been Waiting For</h1>
+
+                <p>Loka is a custom server, built from the ground up to deliver an experience you won't find anywhere
+                    else. Just about everything you thought you looked for in a Minecraft server is on Loka. Discover
+                    why Loka is the place you should call home.</p>
+            </div>
+        </div>
     </div>
-    <!-- /.modal-dialog -->
+</section>
+<section class="features text-center section-padding" id="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="arrow">Forge your path and make your story legend</h1>
+
+                <div class="features-wrapper">
+                    <div class="col-md-4 wp2">
+                        <div class="icon">
+                            <i class="fa fa-laptop shadow"></i>
+                        </div>
+                        <h2>Territories</h2>
+
+                        <p>Claim land throughout Loka. Establish your Dominance. Loka features a unique and powerful
+                            Territory System that lets you show how powerful you and your friends can be..</p>
+                    </div>
+                    <div class="col-md-4 wp2 delay-05s">
+                        <div class="icon">
+                            <i class="fa fa-code shadow"></i>
+                        </div>
+                        <h2>Towns with Progression</h2>
+
+                        <p>From the outset of beginning your town, your every action is tracked and nearly all that
+                            you do contributes to your town's level. Earn Perks and unlock Industries as your town
+                            levels up and show the world why your town is the best.</p>
+                    </div>
+                    <div class="col-md-4 wp2 delay-1s">
+                        <div class="icon">
+                            <i class="fa fa-heart shadow"></i>
+                        </div>
+                        <h2>Top-Notch PVP</h2>
+
+                        <p>From ELO-Rated Arenas to our Battlegrounds that feature a unique Talent Set, Loka's PvP is an
+                            all-encompassing set of games guaranteed to keep you constantly improving and proving your
+                            worth to Loka!</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{#<section class="text-center" id="responsive">#}
+{#    <div class="container-fluid nopadding responsive-services">#}
+{#        <div class="wrapper">#}
+{#            <div class="iphone">#}
+{#                <div class="wp3"></div>#}
+{#            </div>#}
+{#            <div class="fluid-white"></div>#}
+{#        </div>#}
+{#        <div class="container designs">#}
+{#            <div class="row">#}
+{#                <div class="col-md-5 col-md-offset-7">#}
+{#                    <div id="servicesSlider">#}
+{#                        <ul class="slides">#}
+{#                            <li>#}
+{#                                <h1 class="arrow">Responsive Design Specialists</h1>#}
+{##}
+{#                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non#}
+{#                                    metus pulvinar imperdiet. Praesent non adipiscing libero. </p>#}
+{##}
+{#                                <p>#}
+{#                                    Mauris ultrices odio vitae nulla ultrices iaculis. Nulla rhoncus odio eu lectus#}
+{#                                    faucibus facilisis. Maecenas ornare augue vitae sollicitudin accumsan. </p>#}
+{##}
+{#                                <p>Etiam eget libero et erat eleifend consectetur a nec lectus. Sed id tellus lorem.#}
+{#                                    Suspendisse sed venenatis odio, quis lobortis eros.</p>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <h1 class="arrow">Bootstrap Professionals</h1>#}
+{##}
+{#                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non#}
+{#                                    metus pulvinar imperdiet. Praesent non adipiscing libero. </p>#}
+{##}
+{#                                <p>#}
+{#                                    Mauris ultrices odio vitae nulla ultrices iaculis. Nulla rhoncus odio eu lectus#}
+{#                                    faucibus facilisis. Maecenas ornare augue vitae sollicitudin accumsan. </p>#}
+{##}
+{#                                <p>Etiam eget libero et erat eleifend consectetur a nec lectus. Sed id tellus lorem.#}
+{#                                    Suspendisse sed venenatis odio, quis lobortis eros.</p>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
+<section class="swag text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>But wait<span>Loka gets <em>even better</em></span></h1>
+                <a href="#about" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="portfolio text-center section-padding" id="about">
+    <div class="container">
+        <div class="row">
+            <div id="portfolioSlider">
+                <ul class="slides">
+                    <li>
+                        <div class="col-md-4 wp4">
+                            <div class="overlay-effect effects clearfix">
+                                <div class="img">
+                                    <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
+
+                                    <div class="overlay">
+                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                        <a class="close-overlay hidden">x</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2>Custom Market System</h2>
+
+                            <p>Nearly everything on Loka is legitimately obtained. What you see on the Market was worked
+                                hard for. Our custom Market makes buying and selling easy and fun. Prove your skill at
+                                Marketing and dominate the sales!</p>
+                        </div>
+                        <div class="col-md-4 wp4 delay-05s">
+                            <div class="overlay-effect effects clearfix">
+                                <div class="img">
+                                    <img src="{% static 'images/item_artifact.jpg' %}" alt="Portfolio Item">
+
+                                    <div class="overlay">
+                                        <a href="http://loka.wikia.com/wiki/Loka_Wiki" class="expand"><i
+                                                class="fa fa-search"></i><br>View More</a>
+                                        <a class="close-overlay hidden">x</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2>Rich Lore</h2>
+
+                            <p>Since the founding of the server, Lokans have been no strangers to evil, catastrophe, and
+                                mystery. Characters both good and evil have shaped Loka into what it is today. Some
+                                players have even chosen to participate and have their roles locked in
+                                lore for eternity.</p>
+                        </div>
+                        <div class="col-md-4 wp4 delay-1s">
+                            <div class="overlay-effect effects clearfix">
+                                <div class="img">
+                                    <img src="{% static 'images/item_hardship.jpg' %}" alt="Portfolio Item">
+
+                                    <div class="overlay">
+                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                        <a class="close-overlay hidden">x</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2>Hardship</h2>
+
+                            <p>Loka allows PvP and theft. You're welcome to slaughter whomever you will and take their
+                                things should you find them unguarded. We do not tolerate griefing, but more than a few
+                                have made their story legend in unkind deeds.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="col-md-4 wp4">
+                            <div class="overlay-effect effects clearfix">
+                                <div class="img">
+                                    <img src="{% static 'images/item_vanilla.jpg' %}" alt="Portfolio Item">
+
+                                    <div class="overlay">
+                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                        <a class="close-overlay hidden">x</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2>Semi-Vanilla</h2>
+
+                            <p>While we do host a large sum of custom content and features, our <em>core
+                                gameplay</em> is vanilla. If you know your Minecraft well, you will thrive on Loka.</p>
+                        </div>
+                        <div class="col-md-4 wp4 delay-05s">
+                            <div class="overlay-effect effects clearfix">
+                                <div class="img">
+                                    <img src="{% static 'images/item_chest.jpg' %}" alt="Portfolio Item">
+
+                                    <div class="overlay">
+                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                        <a class="close-overlay hidden">x</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2>No Chest Protection</h2>
+
+                            <p>Hide your chests or keep them protected. An open chest is an invite to an empty
+                                chest.</p>
+                        </div>
+                        <div class="col-md-4 wp4 delay-1s">
+                            <div class="overlay-effect effects clearfix">
+                                <div class="img">
+                                    <img src="{% static 'images/item_skyline.jpg' %}" alt="Portfolio Item">
+
+                                    <div class="overlay">
+                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                        <a class="close-overlay hidden">x</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2>Evolving Features</h2>
+
+                            <p>Loka adds new features all the time. We strive never to let the experience on Loka become
+                                stale. Stay tuned to updates and watch the server evolve!</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="ignite-cta text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="#" class="ignite-btn">Ignite Your Passion</a>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.modal -->
-
-<div class="sitecontainer">
-    <div class="navbar navbar-default navbar-static-top" role="navigation" style="z-index: 1">
-        <a class="navbar-brand" href="/"><img src="{% static 'images/logo_sm.png' %}" class="img-responsive"/></a>
-        <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a href="{% url 'loka.views.about' %}">About</a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Towns <b
-                        class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="{% url 'loka.views.towns' %}">About</a></li>
-                    <li><a href="{% url 'loka.views.townslist' %}">Towns of Loka</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">PvP <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="{% url 'loka.views.pvp' %}">About</a></li>
-                    <li><a href="{% url 'loka.views.pvp1v1' %}">1v1 Bracket</a></li>
-                    <li><a href="{% url 'loka.views.pvp2v2' %}">2v2 Bracket</a></li>
-                    <li><a href="{% url 'loka.views.pvpvota' %}">VotA Rankings</a></li>
-                    <li><a href="{% url 'loka.views.pvpoverload' %}">Overload Rankings</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="{% url 'loka.views.map_page' %}">Map</a>
-            </li>
-            <li><a href="http://loka.minecraftarium.com/forums/">Forums</a>
-            </li>
-            <li><a href="http://loka.wikia.com/wiki/Loka_Wiki">Wiki</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <form class="navbar-left search" role="search">
-                <!-- We'll have a button that'll make the search input appear, a submit button and the input -->
-
-                <!-- Alos, a label for it so that we can style it however we want it-->
-                <input id="submit" value="" type="submit">
-                <label for="submit" class="search-submit"></label>
-
-                <!-- trigger button and input -->
-                <a href="javascript: void(0)" class="search-icon"></a>
-                <input type="search" name="Search" id="search" placeholder="Search">
-            </form>
-
-            <li class="dropdown">
-                {% if user.is_authenticated %}
-                    {% player_avatar user as avatar %}
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
-                        {% if avatar %}
-                            <img src="{% static 'media/' %}{{ avatar }}" class="img-rounded avatar"/>
-                        {% else %}
-                            <img src="{% static 'images/steve.png' %}" class="img-rounded avatar"/>
-                        {% endif %}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/player/{{ user.username }}">View Profile</a></li>
-                        <li><a href="{% url 'loka.views.logout' %}">Sign Out</a></li>
-                    </ul>
-                {% else %}
-                    <a href="#" class="dropdown-toggle loginbutton" data-toggle="dropdown">Sign In <img
-                            src="{% static 'images/steve.png' %}"
-                            class="img-rounded avatar"/></a>
-                    <ul class="dropdown-menu">
+<section class="team text-center section-padding" id="team">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="arrow">We're a team that adore what we do</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="team-wrapper">
+                <div id="teamSlider">
+                    <ul class="slides">
                         <li>
-                            <div class="span2">
-                                <h3 class="title login">Login</h3>
+                            <div class="col-md-4 wp5">
+                                <img src="img/team-01.png" alt="Team Member">
 
-                                <form method="post" action="{% url 'loka.views.home' %}">
-                                    {% csrf_token %}
-                                    <table>
-                                        <tr>
-                                            <td><input name="username" type="text" class="fullwidth"
-                                                       placeholder="username"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input name="password" type="password" class="fullwidth"
-                                                       placeholder="password"/></td>
-                                        </tr>
-                                    </table>
+                                <h2>Jon Snow</h2>
 
-                                    <input type="submit" value="Login" class="btn btn-primary btn-lg"/>
-                                    {#                                    <input type="hidden" name="next" value="{{ next }}"/>#}
-                                    <a class="btn btn-warning btn-lg" data-toggle="modal"
-                                       data-target="#registerModal">Register</a>
-                                </form>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non
+                                    metus pulvinar imperdiet. Praesent non adipiscing libero.</p>
+
+                                <div class="social">
+                                    <ul class="social-buttons">
+                                        <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 wp5 delay-05s">
+                                <img src="img/team-02.png" alt="Team Member">
+
+                                <h2>Cersei Lannister</h2>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non
+                                    metus pulvinar imperdiet. Praesent non adipiscing libero.</p>
+
+                                <div class="social">
+                                    <ul class="social-buttons">
+                                        <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4 wp5 delay-1s">
+                                <img src="img/team-03.png" alt="Team Member">
+
+                                <h2>Jamie Lannister</h2>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non
+                                    metus pulvinar imperdiet. Praesent non adipiscing libero.</p>
+
+                                <div class="social">
+                                    <ul class="social-buttons">
+                                        <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col-md-4 wp5">
+                                <img src="img/team-01.png" alt="Team Member">
+
+                                <h2>Jon Snow</h2>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non
+                                    metus pulvinar imperdiet. Praesent non adipiscing libero.</p>
+
+                                <div class="social">
+                                    <ul class="social-buttons">
+                                        <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4 wp5 delay-05s">
+                                <img src="img/team-02.png" alt="Team Member">
+
+                                <h2>Cersei Lannister</h2>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non
+                                    metus pulvinar imperdiet. Praesent non adipiscing libero.</p>
+
+                                <div class="social">
+                                    <ul class="social-buttons">
+                                        <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4 wp5 delay-1s">
+                                <img src="img/team-03.png" alt="Team Member">
+
+                                <h2>Jamie Lannister</h2>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non
+                                    metus pulvinar imperdiet. Praesent non adipiscing libero.</p>
+
+                                <div class="social">
+                                    <ul class="social-buttons">
+                                        <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </li>
                     </ul>
-                {% endif %}
-            </li>
-        </ul>
-    </div>
-    <section class="page-section">
-        {% bootstrap_messages %}
-        {% block content %}Empty page{% endblock %}
-    </section>
-
-    {% get_quote %}
-
-    <footer class="footer">
-        <div class="row">
-            <p class="copyright">
-                <a href="https://www.facebook.com/lokaminecraft" target="_blank"><img
-                        src="/static/images/Facebook.png"/></a>
-                &copy; <a href="#" target="_parent">Loka</a> 2013 | <a href="/donate">Donate</a>
-                <a href="https://twitter.com/LokaMinecraft" target="_blank"><img src="/static/images/Twitter.png"/></a>
-            </p>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
+</section>
+<section class="subscribe text-center">
+    <div class="container">
+        <h1><i class="fa fa-paper-plane"></i><span>Subscribe to stay in the loop</span></h1>
 
-</div>
+        <form action="#">
+            <input type="text" name="" value="" placeholder="" required>
+            <input type="submit" name="" value="Send">
+        </form>
+    </div>
+</section>
+<section class="dark-bg text-center section-padding contact-wrap" id="contact">
+    <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
 
-{% compress js %}
-    <script defer src="{% static 'js/jquery.min.js' %}"></script>
-    <script defer src="{% static 'js/jquery-ui.js' %}"></script>
-    <script type="application/javascript">
-        $(function () {
-            $("#search").autocomplete({
-                source: "/api/search/",
-                select: function (event, ui) {
-                    window.location = ui.item.url;
-                },
-                minLength: 2
-            });
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="arrow">Drop us a line</h1>
+            </div>
+        </div>
+        <div class="row contact-details">
+            <div class="col-md-4">
+                <div class="light-box box-hover">
+                    <h2><i class="fa fa-map-marker"></i><span>Address</span></h2>
 
-            $(".search-icon").click(function () {
-                var icon = $(this),
-                        input = icon.parent().find("#search"),
-                        submit = icon.parent().find(".search-submit"),
-                        is_submit_clicked = false;
+                    <p>Level 6, 23 Pitt St, Sydney</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="light-box box-hover">
+                    <h2><i class="fa fa-mobile"></i><span>Phone</span></h2>
 
-                // Animate the input field
-                input.animate({
-                    "width": "165px",
-                    "padding": "10px",
-                    "opacity": 1
-                }, 300, function () {
-                    input.focus();
-                });
+                    <p>+61 9 211 3747</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="light-box box-hover">
+                    <h2><i class="fa fa-paper-plane"></i><span>Email</span></h2>
 
-                submit.mousedown(function () {
-                    is_submit_clicked = true;
-                });
-
-                // Now, we need to hide the icon too
-                icon.fadeOut(300);
-
-                // Looks great, but what about hiding the input when it loses focus and doesnt contain any value? Lets do that too
-                input.blur(function () {
-                    if (!input.val() && !is_submit_clicked) {
-                        input.animate({
-                            "width": "0",
-                            "padding": "0",
-                            "opacity": 0
-                        }, 200);
-
-                        // Get the icon back
-                        icon.fadeIn(200);
-                    }
-                    ;
-                });
-            });
-        });
-    </script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-{% endcompress %}
-
-<!--[if lt IE 9]>
-    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+                    <p><a href="#">hey@halcyondays.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="social-buttons">
+                    <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
+                    <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="legals">
+                    <li><a href="#">Loka 2014</a></li>
+                    <li><a href="#">Donate</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 credit">
+                <p>Base theme <em>Halcyon Days</em> by <a href="http://www.peterfinlan.com/">Peter Finlan</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'js/waypoints.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/jquery.flexslider.js' %}"></script>
+<script src="{% static 'js/modernizr.js' %}"></script>
 </body>
 </html>
