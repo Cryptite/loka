@@ -885,7 +885,7 @@ a.expand {
 Subscribe
 ========================================================================== */
 .subscribe {
-    background: url('../img/keyboard-bg.jpg') no-repeat center center;
+    background: url('/static/images/swag_bg.jpg') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
