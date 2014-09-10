@@ -92,8 +92,6 @@
                 client.config({swfPath: "{% static 'js/ZeroClipboard.swf' %}"});
 
                 client.on("ready", function (readyEvent) {
-                    {#                    alert( "ZeroClipboard SWF is ready!" );#}
-
                     client.on("aftercopy", function (event) {
                         // `this` === `client`
                         // `event.target` === the element that was clicked
@@ -104,15 +102,8 @@
             </script>
             <div class="row">
                 <div class="col-md-12 text-right">
-                <p class="animated fadeInUp delay-05s">It's nighttime on Loka.</p>
+                    <p class="animated fadeInUp delay-05s">It's nighttime on Loka.</p>
                 </div>
-            </div>
-            <div class="column">
-                <p class="small">Click on the button to show the notification:</p>
-                <button id="notification-trigger" class="progress-button">
-                    <span class="content">Show Notification</span>
-                    <span class="progress"></span>
-                </button>
             </div>
         </div>
     </section>
@@ -546,9 +537,6 @@
 <script src="{% static 'js/scripts.js' %}"></script>
 <script src="{% static 'js/jquery.flexslider.js' %}"></script>
 <script src="{% static 'js/modernizr.js' %}"></script>
-<script src="{% static 'js/modernizr.custom.js' %}"></script>
-<script src="{% static 'js/classie.js' %}"></script>
-<script src="{% static 'js/notificationFx.js' %}"></script>
 <script>
     (function () {
         var bttn = document.getElementById('copy-button');
@@ -557,30 +545,11 @@
         bttn.disabled = false;
 
         bttn.addEventListener('click', function () {
-            // simulate loading (for demo purposes only)
-            classie.add(bttn, 'active');
+            bttn.innerHTML = "Copied to Clipboard";
             setTimeout(function () {
+                bttn.innerHTML = "iron.minecraftarium.com";
 
-                classie.remove(bttn, 'active');
-
-                // create the notification
-                var notification = new NotificationFx({
-                    message: '<p>Loka Server address copied to your clipboard!</p>',
-                    layout: 'growl',
-                    effect: 'jelly',
-                    type: 'notice', // notice, warning, error or success
-                    onClose: function () {
-                        bttn.disabled = false;
-                    }
-                });
-
-                // show the notification
-                notification.show();
-
-            }, 1200);
-
-            // disable the button (for demo purposes only)
-            this.disabled = true;
+            }, 5000);
         });
     })();
 </script>
