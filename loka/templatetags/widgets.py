@@ -25,6 +25,15 @@ def player_avatar(user):
         return None
 
 
+@register.assignment_tag
+def player_avatar_sm(user):
+    try:
+        player = Player.objects.get(name=user.username)
+        return player.avatar_sm
+    except Exception, e:
+        return None
+
+
 @register.filter
 def has_town_banner(town):
     image = TownMedia.objects.filter(town__name=town)

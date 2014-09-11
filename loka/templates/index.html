@@ -1,188 +1,353 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}Loka Minecraft - Forge Your Story{% endblock %}
-{% block extra_head %}{% endblock %}
+{% block extra_head %}
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+    <link href="{% static 'css/queries.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+{% endblock %}
 {% block content %}
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            {% for article in news %}
-                <li data-target="#myCarousel" data-slide-to="{{ article.count }}" class=""></li>
-            {% endfor %}
-        </ol>
-        <div class="carousel-inner">
-            {% for article in news %}
-                {% if forloop.last %}
-                    <div class="item active">
-                {% else %}
-                    <div class="item">
-                {% endif %}
-            <img src="{{ article.background }}">
-
+    <header id="home">
+        {#    <nav>#}
+        {#        <div class="container-fluid">#}
+        {#            <div class="row">#}
+        {#                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">#}
+        {#                    <nav class="pull">#}
+        {#                        <ul class="top-nav">#}
+        {#                            <li><a href="#intro">Introduction <span class="indicator"><i class="fa fa-angle-right"></i></span></a>#}
+        {#                            </li>#}
+        {#                            <li><a href="#features">Major Features <span class="indicator"><i#}
+        {#                                    class="fa fa-angle-right"></i></span></a></li>#}
+        {#                            <li><a href="#about">About Loka <span class="indicator"><i#}
+        {#                                    class="fa fa-angle-right"></i></span></a>#}
+        {#                            </li>#}
+        {#                            <li><a href="#team">Team <span class="indicator"><i#}
+        {#                                    class="fa fa-angle-right"></i></span></a></li>#}
+        {#                            <li><a href="#contact">Get in Touch <span class="indicator"><i#}
+        {#                                    class="fa fa-angle-right"></i></span></a></li>#}
+        {#                        </ul>#}
+        {#                    </nav>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
+        {#    </nav>#}
+        <section class="hero" id="hero">
             <div class="container">
-                <div class="carousel-caption">
-                    <h1 class="ccaption">{{ article.title }}</h1>
-
-                    {% if article.header %}
-                        <h2>{{ article.header }}</h2>
-                    {% endif %}
-
-                    <p>{{ article.text }}</p>
-
-                    {% if article.url %}
-                        <p><a class="btn btn-lg btn-primary" href="{{ article.url }}"
-                              role="button">{{ article.url_text }}</a></p>
-                    {% endif %}
+                <div class="row">
+                    <div class="col-md-12 text-right navicon">
+                        <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
+                    </div>
                 </div>
-            </div>
-            </div>
-            {% endfor %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <h1 class="animated fadeInDown heroTitle">Loka Minecraft</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <a href="#" class="learn-more-btn" id="copy-button"
+                           data-clipboard-text="iron.minecraftarium.com"
+                           title="Click to copy me.">iron.minecraftarium.com</a>
+                    </div>
+                </div>
+                <script src="{% static 'js/ZeroClipboard.min.js' %}"></script>
+                <script>
+                    // main.js
+                    var client = new ZeroClipboard(document.getElementById("copy-button"));
+                    client.config({swfPath: "{% static 'js/ZeroClipboard.swf' %}"});
 
-            </div>
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span
-                    class="glyphicon glyphicon-chevron-left"></span></a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next"><span
-                    class="glyphicon glyphicon-chevron-right"></span></a>
-        </div>
-
-        <section class="page-section grey">
-            <div class="container padbottom30 text-center">
-                <br/>
-
-                <h1>Join Now: <strong>iron.minecraftarium.com</strong></h1>
+                    client.on("ready", function (readyEvent) {
+                        client.on("aftercopy", function (event) {
+                            // `this` === `client`
+                            // `event.target` === the element that was clicked
+                            event.target.style.display = "none";
+                            alert("Copied text to clipboard: " + event.data["text/plain"]);
+                        });
+                    });
+                </script>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <p class="animated fadeInUp delay-05s">It's nighttime on Loka.</p>
+                    </div>
+                </div>
             </div>
         </section>
-
-        <br/>
-
+    </header>
+    <section class="intro text-center section-padding" id="intro">
         <div class="container">
-            <hr class="featurette-divider">
-            <div class="row featurette">
-                <div class="col-md-7">
-                    <h1 class="featurette-heading">Townbuilding with Progression<br/><span
-                            class="text-muted">Town Leveling, Zoning, Building at its finest!</span></h1>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 wp1">
+                    <h1 class="arrow">The Minecraft Server you've been Waiting For</h1>
 
-                    <p class="lead">Loka features a unique town system powered by Generators. Construct a generator and
-                        power it with emeralds to keep your town protected</p>
-
-                    <p>Once in a town, almost everything you do in Loka counts towards your town's level. Progress your
-                        town and unlock perks and eventually Town Industries!</p>
-                </div>
-                <div class="col-md-5">
-                    <img class="featurette-image img-responsive smoothimage"
-                         src="{% static 'images/townbuilding.jpg' %}">
-                    <br/>
-
-                    <p><a href="{% url 'loka.views.towns' %}" class="btn btn-primary btn-lg center-block">Learn more
-                        about Towns</a></p>
-                </div>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="row featurette">
-                <div class="col-md-5">
-                    <img class="featurette-image img-responsive smoothimage" src="{% static 'images/votabattle.jpg' %}">
-                    <br/>
-
-                    <p><a href="{% url 'loka.views.pvp' %}" class="btn btn-warning btn-lg center-block">Learn more
-                        about our PvP</a></p>
-                </div>
-                <div class="col-md-7">
-                    <h1 class="featurette-heading">Incredible PvP Systems <br/><span
-                            class="text-muted">ELO-rated Arenas, Epic Battlegrounds, a Town vs Town Conquest game!</span>
-                    </h1>
-
-                    <p class="lead">Welcome to our 3rd season of PvP on Loka, Ice. </p>
-
-                    <p>If you prefer the more balanced 1v1 or 2v2 brackets, fight in our Arena system. Small maps, quick
-                        matches, instant fun!</p>
-
-                    <p>Do you enjoy the more open-ended thrill of a battleground? Join other players in the open-air
-                        combat of Battlegrounds. </p>
-
-                    <p>Think your town has the best of Loka? Show your town's abilities in our unlimited Town v Town
-                        Conquest map</p>
-                </div>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="row featurette">
-                <div class="col-md-7">
-                    <h1 class="featurette-heading">Powerful and Unique Market System <br/><span
-                            class="text-muted">Enjoy the life of Trade? Prove it.</span></h1>
-
-                    <p class="lead">Loka's powerful Market system allows anyone to buy and sell things at Market with
-                        the common currency of ores.</p>
-
-                    <p>Prove your agricultural prowess and become successful in Loka without ever touching a mine!</p>
-                </div>
-                <div class="col-md-5">
-                    <img class="featurette-image img-responsive smoothimage" src="{% static 'images/market.jpg' %}">
-                    <br/>
-
-                    <p><a href="http://loka.minecraftarium.com/forums/viewforum.php?f=9"
-                          class="btn btn-primary btn-lg center-block"
-                          target="_blank">Look into the Market</a></p>
-                </div>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="row featurette">
-                <div class="col-md-5">
-                    <img class="featurette-image img-responsive smoothimage"
-                         src="{% static 'images/sunriseartifact.jpg' %}">
-
-                    <br/>
-
-                    <p><a href="http://loka.minecraftarium.com/forums/viewforum.php?f=28"
-                          class="btn btn-warning btn-lg center-block"
-                          target="_blank">Know the Rules</a></p>
-                </div>
-                <div class="col-md-7">
-                    <h1 class="featurette-heading">Thievery and No Chest Protection <br/><span
-                            class="text-muted">It can be a tough world out there.</span></h1>
-
-                    <p class="lead">Loka allows thievery and murder, but griefing and mass block damage are forbidden
-                        here.</p>
-
-                    <p>Loka's thieving community is one of the most skilled in Minecraft. Do you challenge them, join
-                        them, or ignore them? Some have thrived through conflict, others have fallen. How will
-                        your story on Loka be told?</p>
-                </div>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="row featurette">
-                <div class="col-md-7">
-                    <h1 class="featurette-heading">Rich Story <br/><span
-                            class="text-muted">Loka's story is rich and diverse. Will you become part of it?</span></h1>
-
-                    <p class="lead">Since the founding of the server, Lokans have been no strangers to evil,
-                        catastrophe,
-                        and mystery.</p>
-
-                    <p>From the feared <a href="http://loka.wikia.com/wiki/Preksak" target="_blank">World-Ender
-                        Preksak</a>
-                        to the seemingly benevolent god of Asgard, Freyjia, a small
-                        host
-                        of characters appear from <a href="http://loka.wikia.com/wiki/Battle_of_the_Spire"
-                                                     target="_blank">time</a>
-                        to time to alter the course of Loka's History. Some players have
-                        even
-                        chosen to participate and have their roles locked in lore for eternity!</p>
-                </div>
-                <div class="col-md-5">
-                    <img class="featurette-image img-responsive smoothimage" src="{% static 'images/spawntower.jpg' %}">
-                    <br/>
-
-                    <p><a href="http://loka.wikia.com/wiki/Loka_Wiki" class="btn btn-success btn-lg center-block"
-                          target="_blank">Delve into our Lore</a></p>
+                    <p>Loka is a custom server, built from the ground up to deliver an experience you won't find
+                        anywhere
+                        else. Just about everything you thought you looked for in a Minecraft server is on Loka.
+                        Discover
+                        why Loka is the place you should call home.</p>
                 </div>
             </div>
         </div>
+    </section>
+    <section class="features text-center section-padding" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="arrow">Forge your path and make your story legend</h1>
 
+                    <div class="features-wrapper">
+                        <div class="col-md-4 wp2">
+                            <div class="icon">
+                                <i class="fa fa-laptop shadow"></i>
+                            </div>
+                            <h2>Territories</h2>
+
+                            <p>Claim land throughout Loka. Establish your Dominance. Loka features a unique and powerful
+                                Territory System that lets you show how powerful you and your friends can be..</p>
+                        </div>
+                        <div class="col-md-4 wp2 delay-05s">
+                            <div class="icon">
+                                <i class="fa fa-code shadow"></i>
+                            </div>
+                            <h2>Towns with Progression</h2>
+
+                            <p>From the outset of beginning your town, your every action is tracked and nearly all that
+                                you do contributes to your town's level. Earn Perks and unlock Industries as your town
+                                levels up and show the world why your town is the best.</p>
+                        </div>
+                        <div class="col-md-4 wp2 delay-1s">
+                            <div class="icon">
+                                <i class="fa fa-heart shadow"></i>
+                            </div>
+                            <h2>Top-Notch PVP</h2>
+
+                            <p>From ELO-Rated Arenas to our Battlegrounds that feature a unique Talent Set, Loka's PvP
+                                is an
+                                all-encompassing set of games guaranteed to keep you constantly improving and proving
+                                your
+                                worth to Loka!</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="swag text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>But wait<span>Loka gets <em>even better</em></span></h1>
+                    <a href="#about" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio text-center section-padding" id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div id="portfolioSlider">
+                    <ul class="slides">
+                        <li>
+                            <div class="col-md-4 wp4">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Custom Market System</h2>
+
+                                <p>Nearly everything on Loka is legitimately obtained. What you see on the Market was
+                                    worked
+                                    hard for. Our custom Market makes buying and selling easy and fun. Prove your skill
+                                    at
+                                    Marketing and dominate the sales!</p>
+                            </div>
+                            <div class="col-md-4 wp4 delay-05s">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_artifact.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="http://loka.wikia.com/wiki/Loka_Wiki" class="expand"><i
+                                                    class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Rich Lore</h2>
+
+                                <p>Since the founding of the server, Lokans have been no strangers to evil, catastrophe,
+                                    and
+                                    mystery. Characters both good and evil have shaped Loka into what it is today. Some
+                                    players have even chosen to participate and have their roles locked in
+                                    lore for eternity.</p>
+                            </div>
+                            <div class="col-md-4 wp4 delay-1s">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_hardship.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Hardship</h2>
+
+                                <p>Loka allows PvP and theft. You're welcome to slaughter whomever you will and take
+                                    their
+                                    things should you find them unguarded. We do not tolerate griefing, but more than a
+                                    few
+                                    have made their story legend in unkind deeds.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col-md-4 wp4">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_vanilla.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Semi-Vanilla</h2>
+
+                                <p>While we do host a large sum of custom content and features, our <em>core
+                                    gameplay</em> is vanilla. If you know your Minecraft well, you will thrive on Loka.
+                                </p>
+                            </div>
+                            <div class="col-md-4 wp4 delay-05s">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_chest.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>No Chest Protection</h2>
+
+                                <p>Hide your chests or keep them protected. An open chest is an invite to an empty
+                                    chest.</p>
+                            </div>
+                            <div class="col-md-4 wp4 delay-1s">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_skyline.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Evolving Features</h2>
+
+                                <p>Loka adds new features all the time. We strive never to let the experience on Loka
+                                    become
+                                    stale. Stay tuned to updates and watch the server evolve!</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    {#<div class="ignite-cta text-center">#}
+    {#    <div class="container">#}
+    {#        <div class="row">#}
+    {#            <div class="col-md-12">#}
+    {#                <a href="#" class="ignite-btn">Ignite Your Passion</a>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#</div>#}
+    {#<section class="subscribe text-center">#}
+    {#    <div class="container">#}
+    {#        <h1><i class="fa fa-paper-plane"></i><span>Subscribe to stay in the loop</span></h1>#}
+    {##}
+    {#        <form action="#">#}
+    {#            <input type="text" name="" value="" placeholder="" required>#}
+    {#            <input type="submit" name="" value="Send">#}
+    {#        </form>#}
+    {#    </div>#}
+    {#</section>#}
+    <section class="dark-bg text-center section-padding contact-wrap" id="contact">
+        <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
+
+        <div class="container">
+            {#        <div class="row">#}
+            {#            <div class="col-md-12">#}
+            {#                <h1 class="arrow">Drop us a line</h1>#}
+            {#            </div>#}
+            {#        </div>#}
+            {#        <div class="row contact-details">#}
+            {#            <div class="col-md-4">#}
+            {#                <div class="light-box box-hover">#}
+            {#                    <h2><i class="fa fa-map-marker"></i><span>Address</span></h2>#}
+            {##}
+            {#                    <p>Level 6, 23 Pitt St, Sydney</p>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <div class="col-md-4">#}
+            {#                <div class="light-box box-hover">#}
+            {#                    <h2><i class="fa fa-mobile"></i><span>Phone</span></h2>#}
+            {##}
+            {#                    <p>+61 9 211 3747</p>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <div class="col-md-4">#}
+            {#                <div class="light-box box-hover">#}
+            {#                    <h2><i class="fa fa-paper-plane"></i><span>Email</span></h2>#}
+            {##}
+            {#                    <p><a href="#">hey@halcyondays.com</a></p>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#        </div>#}
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="social-buttons">
+                        <li><a href="https://twitter.com/LokaMinecraft" class="social-btn"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="mailto:lokaminecraft@gmail.com" class="social-btn"><i
+                                class="fa fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% block extrajs %}
+        <script src="{% static 'js/waypoints.min.js' %}"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+        <script src="{% static 'js/modernizr.js' %}"></script>
+        <script>
+        (function () {
+            var bttn = document.getElementById('copy-button');
+
+            // make sure..
+            {#        bttn.disabled = false;#}
+
+            bttn.addEventListener('click', function () {
+                bttn.innerHTML = "Copied to Clipboard";
+                bttn.blur();
+                setTimeout(function () {
+                    bttn.innerHTML = "iron.minecraftarium.com";
+
+                }, 5000);
+            });
+        })();{% endblock %}
+</script>
 {% endblock %}

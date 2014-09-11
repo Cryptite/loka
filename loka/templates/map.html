@@ -9,61 +9,64 @@
 {% endblock %}
 
 {% block content %}
-    <div id="map" style="width: 100%; height: 700px; position: relative;" class="leaflet-container leaflet-fade-anim"
-         tabindex="0">
-    </div>
+    <section class="features text-center section-padding" id="features">
+        <div id="map" style="width: 100%; height: 700px; position: relative;"
+             class="leaflet-container leaflet-fade-anim"
+             tabindex="0">
+        </div>
 
-    <script src="{% static 'js/leaflet.js' %}"></script>
-    <script>
-        // See https://github.com/CloudMade/Leaflet/issues/980
-        L.CRS.Simple = L.Util.extend({}, L.CRS, {
-            projection: L.Projection.LonLat,
-            transformation: new L.Transformation(.5, .5, .5, .5)
-        });
+        <script src="{% static 'js/leaflet.js' %}"></script>
+        <script>
+            // See https://github.com/CloudMade/Leaflet/issues/980
+            L.CRS.Simple = L.Util.extend({}, L.CRS, {
+                projection: L.Projection.LonLat,
+                transformation: new L.Transformation(.5, .5, .5, .5)
+            });
 
-        var map = new L.Map('map', {
-            crs: L.CRS.Simple,
-            center: [0.0, 0.0],
-            worldCopyJump: false
-        });
+            var map = new L.Map('map', {
+                crs: L.CRS.Simple,
+                center: [0.0, 0.0],
+                worldCopyJump: false
+            });
 
-        L.tileLayer('/static/images/map/{z}/{x}/{y}.jpg', {
-            noWrap: true,
-            minZoom: 2,
-            maxZoom: 5
-        }).addTo(map);
+            L.tileLayer('/static/images/map/{z}/{x}/{y}.jpg', {
+                noWrap: true,
+                minZoom: 2,
+                maxZoom: 5
+            }).addTo(map);
 
-        map.setView([0, 0], 3);
+            map.setView([0, 0], 3);
 
-        L.marker([-.002252642, .002252642]).addTo(map).bindPopup('Spawn').openPopup();
-        L.circle([-.002252642, .002252642], 700.0, {color: 'blue', fillColor: 'blue'}).addTo(map).bindPopup('Spawn');
+            L.marker([-.002252642, .002252642]).addTo(map).bindPopup('Spawn').openPopup();
+            L.circle([-.002252642, .002252642], 700.0, {color: 'blue', fillColor: 'blue'}).addTo(map).bindPopup('Spawn');
 
-        {% for town in towns %}
-            {% if town.has_territories and town.latitude and town.longitude %}
-                L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('{{ town.name }}');
-                L.circle([{{ town.latitude }}, {{ town.longitude }}], 1000.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.4}).addTo(map).bindPopup('{{ town.name }}');
-            {% endif %}
-        {% endfor %}
-
-        {% for territory in territories %}
-            {% if territory.town.has_territories and territory.latitude and territory.longitude %}
-                {% if territory.conflicted %}
-                    L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'red', fillColor: 'red', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory (Under Attack)');
-                {% else %}
-                    L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
+            {% for town in towns %}
+                {% if town.has_territories and town.latitude and town.longitude %}
+                    L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('{{ town.name }}');
+                    L.circle([{{ town.latitude }}, {{ town.longitude }}], 1000.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.4}).addTo(map).bindPopup('{{ town.name }}');
                 {% endif %}
-            {% endif %}
-        {% endfor %}
+            {% endfor %}
 
-        {#        var popup = L.popup();#}
-        {##}
-        {#        function onMapClick(e) {#}
-        {#            popup#}
-        {#                    .setLatLng(e.latlng)#}
-        {#                    .setContent("You clicked the map at " + e.latlng.toString())#}
-        {#                    .openOn(map);#}
-        {#        }#}
-        {##}
-        {#        map.on('click', onMapClick);#}
-    </script>
+            {% for territory in territories %}
+                {% if territory.town.has_territories and territory.latitude and territory.longitude %}
+                    {% if territory.conflicted %}
+                        L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'red', fillColor: 'red', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory (Under Attack)');
+                    {% else %}
+                        L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 750.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {#        var popup = L.popup();#}
+            {##}
+            {#        function onMapClick(e) {#}
+            {#            popup#}
+            {#                    .setLatLng(e.latlng)#}
+            {#                    .setContent("You clicked the map at " + e.latlng.toString())#}
+            {#                    .openOn(map);#}
+            {#        }#}
+            {##}
+            {#        map.on('click', onMapClick);#}
+        </script>
+    </section>
 {% endblock %}
