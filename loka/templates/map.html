@@ -40,8 +40,8 @@
 
         {% for town in towns %}
             {% if town.has_territories and town.latitude and town.longitude %}
-                L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('{{ town.name }}');
-                L.circle([{{ town.latitude }}, {{ town.longitude }}], 1000.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.4}).addTo(map).bindPopup('{{ town.name }}');
+                L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('{{ town.name }}<br/>Strength: {{ town.strength }}"');
+                L.circle([{{ town.latitude }}, {{ town.longitude }}], 1000.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.4}).addTo(map).bindPopup('{{ town.name }}<br/>Strength: {{ town.strength }}');
             {% endif %}
         {% endfor %}
 
