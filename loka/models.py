@@ -234,8 +234,8 @@ class Town(models.Model):
         return None
 
     def get_list_name(self):
-        if len(self.name) > 13:
-            return self.name[:13] + "..."
+        if len(self.name) > 22:
+            return self.name[:22] + "..."
         return self.name
 
 
