@@ -4,15 +4,164 @@
 {% block title %}Loka Minecraft - Town System{% endblock %}
 {% block extra_head %}
     {{ form.media }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/towntable.css' %}"/>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 {% endblock %}
 
 {% block content %}
 
-    <div class="jumbotron header-town">
-        <h1>Our Town System</h1>
+    <section class="smallhero" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeIn delay-10s heroTitle">Town Features</h1>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <h2>Discover Loka's Unique Town System!</h2>
-    </div>
+    <section class="dark-bg text-center section-padding contact-wrap" id="contact">
+        <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
+
+        <div class="component">
+            <h2>Town Perks</h2>
+
+            <p>This is a basic usage example. Scroll down to see the sticky table header in action. And of course,
+                multiple instances are supported. Tables are pre-populated with random user data retrieved from the
+                <a href="http://randomuser.me/" title="Random User Generator">Random User Generator</a>.</p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Level</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="user-name">2</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">3</td>
+                    <td class="user-email">----</td>
+                    <td class="user-phone">Town perk coming soon!</td>
+                </tr>
+                <tr>
+                    <td class="user-name">4</td>
+                    <td class="user-email">Health I</td>
+                    <td class="user-phone">Passive regen grants an extra half heart</td>
+                </tr>
+                <tr>
+                    <td class="user-name">5</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">6</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">7</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">8</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">9</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">10</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">11</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">12</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">13</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">14</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">15</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">16</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">17</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">18</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">19</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">20</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">21</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">22</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">23</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">24</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                <tr>
+                    <td class="user-name">25</td>
+                    <td class="user-email">Experienced I</td>
+                    <td class="user-phone">Experienced gained by town members increased by 10%</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
     <div class="row">
         <section class="page-section lightgrey">
@@ -88,22 +237,9 @@
         </div>
 
     </div>
+{% endblock %}
 
-    <script>$(document).ready(function () {
-
-        $("#slider_arena").owlCarousel({
-            slideSpeed: 600,
-            paginationSpeed: 600,
-            singleItem: true,
-            autoPlay: 5000 //Set AutoPlay to 3 seconds
-        });
-
-        $("#slider_townbenefits").owlCarousel({
-            slideSpeed: 300,
-            paginationSpeed: 400,
-            singleItem: true
-        });
-
-    });</script>
-
+{% block extrajs %}
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+    <script src="{% static 'js/jquery.stickyheader.js' %}"></script>
 {% endblock %}
