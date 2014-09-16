@@ -4,8 +4,9 @@
 {% block title %}Loka Minecraft - Town System{% endblock %}
 {% block extra_head %}
     {{ form.media }}
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+    <link href="{% static 'css/queries.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/towntable.css' %}"/>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -14,21 +15,123 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
-                    <h1 class="animated fadeIn delay-10s heroTitle">Town Features</h1>
+                    <h1 class="animated fadeIn delay-10s heroTitle">Our Town System</h1>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="dark-bg text-center section-padding contact-wrap" id="contact">
-        <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
+    <section class="intro text-center section-padding" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 wp1">
+                    <h1 class="arrow">Where do I start?</h1>
 
+                    <p>Grab <em>three</em> friends, find a nice place to call home, build your <a href="#towngenerator">town
+                        generator</a>, then
+                        begin your town. Once each of the town founders have made the trek to the town generator, simply
+                        define a name and a radius for protection and then your town will be made!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 wp1 text-center">
+                    <h1 class="arrow"></h1>
+
+                    <h1><a href="#mastery">Mastery</a> | <a href="#perks">Perks</a> | <a
+                            href="#industries">Industries</a></h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="text-center" id="responsive">
+        <div class="container-fluid nopadding responsive-services">
+            <div class="wrapper">
+                <div class="iphone">
+                    <div class="towngenerator"></div>
+                </div>
+                <div class="fluid-white"></div>
+            </div>
+            <div class="container designs">
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-7">
+                        <div id="servicesSlider">
+                            <ul class="slides">
+                                <li>
+                                    <h1 class="arrow">Unique, powerful, fun town building</h1>
+
+                                    <p>Towns have a tangible power source, the Town Generator. Constructing one of these
+                                        starts the
+                                        process of creating a town on Loka. Town owners can interact with the generator
+                                        with a golden
+                                        pickaxe in order to change things like the amount of protection it covers,
+                                        nether protection,
+                                        and more.</p>
+
+                                    <p>Each minecraft day, the generator consumes emeralds in order to stay running. In
+                                        order to ensure
+                                        your town protection stays up, you must deposit emeralds into the generator's
+                                        chest. This adds
+                                        to the town's balance and keeps things running smoothly!</p>
+
+                                    <p>Fear not, though, as we know how rare Emeralds can be. At spawn one can find an
+                                        Ore Exchanger. This device will convert Iron/Gold/Diamonds/Lapis Lazuli into
+                                        emeralds so that your mining trips can be fruitful for your town as well as your
+                                        stores.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro text-center section-padding" id="mastery">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1 wp1">
+                    <h1 class="arrow">Town Mastery</h1>
+
+                    <p>Once you join a town, everything you do is tracked by Loka's Mastery System. From building to
+                        mining, farming to redstone mechanics, brewing to enchanting and blacksmithing. Taking part in
+                        Loka's PvP Systems counts too, and so does cooking, fighting monsters, and even selling at the
+                        Market. All of these things count towards individual levels in your town.</p>
+
+                    <p>Each mastery category contributes to your town's overall level and as your town levels up, you
+                        earn <a href="#perks">perks</a>!</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
+                    <div class="img">
+                        <img src="{% static 'images/item_skyline.jpg' %}" alt="Portfolio Item">
+
+                        <div class="overlay">
+                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="swag text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>Town Perks</h1>
+                    <a href="#perks" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark-bg text-center section-padding contact-wrap" id="perks">
         <div class="component">
             <h2>Town Perks</h2>
 
-            <p>This is a basic usage example. Scroll down to see the sticky table header in action. And of course,
-                multiple instances are supported. Tables are pre-populated with random user data retrieved from the
-                <a href="http://randomuser.me/" title="Random User Generator">Random User Generator</a>.</p>
+            <p>As your town levels up through the contribution of your members, it unlocks perks that make life easier
+                in and out of town. Check out what's in store for the future of your town!.</p>
             <table>
                 <thead>
                 <tr>
@@ -163,83 +266,239 @@
         </div>
     </section>
 
-    <div class="row">
-        <section class="page-section lightgrey">
-            <div class="container padbottom30 section-header">
-                <br/>
-
-                <div class="span2"><img src="{% static 'images/icon-towns.png' %}" class="pull-right"/></div>
-                <h1>Loka's towns feature a one-of-a-kind generator system. Through custom code, Loka gives you a
-                    unique township experience with control over your town you won't find anywhere else.
-                </h1>
-            </div>
-        </section>
-
-        <h2 class="title"><span>Town Generators </span><a href="{% url 'loka.views.townslist' %}"
-                                                          class="btn btn-success btn-lg pull-right">View the
-            Towns of Loka!</a></h2>
-
-        <div class="span6">
-
-            <div class="feature feature-left">
-                <h2>Real Resources</h2>
-
-                <p>Town generators consume the real-world resource, Emeralds. Through whatever means necessary, you
-                    can
-                    ensure that your generator will keep running while you're away. Should your generator ever run
-                    out
-                    of emeralds, though, your protection will fall and thieves will be free to make their way to
-                    your
-                    vaults.</p>
+    <section class="swag text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>Not enough for you?<span><em>How about Industries?</em></span></h1>
+                    <a href="#industries" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="span5">
-            <img class="smoothimage" alt="Nagrand Arena"
-                 src="{% static 'images/town_helrune.jpg' %}" height="300">
-        </div>
+    <section class="intro text-center section-padding" id="industries">
+        <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
 
-    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
+                    <div class="img">
+                        <img src="{% static 'images/banners/lumbermill.jpg' %}" alt="Portfolio Item">
 
-    <div class="row">
-        <h2 class="title"><span>Town Mastery</span></h2>
+                        <div class="overlay">
+                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1 wp1">
+                    <h1 class="arrow">Town Industries</h1>
 
-        <div class="span6">
-            <img class="smoothimage" src="{% static 'images/townbuilding.jpg' %}" height="350">
-        </div>
-        <div class="span5">
-            <div class="feature feature-right">
+                    <p>As your town continues to gain levels in each of the 18 Mastery Categories, your town's power in
+                        that area grows. Once you reach level 50 in any mastery category, you unlock that mastery's
+                        Industry.</p>
 
-                <h2>25 Town Levels, 18 leveling categories</h2>
-
-                <p>Almost everything you do counts to the progression of your town. Every block you break or place,
-                    every
-                    potion you brew, every PvP match you play, every item you sell on the market, every move you make;
-                    it all counts!.</p>
+                    <p>An Industry is a special building that can be placed in your town that excels at its specific
+                        craft. Your town can have only one Industry Building per category, but as you reach levels 75
+                        and 100, the building gets upgraded!</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="row">
-        <h2 class="title"><span>Town Benefits</span></h2>
+    <section class="team text-center section-padding" id="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="arrow">Available Industries</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="team-wrapper">
+                    <div id="teamSlider">
+                        <ul class="slides">
+                            <li>
+                                <div class="col-md-6 wp5">
+                                    <img src="{% static 'images/wal.png' %}" alt="Team Member">
 
-        <div class="span9">
-            <div class="feature feature-left">
+                                    <h2>Lumber Mill <br/>
+                                        <small>Logging</small>
+                                    </h2>
 
-                <h3>Town Chat</h3>
+                                    <p>A Lumber mill can take raw logs and cut them into planks. Because they excel at
+                                        woodcutting, lumber mills can yield far more than the usual amount of planks
+                                        from a log.</p>
 
-                <h3>Town Portal</h3>
+                                    {#                                    <div class="social">#}
+                                    {#                                        <ul class="social-buttons">#}
+                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>#}
+                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>#}
+                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>#}
+                                    {#                                        </ul>#}
+                                    {#                                    </div>#}
+                                </div>
 
-                <h3>Rank-based Build Priviledges</h3>
+                                <div class="col-md-6 wp5 delay-05s">
+                                    <img src="{% static 'images/wal.png' %}" alt="Team Member">
 
-                <h3>Nether Protection</h3>
+                                    <h2>Tavern<br/>
+                                        <small>Cooking</small>
+                                    </h2>
+
+                                    <p>Taverns yield an infinite and regenerating cake, and the ability to bake and cook
+                                        any food item.</p>
+
+                                    {#                                    <div class="social">#}
+                                    {#                                        <ul class="social-buttons">#}
+                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>#}
+                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>#}
+                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>#}
+                                    {#                                        </ul>#}
+                                    {#                                    </div>#}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-    </div>
-{% endblock %}
+    <section class="swag text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>Town Features</h1>
+                    <a href="#features" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-{% block extrajs %}
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
-    <script src="{% static 'js/jquery.stickyheader.js' %}"></script>
+    <section class="portfolio text-center section-padding" id="features">
+        <div class="container">
+            <div class="row">
+                <div id="portfolioSlider">
+                    <ul class="slides">
+                        <li>
+                            <div class="col-md-4 wp4">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Private Town Chat</h2>
+
+                                <p>Keep town-specific discussion and strategies out of the public eye. Each town has its
+                                    own private town chat acessible with <strong>/t</strong>.</p>
+                            </div>
+                            <div class="col-md-4 wp4 delay-05s">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_artifact.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="http://loka.wikia.com/wiki/Loka_Wiki" class="expand"><i
+                                                    class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Custom Titles and Member Levels</h2>
+
+                                <p>You can assign titles to any member in your town if you wish. Additionally, you can
+                                    promote and demote members to certain town levels in order to give them access to
+                                    certain areas in the town.</p>
+                            </div>
+                            <div class="col-md-4 wp4 delay-1s">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_hardship.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Town Portal</h2>
+
+                                <p>Teleports are fairly rare on Loka. We don't have /tpa or any such on-demand player
+                                    teleporter. Your town, however, can have a portal that takes you to and from
+                                    spawn.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col-md-4 wp4">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Locked Doors</h2>
+
+                                <p>You can lock doors in your town, but unlike popular plugins, doors do not stay
+                                    forever locked. Remember to lock the door on the way out or the thieves might
+                                    visit.</p>
+                            </div>
+                            <div class="col-md-4 wp4 delay-05s">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_artifact.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="http://loka.wikia.com/wiki/Loka_Wiki" class="expand"><i
+                                                    class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Personal Town Website</h2>
+
+                                <p>On this very site, your town will have its very own town area where you can upload
+                                    images, advertise your town, and even have a private forum for your town members to
+                                    use when they aren't in-game.</p>
+                            </div>
+                            <div class="col-md-4 wp4 delay-1s">
+                                <div class="overlay-effect effects clearfix">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_hardship.jpg' %}" alt="Portfolio Item">
+
+                                        <div class="overlay">
+                                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                            <a class="close-overlay hidden">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2>Town Portal</h2>
+
+                                <p>Teleports are fairly rare on Loka. We don't have /tpa or any such on-demand player
+                                    teleporter. Your town, however, can have a portal that takes you to and from
+                                    spawn.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% block extrajs %}
+        <script src="{% static 'js/waypoints.min.js' %}"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+        <script src="{% static 'js/modernizr.js' %}"></script>
+    {% endblock %}
+
 {% endblock %}
