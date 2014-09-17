@@ -20,8 +20,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="{% static 'css/animate.css' %}" rel="stylesheet">
-    <script src="{% static 'js/modernizr.custom.js' %}"></script>
     {% block extra_head %}{% endblock %}
+    <script src="{% static 'js/modernizr.custom.js' %}"></script>
 </head>
 <body id="top">
 <header class="cd-header">
@@ -37,12 +37,12 @@
             <li><a href="http://loka.wikia.com/wiki/Loka_Wiki">Wiki</a></li>
             {% if user.is_authenticated %}
                 {% player_avatar_sm user as avatar %}
-                <li><a href="#">{{ user.username }}</a>
+                <li><a href="#">
                     {% if avatar %}
                         <img src="{% static 'media/' %}{{ avatar }}" class="header-avatar"/>
                     {% else %}
                         <img src="{% static 'images/steve.png' %}" class="header-avatar"/>
-                    {% endif %}
+                    {% endif %}</a>
                 </li>
             {% else %}
                 <li><a class="cd-signin" href="#0">Log out</a></li>

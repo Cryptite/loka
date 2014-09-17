@@ -119,7 +119,7 @@ class PlayerAchievementsSerializer(serializers.ModelSerializer):
 # class PlayerSerializer(serializers.ModelSerializer):
 # player_achievements = PlayerAchievementsSerializer(many=False)
 #
-#     class Meta:
+# class Meta:
 #         model = Player
 
 
@@ -201,6 +201,7 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
     subowners = serializers.CharField(required=False)
     members = serializers.CharField()
     level = serializers.IntegerField()
+    strength = serializers.IntegerField()
     latitude = serializers.FloatField()
     longitude = serializers.FloatField()
 
@@ -220,6 +221,7 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
             instance.motd = attrs.get('motd')
             instance.owner = resolve_player(attrs.get("owner"))
             instance.level = attrs.get('level')
+            instance.strength = attrs.get('strength')
             instance.latitude = attrs.get('latitude')
             instance.longitude = attrs.get('longitude')
             return instance
@@ -235,7 +237,7 @@ class TownSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Town
-        fields = ('name', "motd", "owner", "subowners", "members", "level", "latitude", "longitude")
+        fields = ('name', "motd", "owner", "subowners", "members", "level", "strength", "latitude", "longitude")
         lookup_field = "name"
 
 
