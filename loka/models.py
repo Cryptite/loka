@@ -238,6 +238,9 @@ class Town(models.Model):
             return self.name[:13] + "..."
         return self.name
 
+    def has_territories(self):
+        return Territory.objects.filter(town=self).count() > 0
+
     def num_territories(self):
         return Territory.objects.filter(town=self).count()
 
