@@ -96,7 +96,7 @@ tbody tr:hover {
 }
 
 /* Not needed for sticky header/column functionality */
-td.user-name {
+td.town-level {
     text-transform: capitalize;
 }
 
