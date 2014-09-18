@@ -48,8 +48,10 @@
                 var hullPoints = [];
                 var hullPoints_size;
 
-                {% for territory in town.get_territories %}
-                    points.push([{{ territory.latitude }}, {{ territory.longitude }}]);
+                {% for territory in territories %}
+                    {% if territory.town == town %}
+                        points.push([{{ territory.latitude }}, {{ territory.longitude }}]);
+                    {% endif %}
                 {% endfor %}
 
                 points.sort(sortPointY);
