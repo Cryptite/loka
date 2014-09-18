@@ -247,6 +247,12 @@ class Town(models.Model):
     def has_conflicted_territory(self):
         return Territory.objects.filter(town=self, conflicted=True).count() > 0
 
+    def get_padded(self):
+        return [[self.latitude + .008, self.longitude + .008],
+                [self.latitude - .008, self.longitude + .008],
+                [self.latitude + .008, self.longitude - .008],
+                [self.latitude - .008, self.longitude - .008]]
+
 
 class Alliance(models.Model):
     name = models.CharField(max_length=40)
@@ -283,6 +289,12 @@ class Territory(models.Model):
     longitude = models.FloatField()
     conflicted = models.BooleanField(default=False)
     town = models.ForeignKey(Town)
+
+    def get_padded(self):
+        return [[self.latitude + .004, self.longitude + .004],
+                [self.latitude - .004, self.longitude + .004],
+                [self.latitude + .004, self.longitude - .004],
+                [self.latitude - .004, self.longitude - .004]]
 
 
 class Quote(models.Model):

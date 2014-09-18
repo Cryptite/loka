@@ -15,7 +15,7 @@
 
     <script src="{% static 'js/leaflet.js' %}"></script>
     <script src="{% static 'js/convex_hull.js' %}"></script>
-    <script>
+    <script type="text/javascript">
         // See https://github.com/CloudMade/Leaflet/issues/980
         L.CRS.Simple = L.Util.extend({}, L.CRS, {
             projection: L.Projection.LonLat,
@@ -50,8 +50,16 @@
                 {% for territory in territories %}
                     {% if territory.town == town %}
                         points.push([{{ territory.latitude }}, {{ territory.longitude }}]);
+
+                        {#                        {% for padded in territory.get_padded %}#}
+                        {#                            points.push({{ padded }});#}
+                        {#                        {% endfor %}#}
                     {% endif %}
+
                     points.push([{{ town.latitude }}, {{ town.longitude }}]);
+                    {% for padded in town.get_padded %}
+                        points.push({{ padded }});
+                    {% endfor %}
                 {% endfor %}
 
                 points.sort(sortPointY);
@@ -59,9 +67,9 @@
                 hullPoints_size = chainHull_2D(points, points.length, hullPoints);
 
                 {% if town.has_territory_conflicted %}
-                    L.polygon(hullPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5, smoothFactor: 5.0}).addTo(map).bindPopup('{{ town.name }} Territory (Under Attack)');
+                    L.polygon(hullPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5, smoothFactor: 1}).addTo(map).bindPopup('{{ town.name }} Territory (Under Attack)');
                 {% else %}
-                    L.polygon(hullPoints, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5, smoothFactor: 5.0}).addTo(map).bindPopup('{{ town.name }} Territory');
+                    L.polygon(hullPoints, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5, smoothFactor: 1}).addTo(map).bindPopup('{{ town.name }} Territory');
                 {% endif %}
             {% endif %}
         {% endfor %}
