@@ -42,7 +42,6 @@
         {% for town in towns %}
             {% if town.has_territories and town.latitude and town.longitude %}
                 L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('{{ town.name }}');
-                {#                    L.circle([{{ town.latitude }}, {{ town.longitude }}], 1000.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.4}).addTo(map).bindPopup('{{ town.name }}');#}
 
                 var points = [];
                 var hullPoints = [];
@@ -58,12 +57,11 @@
                 points.sort(sortPointY);
                 points.sort(sortPointX);
                 hullPoints_size = chainHull_2D(points, points.length, hullPoints);
-                {#                    L.polygon(hullPoints, {color: 'red'}).addTo(map).bindPopup('Territory');#}
 
                 {% if town.has_territory_conflicted %}
-                    L.polygon(hullPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory (Under Attack)');
+                    L.polygon(hullPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5, smoothFactor: 5.0}).addTo(map).bindPopup('{{ town.name }} Territory (Under Attack)');
                 {% else %}
-                    L.polygon(hullPoints, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
+                    L.polygon(hullPoints, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5, smoothFactor: 5.0}).addTo(map).bindPopup('{{ town.name }} Territory');
                 {% endif %}
             {% endif %}
         {% endfor %}
