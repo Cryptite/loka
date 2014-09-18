@@ -238,6 +238,9 @@ class Town(models.Model):
             return self.name[:13] + "..."
         return self.name
 
+    def num_territories(self):
+        return Territory.objects.filter(town=self).count()
+
 
 class Alliance(models.Model):
     name = models.CharField(max_length=40)
