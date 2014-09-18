@@ -52,6 +52,7 @@
                     {% if territory.town == town %}
                         points.push([{{ territory.latitude }}, {{ territory.longitude }}]);
                     {% endif %}
+                    points.push([{{ town.latitude }}, {{ town.longitude }}]);
                 {% endfor %}
 
                 points.sort(sortPointY);
