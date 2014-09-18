@@ -44,28 +44,49 @@
                 L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('{{ town.name }}');
                 {#                    L.circle([{{ town.latitude }}, {{ town.longitude }}], 1000.0, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.4}).addTo(map).bindPopup('{{ town.name }}');#}
             {% endif %}
-        {% endfor %}
 
-        {% for territory in territories %}
             {% if territory.town.has_territories and territory.latitude and territory.longitude %}
-
                 var points = [];
                 var hullPoints = [];
                 var hullPoints_size;
 
-                points.push([{{ territory.latitude }}, {{ territory.longitude }}]);
+                {% for territory in town.get_territories %}
+                    points.push([{{ territory.latitude }}, {{ territory.longitude }}]);
+                {% endfor %}
+
                 points.sort(sortPointY);
                 points.sort(sortPointX);
                 hullPoints_size = chainHull_2D(points, points.length, hullPoints);
                 {#                    L.polygon(hullPoints, {color: 'red'}).addTo(map).bindPopup('Territory');#}
 
-                {% if territory.conflicted %}
+                {% if town.has_territory_conflicted %}
                     L.polygon(hullPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory (Under Attack)');
                 {% else %}
                     L.polygon(hullPoints, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');
                 {% endif %}
-                {% endif %}
+            {% endif %}
         {% endfor %}
+
+        {#        {% for territory in territories %}#}
+        {#            {% if territory.town.has_territories and territory.latitude and territory.longitude %}#}
+        {##}
+        {#                var points = [];#}
+        {#                var hullPoints = [];#}
+        {#                var hullPoints_size;#}
+        {##}
+        {#                points.push([{{ territory.latitude }}, {{ territory.longitude }}]);#}
+        {#                points.sort(sortPointY);#}
+        {#                points.sort(sortPointX);#}
+        {#                hullPoints_size = chainHull_2D(points, points.length, hullPoints);#}
+                {#                    L.polygon(hullPoints, {color: 'red'}).addTo(map).bindPopup('Territory');#}
+        {##}
+        {#                {% if territory.conflicted %}#}
+        {#                    L.polygon(hullPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory (Under Attack)');#}
+        {#                {% else %}#}
+        {#                    L.polygon(hullPoints, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5}).addTo(map).bindPopup('{{ territory.town.name }} Territory');#}
+        {#                {% endif %}#}
+        {#            {% endif %}#}
+        {#        {% endfor %}#}
 
         {#        var popup = L.popup();#}
         {##}

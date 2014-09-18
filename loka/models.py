@@ -241,6 +241,12 @@ class Town(models.Model):
     def num_territories(self):
         return Territory.objects.filter(town=self).count()
 
+    def get_territories(self):
+        return Territory.objects.filter(town=self)
+
+    def has_conflicted_territory(self):
+        return Territory.objects.filter(town=self, conflicted=True).count() > 0
+
 
 class Alliance(models.Model):
     name = models.CharField(max_length=40)
