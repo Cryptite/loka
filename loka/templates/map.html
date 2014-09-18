@@ -41,7 +41,7 @@
 
         {% for town in towns %}
             {% if town.has_territories and town.latitude and town.longitude %}
-                L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('{{ town.name }}');
+                L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('<h2>{{ town.name }}</h2><br/>Nodes: {{ town.num_territories }}<br/>Strength: {{ town.strength }}');
 
                 var points = [];
                 var hullPoints = [];
