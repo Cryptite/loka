@@ -25,6 +25,19 @@ function sortPointY(a, b) {
 function isLeft(P0, P1, P2) {
     return (P1[1] - P0[1]) * (P2[0] - P0[0]) - (P2[1] - P0[1]) * (P1[0] - P0[0]);
 }
+
+function padHull(P, n, H) {
+    var firstHull = []
+    var firstHull_size = []
+    firstHull_size = chainHull_2D(P, n, firstHull);
+    for (var i = 0; i <= firstHull.length; i++) {
+        firstHull.push([firstHull[i][0] + .006, firstHull[i][1] + .006]);
+        firstHull.push([firstHull[i][0] - .006, firstHull[i][1] + .006]);
+        firstHull.push([firstHull[i][0] + .006, firstHull[i][1] - .006]);
+        firstHull.push([firstHull[i][0] - .006, firstHull[i][1] - .006])
+    }
+    return firstHull;
+}
 //===================================================================
 
 // chainHull_2D(): A.M. Andrew's monotone chain 2D convex hull algorithm
