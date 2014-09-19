@@ -26,17 +26,46 @@ function isLeft(P0, P1, P2) {
     return (P1[1] - P0[1]) * (P2[0] - P0[0]) - (P2[1] - P0[1]) * (P1[0] - P0[0]);
 }
 
-function padHull(P, n, H) {
-    var firstHull = []
-    var firstHull_size = []
-    firstHull_size = chainHull_2D(P, n, firstHull);
-    for (var i = 0; i <= firstHull.length; i++) {
-        firstHull.push([firstHull[i][0] + .006, firstHull[i][1] + .006]);
-        firstHull.push([firstHull[i][0] - .006, firstHull[i][1] + .006]);
-        firstHull.push([firstHull[i][0] + .006, firstHull[i][1] - .006]);
-        firstHull.push([firstHull[i][0] - .006, firstHull[i][1] - .006])
+function getHull(points, iterations) {
+    points.sort(sortPointY);
+    points.sort(sortPointX);
+
+    //Calculate the first convex hull shape.
+    var firstHull = [];
+    var firstHullPoints_size;
+    firstHullPoints_size = chainHull_2D(points, points.length, firstHull);
+
+    var secondHull = [];
+    secondHull.push(firstHull);
+
+    for (var i = 0; i <= secondHull.length; i++) {
+        secondHull.push([secondHull[i][0] + .006, secondHull[i][1] + .006]);
+        secondHull.push([secondHull[i][0] - .006, secondHull[i][1] + .006]);
+        secondHull.push([secondHull[i][0] + .006, secondHull[i][1] - .006]);
+        secondHull.push([secondHull[i][0] - .006, secondHull[i][1] - .006]);
     }
-    return firstHull;
+
+    secondHull.sort(sortPointY);
+    secondHull.sort(sortPointX);
+    var finalHull = [];
+    var finalHullPoints_size;
+    finalHullPoints_size = chainHull_2D(secondHull, secondHull.length, finalHull);
+    return finalHull;
+
+//    for (var c = 0; c < iterations; c++) {
+//        var newHullPoints = []
+//        for (var i = 0; i <= firstHull.length; i++) {
+//            firstHull.push([firstHull[i][0] + .006, firstHull[i][1] + .006]);
+//            firstHull.push([firstHull[i][0] - .006, firstHull[i][1] + .006]);
+//            firstHull.push([firstHull[i][0] + .006, firstHull[i][1] - .006]);
+//            firstHull.push([firstHull[i][0] - .006, firstHull[i][1] - .006])
+//        }
+//
+//        firstHull.sort(sortPointY);
+//        firstHull.sort(sortPointX);
+//        chainHull_2D(firstHull, firstHull.length, iterHull);
+//    }
+//    return firstHull;
 }
 //===================================================================
 
