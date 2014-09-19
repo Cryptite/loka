@@ -35,14 +35,20 @@ function getHull(points, iterations) {
     var firstHullPoints_size;
     firstHullPoints_size = chainHull_2D(points, points.length, firstHull);
 
-    var secondHull = [];
-    secondHull.push(firstHull);
+    var secondHull = firstHull;
+    console.log(secondHull);
 
-    for (var i = 0; i <= secondHull.length; i++) {
-        secondHull.push([secondHull[i][0] + .006, secondHull[i][1] + .006]);
-        secondHull.push([secondHull[i][0] - .006, secondHull[i][1] + .006]);
-        secondHull.push([secondHull[i][0] + .006, secondHull[i][1] - .006]);
-        secondHull.push([secondHull[i][0] - .006, secondHull[i][1] - .006]);
+    var paddedPoints = [];
+    for (var i = 0; i < secondHull.length; i++) {
+        console.log(secondHull[i][0] + ", " + secondHull[i][1]);
+        paddedPoints.push([secondHull[i][0] + .006, secondHull[i][1] + .006]);
+        paddedPoints.push([secondHull[i][0] - .006, secondHull[i][1] + .006]);
+        paddedPoints.push([secondHull[i][0] + .006, secondHull[i][1] - .006]);
+        paddedPoints.push([secondHull[i][0] - .006, secondHull[i][1] - .006]);
+    }
+
+    for (var c = 0; c < paddedPoints.length; c++) {
+        secondHull.push(paddedPoints[c]);
     }
 
     secondHull.sort(sortPointY);
