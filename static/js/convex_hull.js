@@ -25,6 +25,37 @@ function sortPointY(a, b) {
 function isLeft(P0, P1, P2) {
     return (P1[1] - P0[1]) * (P2[0] - P0[0]) - (P2[1] - P0[1]) * (P1[0] - P0[0]);
 }
+
+function getHull(points, iterations) {
+    points.sort(sortPointY);
+    points.sort(sortPointX);
+
+    //Calculate the first convex hull shape.
+    var firstHull = [];
+    chainHull_2D(points, points.length, firstHull);
+
+    for (var c = 0; c < iterations; c++) {
+        var iterHull = firstHull;
+        firstHull = [];
+
+        var paddedPoints = [];
+        for (var i = 0; i < iterHull.length; i++) {
+            paddedPoints.push([iterHull[i][0] + .002, iterHull[i][1] + .002]);
+            paddedPoints.push([iterHull[i][0] - .002, iterHull[i][1] + .002]);
+            paddedPoints.push([iterHull[i][0] + .002, iterHull[i][1] - .002]);
+            paddedPoints.push([iterHull[i][0] - .002, iterHull[i][1] - .002]);
+        }
+
+        for (var b = 0; b < paddedPoints.length; b++) {
+            iterHull.push(paddedPoints[b]);
+        }
+        iterHull.sort(sortPointY);
+        iterHull.sort(sortPointX);
+
+        chainHull_2D(iterHull, iterHull.length, firstHull);
+    }
+    return firstHull;
+}
 //===================================================================
 
 // chainHull_2D(): A.M. Andrew's monotone chain 2D convex hull algorithm
