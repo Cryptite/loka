@@ -75,11 +75,11 @@
 
                 {#                points.sort(sortPointY);#}
                 {#                points.sort(sortPointX);#}
-                hullPoints = getHull(points, 1);
+                hullPoints = getHull(points, 3);
 
-                for (var i = 0; i < hullPoints.length; i++) {
-                    L.marker(hullPoints[i]).addTo(map);
-                }
+                {#                for (var i = 0; i < hullPoints.length; i++) {#}
+                {#                    L.marker(hullPoints[i]).addTo(map);#}
+                {#                }#}
 
                 {% if town.has_territory_conflicted %}
                     L.polygon(hullPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5, smoothFactor: 1}).addTo(map).bindPopup('{{ town.name }} Territory (Under Attack)');

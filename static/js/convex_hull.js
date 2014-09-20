@@ -32,34 +32,33 @@ function getHull(points, iterations) {
 
     //Calculate the first convex hull shape.
     var firstHull = [];
-    var firstHullPoints_size;
-    firstHullPoints_size = chainHull_2D(points, points.length, firstHull);
+    chainHull_2D(points, points.length, firstHull);
 
-    var secondHull = firstHull;
-    console.log(secondHull);
+    for (var c = 0; c < iterations; c++) {
+        var iterHull = firstHull;
+        firstHull = [];
 
-    var paddedPoints = [];
-    for (var i = 0; i < secondHull.length; i++) {
-        console.log(secondHull[i][0] + ", " + secondHull[i][1]);
-        paddedPoints.push([secondHull[i][0] + .006, secondHull[i][1] + .006]);
-        paddedPoints.push([secondHull[i][0] - .006, secondHull[i][1] + .006]);
-        paddedPoints.push([secondHull[i][0] + .006, secondHull[i][1] - .006]);
-        paddedPoints.push([secondHull[i][0] - .006, secondHull[i][1] - .006]);
+        var paddedPoints = [];
+        for (var i = 0; i < iterHull.length; i++) {
+            paddedPoints.push([iterHull[i][0] + .002, iterHull[i][1] + .002]);
+            paddedPoints.push([iterHull[i][0] - .002, iterHull[i][1] + .002]);
+            paddedPoints.push([iterHull[i][0] + .002, iterHull[i][1] - .002]);
+            paddedPoints.push([iterHull[i][0] - .002, iterHull[i][1] - .002]);
+        }
+
+        for (var b = 0; b < paddedPoints.length; b++) {
+            iterHull.push(paddedPoints[b]);
+        }
+        iterHull.sort(sortPointY);
+        iterHull.sort(sortPointX);
+
+        chainHull_2D(iterHull, iterHull.length, firstHull);
     }
-
-    for (var c = 0; c < paddedPoints.length; c++) {
-        secondHull.push(paddedPoints[c]);
-    }
-
-    secondHull.sort(sortPointY);
-    secondHull.sort(sortPointX);
-    var finalHull = [];
-    var finalHullPoints_size;
-    finalHullPoints_size = chainHull_2D(secondHull, secondHull.length, finalHull);
-    return finalHull;
+    return firstHull;
 
 //    for (var c = 0; c < iterations; c++) {
 //        var newHullPoints = []
+
 //        for (var i = 0; i <= firstHull.length; i++) {
 //            firstHull.push([firstHull[i][0] + .006, firstHull[i][1] + .006]);
 //            firstHull.push([firstHull[i][0] - .006, firstHull[i][1] + .006]);
