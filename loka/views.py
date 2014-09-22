@@ -475,6 +475,10 @@ def about(request):
     return render_to_response('about.html', RequestContext(request))
 
 
+def guide(request):
+    return render_to_response('guide.html', RequestContext(request))
+
+
 def donate(request):
     return render_to_response('donate.html', RequestContext(request))
 

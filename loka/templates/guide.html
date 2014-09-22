@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Loka Minecraft - Town System{% endblock %}
+{% block extra_head %}
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+    <link href="{% static 'css/queries.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tabs.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tabstyles.css' %}"/>
+{% endblock %}
+{% block tab_head %}{% endblock %}
+{% block content %}
+    <section class="smallhero" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeIn delay-10s heroTitle">Loka Guide</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="tabs tabs-style-underline">
+            <nav class="guide">
+                <ul>
+                    <li><a href="#section-underline-1" class="tab-icon icon-home"><span>Towns</span></a></li>
+                    <li><a href="#section-underline-2" class="tab-icon icon-gift"><span>Territories</span></a></li>
+                    <li><a href="#section-underline-3" class="tab-icon icon-upload"><span>PvP</span></a></li>
+                    <li><a href="#section-underline-4" class="tab-icon icon-coffee"><span>Market</span></a></li>
+                    <li><a href="#section-underline-5" class="tab-icon icon-config"><span>Lore</span></a></li>
+                </ul>
+            </nav>
+            <div class="content-wrap">
+                <section id="section-underline-1">{% block towns %}{% endblock %}</section>
+                <section id="section-underline-2"><p>2</p></section>
+                <section id="section-underline-3"><p>3</p></section>
+                <section id="section-underline-4"><p>4</p></section>
+                <section id="section-underline-5"><p>5</p></section>
+            </div>
+            <!-- /content -->
+        </div>
+        <!-- /tabs -->
+    </section>
+
+    {% block extrajs %}
+        {#        <script src="{% static 'js/waypoints.min.js' %}"></script>#}
+        {#        <script src="{% static 'js/scripts.js' %}"></script>#}
+        <script src="{% static 'js/cbpFWTabs.js' %}"></script>
+        <script>
+            (function () {
+
+                [].slice.call(document.querySelectorAll('.tabs')).forEach(function (el) {
+                    new CBPFWTabs(el);
+                });
+
+            })();
+        </script>
+    {% endblock %}
+{% endblock %}
