@@ -57,10 +57,10 @@
 
                 hullPoints = getHull(points, 3);
 
-                {% if town.has_territory_conflicted %}
-                    L.polygon(hullPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5, smoothFactor: 1}).addTo(map).bindPopup('{{ town.name }} Territory (Under Attack)');
+                {% if town.has_conflicted_territory %}
+                    L.polygon(hullPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5, smoothFactor: 1}).addTo(map).bindPopup('<h2>{{ town.name }} Territory (Under Attack)</h2><br/>Nodes: {{ town.num_territories }}<br/>Strength: {{ town.strength }}');
                 {% else %}
-                    L.polygon(hullPoints, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5, smoothFactor: 1}).addTo(map).bindPopup('{{ town.name }} Territory');
+                    L.polygon(hullPoints, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5, smoothFactor: 1}).addTo(map).bindPopup('<h2>{{ town.name }} Territory</h2><br/>Nodes: {{ town.num_territories }}<br/>Strength: {{ town.strength }}');
                 {% endif %}
             {% endif %}
         {% endfor %}
