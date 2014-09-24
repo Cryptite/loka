@@ -1,16 +1,4 @@
 /* Default tab style */
-
-@font-face {
-    font-weight: normal;
-    font-style: normal;
-    font-family: 'stroke7pixeden';
-    src: url('../../../../Users/Tom/Desktop/TabStylesInspiration/fonts/stroke7pixeden/stroke7pixeden.eot?u58ytb');
-    src: url('../../../../Users/Tom/Desktop/TabStylesInspiration/fonts/stroke7pixeden/stroke7pixeden.eot?#iefixu58ytb') format('embedded-opentype'),
-    url('../../../../Users/Tom/Desktop/TabStylesInspiration/fonts/stroke7pixeden/stroke7pixeden.woff?u58ytb') format('woff'),
-    url('../../../../Users/Tom/Desktop/TabStylesInspiration/fonts/stroke7pixeden/stroke7pixeden.ttf?u58ytb') format('truetype'),
-    url('../../../../Users/Tom/Desktop/TabStylesInspiration/fonts/stroke7pixeden/stroke7pixeden.svg?u58ytb#stroke7pixeden') format('svg');
-}
-
 .tabs {
     position: relative;
     overflow: hidden;
@@ -157,25 +145,13 @@
     position: relative;
 }
 
-.content-wrap section {
+.content-wrap section.tab-section {
     display: none;
-    margin: 0 auto;
-    padding: 1em;
-    max-width: 1200px;
-    text-align: center;
+    max-width: 100%;
 }
 
 .content-wrap section.content-current {
     display: block;
-}
-
-.content-wrap section p {
-    margin: 0;
-    padding: 0.75em 0;
-    color: rgba(40, 44, 42, 0.05);
-    font-weight: 900;
-    font-size: 4em;
-    line-height: 1;
 }
 
 /* Fallback */

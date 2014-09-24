@@ -119,7 +119,7 @@
                         increase.</h1>
                 </div>
                 <div class="col-md-5 col-md-offset-1 wp2">
-                <h1 class="arrow">Town Mastery</h1>
+                    <h1 class="arrow">Town Mastery</h1>
 
                     <p>Once you join a town, everything you do is tracked by Loka's Mastery System. From building to
                         mining, farming to redstone mechanics, brewing to enchanting and blacksmithing. Taking part in
@@ -300,8 +300,6 @@
     </section>
 
     <section class="intro text-center section-padding" id="industries">
-        <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
-
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
@@ -316,7 +314,7 @@
                     <h1 class="toparrow">An industry will produce more things for less or cheaper.</h1>
                 </div>
                 <div class="col-md-5 col-md-offset-1 wp3">
-                <h1 class="arrow">Town Industries</h1>
+                    <h1 class="arrow">Town Industries</h1>
 
                     <p>As your town continues to gain levels in each of the 18 Mastery Categories, your town's power in
                         that area grows. Once you reach level 50 in any mastery category, you unlock that mastery's
@@ -343,7 +341,7 @@
                         <ul class="slides">
                             <li>
                                 <div class="col-md-6 wp4">
-                                <img src="{% static 'images/wal.png' %}" alt="Team Member">
+                                    <img src="{% static 'images/wal.png' %}" alt="Team Member">
 
                                     <h2>Lumber Mill <br/>
                                         <small>Logging</small>
@@ -363,7 +361,7 @@
                                 </div>
 
                                 <div class="col-md-6 delay-05s">
-                                <img src="{% static 'images/wal.png' %}" alt="Team Member">
+                                    <img src="{% static 'images/wal.png' %}" alt="Team Member">
 
                                     <h2>Tavern<br/>
                                         <small>Cooking</small>
@@ -406,8 +404,8 @@
                     <ul class="slides">
                         <li>
                             <div class="col-md-4 wp5">
-                            <div class="overlay-effect effects clearfix">
-                                    <div class="img">
+                                <div class="overlay-effect effects clearfix">
+                                <div class="img">
                                         <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
@@ -440,8 +438,8 @@
                                     certain areas in the town.</p>
                             </div>
                             <div class="col-md-4 wp5 delay-1s">
-                            <div class="overlay-effect effects clearfix">
-                                    <div class="img">
+                                <div class="overlay-effect effects clearfix">
+                                <div class="img">
                                         <img src="{% static 'images/item_hardship.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
@@ -459,8 +457,8 @@
                         </li>
                         <li>
                             <div class="col-md-5 wp4">
-                            <div class="overlay-effect effects clearfix">
-                                    <div class="img">
+                                <div class="overlay-effect effects clearfix">
+                                <div class="img">
                                         <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
@@ -518,12 +516,10 @@
     </section>
 
     <section class="intro text-center section-padding" id="industries">
-        <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
-
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-md-offset-1 wp6">
-                <h1 class="arrow">Alliances</h1>
+                    <h1 class="arrow">Alliances</h1>
 
                     <p>There is always strength in numbers. Forge alliances with other towns and grow your strength.
                         Alliances feature an alliance chat and the ability to build Embassies to trade items between
@@ -548,6 +544,8 @@
         </div>
     </section>
 
-    {#    <script src="{% static 'js/jquery.flexslider.js' %}"></script>#}
-    {#    <script src="{% static 'js/modernizr.js' %}"></script>#}
+    {% block tab-js %}
+        <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+        <script src="{% static 'js/modernizr.js' %}"></script>
+    {% endblock %}
 {% endblock %}
