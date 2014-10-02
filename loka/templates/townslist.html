@@ -25,7 +25,7 @@
         {% for alliance in alliances %}
             <section class="grid-wrap">
                 <h1>{{ alliance.name }} Alliance
-                    <small>- {{ alliance.towns.count }} Towns</small>
+                    <small>- {{ alliance.towns.count }} Towns - {{ alliance.strength }} Strength</small>
                 </h1>
                 <ul class="grid swipe-right" id="grid-{{ alliance.name }}">
                     <li>

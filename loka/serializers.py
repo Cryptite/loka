@@ -245,6 +245,7 @@ class AllianceSerializer(serializers.HyperlinkedModelSerializer):
     name = serializers.CharField(max_length=50)
     leader = serializers.CharField(max_length=255, required=False)
     towns = serializers.CharField()
+    strength = serializers.IntegerField()
 
     def restore_object(self, attrs, instance=None):
         """
@@ -260,6 +261,7 @@ class AllianceSerializer(serializers.HyperlinkedModelSerializer):
             print 'Via existing instance'
             instance.name = attrs.get('name', instance.name)
             instance.leader = resolve_town(attrs.get("leader"))
+            instance.strength = attrs.get('strength')
             return instance
 
         leader = attrs.get("leader")
@@ -272,7 +274,7 @@ class AllianceSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Alliance
-        fields = ('name', "leader", "towns")
+        fields = ('name', "leader", "towns", "strength")
         lookup_field = "name"
 
 

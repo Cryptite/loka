@@ -258,6 +258,7 @@ class Alliance(models.Model):
     name = models.CharField(max_length=40)
     leader = models.ForeignKey(Town)
     towns = models.ManyToManyField(Town, related_name="alliancetowns")
+    strength = models.IntegerField(max_length=5)
 
     def set_many_field(self, source_list, destination_field):
         if source_list == "":
