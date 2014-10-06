@@ -238,11 +238,27 @@ class Town(models.Model):
             return self.name[:22] + "..."
         return self.name
 
+    def num_territories(self):
+        return Territory.objects.filter(town=self).count()
+
+    def get_territories(self):
+        return Territory.objects.filter(town=self)
+
+    def has_conflicted_territory(self):
+        return Territory.objects.filter(town=self, conflicted=True).count() > 0
+
+    def get_padded(self):
+        return [[self.latitude + .008, self.longitude + .008],
+                [self.latitude - .008, self.longitude + .008],
+                [self.latitude + .008, self.longitude - .008],
+                [self.latitude - .008, self.longitude - .008]]
+
 
 class Alliance(models.Model):
     name = models.CharField(max_length=40)
     leader = models.ForeignKey(Town)
     towns = models.ManyToManyField(Town, related_name="alliancetowns")
+    strength = models.IntegerField(max_length=5)
 
     def set_many_field(self, source_list, destination_field):
         if source_list == "":
@@ -275,6 +291,12 @@ class Territory(models.Model):
     conflicted = models.BooleanField(default=False)
     # neutral = models.BooleanField(default=False)
     town = models.ForeignKey(Town)
+
+    def get_padded(self):
+        return [[self.latitude + .004, self.longitude + .004],
+                [self.latitude - .004, self.longitude + .004],
+                [self.latitude + .004, self.longitude - .004],
+                [self.latitude - .004, self.longitude - .004]]
 
 
 class Quote(models.Model):
