@@ -145,6 +145,14 @@
     position: relative;
 }
 
+.content-wrap section.tab {
+    display: none;
+    margin: 0 auto;
+    padding: 1em;
+    max-width: 1200px;
+    text-align: center;
+}
+
 .content-wrap section.tab-section {
     display: none;
     max-width: 100%;

@@ -40,6 +40,8 @@ $(document).ready(function () {
 $(function () {
 
     $('a[href*=#]:not([href=#])').click(function () {
+        if (this.parentNode.parentNode.parentNode.className == "nav") return true;
+
         if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
 
             var target = $(this.hash);
