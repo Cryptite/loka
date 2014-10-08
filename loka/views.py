@@ -154,6 +154,10 @@ def pvp(request):
     return render_to_response('pvp.html', RequestContext(request))
 
 
+def talents(request):
+    return render_to_response('talents.html', RequestContext(request))
+
+
 def map_page(request):
     strength_towns = [town for town in Town.objects.filter(Q(strength__gt=0)).order_by("-strength")]
     return render_to_response('map.html', RequestContext(request, {

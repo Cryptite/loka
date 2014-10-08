@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+{% block title %}Loka Minecraft - Talent Calculator{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/talents.css' %}" type="text/css"/>
+    <script type="type/javascript">
+            // Preload sprites
+            (new Image()).src = "{% static 'images/button-icons.jpg' %}";
+            (new Image()).src = "{% static 'images/req-bars.png' %}";
+            (new Image()).src = "images/tree-icons.png";
+
+
+    </script>
+
+{% endblock %}
+{% block content %}
+    <section class="intro text-center section-padding" id="top">
+        <div id="s2masteries">
+            <div class="art-top"></div>
+            <div class="art-bottom"></div>
+            <div id="panel">
+                <div class="left">
+                    <div id="points">
+                        <span>Points Available: </span><span class="count"></span>
+                    </div>
+                </div>
+                <div class="center">
+                    <a id="exportLink" href="#">Link</a>
+                </div>
+                <div class="right">
+                    <a href="#" class="generic-btn" id="return">Reset Talents</a>
+                </div>
+                <div id="tree-summaries"></div>
+            </div>
+            <div id="calculator"></div>
+        </div>
+    </section>
+
+    {% block extrajs %}
+        <script type="text/javascript" src="{% static 'js/talentdata.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/talentcalculator.js' %}"></script>
+    {% endblock %}
+{% endblock %}

@@ -630,6 +630,28 @@ Hero
     color: #fff;
 }
 
+.generic-btn {
+    background: rgba(61, 201, 179, 1);
+    padding: 20px 40px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    -webkit-box-shadow: 0px 3px 0px 0px #309383;
+    -moz-box-shadow: 0px 3px 0px 0px #309383;
+    box-shadow: 0px 3px 0px 0px #309383;
+    font-weight: bold;
+}
+
+.generic-btn:hover, .generic-btn:focus {
+    background: rgba(61, 201, 179, 0.6);
+    color: #fff;
+}
+
 /* ==========================================================================
 Small Hero
 ========================================================================== */
