@@ -9,10 +9,24 @@ var data = [
             rankInfo: []
         },
         {
+            index: 2,
+            name: "Flaming Sword",
+            ranks: 1,
+            desc: "All sword attacks have a 15% chance to ignite the enemy, dealing fire damage over time.\nPassive Effect",
+            rankInfo: []
+        },
+        {
             index: 3,
             name: "Archer",
             ranks: 1,
             desc: "Battleground bow is granted Power II\n\nPassive Effect",
+            rankInfo: []
+        },
+        {
+            index: 4,
+            name: "Slow",
+            ranks: 1,
+            desc: "Sword attacks have a 15% chance to slow enemies\nPassive Effect",
             rankInfo: []
         },
         {
@@ -23,11 +37,26 @@ var data = [
             rankInfo: []
         },
         {
+            index: 6,
+            name: "Life Steal",
+            ranks: 1,
+            desc: "Upon hitting an enemy, you gain Lifesteal.\nLifesteal: You regain a small amount of health every second for 6 seconds. This can only occur once every 30 seconds.\nPassive Effect\nCooldown: 30 seconds",
+            rankInfo: []
+        },
+        {
             index: 7,
             name: "Frost Trap",
             ranks: 1,
             desc: "Place a trap that, when run over by an enemy, applies a heavy slow and minor poison to the enemy.\n\nCooldown: 30 seconds\n\nAbility",
-            parent: 1,
+            parent: 0,
+            rankInfo: []
+        },
+        {
+            index: 8,
+            name: "Thrill of the Kill",
+            ranks: 1,
+            desc: "Sword damage increased by 15%. Additionally, any time you kill a player, you gain Speed III for 6 seconds.\nRequires Life Steal\nPassive Effect",
+            parent: 3,
             rankInfo: []
         },
         {

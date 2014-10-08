@@ -94,7 +94,7 @@ function drawCalculator() {
 function drawButton(tree, index) {
     var spritePos = masterySpritePos(tree, index);
     var buttonPos = masteryButtonPosition(tree, index);
-    var status = data[tree][index].index < 5 ? "available" : "unavailable";
+    var status = data[tree][index].index < 3 ? "available" : "unavailable";
     var rank = 0;
 
     // Check if we need to draw the requirement
@@ -102,6 +102,7 @@ function drawButton(tree, index) {
     var parentLink = null;
     if (parent != undefined) {
         var parentPos = masteryButtonPosition(tree, parent);
+        console.log("parent for " + index + " is " + parent + ": " + parentPos.x + ", " + parentPos.y);
         $("#calculator").append(parentLink =
                 $("<div>")
                     .addClass("requirement")
@@ -109,9 +110,9 @@ function drawButton(tree, index) {
                     // height is one gap and button for each in between them, plus an extra gap
                     .css({
                         height: (HEIGHT_GAP + BUTTON_SIZE) *
-                            (data[tree][index].index / 2 - data[tree][parent].index / 2 - 1) + HEIGHT_GAP + 15,
+                            (data[tree][index].index / 4 - data[tree][parent].index / 4 - 1) + HEIGHT_GAP - 5,
                         left: parentPos.x + 18,
-                        top: parentPos.y + BUTTON_SIZE + 35
+                        top: parentPos.y + BUTTON_SIZE - 2
                     })
         );
     }
@@ -291,7 +292,7 @@ function masteryTooltipReq(tree, index) {
         missing.push("Requires " + pointReq + " points in " + treeNames[tree][0].toUpperCase() + treeNames[tree].slice(1));
     if (!masteryParentReq(tree, index)) {
         var parent = data[tree][index].parent;
-        missing.push("Requires " + data[tree][parent].ranks + " points in " + data[tree][parent].name);
+        missing.push("Requires " + data[tree][parent].name);
     }
 
     return missing.join("\n");
@@ -306,7 +307,7 @@ function masteryButtonPosition(tree, index) {
     // padding for tree
     x += TREE_OFFSET * tree;
     // base padding
-    x += 40;
+    x += 20;
     y += 18;
     // padding for spacing
     x += ix * (BUTTON_SIZE + 15);
