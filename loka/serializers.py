@@ -120,11 +120,11 @@ class PlayerAchievementsSerializer(serializers.ModelSerializer):
 # player_achievements = PlayerAchievementsSerializer(many=False)
 #
 # class Meta:
-#         model = Player
+# model = Player
 
 
 # class SinglePlayerSerializer(serializers.ModelSerializer):
-#     class Meta:
+# class Meta:
 #         model = Player
 #         lookup_field = "name"
 

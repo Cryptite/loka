@@ -385,7 +385,7 @@ h2::after {
 }
 
 .section-padding {
-    padding: 90px 0 100px
+    padding: 60px 0 60px
 }
 
 .dark-bg {
@@ -634,7 +634,7 @@ Hero
 Small Hero
 ========================================================================== */
 .smallhero {
-    background: url('/static/images/towns.png') no-repeat center center;
+    background: url('/static/images/town2.jpg') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -676,6 +676,16 @@ h1.arrow {
     letter-spacing: 1px;
     background: url('/static/images/h1-bg.png') no-repeat center bottom;
     padding-bottom: 30px;
+    font-weight: bold;
+}
+
+h1.toparrow {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #353535;
+    letter-spacing: 1px;
+    background: url('/static/images/h1-bg.png') no-repeat center top;
+    padding-top: 30px;
     font-weight: bold;
 }
 
@@ -791,7 +801,7 @@ Portfolio
 
 .effects .img {
     position: relative;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -1171,7 +1181,7 @@ Waypoints
 }
 
 .towngenerator {
-    background: url('/static/images/news_newspawn.jpg') no-repeat center center;
+    background: url('/static/images/townlayout.jpg') no-repeat center center;
     background-position: 0px 10px;
     height: 100%;
 }

@@ -1,22 +1,12 @@
-{% extends "base.html" %}
+{% extends "guide.html" %}
 {% load staticfiles %}
 {% block title %}Loka Minecraft - Town System{% endblock %}
-{% block extra_head %}
-    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
-    <link href="{% static 'css/queries.css' %}" rel="stylesheet">
+
+{% block tab_head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/towntable.css' %}"/>
 {% endblock %}
-{% block content %}
-    <section class="smallhero" id="hero">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <h1 class="animated fadeIn delay-10s heroTitle">Our Town System</h1>
-                </div>
-            </div>
-        </div>
-    </section>
 
+{% block towns %}
     <section class="intro text-center section-padding" id="top">
         <div class="container">
             <div class="row">
@@ -33,7 +23,7 @@
                 <div class="col-md-8 col-md-offset-2 wp1 text-center">
                     <h1 class="arrow"></h1>
 
-                    <h1><a href="#mastery">Mastery</a> | <a href="#perks">Perks</a> | <a
+                    <h1><a href="#zoning">Zoning</a> | <a href="#mastery">Mastery</a> | <a href="#perks">Perks</a> | <a
                             href="#industries">Industries</a></h1>
                 </div>
             </div>
@@ -83,10 +73,52 @@
         </div>
     </section>
 
-    <section class="intro text-center section-padding" id="mastery">
+    <section class="intro text-center section-padding" id="zoning">
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-md-offset-1 wp1">
+                    <h1 class="arrow">Town Zoning</h1>
+
+                    <p>Loka grants you the ability to, as your town levels up, create up to 4 different levels of Zones
+                        throughout your town. Zones allow specific permissions to different parts of your town based on
+                        member levels. Recruiting that new guy that just joined the server? Give him access only to
+                        Level 1 Zones around your town until he proves his worth.</p>
+
+                    <p>Zones are just one of the many granular controls you have over your town. You shouldn't be
+                        punished for recruiting players, you should have the safety protocols in place to let your town
+                        grow and be as secure or as open as you want!</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
+                    <div class="img">
+                        <img src="{% static 'images/towngate.jpg' %}" alt="Portfolio Item" class="theimage">
+
+                        <div class="overlay">
+                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                    <h1 class="toparrow">Zoning helps further define your town's areas.</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro text-center section-padding" id="mastery">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
+                    <div class="img">
+                        <img src="{% static 'images/wheatfield.jpg' %}" alt="Portfolio Item">
+
+                        <div class="overlay">
+                            <a href="#0" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                    <h1 class="toparrow">The more categories you level up, the quicker your town level will
+                        increase.</h1>
+                </div>
+                <div class="col-md-5 col-md-offset-1 wp2">
                     <h1 class="arrow">Town Mastery</h1>
 
                     <p>Once you join a town, everything you do is tracked by Loka's Mastery System. From building to
@@ -96,16 +128,6 @@
 
                     <p>Each mastery category contributes to your town's overall level and as your town levels up, you
                         earn <a href="#perks">perks</a>!</p>
-                </div>
-                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
-                    <div class="img">
-                        <img src="{% static 'images/item_skyline.jpg' %}" alt="Portfolio Item">
-
-                        <div class="overlay">
-                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
-                            <a class="close-overlay hidden">x</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -278,21 +300,20 @@
     </section>
 
     <section class="intro text-center section-padding" id="industries">
-        <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
-
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
                     <div class="img">
-                        <img src="{% static 'images/banners/lumbermill.jpg' %}" alt="Portfolio Item">
+                        <img src="{% static 'images/lumbermill.jpg' %}" alt="Portfolio Item">
 
                         <div class="overlay">
                             <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
                             <a class="close-overlay hidden">x</a>
                         </div>
                     </div>
+                    <h1 class="toparrow">An industry will produce more things for less or cheaper.</h1>
                 </div>
-                <div class="col-md-5 col-md-offset-1 wp1">
+                <div class="col-md-5 col-md-offset-1 wp3">
                     <h1 class="arrow">Town Industries</h1>
 
                     <p>As your town continues to gain levels in each of the 18 Mastery Categories, your town's power in
@@ -319,7 +340,7 @@
                     <div id="teamSlider">
                         <ul class="slides">
                             <li>
-                                <div class="col-md-6 wp5">
+                                <div class="col-md-6 wp4">
                                     <img src="{% static 'images/wal.png' %}" alt="Team Member">
 
                                     <h2>Lumber Mill <br/>
@@ -339,7 +360,7 @@
                                     {#                                    </div>#}
                                 </div>
 
-                                <div class="col-md-6 wp5 delay-05s">
+                                <div class="col-md-6 delay-05s">
                                     <img src="{% static 'images/wal.png' %}" alt="Team Member">
 
                                     <h2>Tavern<br/>
@@ -382,9 +403,9 @@
                 <div id="portfolioSlider">
                     <ul class="slides">
                         <li>
-                            <div class="col-md-4 wp4">
+                            <div class="col-md-4 wp5">
                                 <div class="overlay-effect effects clearfix">
-                                    <div class="img">
+                                <div class="img">
                                         <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
@@ -416,9 +437,9 @@
                                     promote and demote members to certain town levels in order to give them access to
                                     certain areas in the town.</p>
                             </div>
-                            <div class="col-md-4 wp4 delay-1s">
+                            <div class="col-md-4 wp5 delay-1s">
                                 <div class="overlay-effect effects clearfix">
-                                    <div class="img">
+                                <div class="img">
                                         <img src="{% static 'images/item_hardship.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
@@ -435,9 +456,9 @@
                             </div>
                         </li>
                         <li>
-                            <div class="col-md-4 wp4">
+                            <div class="col-md-5 wp4">
                                 <div class="overlay-effect effects clearfix">
-                                    <div class="img">
+                                <div class="img">
                                         <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
@@ -495,11 +516,9 @@
     </section>
 
     <section class="intro text-center section-padding" id="industries">
-        <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
-
         <div class="container">
             <div class="row">
-                <div class="col-md-5 col-md-offset-1 wp1">
+                <div class="col-md-5 col-md-offset-1 wp6">
                     <h1 class="arrow">Alliances</h1>
 
                     <p>There is always strength in numbers. Forge alliances with other towns and grow your strength.
@@ -515,6 +534,8 @@
                             <a class="close-overlay hidden">x</a>
                         </div>
                     </div>
+                    <h1 class="toparrow">Choose your allies carefully. In the Game of Loka, there is always strength in
+                        numbers.</h1>
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-3 text-center">
@@ -523,9 +544,7 @@
         </div>
     </section>
 
-    {% block extrajs %}
-        <script src="{% static 'js/waypoints.min.js' %}"></script>
-        <script src="{% static 'js/scripts.js' %}"></script>
+    {% block tab-js %}
         <script src="{% static 'js/jquery.flexslider.js' %}"></script>
         <script src="{% static 'js/modernizr.js' %}"></script>
     {% endblock %}

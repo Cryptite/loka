@@ -9,99 +9,100 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}"/>#}
-    {#    <link rel="stylesheet" type="text/css" href="css/demo.css"/>#}
     <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}"/>
-    <script src="{% static 'js/modernizr.custom.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 
-    <div class="jumbotron towns">
-        <h1>Towns of Loka</h1>
-    </div>
+    <section class="smallhero" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeIn delay-10s heroTitle">Towns of Loka</h1>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="container">
-        {% for alliance in alliances %}
-            <section class="grid-wrap">
-                <h1>{{ alliance.name }} Alliance
-                    <small>- {{ alliance.towns.count }} Towns - {{ alliance.strength }} Strength</small>
-                </h1>
-                <ul class="grid swipe-right" id="grid-{{ alliance.name }}">
-                    <li>
-                        <a href="/town/{{ alliance.leader.name }}">
-                            {% if alliance.leader.name|has_town_banner != None %}
-                                {% with image=alliance.leader.name|has_town_banner %}
-                                    {% if image.banner %}
-                                        <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
-                                             class="imgcenter"/>
-                                    {% else %}
-                                        <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                                    {% endif %}
-                                {% endwith %}
-                            {% else %}
-                                <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                            {% endif %}
-                            <h3 class="leader">{{ alliance.leader.name }}</h3>
-
-                            <p>Level {{ alliance.leader.level }}</p>
-                        </a>
-                    </li>
-                    {% for town in alliance.towns.all %}
-                        {% if town != alliance.leader %}
-                            <li>
-                                <a href="/town/{{ town.name }}">
-                                    {% if town.name|has_town_banner != None %}
-                                        {% with image=town.name|has_town_banner %}
-                                            {% if image.banner %}
-                                                <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
-                                                     class="imgcenter"/>
-                                            {% else %}
-                                                <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                                            {% endif %}
-                                        {% endwith %}
-                                    {% else %}
-                                        <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                                    {% endif %}
-                                    <h3 class="normal">{{ town.name }}</h3>
-
-                                    <p class="level">Level {{ town.level }}</p>
-                                </a>
-                            </li>{% endif %}
-                    {% endfor %}
-                </ul>
-            </section>
-        {% endfor %}
-
-        <section class="grid-wrap">
-            <h1>Wild Towns
+    {% for alliance in alliances %}
+        <section class="text-center townlist-wrap">
+            <h1 class="town-category">{{ alliance.name }} Alliance
+                <small>- {{ alliance.towns.count }} Towns</small>
             </h1>
-            <ul class="grid swipe-right" id="grid-wildtowns">
-                {% for town in towns %}
-                    <li>
-                        <a href="/town/{{ town.name }}">
-                            {% if town.name|has_town_banner != None %}
-                                {% with image=town.name|has_town_banner %}
-                                    {% if image.banner %}
-                                        <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
-                                             class="imgcenter"/>
-                                    {% else %}
-                                        <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                                    {% endif %}
-                                {% endwith %}
-                            {% else %}
-                                <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                            {% endif %}
-                            <h3 class="normal">{{ town.get_list_name }}</h3>
+            <ul class="grid swipe-right" id="grid-{{ alliance.name }}">
+                <li>
+                    <a href="/town/{{ alliance.leader.name }}">
+                        {% if alliance.leader.name|has_town_banner != None %}
+                            {% with image=alliance.leader.name|has_town_banner %}
+                                {% if image.banner %}
+                                    <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
+                                         class="imgcenter"/>
+                                {% else %}
+                                    <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
+                                {% endif %}
+                            {% endwith %}
+                        {% else %}
+                            <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
+                        {% endif %}
+                        <h3 class="leader">{{ alliance.leader.name }}</h3>
 
-                            <p class="level">Level {{ town.level }}</p>
-                        </a>
-                    </li>
+                        <p>Level {{ alliance.leader.level }}</p>
+                    </a>
+                </li>
+                {% for town in alliance.towns.all %}
+                    {% if town != alliance.leader %}
+                        <li>
+                            <a href="/town/{{ town.name }}">
+                                {% if town.name|has_town_banner != None %}
+                                    {% with image=town.name|has_town_banner %}
+                                        {% if image.banner %}
+                                            <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
+                                                 class="imgcenter"/>
+                                        {% else %}
+                                            <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
+                                        {% endif %}
+                                    {% endwith %}
+                                {% else %}
+                                    <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
+                                {% endif %}
+                                <h3 class="normal">{{ town.name }}</h3>
+
+                                <p class="level">Level {{ town.level }}</p>
+                            </a>
+                        </li>{% endif %}
                 {% endfor %}
             </ul>
+            <h2></h2>
         </section>
+    {% endfor %}
 
-    </div>
+    <section class="text-center townlist-wrap">
+        <h1 class="town-category">Wild Towns</h1>
+        <ul class="grid swipe-right" id="grid-wildtowns">
+            {% for town in towns %}
+                <li>
+                    <a href="/town/{{ town.name }}">
+                        {% if town.name|has_town_banner != None %}
+                            {% with image=town.name|has_town_banner %}
+                                {% if image.banner %}
+                                    <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
+                                         class="imgcenter"/>
+                                {% else %}
+                                    <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
+                                {% endif %}
+                            {% endwith %}
+                        {% else %}
+                            <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
+                        {% endif %}
+                        <h3 class="normal">{{ town.get_list_name }}</h3>
+
+                        <p class="level">Level {{ town.level }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
     <!-- /container -->
     <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
     <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
