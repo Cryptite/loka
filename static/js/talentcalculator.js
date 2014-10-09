@@ -102,17 +102,15 @@ function drawButton(tree, index) {
     var parentLink = null;
     if (parent != undefined) {
         var parentPos = masteryButtonPosition(tree, parent);
-        console.log("parent for " + index + " is " + parent + ": " + parentPos.x + ", " + parentPos.y);
         $("#calculator").append(parentLink =
                 $("<div>")
                     .addClass("requirement")
                     .addClass("unavailable")
                     // height is one gap and button for each in between them, plus an extra gap
                     .css({
-                        height: (HEIGHT_GAP + BUTTON_SIZE) *
-                            (data[tree][index].index / 4 - data[tree][parent].index / 4 - 1) + HEIGHT_GAP - 5,
-                        left: parentPos.x + 18,
-                        top: parentPos.y + BUTTON_SIZE - 2
+                        height: 70,
+                        left: buttonPos.x + 18,
+                        top: buttonPos.y - 50
                     })
         );
     }

@@ -63,9 +63,16 @@ var data = [
             index: 9,
             name: "Explosive Arrow",
             ranks: 1,
-            desc: "Loads an Explosive ARrow that devastates nearby enemies upon impact.\nA Player hit directly by the shot will take double damage.\nCooldown: 25 seconds.\nAbility",
+            desc: "Loads an Explosive Arrow that devastates nearby enemies upon impact.\nA Player hit directly by the shot will take double damage.\nCooldown: 25 seconds.\nAbility",
             rankInfo: []
         },
+        {
+            index: 10,
+            name: "Lunge",
+            ranks: 1,
+            desc: "Leap forward toward your enemy. Your next attack within 8 seconds does twice the usual damage.\nCooldown: 20 seconds\nAbility",
+            rankInfo: []
+        }
     ],
     // defensive
     [
