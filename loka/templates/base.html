@@ -14,6 +14,10 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     {% block extra_head %}{% endblock %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dropdown.css' %}" rel="stylesheet">
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/noJS.css' %}"/>
+    </noscript>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,26 +33,59 @@
 
     <nav class="cd-main-nav">
         <ul>
-            <!-- inser more links here -->
-            <li><a href="{% url 'loka.views.guide' %}">Guide</a></li>
-            <li><a href="{% url 'loka.views.map_page' %}">Territory Map</a></li>
+            <li>
+                <div id="dd" class="wrapper-dropdown-2" tabindex="1">Guide
+                    <ul class="dropdown">
+                        <li><a href="{% url 'loka.views.guide' %}"><i class="icon-twitter icon-large"></i>Guide</a></li>
+                        <li><a href="{% url 'loka.views.towns' %}"><i class="icon-twitter icon-large"></i>Towns</a></li>
+                        <li><a href="{% url 'loka.views.territories' %}"><i class="icon-github icon-large"></i>Territories</a>
+                        </li>
+                        <li><a href="{% url 'loka.views.pvp' %}"><i class="icon-facebook icon-large"></i>PvP</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="{% url 'loka.views.map_page' %}">Map</a></li>
             <li><a href="{% url 'loka.views.townslist' %}">Towns</a></li>
-            <li><a href="{% url 'loka.views.pvp' %}">PvP</a></li>
+            <li>
+                <div id="dd2" class="wrapper-dropdown-2" tabindex="2">PvP
+                    <ul class="dropdown">
+                        <li><a href="{% url 'loka.views.pvp' %}"><i class="icon-twitter icon-large"></i>About</a></li>
+                        <li><a href="{% url 'loka.views.pvp1v1' %}"><i class="icon-twitter icon-large"></i>1v1
+                            Bracket</a></li>
+                        <li><a href="{% url 'loka.views.pvp2v2' %}"><i class="icon-github icon-large"></i>2v2
+                            Bracket</a></li>
+                        <li><a href="{% url 'loka.views.pvpvota' %}"><i class="icon-facebook icon-large"></i>VotA
+                            Rankings</a></li>
+                    </ul>
+                </div>
+            </li>
             <li><a href="forums/">Forums</a></li>
             <li><a href="http://loka.wikia.com/wiki/Loka_Wiki">Wiki</a></li>
             {% if user.is_authenticated %}
                 {% player_avatar_sm user as avatar %}
-                <li><a href="#">
-                    {% if avatar %}
-                        <img src="{% static 'media/' %}{{ avatar }}" class="header-avatar"/>
-                    {% else %}
-                        <img src="{% static 'images/steve.png' %}" class="header-avatar"/>
-                    {% endif %}</a>
-                </li>
+                <img src="{% static 'images/steve.png' %}" class="header-avatar"/>
+                {#                <li><a href="#">#}
+                {#                    {% if avatar %}#}
+                {#                        <img src="{% static 'media/' %}{{ avatar }}" class="header-avatar"/>#}
+                {#                    {% else %}#}
+                {#                        <img src="{% static 'images/steve.png' %}" class="header-avatar"/>#}
+                {#                    {% endif %}</a>#}
+                {#                </li>#}
+                <a href="{% url 'loka.views.logout' %}">Log out</a>
             {% else %}
-                <li><a class="cd-signin" href="#0">Log out</a></li>
+                <li><a class="cd-signin" href="#">Login</a></li>
             {% endif %}
         </ul>
+
+        {#        <div class="wrapper-demo">#}
+        {#            <div id="dd" class="wrapper-dropdown-2" tabindex="1">Sign in with#}
+        {#                <ul class="dropdown">#}
+        {#                    <li><a href="#"><i class="icon-twitter icon-large"></i>Twitter</a></li>#}
+        {#                    <li><a href="#"><i class="icon-github icon-large"></i>Github</a></li>#}
+        {#                    <li><a href="#"><i class="icon-facebook icon-large"></i>Facebook</a></li>#}
+        {#                </ul>#}
+        {#            </div>#}
+        {#        </div>#}
     </nav>
     <!-- cd-main-nav -->
 </header>
@@ -150,8 +187,8 @@
         <div class="row">
             <div class="col-md-6">
                 <ul class="legals">
-                    <li><a href="#">Loka 2014</a></li>
-                    <li><a href="#">Donate</a></li>
+                    <li><a href="{% url 'loka.views.home' %}">Loka 2014</a></li>
+                    <li><a href="{% url 'loka.views.donate' %}">Donate</a></li>
                 </ul>
             </div>
             <div class="col-md-6 credit">
@@ -161,71 +198,44 @@
     </div>
 </footer>
 
-
-{#<section class="text-center" id="responsive">#}
-{#    <div class="container-fluid nopadding responsive-services">#}
-{#        <div class="wrapper">#}
-{#            <div class="iphone">#}
-{#                <div class="wp3"></div>#}
-{#            </div>#}
-{#            <div class="fluid-white"></div>#}
-{#        </div>#}
-{#        <div class="container designs">#}
-{#            <div class="row">#}
-{#                <div class="col-md-5 col-md-offset-7">#}
-{#                    <div id="servicesSlider">#}
-{#                        <ul class="slides">#}
-{#                            <li>#}
-{#                                <h1 class="arrow">Responsive Design Specialists</h1>#}
-{##}
-{#                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non#}
-{#                                    metus pulvinar imperdiet. Praesent non adipiscing libero. </p>#}
-{##}
-{#                                <p>#}
-{#                                    Mauris ultrices odio vitae nulla ultrices iaculis. Nulla rhoncus odio eu lectus#}
-{#                                    faucibus facilisis. Maecenas ornare augue vitae sollicitudin accumsan. </p>#}
-{##}
-{#                                <p>Etiam eget libero et erat eleifend consectetur a nec lectus. Sed id tellus lorem.#}
-{#                                    Suspendisse sed venenatis odio, quis lobortis eros.</p>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <h1 class="arrow">Bootstrap Professionals</h1>#}
-{##}
-{#                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non#}
-{#                                    metus pulvinar imperdiet. Praesent non adipiscing libero. </p>#}
-{##}
-{#                                <p>#}
-{#                                    Mauris ultrices odio vitae nulla ultrices iaculis. Nulla rhoncus odio eu lectus#}
-{#                                    faucibus facilisis. Maecenas ornare augue vitae sollicitudin accumsan. </p>#}
-{##}
-{#                                <p>Etiam eget libero et erat eleifend consectetur a nec lectus. Sed id tellus lorem.#}
-{#                                    Suspendisse sed venenatis odio, quis lobortis eros.</p>#}
-{#                            </li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</section>#}
-
-{#<section class="portfolio text-center section-padding" id="about">#}
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#            <div id="portfolioSlider">#}
-{#                <ul class="slides">#}
-
-{#                </ul>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</section>#}
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
-{% block extrajs %}{% endblock %}
+<script src="{% static 'js/modernizr.js' %}"></script>
 <script src="{% static 'js/login.js' %}"></script>
+{% block extrajs %}{% endblock %}
+<script>
+
+    /**********Dropdown**********/
+
+    function DropDown(el) {
+        this.dd = el;
+        this.initEvents();
+    }
+
+    DropDown.prototype = {
+        initEvents: function () {
+            var obj = this;
+
+            obj.dd.on('click', function (event) {
+                $(this).toggleClass('active');
+                event.stopPropagation();
+            });
+        }
+    }
+
+    $(function () {
+
+        var dd = new DropDown($('#dd'));
+        var dd2 = new DropDown($('#dd2'));
+
+        $(document).click(function () {
+            // all dropdowns
+            $('.wrapper-dropdown-2').removeClass('active');
+        });
+
+    });
+</script>
 </body>
 </html>

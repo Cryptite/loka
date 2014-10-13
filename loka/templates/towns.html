@@ -1,35 +1,43 @@
-{% extends "guide.html" %}
+{% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}Loka Minecraft - Town System{% endblock %}
 
-{% block tab_head %}
+{% block extra_head %}
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/towntable.css' %}"/>
 {% endblock %}
 
-{% block towns %}
-    <section class="intro text-center section-padding" id="top">
+{% block content %}
+    <section class="smallhero" id="hero">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2 wp1">
-                    <h1 class="arrow">Where do I start?</h1>
-
-                    <p>Grab <em>three</em> friends, find a nice place to call home, build your <a href="#towngenerator">town
-                        generator</a>, then
-                        begin your town. Once each of the town founders have made the trek to the town generator, simply
-                        define a name and a radius for protection and then your town will be made!</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 wp1 text-center">
-                    <h1 class="arrow"></h1>
-
-                    <h1><a href="#zoning">Zoning</a> | <a href="#mastery">Mastery</a> | <a href="#perks">Perks</a> | <a
-                            href="#industries">Industries</a></h1>
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeIn delay-10s heroTitle">Towns on Loka</h1>
                 </div>
             </div>
         </div>
     </section>
-
+    <section class="intro text-center section-padding" id="top">
+        <div class="container">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 class="arrow">The Best Townbuilding Minecraft has to offer!</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="#zoning" class="guide-btn guide-btn-sm">Zoning</a>
+                    <a href="#mastery" class="guide-btn guide-btn-sm">Mastery</a>
+                    <a href="#perks" class="guide-btn guide-btn-sm">Perks</a>
+                    <a href="#industries" class="guide-btn guide-btn-sm">Industries</a>
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <p>Grab <em>three</em> friends, find a nice place to call home, build your <a href="#towngenerator">town
+                    generator</a>, then
+                    begin your town. Once each of the town founders have made the trek to the town generator, simply
+                    define a name and a radius for protection and then your town will be made!</p>
+            </div>
+        </div>
+    </section>
     <section class="text-center" id="responsive">
         <div class="container-fluid nopadding responsive-services">
             <div class="wrapper">
@@ -340,9 +348,18 @@
                     <div id="teamSlider">
                         <ul class="slides">
                             <li>
-                                <div class="col-md-6 wp4">
-                                    <img src="{% static 'images/wal.png' %}" alt="Team Member">
+                                <div class="col-md-4 wp4">
+                                    <div class="overlay-effect effects clearfix">
+                                        <div class="img">
+                                            <img src="{% static 'images/industry_lumbermill.jpg' %}"
+                                                 alt="Portfolio Item">
 
+                                            <div class="overlay">
+                                                <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                                <a class="close-overlay hidden">x</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <h2>Lumber Mill <br/>
                                         <small>Logging</small>
                                     </h2>
@@ -350,18 +367,20 @@
                                     <p>A Lumber mill can take raw logs and cut them into planks. Because they excel at
                                         woodcutting, lumber mills can yield far more than the usual amount of planks
                                         from a log.</p>
-
-                                    {#                                    <div class="social">#}
-                                    {#                                        <ul class="social-buttons">#}
-                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>#}
-                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>#}
-                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>#}
-                                    {#                                        </ul>#}
-                                    {#                                    </div>#}
                                 </div>
 
-                                <div class="col-md-6 delay-05s">
-                                    <img src="{% static 'images/wal.png' %}" alt="Team Member">
+                                <div class="col-md-4 delay-05s">
+                                    <div class="overlay-effect effects clearfix">
+                                        <div class="img">
+                                            <img src="{% static 'images/industry_tavern.jpg' %}"
+                                                 alt="Portfolio Item">
+
+                                            <div class="overlay">
+                                                <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                                <a class="close-overlay hidden">x</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <h2>Tavern<br/>
                                         <small>Cooking</small>
@@ -369,14 +388,27 @@
 
                                     <p>Taverns yield an infinite and regenerating cake, and the ability to bake and cook
                                         any food item.</p>
+                                </div>
 
-                                    {#                                    <div class="social">#}
-                                    {#                                        <ul class="social-buttons">#}
-                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>#}
-                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>#}
-                                    {#                                            <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>#}
-                                    {#                                        </ul>#}
-                                    {#                                    </div>#}
+                                <div class="col-md-4 delay-05s">
+                                    <div class="overlay-effect effects clearfix">
+                                        <div class="img">
+                                            <img src="{% static 'images/industry_arcanum.jpg' %}"
+                                                 alt="Portfolio Item">
+
+                                            <div class="overlay">
+                                                <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                                                <a class="close-overlay hidden">x</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h2>Arcanum<br/>
+                                        <small>Enchanting</small>
+                                    </h2>
+
+                                    <p>The Arcanum grants access to only level 30 enchants. However, enchanting items at
+                                        the Arcanum only costs 25 levels..</p>
                                 </div>
                             </li>
                         </ul>
@@ -405,8 +437,8 @@
                         <li>
                             <div class="col-md-4 wp5">
                                 <div class="overlay-effect effects clearfix">
-                                <div class="img">
-                                        <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
+                                    <div class="img">
+                                    <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
                                             <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
@@ -439,8 +471,8 @@
                             </div>
                             <div class="col-md-4 wp5 delay-1s">
                                 <div class="overlay-effect effects clearfix">
-                                <div class="img">
-                                        <img src="{% static 'images/item_hardship.jpg' %}" alt="Portfolio Item">
+                                    <div class="img">
+                                    <img src="{% static 'images/item_hardship.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
                                             <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
@@ -456,10 +488,10 @@
                             </div>
                         </li>
                         <li>
-                            <div class="col-md-5 wp4">
+                            <div class="col-md-4 wp4">
                                 <div class="overlay-effect effects clearfix">
-                                <div class="img">
-                                        <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
+                                    <div class="img">
+                                        <img src="{% static 'images/item_artifact.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
                                             <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
@@ -543,9 +575,11 @@
             </div>
         </div>
     </section>
+{% endblock %}
 
-    {% block tab-js %}
-        <script src="{% static 'js/jquery.flexslider.js' %}"></script>
-        <script src="{% static 'js/modernizr.js' %}"></script>
-    {% endblock %}
+{% block extrajs %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
 {% endblock %}

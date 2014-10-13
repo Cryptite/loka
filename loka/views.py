@@ -495,6 +495,10 @@ def towns(request):
     return render_to_response('towns.html', RequestContext(request))
 
 
+def territories(request):
+    return render_to_response('territories.html', RequestContext(request))
+
+
 def townslist(request):
     townlist_query = Town.objects.all().order_by("name")
     alliances = Alliance.objects.all().order_by("name")

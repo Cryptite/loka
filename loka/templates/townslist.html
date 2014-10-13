@@ -25,8 +25,8 @@
     </section>
 
     {% for alliance in alliances %}
-        <section class="text-center townlist-wrap">
-            <h1 class="town-category">{{ alliance.name }} Alliance
+        <section class="portfolio text-center section-padding">
+        <h1 class="town-category">{{ alliance.name }} Alliance
                 <small>- {{ alliance.towns.count }} Towns</small>
             </h1>
             <ul class="grid swipe-right" id="grid-{{ alliance.name }}">
@@ -72,12 +72,12 @@
                         </li>{% endif %}
                 {% endfor %}
             </ul>
-            <h2></h2>
         </section>
     {% endfor %}
 
-    <section class="text-center townlist-wrap">
+    <section class="portfolio text-center section-padding">
         <h1 class="town-category">Wild Towns</h1>
+
         <ul class="grid swipe-right" id="grid-wildtowns">
             {% for town in towns %}
                 <li>

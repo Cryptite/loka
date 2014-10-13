@@ -169,6 +169,8 @@ q:before, q:after {
 
 small {
     font-size: 75%;
+    color: #e9e9e9;
+    text-transform: none;
 }
 
 /* * Prevents `sub` and `sup` affecting `line-height` in all browsers. */
@@ -385,7 +387,7 @@ h2::after {
 }
 
 .section-padding {
-    padding: 60px 0 60px
+    padding: 30px 0 30px
 }
 
 .dark-bg {
@@ -652,6 +654,66 @@ Hero
     color: #fff;
 }
 
+.guide-btn {
+    background: rgba(61, 201, 179, 1);
+    padding: 20px 60px;
+    margin: 20px 10px;
+    width: 320px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    -webkit-box-shadow: 0px 3px 0px 0px #309383;
+    -moz-box-shadow: 0px 3px 0px 0px #309383;
+    box-shadow: 0px 3px 0px 0px #309383;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.guide-btn-sm {
+    font-size: 1em;
+    padding: 15px 20px;
+    width: 200px;
+}
+
+.guide-btn:hover, .guide-btn:focus {
+    background: rgba(61, 201, 179, 0.6);
+    color: #fff;
+}
+
+.territories {
+    background: rgb(164, 201, 96);
+    -webkit-box-shadow: 0px 3px 0px 0px #7a936e;
+    -moz-box-shadow: 0px 3px 0px 0px #7a936e;
+    box-shadow: 0px 3px 0px 0px #7a936e;
+}
+
+.territories:hover, .territories:focus {
+    background: rgb(167, 179, 64);
+    color: #fff;
+}
+
+.pvp {
+    background: rgb(201, 121, 63);
+    -webkit-box-shadow: 0px 3px 0px 0px #935b42;
+    -moz-box-shadow: 0px 3px 0px 0px #935b42;
+    box-shadow: 0px 3px 0px 0px #935b42;
+}
+
+.pvp:hover, .pvp:focus {
+    background: rgb(162, 98, 51);
+    color: #fff;
+}
+
+.industry img {
+    width: 420px;
+    height: 250px;
+}
+
 /* ==========================================================================
 Small Hero
 ========================================================================== */
@@ -688,11 +750,11 @@ Intro
 }
 
 .intro p {
-    margin: 50px 0 0;
+    margin: 30px 0 0;
 }
 
 h1.arrow {
-    font-size: 15px;
+    font-size: 22px;
     text-transform: uppercase;
     color: #353535;
     letter-spacing: 1px;
