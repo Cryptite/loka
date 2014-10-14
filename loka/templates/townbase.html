@@ -47,52 +47,54 @@
 
 <section class="text-center" id="responsive">
     <div class="container-fluid nopadding responsive-services">
-        <div class="wrapper">
-            <div class="iphone">
-                <div class="wp3"></div>
+        <div class="row">
+            <div class="col-md-1 col-md-offset-4">
+                <h2>Owner</h2>
+            <span class="tooltip-over tooltip-over-effect-1">
+                        <span class="tooltip-over-item">
+                            {% if town.owner.avatar_sm %}
+                                <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
+                                     class="avatar-sm img-rounded">
+                            {% else %}
+                                <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                            {% endif %}
+                        </span>
+                        <span class="tooltip-over-content clearfix">
+                            <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"/>
+                            <span class="tooltip-over-text">{{ town.owner.name }}</span>
+                    </span>
+                </span>
             </div>
-            <div class="fluid-white"></div>
-        </div>
-        <div class="container designs">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-7">
-                    <div id="servicesSlider">
-                        <ul class="slides">
-                            <li>
-                                <h1 class="arrow">Responsive Design Specialists</h1>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non
-                                    metus pulvinar imperdiet. Praesent non adipiscing libero. </p>
-
-                                <p>
-                                    Mauris ultrices odio vitae nulla ultrices iaculis. Nulla rhoncus odio eu lectus
-                                    faucibus facilisis. Maecenas ornare augue vitae sollicitudin accumsan. </p>
-
-                                <p>Etiam eget libero et erat eleifend consectetur a nec lectus. Sed id tellus lorem.
-                                    Suspendisse sed venenatis odio, quis lobortis eros.</p>
-                            </li>
-                            <li>
-                                <h1 class="arrow">Bootstrap Professionals</h1>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non
-                                    metus pulvinar imperdiet. Praesent non adipiscing libero. </p>
-
-                                <p>
-                                    Mauris ultrices odio vitae nulla ultrices iaculis. Nulla rhoncus odio eu lectus
-                                    faucibus facilisis. Maecenas ornare augue vitae sollicitudin accumsan. </p>
-
-                                <p>Etiam eget libero et erat eleifend consectetur a nec lectus. Sed id tellus lorem.
-                                    Suspendisse sed venenatis odio, quis lobortis eros.</p>
-                            </li>
-                        </ul>
+            <div class="col-md-1">
+                {% if user.is_authenticated and userintown.count > 0 %}
+                    {% if town.subowners.count > 0 %}
+                        <h2>Subowners</h2>
+                        {% for subowner in town.subowners.all %}
+                            {% if subowner.avatar_sm %}
+                                <img src="{% static 'media/' %}{{ subowner.avatar_sm }}" class="avatar-sm img-rounded">
+                            {% else %}
+                                <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                     </div>
+                    <div class="col-md-2">
+                    <h2>Members -
+                        <small>{{ town.members.all.count }}</small>
+                    </h2>
+                    {% for member in town.members.all %}
+                        {% if member.avatar_sm %}
+                            <img src="{% static 'media/' %}{{ member.avatar_sm }}" class="avatar-sm img-rounded">
+                        {% else %}
+                            <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded">
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
                 </div>
-            </div>
         </div>
     </div>
 </section>
 
-<div class="span2">
 {% if user.username == town.owner.name %}
     <!-- Modal -->
     <div class="modal fade" id="modal_settings" tabindex="-1" role="dialog"
@@ -209,108 +211,6 @@
             data-target="#modal_settings">Town Settings
     </button>
 {% endif %}
-
-<h3 class="title"><span>{{ town.name }} Citizens</span></h3>
-
-<h3>Owner</h3>
-{% if town.owner.avatar_sm %}
-    <img src="{% static 'media/' %}{{ town.owner.avatar_sm }}"
-         class="avatar-sm img-rounded">
-{% else %}
-    <img src="{% static 'images/steve_sm.png' %}"
-         class="avatar-sm img-rounded {{ town.owner.name }}">
-    <script type="application/javascript">
-        $(document).ready(function () {
-            $.ajax({
-                type: "GET",
-                url: "/avatar/{{ town.owner.name }}",
-                contentType: 'application/json',
-                complete: function (xhr, status) {
-                    if (status === 'error' || !xhr.responseText) {
-                    }
-                    else {
-                        var data = JSON.parse(xhr.responseText);
-                        $('.{{ town.owner.name }}').fadeOut(500, function () {
-                            $('.{{ town.owner.name }}').attr('src', data["path"]);
-                            $('.{{ town.owner.name }}').fadeIn(500);
-                        });
-                    }
-                }
-            });
-        })
-    </script>
-{% endif %} {{ town.owner.name }}
-{% if user.is_authenticated and userintown.count > 0 %}
-    {% if town.subowners.count > 0 %}
-        <h3>Subowners</h3>
-        {% for subowner in town.subowners.all %}
-            {% if subowner.avatar_sm %}
-                <img src="{% static 'media/' %}{{ subowner.avatar_sm }}"
-                     class="avatar-sm img-rounded">
-            {% else %}
-                <img src="{% static 'images/steve_sm.png' %}"
-                     class="avatar-sm img-rounded {{ subowner.name }}">
-                <script type="application/javascript">
-                    $(document).ready(function () {
-                        $.ajax({
-                            type: "GET",
-                            url: "/avatar/{{ subowner.name }}",
-                            contentType: 'application/json',
-                            complete: function (xhr, status) {
-                                if (status === 'error' || !xhr.responseText) {
-                                }
-                                else {
-                                    var data = JSON.parse(xhr.responseText);
-                                    $('.{{ subowner.name }}').fadeOut(500, function () {
-                                        $('.{{ subowner.name }}').attr('src', data["path"]);
-                                        $('.{{ subowner.name }}').fadeIn(500);
-                                    });
-                                }
-                            }
-                        });
-                    })
-                </script>
-            {% endif %}
-            {{ subowner.name }}<br/>
-        {% endfor %}
-    {% endif %}
-
-    <h4>Members -
-        <small>{{ town.members.all.count }}</small>
-    </h4>
-    {% for member in town.members.all %}
-        {% if member.avatar_sm %}
-            <img src="{% static 'media/' %}{{ member.avatar_sm }}"
-                 class="avatar-sm img-rounded" data-toggle="tooltip" data-placement="top" title=""
-                 data-original-title="{{ member.name }}">
-        {% else %}
-            <img src="{% static 'images/steve_sm.png' %}" class="avatar-sm img-rounded {{ member.name }}"
-                 data-toggle="tooltip" data-placement="top" title=""
-                 data-original-title="{{ member.name }}">
-            <script type="application/javascript">
-                $(document).ready(function () {
-                    $.ajax({
-                        type: "GET",
-                        url: "/avatar/{{ member.name }}",
-                        contentType: 'application/json',
-                        complete: function (xhr, status) {
-                            if (status === 'error' || !xhr.responseText) {
-                            }
-                            else {
-                                var data = JSON.parse(xhr.responseText);
-                                $('.{{ member.name }}').fadeOut(500, function () {
-                                    $('.{{ member.name }}').attr('src', data["path"]);
-                                    $('.{{ member.name }}').fadeIn(500);
-                                });
-                            }
-                        }
-                    });
-                })
-            </script>
-        {% endif %}
-    {% endfor %}
-{% endif %}
-</div>
 
 <div class="span7">
     {% if user.is_authenticated and userintown.count > 0 %}

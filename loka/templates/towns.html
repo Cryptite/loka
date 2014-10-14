@@ -31,8 +31,17 @@
                 </div>
             </div>
             <div class="col-md-8 col-md-offset-2">
-                <p>Grab <em>three</em> friends, find a nice place to call home, build your <a href="#towngenerator">town
-                    generator</a>, then
+                <p>Grab <em>three</em> friends, find a nice place to call home, build your
+                    <span class="tooltip-over tooltip-over-effect-1">
+                        <span class="tooltip-over-item">town generator</span>
+                        <span class="tooltip-over-content clearfix">
+                            <img src="{% static 'images/shield.png' %}"/>
+                            <span class="tooltip-over-text">Town Generators are the physical power source of your town. Generators consume emeralds in order to run and power town protection.<br/>
+                            <br/>
+                            <a href="#mastery">View More</a>
+                        </span>
+                    </span>
+                </span>, then
                     begin your town. Once each of the town founders have made the trek to the town generator, simply
                     define a name and a radius for protection and then your town will be made!</p>
             </div>
@@ -49,32 +58,26 @@
             <div class="container designs">
                 <div class="row">
                     <div class="col-md-5 col-md-offset-7">
-                        <div id="servicesSlider">
-                            <ul class="slides">
-                                <li>
-                                    <h1 class="arrow">Unique, powerful, fun town building</h1>
+                        <h1 class="arrow">Unique, powerful, fun town building</h1>
 
-                                    <p>Towns have a tangible power source, the Town Generator. Constructing one of these
-                                        starts the
-                                        process of creating a town on Loka. Town owners can interact with the generator
-                                        with a golden
-                                        pickaxe in order to change things like the amount of protection it covers,
-                                        nether protection,
-                                        and more.</p>
+                        <p>Towns have a tangible power source, the Town Generator. Constructing one of these
+                            starts the
+                            process of creating a town on Loka. Town owners can interact with the generator
+                            with a golden
+                            pickaxe in order to change things like the amount of protection it covers,
+                            nether protection,
+                            and more.</p>
 
-                                    <p>Each minecraft day, the generator consumes emeralds in order to stay running. In
-                                        order to ensure
-                                        your town protection stays up, you must deposit emeralds into the generator's
-                                        chest. This adds
-                                        to the town's balance and keeps things running smoothly!</p>
+                        <p>Each minecraft day, the generator consumes emeralds in order to stay running. In
+                            order to ensure
+                            your town protection stays up, you must deposit emeralds into the generator's
+                            chest. This adds
+                            to the town's balance and keeps things running smoothly!</p>
 
-                                    <p>Fear not, though, as we know how rare Emeralds can be. At spawn one can find an
-                                        Ore Exchanger. This device will convert Iron/Gold/Diamonds/Lapis Lazuli into
-                                        emeralds so that your mining trips can be fruitful for your town as well as your
-                                        stores.</p>
-                                </li>
-                            </ul>
-                        </div>
+                        <p>Fear not, though, as we know how rare Emeralds can be. At spawn one can find an
+                            Ore Exchanger. This device will convert Iron/Gold/Diamonds/Lapis Lazuli into
+                            emeralds so that your mining trips can be fruitful for your town as well as your
+                            stores.</p>
                     </div>
                 </div>
             </div>
@@ -111,6 +114,17 @@
         </div>
     </section>
 
+    <section class="swag text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>Town Mastery</h1>
+                    <a href="#perks" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="intro text-center section-padding" id="mastery">
         <div class="container">
             <div class="row">
@@ -136,17 +150,6 @@
 
                     <p>Each mastery category contributes to your town's overall level and as your town levels up, you
                         earn <a href="#perks">perks</a>!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="swag text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h1>Town Perks</h1>
-                    <a href="#perks" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
                 </div>
             </div>
         </div>
@@ -369,8 +372,8 @@
                                         from a log.</p>
                                 </div>
 
-                                <div class="col-md-4 delay-05s">
-                                    <div class="overlay-effect effects clearfix">
+                                <div class="col-md-4 wp4 delay-05s">
+                                <div class="overlay-effect effects clearfix">
                                         <div class="img">
                                             <img src="{% static 'images/industry_tavern.jpg' %}"
                                                  alt="Portfolio Item">
@@ -390,8 +393,8 @@
                                         any food item.</p>
                                 </div>
 
-                                <div class="col-md-4 delay-05s">
-                                    <div class="overlay-effect effects clearfix">
+                                <div class="col-md-4 wp4 delay-1s">
+                                <div class="overlay-effect effects clearfix">
                                         <div class="img">
                                             <img src="{% static 'images/industry_arcanum.jpg' %}"
                                                  alt="Portfolio Item">
@@ -438,7 +441,7 @@
                             <div class="col-md-4 wp5">
                                 <div class="overlay-effect effects clearfix">
                                     <div class="img">
-                                    <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
+                                        <img src="{% static 'images/item_market.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
                                             <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
@@ -472,7 +475,7 @@
                             <div class="col-md-4 wp5 delay-1s">
                                 <div class="overlay-effect effects clearfix">
                                     <div class="img">
-                                    <img src="{% static 'images/item_hardship.jpg' %}" alt="Portfolio Item">
+                                        <img src="{% static 'images/item_hardship.jpg' %}" alt="Portfolio Item">
 
                                         <div class="overlay">
                                             <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
@@ -578,8 +581,8 @@
 {% endblock %}
 
 {% block extrajs %}
-    <script src="{% static 'js/scripts.js' %}"></script>
     <script src="{% static 'js/jquery.flexslider.js' %}"></script>
     <script src="{% static 'js/modernizr.js' %}"></script>
     <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
 {% endblock %}

@@ -15,6 +15,7 @@
     {% block extra_head %}{% endblock %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <link href="{% static 'css/dropdown.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tooltip-classic.css' %}"/>
     <noscript>
         <link rel="stylesheet" type="text/css" href="{% static 'css/noJS.css' %}"/>
     </noscript>
@@ -204,7 +205,6 @@
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/modernizr.js' %}"></script>
 <script src="{% static 'js/login.js' %}"></script>
-{% block extrajs %}{% endblock %}
 <script>
 
     /**********Dropdown**********/
@@ -237,5 +237,6 @@
 
     });
 </script>
+{% block extrajs %}{% endblock %}
 </body>
 </html>
