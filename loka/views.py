@@ -154,6 +154,18 @@ def pvp(request):
     return render_to_response('pvp.html', RequestContext(request))
 
 
+def vota(request):
+    return render_to_response('vota.html', RequestContext(request))
+
+
+def voc(request):
+    return render_to_response('voc.html', RequestContext(request))
+
+
+def maelstrom(request):
+    return render_to_response('maelstrom.html', RequestContext(request))
+
+
 def talents(request):
     return render_to_response('talents.html', RequestContext(request))
 

@@ -709,6 +709,19 @@ Hero
     color: #fff;
 }
 
+.disabled {
+    background: rgb(110, 113, 110);
+    -webkit-box-shadow: 0px 3px 0px 0px #4f5150;
+    -moz-box-shadow: 0px 3px 0px 0px #4f5150;
+    box-shadow: 0px 3px 0px 0px #4f5150;
+}
+
+.disabled:hover, .disabled:focus {
+    cursor: pointer;
+    background: rgb(173, 178, 174);
+    color: #fff;
+}
+
 .industry img {
     width: 420px;
     height: 250px;
