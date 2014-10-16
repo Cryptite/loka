@@ -740,6 +740,16 @@ Small Hero
     height: auto;
 }
 
+.header-vota {
+    background: url('/static/images/header_vota.jpg') no-repeat center center;
+    background-color: #f3f5f8;
+    padding: 105px 0 20px 0;
+}
+
+.header-vota h1 {
+    color: #000000;
+}
+
 .smallhero h1 {
     font-size: 70px;
     letter-spacing: 12px;
@@ -753,6 +763,15 @@ Small Hero
 
 .town-category {
     color: #666;
+}
+
+.infocontainer {
+    padding: 30px 50px 30px;
+    background-color: #f3f5f8;
+    border-radius: 5px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 /* ==========================================================================
@@ -846,12 +865,20 @@ iPhone Section
 Swag
 ========================================================================== */
 .swag {
-    background: url('/static/images/swag_bg.jpg') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-attachment: fixed;
+    background: url('/static/images/swag_bg.jpg') no-repeat fixed center center;
+    padding: 50px 0;
+}
+
+.swag-vota {
+    background: url('/static/images/bg_vota.jpg') no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     padding: 50px 0;
 }
 
