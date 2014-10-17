@@ -48,7 +48,7 @@ var data = [
             name: "Frost Trap",
             ranks: 1,
             desc: "Place a trap that, when run over by an enemy, applies a heavy slow and minor poison to the enemy.\n\nCooldown: 30 seconds\n\nAbility",
-            parent: 0,
+            parent: 4,
             rankInfo: []
         },
         {
@@ -56,7 +56,7 @@ var data = [
             name: "Thrill of the Kill",
             ranks: 1,
             desc: "Sword damage increased by 15%. Additionally, any time you kill a player, you gain Speed III for 6 seconds.\nRequires Life Steal\nPassive Effect",
-            parent: 3,
+            parent: 5,
             rankInfo: []
         },
         {

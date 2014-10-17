@@ -176,6 +176,10 @@ function drawButton(tree, index) {
                             status = "available";
                         else
                             status = "unavailable";
+
+                    //Check if 5th tier talent
+//                    if ()
+                    getOtherTopLevelTalentStatus(tree, index);
                 }
                 // change status class
                 if (!$(this).hasClass(status)) {
@@ -209,6 +213,17 @@ function drawButton(tree, index) {
                     $(this).mouseover();
             })
     );
+}
+
+function getOtherTopLevelTalentStatus(tree, index) {
+    if (index == 9) {
+        console.log("Tree: " + tree + ", index: " + index);
+        var mastery = data[tree][10].index;
+        console.log("Mastery for 9 is " + mastery)
+    }
+    if (index == 10) {
+        var mastery = data[tree][9];
+    }
 }
 
 function customTooltip(tooltip, tooltipText) {
