@@ -25,6 +25,21 @@ Modules - reusable parts of our design
     white-space: nowrap;
 }
 
+.cd-towns-container {
+    /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
+    /*width: 90%;*/
+    max-width: 400px;
+    margin: 0 auto;
+    padding-left: 15px;
+}
+
+.cd-towns-container::after {
+    /* clearfix */
+    content: '';
+    display: table;
+    clear: both;
+}
+
 /* -------------------------------- */
 
 /*Main components */
@@ -188,7 +203,7 @@ Modules - reusable parts of our design
     background-color: #f2f2f2;
     padding: 0 1em;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-    z-index: 5;
+    z-index: 1;
 }
 
 .cd-item-info:after {

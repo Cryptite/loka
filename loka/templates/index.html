@@ -306,12 +306,13 @@
             </div>
         </div>
     </section>
+{% endblock %}
 
-    {% block extrajs %}
-        <script src="{% static 'js/waypoints.min.js' %}"></script>
-        <script src="{% static 'js/jquery.flexslider.js' %}"></script>
-        <script src="{% static 'js/scripts.js' %}"></script>
-        <script>
+{% block extrajs %}
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script>
         (function () {
             var bttn = document.getElementById('copy-button');
 
@@ -326,6 +327,6 @@
 
                 }, 5000);
             });
-        })();{% endblock %}
-</script>
+        })();
+    </script>
 {% endblock %}

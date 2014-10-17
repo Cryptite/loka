@@ -1,19 +1,17 @@
 #s2masteries {
-    background-color: #049cdb;
+    /*background-color: #049cdb;*/
     /*font: 11px Arial, Helvetica, sans-serif;*/
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
-    margin: 50px auto;
-    width: 932px;
+    margin: 50px auto 0;
+    width: 870px;
     height: 624px;
-    padding: 40px;
+    padding: 40px 40px 0;
     position: relative;
 }
 
 #panel {
-    width: 920px;
-    height: 80px;
     position: relative;
     cursor: default;
 }
@@ -45,14 +43,10 @@
 /* --- Panel ---------------------------------------------------------------- */
 #points {
     font-size: 18px;
-    margin-right: 30px;
-    margin-bottom: 10px;
 }
 
 #exportLink {
-    font-size: 18px;
     margin-right: 0px;
-    color: #000;
 }
 
 .left {
@@ -182,6 +176,9 @@
     border: 2px solid #323635;
     border-radius: 5px;
     font-family: 'Varela Round', sans-serif;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 #tooltip strong {
@@ -251,7 +248,7 @@
 }
 
 #tooltip .offense {
-    color: #983200;
+    color: #98423c;
 }
 
 #tooltip .defense {

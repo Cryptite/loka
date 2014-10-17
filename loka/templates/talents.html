@@ -15,30 +15,69 @@
 
 {% endblock %}
 {% block content %}
-    <section class="intro text-center section-padding" id="top">
-        <div id="s2masteries">
-            <div class="art-top"></div>
-            <div class="art-bottom"></div>
-            <div id="panel">
-                <div class="left">
-                    <div id="points">
-                        <span>Points Available: </span><span class="count"></span>
-                    </div>
+    <section class="portfolio text-center section-padding" id="top">
+        <div class="row">
+            <div id="s2masteries">
+                <div class="art-top"></div>
+                <div class="art-bottom"></div>
+                <div id="panel">
+                    <div id="tree-summaries"></div>
                 </div>
-                <div class="center">
-                    <a id="exportLink" href="#">Link</a>
-                </div>
-                <div class="right">
-                    <a href="#" class="generic-btn" id="return">Reset Talents</a>
-                </div>
-                <div id="tree-summaries"></div>
+                <div id="calculator"></div>
             </div>
-            <div id="calculator"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-3">
+                <a id="exportLink" href="#" class="guide-btn guide-btn-sm territories"
+                   data-clipboard-text="iron.minecraftarium.com"
+                   title="Click to copy me.">Link</a>
+                <script src="{% static 'js/ZeroClipboard.min.js' %}"></script>
+                <script>
+                    // main.js
+                    var client = new ZeroClipboard(document.getElementById("exportLink"));
+                    client.config({swfPath: "{% static 'js/ZeroClipboard.swf' %}"});
+
+                    client.on("ready", function (readyEvent) {
+                        client.on("aftercopy", function (event) {
+                            // `this` === `client`
+                            // `event.target` === the element that was clicked
+                            event.target.style.display = "none";
+                            alert("Copied text to clipboard: " + event.data["text/plain"]);
+                        });
+                    });
+                </script>
+            </div>
+            <div class="col-md-2">
+                <div id="points">
+                    <span>Points Available: </span><span class="count"></span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <a href="#" class="guide-btn guide-btn-sm pvp" id="return">Reset</a>
+            </div>
         </div>
     </section>
 
     {% block extrajs %}
         <script type="text/javascript" src="{% static 'js/talentdata.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/talentcalculator.js' %}"></script>
+
+        <script>
+            (function () {
+                var bttn = document.getElementById('exportLink');
+
+                // make sure..
+                {#        bttn.disabled = false;#}
+
+                bttn.addEventListener('click', function () {
+                    bttn.innerHTML = "Copied to Clipboard";
+                    bttn.blur();
+                    setTimeout(function () {
+                        bttn.innerHTML = "iron.minecraftarium.com";
+
+                    }, 5000);
+                });
+            })();
+        </script>
     {% endblock %}
 {% endblock %}
