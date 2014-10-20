@@ -179,7 +179,7 @@ function drawButton(tree, index) {
 
                     //Check if 5th tier talent
 //                    if ()
-                    getOtherTopLevelTalentStatus(tree, index);
+//                    getOtherTopLevelTalentStatus(tree, index);
                 }
                 // change status class
                 if (!$(this).hasClass(status)) {
