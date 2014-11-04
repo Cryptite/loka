@@ -36,8 +36,8 @@
         <ul>
             <li>
                 <div id="dd" class="wrapper-dropdown-2" tabindex="1">Guide
-                    <ul class="dropdown">
-                        <li><a href="{% url 'loka.views.guide' %}"><i class="icon-twitter icon-large"></i>Guide</a></li>
+                    <ul class="dropdown dropdown-pos-guide">
+                    <li><a href="{% url 'loka.views.guide' %}"><i class="icon-twitter icon-large"></i>Guide</a></li>
                         <li><a href="{% url 'loka.views.towns' %}"><i class="icon-twitter icon-large"></i>Towns</a></li>
                         <li><a href="{% url 'loka.views.territories' %}"><i class="icon-github icon-large"></i>Territories</a>
                         </li>
@@ -49,14 +49,14 @@
             <li><a href="{% url 'loka.views.townslist' %}">Towns</a></li>
             <li>
                 <div id="dd2" class="wrapper-dropdown-2" tabindex="2">PvP
-                    <ul class="dropdown">
+                    <ul class="dropdown dropdown-pos-pvp">
                         <li><a href="{% url 'loka.views.pvp' %}"><i class="icon-twitter icon-large"></i>About</a></li>
                         <li><a href="{% url 'loka.views.pvp1v1' %}"><i class="icon-twitter icon-large"></i>1v1
                             Bracket</a></li>
                         <li><a href="{% url 'loka.views.pvp2v2' %}"><i class="icon-github icon-large"></i>2v2
                             Bracket</a></li>
-                        <li><a href="{% url 'loka.views.pvpvota' %}"><i class="icon-facebook icon-large"></i>VotA
-                            Rankings</a></li>
+                        <li><a href="{% url 'loka.views.pvpvota' %}"><i class="icon-facebook icon-large"></i>VotA</a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -64,29 +64,26 @@
             <li><a href="http://loka.wikia.com/wiki/Loka_Wiki">Wiki</a></li>
             {% if user.is_authenticated %}
                 {% player_avatar_sm user as avatar %}
-                <img src="{% static 'images/steve.png' %}" class="header-avatar"/>
-                {#                <li><a href="#">#}
-                {#                    {% if avatar %}#}
-                {#                        <img src="{% static 'media/' %}{{ avatar }}" class="header-avatar"/>#}
-                {#                    {% else %}#}
-                {#                        <img src="{% static 'images/steve.png' %}" class="header-avatar"/>#}
-                {#                    {% endif %}</a>#}
-                {#                </li>#}
-                <a href="{% url 'loka.views.logout' %}">Log out</a>
+                <li>
+                    <div id="dd3" class="wrapper-dropdown-2 player-pad" tabindex="3">{{ user.username }}
+                        {% if avatar %}
+                            <img src="{% static 'media/' %}{{ avatar }}" class="header-avatar"/>
+                        {% else %}
+                            <img src="{% static 'images/steve.png' %}" class="header-avatar"/>
+                        {% endif %}
+                        <ul class="dropdown dropdown-pos-player">
+                            <li><a href="/player/{{ user.username }}"><i class="icon-twitter icon-large"></i>View
+                                Profile</a></li>
+                            <li><a href="{% url 'loka.views.logout' %}"><i
+                                    class="icon-twitter icon-large"></i>Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             {% else %}
                 <li><a class="cd-signin" href="#">Login</a></li>
             {% endif %}
         </ul>
-
-        {#        <div class="wrapper-demo">#}
-        {#            <div id="dd" class="wrapper-dropdown-2" tabindex="1">Sign in with#}
-        {#                <ul class="dropdown">#}
-        {#                    <li><a href="#"><i class="icon-twitter icon-large"></i>Twitter</a></li>#}
-        {#                    <li><a href="#"><i class="icon-github icon-large"></i>Github</a></li>#}
-        {#                    <li><a href="#"><i class="icon-facebook icon-large"></i>Facebook</a></li>#}
-        {#                </ul>#}
-        {#            </div>#}
-        {#        </div>#}
     </nav>
     <!-- cd-main-nav -->
 </header>
@@ -94,7 +91,7 @@
     <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
         <ul class="cd-switcher">
             <li><a href="#0">Sign in</a></li>
-            <li><a href="#0">New account</a></li>
+            <li><a href="#0">Register</a></li>
         </ul>
 
         <div id="cd-login"> <!-- log in form -->
@@ -109,52 +106,32 @@
 
                 <p class="fieldset">
                     <label class="image-replace cd-password" for="signin-password">Password</label>
-                    <input class="full-width has-padding has-border" id="signin-password" type="text"
+                    <input class="full-width has-padding has-border" id="signin-password" type="password"
                            placeholder="Password" name="password">
-                    <a href="#0" class="hide-password">Hide</a>
+                    {#                    <a href="#0" class="hide-password">Hide</a>#}
                     <span class="cd-error-message">Error message here!</span>
                 </p>
-
-                {#                <p class="fieldset">#}
-                {#                    <input type="checkbox" id="remember-me" checked>#}
-                {#                    <label for="remember-me">Remember me</label>#}
-                {#                </p>#}
 
                 <p class="fieldset">
                     <input class="full-width" type="submit" value="Login">
                 </p>
             </form>
-
-            {#            <form method="post" action="{% url 'loka.views.home' %}">#}
-            {#                                    {% csrf_token %}#}
-            {#                                    <table>#}
-            {#                                        <tr>#}
-            {#                                            <td><input name="username" type="text" class="fullwidth"#}
-            {#                                                       placeholder="username"/></td>#}
-            {#                                        </tr>#}
-            {#                                        <tr>#}
-            {#                                            <td><input name="password" type="password" class="fullwidth"#}
-            {#                                                       placeholder="password"/></td>#}
-            {#                                        </tr>#}
-            {#                                    </table>#}
-            {##}
-            {#                                    <input type="submit" value="Login" class="btn btn-primary btn-lg"/>#}
-            {#                                    <input type="hidden" name="next" value="{{ next }}"/>#}
-            {#                                    <a class="btn btn-warning btn-lg" data-toggle="modal"#}
-            {#                                       data-target="#registerModal">Register</a>#}
-            {#                                </form>#}
-
-            {#            <p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>#}
-            <!-- <a href="#0" class="cd-close-form">Close</a> -->
         </div>
         <!-- cd-login -->
 
         <div id="cd-signup"> <!-- sign up form -->
-            <h1>Log on to Loka!</h1>
+            <div class="container">
+                <div class="col-md-6 text-center">
+                    <h2>Log on to Loka!</h2>
 
-            <p>Parts of the website work in tandem with your user account in Minecraft.</p>
+                    <p>Parts of the website work in tandem with your user account in Minecraft. In order to register for
+                        an
+                        account on this site, please log on to Loka and use the <strong><em>/register</em></strong>
+                        command.</p>
 
-            <a href="#0" class="cd-close-form">Close</a>
+                    <a href="#0" class="cd-close-form">Close</a>
+                </div>
+            </div>
         </div>
         <!-- cd-signup -->
 
@@ -229,6 +206,7 @@
 
         var dd = new DropDown($('#dd'));
         var dd2 = new DropDown($('#dd2'));
+        var dd3 = new DropDown($('#dd3'));
 
         $(document).click(function () {
             // all dropdowns

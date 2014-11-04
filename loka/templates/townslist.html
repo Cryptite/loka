@@ -28,37 +28,37 @@
     {% for alliance in alliances %}
         <section class="portfolio text-center section-padding">
             <h1 class="town-category">{{ alliance.name }} Alliance
-                <small>- {{ alliance.towns.count }} Towns</small>
+                <small>- {{ alliance.towns.count }} Towns, {{ alliance.strength }} Strength</small>
             </h1>
             <div class="row">
                 <div class="col-md-3">
                     <ul id="cd-gallery-items" class="cd-towns-container">
                         <li>
                             <ul class="cd-item-wrapper">
-                                <li class="cd-item-front"><a href="/town/{{ alliance.leader.name }}">
+                                <li class="cd-item-front">
                                     {% if alliance.leader.name|has_town_banner != None %}
                                         {% with image=alliance.leader.name|has_town_banner %}
                                             {% if image.banner %}
                                                 <img src="{% thumbnail image.banner 720x400 detail %}" alt="dummy"
                                                      class="imgcenter"/>
                                             {% else %}
-                                                <img src="{% static 'images/pvp_vota_screen1.jpg' %}" alt="dummy"/>
+                                                <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
                                             {% endif %}
                                         {% endwith %}
                                     {% else %}
-                                        <img src="{% static 'images/pvp_vota_screen1.jpg' %}" alt="dummy"/>
-                                    {% endif %}</a></li>
-                                <li class="cd-item-middle"><a href="#0"><img
-                                        src="{% static 'images/pvp_vota_screen2.jpg' %}"
-                                        alt="Preview image"></a></li>
-                                <li class="cd-item-back"><a href="#0"><img
-                                        src="{% static 'images/pvp_vota_screen3.jpg' %}"
-                                        alt="Preview image"></a>
-                                </li>
+                                        <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
+                                    {% endif %}</li>
+                                {#                                <li class="cd-item-middle"><a href="#0"><img#}
+                                {#                                        src="{% static 'images/town_sm.jpg' %}"#}
+                                {#                                        alt="Preview image"></a></li>#}
+                                {#                                <li class="cd-item-back"><a href="#0"><img#}
+                                {#                                        src="{% static 'images/town_sm.jpg' %}"#}
+                                {#                                        alt="Preview image"></a>#}
+                                {#                                </li>#}
                             </ul>
 
                             <div class="cd-item-info">
-                                <b><a href="{">{{ alliance.leader.get_list_name }}</a></b>
+                                <b>{{ alliance.leader.get_list_name }}</b>
                                 <em>Level {{ alliance.leader.level }}</em>
                             </div>
                             <nav>
@@ -78,20 +78,20 @@
                             <ul id="cd-gallery-items" class="cd-towns-container">
                                 <li>
                                     <ul class="cd-item-wrapper">
-                                        <li class="cd-item-front"><a href="/town/{{ town.name }}"><img
-                                                src="{% static 'images/pvp_vota_screen1.jpg' %}"
-                                                alt="Preview image"></a></li>
-                                        <li class="cd-item-middle"><a href="#0"><img
-                                                src="{% static 'images/pvp_vota_screen2.jpg' %}"
-                                                alt="Preview image"></a></li>
-                                        <li class="cd-item-back"><a href="#0"><img
-                                                src="{% static 'images/pvp_vota_screen3.jpg' %}"
-                                                alt="Preview image"></a>
-                                        </li>
+                                        <li class="cd-item-front"><img
+                                                src="{% static 'images/town_sm.jpg' %}"
+                                                alt="Preview image"></li>
+                                        {#                                        <li class="cd-item-middle"><a href="#0"><img#}
+                                        {#                                                src="{% static 'images/town_sm.jpg' %}"#}
+                                        {#                                                alt="Preview image"></a></li>#}
+                                        {#                                        <li class="cd-item-back"><a href="#0"><img#}
+                                        {#                                                src="{% static 'images/town_sm.jpg' %}"#}
+                                        {#                                                alt="Preview image"></a>#}
+                                        {#                                        </li>#}
                                     </ul>
 
                                     <div class="cd-item-info">
-                                        <b><a href="/town/{{ town.name }}">{{ town.get_list_name }}</a></b>
+                                        <b>{{ town.get_list_name }}</b>
                                         <em>Level {{ town.level }}</em>
                                     </div>
                                     <nav>
@@ -120,20 +120,20 @@
                     <ul id="cd-gallery-items" class="cd-towns-container">
                         <li>
                             <ul class="cd-item-wrapper">
-                                <li class="cd-item-front"><a href="/town/{{ town.name }}"><img
-                                        src="{% static 'images/pvp_vota_screen1.jpg' %}"
-                                        alt="Preview image"></a></li>
-                                <li class="cd-item-middle"><a href="#0"><img
-                                        src="{% static 'images/pvp_vota_screen2.jpg' %}"
-                                        alt="Preview image"></a></li>
-                                <li class="cd-item-back"><a href="#0"><img
-                                        src="{% static 'images/pvp_vota_screen3.jpg' %}"
-                                        alt="Preview image"></a>
-                                </li>
+                                <li class="cd-item-front"><img
+                                        src="{% static 'images/town_sm.jpg' %}"
+                                        alt="Preview image"></li>
+                                {#                                <li class="cd-item-middle"><a href="#0"><img#}
+                                {#                                        src="{% static 'images/town_sm.jpg' %}"#}
+                                {#                                        alt="Preview image"></a></li>#}
+                                {#                                <li class="cd-item-back"><a href="#0"><img#}
+                                {#                                        src="{% static 'images/town_sm.jpg' %}"#}
+                                {#                                        alt="Preview image"></a>#}
+                                {#                                </li>#}
                             </ul>
 
                             <div class="cd-item-info">
-                                <b><a href="/town/{{ town.name }}">{{ town.get_list_name }}</a></b>
+                                <b>{{ town.get_list_name }}</b>
                                 <em>Level {{ town.level }}</em>
                             </div>
                             <nav>

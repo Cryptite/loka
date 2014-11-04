@@ -19,33 +19,6 @@
                         <h1 class="animated fadeInDown heroTitle">Loka Minecraft</h1>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 text-center">
-                        <a href="#" class="learn-more-btn" id="copy-button"
-                           data-clipboard-text="iron.minecraftarium.com"
-                           title="Click to copy me.">iron.minecraftarium.com</a>
-                    </div>
-                </div>
-                <script src="{% static 'js/ZeroClipboard.min.js' %}"></script>
-                <script>
-                    // main.js
-                    var client = new ZeroClipboard(document.getElementById("copy-button"));
-                    client.config({swfPath: "{% static 'js/ZeroClipboard.swf' %}"});
-
-                    client.on("ready", function (readyEvent) {
-                        client.on("aftercopy", function (event) {
-                            // `this` === `client`
-                            // `event.target` === the element that was clicked
-                            event.target.style.display = "none";
-                            alert("Copied text to clipboard: " + event.data["text/plain"]);
-                        });
-                    });
-                </script>
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <p class="animated fadeInUp delay-05s">It's nighttime on Loka.</p>
-                    </div>
-                </div>
             </div>
         </section>
     </header>
@@ -62,6 +35,31 @@
                         why Loka is the place you should call home.</p>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <a href="#" class="learn-more-btn" id="copy-button"
+                       data-clipboard-text="iron.minecraftarium.com"
+                       title="Click to copy me.">iron.minecraftarium.com<br/>
+                        <small>Click to copy</small>
+                    </a>
+                </div>
+            </div>
+            <script src="{% static 'js/ZeroClipboard.min.js' %}"></script>
+            <script>
+                // main.js
+                var client = new ZeroClipboard(document.getElementById("copy-button"));
+                client.config({swfPath: "{% static 'js/ZeroClipboard.swf' %}"});
+
+                client.on("ready", function (readyEvent) {
+                    client.on("aftercopy", function (event) {
+                        // `this` === `client`
+                        // `event.target` === the element that was clicked
+                        event.target.style.display = "none";
+                        alert("Copied text to clipboard: " + event.data["text/plain"]);
+                    });
+                });
+            </script>
         </div>
     </section>
     <section class="features text-center section-padding" id="features">
@@ -111,11 +109,11 @@
             </div>
         </div>
     </section>
-    <section class="swag text-center">
+    <section class="swag-mystery text-center">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h1>But wait<span>Loka gets <em>even better</em></span></h1>
+                    <h1>But wait<br/><br/><span>Loka gets <em>even better</em></span></h1>
                     <a href="#about" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -243,57 +241,10 @@
             </div>
         </div>
     </section>
-    {#<div class="ignite-cta text-center">#}
-    {#    <div class="container">#}
-    {#        <div class="row">#}
-    {#            <div class="col-md-12">#}
-    {#                <a href="#" class="ignite-btn">Ignite Your Passion</a>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </div>#}
-    {#</div>#}
-    {#<section class="subscribe text-center">#}
-    {#    <div class="container">#}
-    {#        <h1><i class="fa fa-paper-plane"></i><span>Subscribe to stay in the loop</span></h1>#}
-    {##}
-    {#        <form action="#">#}
-    {#            <input type="text" name="" value="" placeholder="" required>#}
-    {#            <input type="submit" name="" value="Send">#}
-    {#        </form>#}
-    {#    </div>#}
-    {#</section>#}
     <section class="dark-bg text-center section-padding contact-wrap" id="contact">
         <a href="#top" class="up-btn"><i class="fa fa-chevron-up"></i></a>
 
         <div class="container">
-            {#        <div class="row">#}
-            {#            <div class="col-md-12">#}
-            {#                <h1 class="arrow">Drop us a line</h1>#}
-            {#            </div>#}
-            {#        </div>#}
-            {#        <div class="row contact-details">#}
-            {#            <div class="col-md-4">#}
-            {#                <div class="light-box box-hover">#}
-            {#                    <h2><i class="fa fa-map-marker"></i><span>Address</span></h2>#}
-            {##}
-            {#                    <p>Level 6, 23 Pitt St, Sydney</p>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="col-md-4">#}
-            {#                <div class="light-box box-hover">#}
-            {#                    <h2><i class="fa fa-mobile"></i><span>Phone</span></h2>#}
-            {##}
-            {#                    <p>+61 9 211 3747</p>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="col-md-4">#}
-            {#                <div class="light-box box-hover">#}
-            {#                    <h2><i class="fa fa-paper-plane"></i><span>Email</span></h2>#}
-            {##}
-            {#                    <p><a href="#">hey@halcyondays.com</a></p>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#        </div>#}
             <div class="row">
                 <div class="col-md-12">
                     <ul class="social-buttons">

@@ -578,7 +578,7 @@ Hero
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    padding: 155px 0 300px 0;
+    padding: 155px 0 200px 0;
     height: auto;
 }
 
@@ -623,7 +623,7 @@ Hero
     -webkit-box-shadow: 0px 3px 0px 0px #309383;
     -moz-box-shadow: 0px 3px 0px 0px #309383;
     box-shadow: 0px 3px 0px 0px #309383;
-    margin: 60px 0 0;
+    margin: 20px 0 10px;
     font-weight: bold;
 }
 
@@ -655,7 +655,7 @@ Hero
 }
 
 .guide-btn {
-    background: rgba(61, 201, 179, 1);
+    background: #4183C4;
     padding: 20px 60px;
     margin: 20px 10px;
     width: 320px;
@@ -667,9 +667,9 @@ Hero
     text-transform: uppercase;
     letter-spacing: 1px;
     display: inline-block;
-    -webkit-box-shadow: 0px 3px 0px 0px #309383;
-    -moz-box-shadow: 0px 3px 0px 0px #309383;
-    box-shadow: 0px 3px 0px 0px #309383;
+    -webkit-box-shadow: 0px 3px 0px 0px #4183C4;
+    -moz-box-shadow: 0px 3px 0px 0px #4183C4;
+    box-shadow: 0px 3px 0px 0px #4183C4;
     font-weight: bold;
     font-size: 1.3em;
 }
@@ -748,6 +748,14 @@ Small Hero
 
 .header-vota h1 {
     color: #000000;
+}
+
+.header-territories {
+    background: url('/static/images/banners/header_territories.jpg') no-repeat center center;
+}
+
+.header-artifact {
+    background: url('/static/images/banners/header_artifact.jpg') no-repeat center center;
 }
 
 .smallhero h1 {
@@ -873,13 +881,36 @@ Swag
     padding: 50px 0;
 }
 
-.swag-vota {
+.swag.swag-vota {
     background: url('/static/images/bg_vota.jpg') no-repeat fixed center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    padding: 50px 0;
+}
+
+.swag.swag-territories1 {
+    background: url('/static/images/bg_terr1.jpg') no-repeat fixed center center;
+}
+
+.swag.swag-territories2 {
+    background: url('/static/images/bg_terr2.jpg') no-repeat fixed center center;
+}
+
+.swag.swag-territories3 {
+    background: url('/static/images/bg_terr3.jpg') no-repeat fixed center center;
+}
+
+.swag.swag-town1 {
+    background: url('/static/images/bg_town1.jpg') no-repeat fixed center center;
+}
+
+.swag.swag-town2 {
+    background: url('/static/images/bg_town2.jpg') no-repeat fixed center center;
+}
+
+.swag.swag-town3 {
+    background: url('/static/images/bg_town3.jpg') no-repeat fixed center center;
+}
+
+.swag.swag-mystery {
+    background: url('/static/images/bg_mystery.jpg') no-repeat fixed center center;
 }
 
 .swag h1 {
@@ -1129,6 +1160,7 @@ Team
 ========================================================================== */
 .team img {
     margin-bottom: 40px;
+    width: 350px;
 }
 
 ul.social-buttons {
@@ -1358,6 +1390,12 @@ Main components
     display: block;
 }
 
+.player-name {
+    font-size: 60px;
+    color: #353535;
+    padding-left: 15px;
+}
+
 @media only screen and (min-width: 768px) {
     .cd-header {
         height: 70px;
@@ -1527,6 +1565,11 @@ xsigin/signup popup
     width: 50%;
     float: left;
     text-align: center;
+    list-style-type: none;
+}
+
+.cd-user-modal-container .cd-switcher {
+    padding: 0;
 }
 
 .cd-user-modal-container .cd-switcher li:first-child a {

@@ -62,7 +62,7 @@
                     <p>Take a look at our Talent Calculator below and see what your talent tree could look like. Talents
                         can be picked in-game by typing <strong>/talents</strong></p>
 
-                    <a href="{% url 'loka.views.talents' %}" class="learn-more-btn pvp">View Talent Calculator</a>
+                    <a href="#" class="learn-more-btn disabled">Talent Calculator Coming Soon!</a>
                 </div>
                 <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
                     <div class="img">
@@ -91,9 +91,9 @@
     </section>
 
     <section class="intro text-center section-padding" id="battlegrounds">
-    <div class="container">
+        <div class="container">
             <div class="row">
-                <div class="col-md-11 col-md-offset-1 wp1">
+                <div class="col-md-12 wp1">
                     <h1 class="arrow">Fantastic Battlegrounds</h1>
 
                     <p>Loka hosts a number of excellent Battlegrounds pitting varying numbers of players against each
@@ -113,128 +113,6 @@
             </div>
         </div>
     </section>
-
-    <section class="intro text-center section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
-                    <div class="img">
-                        <img src="{% static 'images/item_inhibitor.jpg' %}" alt="Portfolio Item">
-
-                        <div class="overlay">
-                            <a href="#0" class="expand"><i class="fa fa-search"></i><br>View More</a>
-                            <a class="close-overlay hidden">x</a>
-                        </div>
-                    </div>
-                    <h1 class="toparrow">Inhibitors are what start the fights.</h1>
-                </div>
-                <div class="col-md-5 col-md-offset-1 wp2">
-                    <h1 class="arrow">Inhibitor<br/>
-                        <small>Cost: 25TP</small>
-                    </h1>
-
-                    <p>In order to neutralize a Territory Generator and make it vulnerable to a siege, you must
-                        construct an Inhibitor. By placing one of these near an enemy Territory Generator, you begin
-                        the
-                        process of the siege. Depending on how many enemies are online, an Inhibitor will activate
-                        within 30-90 minutes.</p>
-
-                    <p>Once an Inhibitor goes online, the real battle begins. Check out the Warfare section to learn
-                        how
-                        Territory Combat works.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="team text-center section-padding" id="team">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="arrow">Towers<br/>
-                        <small>Cost: 25TP</small>
-                    </h1>
-
-                    <p>You may construct one of three Towers that will aid in the defense of your Territory
-                        Generator. These tactical structures can help you defend your Territories if you lack the
-                        numbers to thwart an attack.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="team-wrapper">
-                    <div id="teamSlider">
-                        <ul class="slides">
-                            <li>
-                                <div class="col-md-4">
-                                    <img src="{% static 'images/item_ttower.jpg' %}">
-
-                                    <h2>Attack Tower<br/></h2>
-
-                                    <p>Attack towers fire Primed TnT that will devastate nearby enemies.</p>
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="{% static 'images/item_ttower.jpg' %}">
-
-                                    <h2>Buff Tower<br/></h2>
-
-                                    <p>Buff Towers increase the health of Power Sources, slowing down enemies from
-                                        Overloading them in order to access the Generator's Core.</p>
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="{% static 'images/item_ttower.jpg' %}">
-
-                                    <h2>Weakness Tower<br/></h2>
-
-                                    <p>All enemeis within the area are debuffed with Weakness, causing their
-                                        attacks against Protectors to be weaker and slowing down the attack
-                                        overall.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="swag text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h1>Warfare</h1>
-                    <a href="#warfare" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="intro text-center section-padding" id="warfare">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1 wp3">
-                    <h1 class="arrow">Warfare</h1>
-
-                    <p>Territorial Warfare is the ultimate conflict on Loka. Battles rage and grudges held for ages
-                        are finally erupting with Territories. You have a tangible way to enact your punishment on
-                        those whom you wish to see fall. Will you control the world, join the powerful, or aid the
-                        weak?</p>
-
-                    <p>When an Inhibitor goes online, Protectors will spawn in order to defend
-                        both the Inhibitor and the Territory Generator. Killing these Protectors gives you a 10
-                        second
-                        buff called Charged which you can use to overload a Power Source by standing next to it. If
-                        you
-                        destroy the Power Sources of an Inhibitor, it will be destroyed and the attack will be
-                        successfully repelled.</p>
-
-                    <p>Destroying 3 of the 5 Power Sources on a Territory Generator will open its Core to attack.
-                        Step inside and attack the core. Once you've mastered its defenses, striking down the core
-                        will destroy the Territory Generator in explosive beauty.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
 {% endblock %}
 
 {% block extrajs %}
