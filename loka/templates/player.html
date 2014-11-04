@@ -9,45 +9,30 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="player-header">
-        {% if player.avatar %}
-            <img src="{% static 'media/' %}{{ player.avatar }}"
-                 class="reg-avatar img-rounded">
-        {% else %}
-            <img src="{% static 'images/steve_sm.png' %}"
-                 class="reg-avatar img-rounded {{ player.name }}">
-            <script type="application/javascript">
-                $(document).ready(function () {
-                    $.ajax({
-                        type: "GET",
-                        url: "/avatar/{{ player.name }}",
-                        contentType: 'application/json',
-                        complete: function (xhr, status) {
-                            if (status === 'error' || !xhr.responseText) {
-                            }
-                            else {
-                                var data = JSON.parse(xhr.responseText);
-                                var player = $('.{{ player.name }}');
-                                player.fadeOut(500, function () {
-                                    player.attr('src', data["path"]);
-                                    player.fadeIn(500);
-                                });
-                            }
-                        }
-                    });
-                })
-            </script>
-        {% endif %}{{ player.name }}
-        {% if player.title %}
-            <small>{{ player.title }}</small>
-        {% endif %}
-    </h1>
+
+    <section class="intro section-padding">
+        <div class="container">
+            <br/><br/>
+
+            <h1 class="player-name">
+                {% if avatar %}
+                    <img src="{% static 'media/' %}{{ avatar }}" class="img-rounded"/>
+                {% else %}
+                    <img src="{% static 'images/steve.png' %}" class="img-rounded"/>
+                {% endif %}
+                {{ player.name }}
+                {% if player.title %}
+                    <small>{{ player.title }}</small>
+                {% endif %}
+            </h1>
+        </div>
+    </section>
 
     <div class="container">
     <div class="bs-example bs-example-tabs">
     <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#home" data-toggle="tab">Achievements</a></li>
-        <li><a href="#profile" data-toggle="tab">PvP Statistics</a></li>
+        {#        <li><a href="#profile" data-toggle="tab">PvP Statistics</a></li>#}
     </ul>
     <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id="home">
@@ -153,7 +138,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="col-md-4">
-                    <h3><a href="/player/{{ player.name }}/achievements/pvp">General -
+                        <h3><a href="/player/{{ player.name }}/achievements/pvp">General -
                             <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "pvp" %}</small>
                         </a>
                         </h3>
@@ -181,7 +166,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                    <h3><a href="/player/{{ player.name }}/achievements/worldpvp">World PvP -
+                        <h3><a href="/player/{{ player.name }}/achievements/worldpvp">World PvP -
                             <small class="btn-group-vertical">{% get_achievement_string_by_category player.name "worldpvp" %}</small>
                         </a>
                         </h3>
@@ -357,4 +342,5 @@
     </div>
     </div>
 
+    </div>
 {% endblock %}

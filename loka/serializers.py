@@ -47,7 +47,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
         data will simply return a dictionary of items.
         """
         if instance:
-            #     Update existing instance
+            # Update existing instance
             print 'Via existing instance'
             instance.name = attrs.get('name')
             instance.arenarating = attrs.get('arenarating')
@@ -116,14 +116,14 @@ class PlayerAchievementsSerializer(serializers.ModelSerializer):
 
 
 # class PlayerSerializer(serializers.ModelSerializer):
-#     player_achievements = PlayerAchievementsSerializer(many=False)
+# player_achievements = PlayerAchievementsSerializer(many=False)
 #
-#     class Meta:
-#         model = Player
+# class Meta:
+# model = Player
 
 
 # class SinglePlayerSerializer(serializers.ModelSerializer):
-#     class Meta:
+# class Meta:
 #         model = Player
 #         lookup_field = "name"
 
@@ -282,6 +282,7 @@ class TerritorySerializer(serializers.HyperlinkedModelSerializer):
     latitude = serializers.FloatField()
     longitude = serializers.FloatField()
     conflicted = serializers.BooleanField(default=False)
+    # neutral = serializers.BooleanField(default=False)
     town = serializers.CharField(max_length=50)
 
     def restore_object(self, attrs, instance=None):
@@ -300,6 +301,7 @@ class TerritorySerializer(serializers.HyperlinkedModelSerializer):
             instance.latitude = attrs.get('latitude')
             instance.longitude = attrs.get('longitude')
             instance.conflicted = attrs.get('conflicted')
+            # instance.neutral = attrs.get('neutral')
             return instance
 
         town_name = attrs.get("town")
@@ -311,7 +313,7 @@ class TerritorySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Territory
-        fields = ('name', "latitude", "longitude", "conflicted", "town")
+        fields = ('name', "latitude", "longitude", "conflicted", "neutral", "town")
         lookup_field = "name"
 
 

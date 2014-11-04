@@ -612,8 +612,8 @@ img.smoothimage {
 }
 
 img.avatar-sm {
-    max-width: 20px;
-    max-height: 20px;
+    max-width: 48px;
+    max-height: 48px;
 }
 
 .footer {

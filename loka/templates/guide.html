@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Loka Minecraft - Town System{% endblock %}
+{% block extra_head %}
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+    <link href="{% static 'css/queries.css' %}" rel="stylesheet">
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/tabs.css' %}"/>#}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/tabstyles.css' %}"/>#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/towntable.css' %}"/>
+{% endblock %}
+{% block content %}
+    <section class="smallhero" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeIn delay-10s heroTitle">Loka Guide</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        {#    <div class="tabs tabs-style-underline">#}
+        {#    <nav class="nav">#}
+        {#        <ul>#}
+        {#            <li><a href="#section-underline-1" class="tab-icon icon-home"><span>Towns</span></a>#}
+        {#            </li>#}
+        {#            <li><a href="#section-underline-2"#}
+        {#                   class="tab-icon icon-gift"><span>Territories</span></a></li>#}
+        {#            <li><a href="#section-underline-3" class="tab-icon icon-upload"><span>PvP</span></a>#}
+        {#            </li>#}
+        {#            <li><a href="#section-underline-4"#}
+        {#                   class="tab-icon icon-coffee"><span>Market</span></a></li>#}
+        {#            <li><a href="#section-underline-5" class="tab-icon icon-config"><span>Lore</span></a>#}
+        {#            </li>#}
+        {#        </ul>#}
+        {#    </nav>#}
+        <div class="content-wrap">
+            <section id="section-underline-1" class="tab">
+                <section class="intro text-center section-padding" id="top">
+                    <div class="container">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h1 class="arrow">Get to know Loka</h1>
+
+                            <p>Loka is big, deep, amazing. From townbuilding to PvP to our deep Lore to our Territory
+                                System,
+                                get to
+                                know all the tidbits of Loka and find out why you should call us home.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <a href="{% url 'loka.views.towns' %}" class="guide-btn">Towns<br/>
+                                <small>Town building</small>
+                            </a>
+                            <a href="{% url 'loka.views.territories' %}" class="guide-btn territories">Territories<br/>
+                                <small>Worldwide Conquset</small>
+                            </a>
+                            <a href="{% url 'loka.views.pvp' %}" class="guide-btn pvp">PvP<br/>
+                                <small>Battlegrounds and Arenas</small>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </section>
+
+    {% block extrajs %}
+        <script src="{% static 'js/scripts.js' %}"></script>
+        {#        <script src="{% static 'js/cbpFWTabs.js' %}"></script>#}
+        {#        <script>#}
+        {#            (function () {#}
+        {##}
+        {#                [].slice.call(document.querySelectorAll('.tabs')).forEach(function (el) {#}
+        {#                    new CBPFWTabs(el);#}
+        {#                });#}
+        {##}
+        {#            })();#}
+        {#        </script>#}
+        <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+        <script src="{% static 'js/modernizr.js' %}"></script>
+        <script src="{% static 'js/waypoints.min.js' %}"></script>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,260 @@
+#s2masteries {
+    /*background-color: #049cdb;*/
+    /*font: 11px Arial, Helvetica, sans-serif;*/
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    margin: 50px auto 0;
+    width: 870px;
+    height: 624px;
+    padding: 40px 40px 0;
+    position: relative;
+}
+
+#panel {
+    position: relative;
+    cursor: default;
+}
+
+#calculator {
+    background: url(../../../../Desktop/league-mastery-calc-master/images/masteries-background.jpg);
+    width: 920px;
+    height: 533px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.art-top {
+    width: 100%;
+    height: 234px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.art-bottom {
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* --- Panel ---------------------------------------------------------------- */
+#points {
+    font-size: 18px;
+}
+
+#exportLink {
+    margin-right: 0px;
+}
+
+.left {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.center {
+    text-align: center;
+    margin: 0 auto 15px;
+}
+
+.right {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/*button {*/
+/*cursor: pointer;*/
+/*width: 130px;*/
+/*padding: 3px;*/
+/*font-size: 16px;*/
+/*color: #fff;*/
+/*margin: 0;*/
+/*border: 1px outset #3467A7;*/
+/*border-radius: 4px;*/
+/*background-color: #0F325B;*/
+/*}*/
+/*button:hover {*/
+/*background: -moz-linear-gradient(top, rgba(86,121,165,1) 1%, rgba(20,57,100,1) 50%, rgba(14,40,72,1) 100%); *//* FF3.6+ */
+/*background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(86,121,165,1)), color-stop(50%,rgba(20,57,100,1)), color-stop(100%,rgba(14,40,72,1))); *//* Chrome,Safari4+ */
+/*background: -webkit-linear-gradient(top, rgba(86,121,165,1) 1%,rgba(20,57,100,1) 50%,rgba(14,40,72,1) 100%); *//* Chrome10+,Safari5.1+ */
+/*background: -o-linear-gradient(top, rgba(86,121,165,1) 1%,rgba(20,57,100,1) 50%,rgba(14,40,72,1) 100%); *//* Opera 11.10+ */
+/*background: -ms-linear-gradient(top, rgba(86,121,165,1) 1%,rgba(20,57,100,1) 50%,rgba(14,40,72,1) 100%); *//* IE10+ */
+/*background: linear-gradient(top, rgba(86,121,165,1) 1%,rgba(20,57,100,1) 50%,rgba(14,40,72,1) 100%); *//* W3C */
+/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5679a5', endColorstr='#0e2848',GradientType=0 ); *//* IE6-9 */
+/*}*/
+/*button,*/
+/*button:active {*/
+/*background: -moz-linear-gradient(top, rgba(52,103,167,1) 0%, rgba(20,57,100,1) 50%, rgba(14,40,72,1) 100%); *//* FF3.6+ */
+/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(52,103,167,1)), color-stop(50%,rgba(20,57,100,1)), color-stop(100%,rgba(14,40,72,1))); *//* Chrome,Safari4+ */
+/*background: -webkit-linear-gradient(top, rgba(52,103,167,1) 0%,rgba(20,57,100,1) 50%,rgba(14,40,72,1) 100%); *//* Chrome10+,Safari5.1+ */
+/*background: -o-linear-gradient(top, rgba(52,103,167,1) 0%,rgba(20,57,100,1) 50%,rgba(14,40,72,1) 100%); *//* Opera 11.10+ */
+/*background: -ms-linear-gradient(top, rgba(52,103,167,1) 0%,rgba(20,57,100,1) 50%,rgba(14,40,72,1) 100%); *//* IE10+ */
+/*background: linear-gradient(top, rgba(52,103,167,1) 0%,rgba(20,57,100,1) 50%,rgba(14,40,72,1) 100%); *//* W3C */
+/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3467a7', endColorstr='#0e2848',GradientType=0 ); *//* IE6-9 */
+/*}*/
+/*button:active {*/
+/*border-style: inset;*/
+/*}*/
+
+#tree-summaries {
+    height: 40px;
+    position: relative;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.tree-summary {
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+    padding-left: 40px;
+    background-repeat: no-repeat;
+    text-align: left;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    background-image: url('/static/images/tree-icons.png');
+}
+
+#tree-summaries .offense {
+    background-position: 0px 0px;
+}
+
+#tree-summaries .defense {
+    background-position: 0px -43px;
+}
+
+#tree-summaries .utility {
+    background-position: 0px -86px;
+}
+
+/* --- Calculator ----------------------------------------------------------- */
+.tree-label {
+    color: #fefefe;
+    position: absolute;
+    font-weight: bolder;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.button {
+    width: 54px;
+    height: 54px;
+    position: absolute;
+    cursor: pointer;
+    border: 2px solid #999;
+    border-radius: 8px;
+    z-index: 1;
+    background-image: url('/static/images/button-icons.jpg');
+}
+
+.button.unavailable {
+    border-color: #999;
+    cursor: default;
+}
+
+.button.available {
+    border-color: #00ff00;
+}
+
+.button.full {
+    border-color: #d4b654;
+}
+
+#tooltip {
+    display: none;
+    color: #fefefe;
+    width: 180px;
+    padding: 5px;
+    background: #000;
+    position: absolute;
+    z-index: 100;
+    border: 2px solid #323635;
+    border-radius: 5px;
+    font-family: 'Varela Round', sans-serif;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+#tooltip strong {
+    font-size: 13px;
+    font-weight: bolder;
+}
+
+#tooltip p {
+    margin-bottom: 0px;
+}
+
+#tooltip .highlight {
+    color: #fecb00;
+}
+
+#tooltip .req {
+    color: #ff0000;
+}
+
+#tooltip.custom {
+    width: auto;
+}
+
+#tooltip.custom p {
+    margin-top: 0px;
+}
+
+.counter {
+    position: absolute;
+    right: 2px;
+    bottom: -7px;
+    background-color: #000;
+    border: 2px solid #d4b654;
+    border-radius: 5px;
+    font-size: 11px;
+    padding: 0px 5px;
+}
+
+.num-unavailable {
+    color: #999;
+}
+
+.num-available {
+    color: #00ff00;
+}
+
+.num-full {
+    color: #d4b654;
+}
+
+.requirement {
+    width: 21px;
+    position: absolute;
+    background: url('/static/images/req-bars.png');
+}
+
+.requirement.unavailable {
+    background-position: 0px 0px;
+}
+
+.requirement.available {
+    background-position: -21px 0px;
+}
+
+.requirement.full {
+    background-position: -42px 0px;
+}
+
+#tooltip .offense {
+    color: #98423c;
+}
+
+#tooltip .defense {
+    color: #46a3ee;
+}
+
+#tooltip .utility {
+    color: #329832;
+}

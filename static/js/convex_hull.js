@@ -55,22 +55,6 @@ function getHull(points, iterations) {
         chainHull_2D(iterHull, iterHull.length, firstHull);
     }
     return firstHull;
-
-//    for (var c = 0; c < iterations; c++) {
-//        var newHullPoints = []
-
-//        for (var i = 0; i <= firstHull.length; i++) {
-//            firstHull.push([firstHull[i][0] + .006, firstHull[i][1] + .006]);
-//            firstHull.push([firstHull[i][0] - .006, firstHull[i][1] + .006]);
-//            firstHull.push([firstHull[i][0] + .006, firstHull[i][1] - .006]);
-//            firstHull.push([firstHull[i][0] - .006, firstHull[i][1] - .006])
-//        }
-//
-//        firstHull.sort(sortPointY);
-//        firstHull.sort(sortPointX);
-//        chainHull_2D(firstHull, firstHull.length, iterHull);
-//    }
-//    return firstHull;
 }
 //===================================================================
 

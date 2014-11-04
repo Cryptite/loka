@@ -234,8 +234,8 @@ class Town(models.Model):
         return None
 
     def get_list_name(self):
-        if len(self.name) > 13:
-            return self.name[:13] + "..."
+        if len(self.name) > 22:
+            return self.name[:22] + "..."
         return self.name
 
     def num_territories(self):
@@ -289,6 +289,7 @@ class Territory(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     conflicted = models.BooleanField(default=False)
+    # neutral = models.BooleanField(default=False)
     town = models.ForeignKey(Town)
 
     def get_padded(self):

@@ -1,95 +1,123 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% load bootstrap_toolkit %}
-{% block title %}Loka Minecraft - PvP Systems{% endblock %}
+{% block title %}Loka Minecraft - PvP{% endblock %}
+
 {% block extra_head %}
-    {{ form.media }}
-    <!-- Important Owl stylesheet -->
-    <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">
-
-    <!-- Default Theme -->
-    <link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css' %}">
-
-    <!-- Include js plugin -->
-    <script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
-
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/towntable.css' %}"/>
 {% endblock %}
 
 {% block content %}
-    <div class="jumbotron pvp">
-        <h1>Exceptional PvP</h1>
-
-        <h2>Prove your worth!</h2>
-    </div>
-
-    <div class="row">
-        <h2 class="title"><span>ELO-Rated Arenas </span></h2>
-
-        <div class="span5">
-            <p>Loka features both 1v1 and 2v2 rated arenas that pit players against one another in a small
-                arena.
-
-                This is the ultimate test in pvp prowess. Players are all given a set of gear that gives them a
-                choice of fighting styles.</p>
-
-            <p>Fight to the top and earn a title! Will you be known as a Gladiator to all those who see you?</p>
-            <br/><br/>
-
-            <a href="{% url 'loka.views.pvp1v1' %}"
-               class="btn btn-success btn-lg btn-group-justified">View the Arena Ladder</a>
-        </div>
-
-        <div class="span6">
-            <div id="slider_arena" class="owl-carousel">
-                <div><img class="smoothimage" alt="Nagrand Arena"
-                          src="{% static 'images/arena_nagrand.jpg' %}" width="600"
-                          height="300"></div>
-                <div><img class="smoothimage" alt="Blade's Edge Arena"
-                          src="{% static 'images/arena_blade.jpg' %}" width="600"
-                          height="300"></div>
+    <section class="smallhero" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeIn delay-10s heroTitle">Player vs Player</h1>
+                </div>
             </div>
         </div>
+    </section>
+    <section class="intro text-center section-padding" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="#talents" class="guide-btn guide-btn-sm pvp">Talents</a>
+                    <a href="#battlegrounds" class="guide-btn guide-btn-sm pvp">Battlegrounds</a>
+                    <a href="#arenas" class="guide-btn guide-btn-sm pvp">Arenas</a>
+                    <a href="#worldpvp" class="guide-btn guide-btn-sm pvp">World PvP</a>
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <h1 class="arrow">Talent-based Battlegrounds, Arenas, World PvP; we have it all!</h1>
 
-    </div>
-
-    <div class="row">
-        <h2 class="title"><span>Battlegrounds</span></h2>
-
-        <div class="span6">
-            <div id="slider_bg" class="owl-carousel">
-                <div><img class="smoothimage" alt="Valley of the Artifacts"
-                          src="{% static 'images/bg_vota1.jpg' %}" width="600"
-                          height="300"></div>
+                <p>Enjoy the balance of a Kit-PvP Arena system? How about the thrill of a bigger battleground with a
+                    unique talent system? Just like to murder people in the wild? Read on to learn more about our
+                    exceptional PvP systems.</p>
             </div>
         </div>
-        <div class="span5">
-            <p>Test your strength in larger-scale, team-based battlegrounds in which you and your team must take
-                control of the battlefield, earning points and defeating your foes</p>
+    </section>
 
-            <p>In Valley of the Artifacts, teams must fight to capture and hold three separate points. The first team to
-                100 wins!</p>
-            <br/><br/>
-
-            <a href="{% url 'loka.views.pvpvota' %}"
-               class="btn btn-success btn-lg btn-group-justified bottom">View Battleground Rankings</a>
+    <section class="swag text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>Talents</h1>
+                    <a href="#talents" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
+            </div>
         </div>
+    </section>
 
-    </div>
+    <section class="intro text-center section-padding" id="talents">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1 wp1">
+                    <h1 class="arrow">Custom Talent Trees</h1>
 
-    <script>$(document).ready(function () {
+                    <p>Loka has a unique, talent-tree system that is combined with our Battlegrounds that push your
+                        standard minigame-style battleground beyond the normal limits of Minecraft PvP. Loka's Talent
+                        Trees feature offense, defense, and utility trees, each with strengths and weakness. Our talents
+                        add an incredible level of depth to battlegrounds.</p>
 
-        $("#slider_arena").owlCarousel({
-            slideSpeed: 600,
-            paginationSpeed: 600,
-            singleItem: true,
-            autoPlay: 5000 //Set AutoPlay to 3 seconds
-        });
+                    <p>Take a look at our Talent Calculator below and see what your talent tree could look like. Talents
+                        can be picked in-game by typing <strong>/talents</strong></p>
 
-        $("#slider_bg").owlCarousel({
-            slideSpeed: 300,
-            paginationSpeed: 400,
-            singleItem: true
-        });
+                    <a href="#" class="learn-more-btn disabled">Talent Calculator Coming Soon!</a>
+                </div>
+                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
+                    <div class="img">
+                        <img src="{% static 'images/item_tgen.jpg' %}" alt="Portfolio Item" class="theimage">
 
-    });</script>
+                        <div class="overlay">
+                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                    <h1 class="toparrow">Unique Talents bring depth to our Battlegrounds</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="swag text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>Battlegrounds</h1>
+                    <a href="#battlegrounds" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro text-center section-padding" id="battlegrounds">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 wp1">
+                    <h1 class="arrow">Fantastic Battlegrounds</h1>
+
+                    <p>Loka hosts a number of excellent Battlegrounds pitting varying numbers of players against each
+                        other. Our battlegrounds feature varying gamemodes, from capture and hold to a town vs town
+                        resource race. Dive into our Battlegrounds to learn about them individually!</p>
+
+                    <a href="{% url 'loka.views.vota' %}" class="learn-more-btn pvp">Valley of the Artifacts<br/>
+                        <small>Capture and Hold</small>
+                    </a>
+                    <a href="{% url 'loka.views.pvp' %}" class="learn-more-btn disabled">Maelstrom (Coming Soon!)<br/>
+                        <small>Capture The Flag</small>
+                    </a>
+                    <a href="{% url 'loka.views.pvp' %}" class="learn-more-btn pvp">Vale of Conquest<br/>
+                        <small>Town vs Town Resource Race</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
 {% endblock %}

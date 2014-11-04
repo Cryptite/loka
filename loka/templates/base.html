@@ -7,234 +7,214 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock %}</title>
-
-    <meta name="description"
-          content="An incredibly customized Minecraft experience that includes advanced and powerful Town building, Marketing, PvP. Join us and forge your story on Loka today!">
-    <meta name="author" content="Tom Miller">
-    {% compress css %}
-        <!-- Bootstrap -->
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
-        <link href="{% static 'css/custom.css' %}" rel="stylesheet" media="screen">
-    {% endcompress %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     {% block extra_head %}{% endblock %}
-
-    <script type="text/javascript">
-
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-38840432-1']);
-        _gaq.push(['_trackPageview']);
-
-        (function () {
-            var ga = document.createElement('script');
-            ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
-        })();
-
-    </script>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dropdown.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tooltip-classic.css' %}"/>
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/noJS.css' %}"/>
+    </noscript>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <script src="{% static 'js/modernizr.custom.js' %}"></script>
 </head>
+<body id="top">
+<header class="cd-header">
+    <div id="cd-logo"><h1><a href="{% url 'loka.views.home' %}">Loka</a></h1></div>
 
-<body>
-
-<!-- Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2>Log on to the server!</h2>
-            </div>
-            <div class="modal-body">
-
-                <p>Parts of our website work in tandem with data from Loka itself such as access to Towns. If you live
-                    in a town, you cannot access its home page unless you register a proper account. In order to
-                    register on this site, you'll need to do the following: </p>
-                <h4>- Log on to Loka and use the /register command</h4>
-                <h4>- Click the in-game link you are provided.</h4>
-                <h4>- Finish creating your account, then enjoy the spoils!</h4>
-                </button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
-<div class="sitecontainer">
-    <div class="navbar navbar-default navbar-static-top" role="navigation" style="z-index: 1">
-        <a class="navbar-brand" href="/"><img src="{% static 'images/logo_sm.png' %}" class="img-responsive"/></a>
-        <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a href="{% url 'loka.views.about' %}">About</a>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Towns <b
-                        class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="{% url 'loka.views.towns' %}">About</a></li>
-                    <li><a href="{% url 'loka.views.townslist' %}">Towns of Loka</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">PvP <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="{% url 'loka.views.pvp' %}">About</a></li>
-                    <li><a href="{% url 'loka.views.pvp1v1' %}">1v1 Bracket</a></li>
-                    <li><a href="{% url 'loka.views.pvp2v2' %}">2v2 Bracket</a></li>
-                    <li><a href="{% url 'loka.views.pvpvota' %}">VotA Rankings</a></li>
-                    <li><a href="{% url 'loka.views.pvpoverload' %}">Overload Rankings</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="{% url 'loka.views.map_page' %}">Map</a>
-            </li>
-            <li><a href="http://loka.minecraftarium.com/forums/">Forums</a>
-            </li>
-            <li><a href="http://loka.wikia.com/wiki/Loka_Wiki">Wiki</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <form class="navbar-left search" role="search">
-                <!-- We'll have a button that'll make the search input appear, a submit button and the input -->
-
-                <!-- Alos, a label for it so that we can style it however we want it-->
-                <input id="submit" value="" type="submit">
-                <label for="submit" class="search-submit"></label>
-
-                <!-- trigger button and input -->
-                <a href="javascript: void(0)" class="search-icon"></a>
-                <input type="search" name="Search" id="search" placeholder="Search">
-            </form>
-
-            <li class="dropdown">
-                {% if user.is_authenticated %}
-                    {% player_avatar user as avatar %}
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
-                        {% if avatar %}
-                            <img src="{% static 'media/' %}{{ avatar }}" class="img-rounded avatar"/>
-                        {% else %}
-                            <img src="{% static 'images/steve.png' %}" class="img-rounded avatar"/>
-                        {% endif %}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/player/{{ user.username }}">View Profile</a></li>
-                        <li><a href="{% url 'loka.views.logout' %}">Sign Out</a></li>
+    <nav class="cd-main-nav">
+        <ul>
+            <li>
+                <div id="dd" class="wrapper-dropdown-2" tabindex="1">Guide
+                    <ul class="dropdown dropdown-pos-guide">
+                    <li><a href="{% url 'loka.views.guide' %}"><i class="icon-twitter icon-large"></i>Guide</a></li>
+                        <li><a href="{% url 'loka.views.towns' %}"><i class="icon-twitter icon-large"></i>Towns</a></li>
+                        <li><a href="{% url 'loka.views.territories' %}"><i class="icon-github icon-large"></i>Territories</a>
+                        </li>
+                        <li><a href="{% url 'loka.views.pvp' %}"><i class="icon-facebook icon-large"></i>PvP</a></li>
                     </ul>
-                {% else %}
-                    <a href="#" class="dropdown-toggle loginbutton" data-toggle="dropdown">Sign In <img
-                            src="{% static 'images/steve.png' %}"
-                            class="img-rounded avatar"/></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <div class="span2">
-                                <h3 class="title login">Login</h3>
-
-                                <form method="post" action="{% url 'loka.views.home' %}">
-                                    {% csrf_token %}
-                                    <table>
-                                        <tr>
-                                            <td><input name="username" type="text" class="fullwidth"
-                                                       placeholder="username"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input name="password" type="password" class="fullwidth"
-                                                       placeholder="password"/></td>
-                                        </tr>
-                                    </table>
-
-                                    <input type="submit" value="Login" class="btn btn-primary btn-lg"/>
-                                    {#                                    <input type="hidden" name="next" value="{{ next }}"/>#}
-                                    <a class="btn btn-warning btn-lg" data-toggle="modal"
-                                       data-target="#registerModal">Register</a>
-                                </form>
-                            </div>
+                </div>
+            </li>
+            <li><a href="{% url 'loka.views.map_page' %}">Map</a></li>
+            <li><a href="{% url 'loka.views.townslist' %}">Towns</a></li>
+            <li>
+                <div id="dd2" class="wrapper-dropdown-2" tabindex="2">PvP
+                    <ul class="dropdown dropdown-pos-pvp">
+                        <li><a href="{% url 'loka.views.pvp' %}"><i class="icon-twitter icon-large"></i>About</a></li>
+                        <li><a href="{% url 'loka.views.pvp1v1' %}"><i class="icon-twitter icon-large"></i>1v1
+                            Bracket</a></li>
+                        <li><a href="{% url 'loka.views.pvp2v2' %}"><i class="icon-github icon-large"></i>2v2
+                            Bracket</a></li>
+                        <li><a href="{% url 'loka.views.pvpvota' %}"><i class="icon-facebook icon-large"></i>VotA</a>
                         </li>
                     </ul>
-                {% endif %}
+                </div>
             </li>
+            <li><a href="forums/">Forums</a></li>
+            <li><a href="http://loka.wikia.com/wiki/Loka_Wiki">Wiki</a></li>
+            {% if user.is_authenticated %}
+                {% player_avatar_sm user as avatar %}
+                <li>
+                    <div id="dd3" class="wrapper-dropdown-2 player-pad" tabindex="3">{{ user.username }}
+                        {% if avatar %}
+                            <img src="{% static 'media/' %}{{ avatar }}" class="header-avatar"/>
+                        {% else %}
+                            <img src="{% static 'images/steve.png' %}" class="header-avatar"/>
+                        {% endif %}
+                        <ul class="dropdown dropdown-pos-player">
+                            <li><a href="/player/{{ user.username }}"><i class="icon-twitter icon-large"></i>View
+                                Profile</a></li>
+                            <li><a href="{% url 'loka.views.logout' %}"><i
+                                    class="icon-twitter icon-large"></i>Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% else %}
+                <li><a class="cd-signin" href="#">Login</a></li>
+            {% endif %}
         </ul>
-    </div>
-    <section class="page-section">
-        {% bootstrap_messages %}
-        {% block content %}Empty page{% endblock %}
-    </section>
+    </nav>
+    <!-- cd-main-nav -->
+</header>
+<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+        <ul class="cd-switcher">
+            <li><a href="#0">Sign in</a></li>
+            <li><a href="#0">Register</a></li>
+        </ul>
 
-    {% get_quote %}
+        <div id="cd-login"> <!-- log in form -->
+            <form class="cd-form" method="post" action="{% url 'loka.views.home' %}">
+                {% csrf_token %}
+                <p class="fieldset">
+                    <label class="image-replace cd-email" for="signin-email">Username</label>
+                    <input class="full-width has-padding has-border" id="signin-email" type="text"
+                           placeholder="Username" name="username">
+                    <span class="cd-error-message">Error message here!</span>
+                </p>
 
-    <footer class="footer">
-        <div class="row">
-            <p class="copyright">
-                <a href="https://www.facebook.com/lokaminecraft" target="_blank"><img
-                        src="/static/images/Facebook.png"/></a>
-                &copy; <a href="#" target="_parent">Loka</a> 2013 | <a href="/donate">Donate</a>
-                <a href="https://twitter.com/LokaMinecraft" target="_blank"><img src="/static/images/Twitter.png"/></a>
-            </p>
+                <p class="fieldset">
+                    <label class="image-replace cd-password" for="signin-password">Password</label>
+                    <input class="full-width has-padding has-border" id="signin-password" type="password"
+                           placeholder="Password" name="password">
+                    {#                    <a href="#0" class="hide-password">Hide</a>#}
+                    <span class="cd-error-message">Error message here!</span>
+                </p>
+
+                <p class="fieldset">
+                    <input class="full-width" type="submit" value="Login">
+                </p>
+            </form>
         </div>
-    </footer>
+        <!-- cd-login -->
 
+        <div id="cd-signup"> <!-- sign up form -->
+            <div class="container">
+                <div class="col-md-6 text-center">
+                    <h2>Log on to Loka!</h2>
+
+                    <p>Parts of the website work in tandem with your user account in Minecraft. In order to register for
+                        an
+                        account on this site, please log on to Loka and use the <strong><em>/register</em></strong>
+                        command.</p>
+
+                    <a href="#0" class="cd-close-form">Close</a>
+                </div>
+            </div>
+        </div>
+        <!-- cd-signup -->
+
+        <div id="cd-reset-password"> <!-- reset password form -->
+            <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to
+                create a new password.</p>
+
+            <form class="cd-form">
+                <p class="fieldset">
+                    <label class="image-replace cd-email" for="reset-email">E-mail</label>
+                    <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+                    <span class="cd-error-message">Error message here!</span>
+                </p>
+
+                <p class="fieldset">
+                    <input class="full-width has-padding" type="submit" value="Reset password">
+                </p>
+            </form>
+
+            <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+        </div>
+        <!-- cd-reset-password -->
+        <a href="#0" class="cd-close-form">Close</a>
+    </div>
+    <!-- cd-user-modal-container -->
 </div>
+<!-- cd-user-modal -->
+{% block content %}{% endblock %}
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="legals">
+                    <li><a href="{% url 'loka.views.home' %}">Loka 2014</a></li>
+                    <li><a href="{% url 'loka.views.donate' %}">Donate</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 credit">
+                <p>Base theme <em>Halcyon Days</em> by <a href="http://www.peterfinlan.com/">Peter Finlan</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
 
-{% compress js %}
-    <script defer src="{% static 'js/jquery.min.js' %}"></script>
-    <script defer src="{% static 'js/jquery-ui.js' %}"></script>
-    <script type="application/javascript">
-        $(function () {
-            $("#search").autocomplete({
-                source: "/api/search/",
-                select: function (event, ui) {
-                    window.location = ui.item.url;
-                },
-                minLength: 2
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/modernizr.js' %}"></script>
+<script src="{% static 'js/login.js' %}"></script>
+<script>
+
+    /**********Dropdown**********/
+
+    function DropDown(el) {
+        this.dd = el;
+        this.initEvents();
+    }
+
+    DropDown.prototype = {
+        initEvents: function () {
+            var obj = this;
+
+            obj.dd.on('click', function (event) {
+                $(this).toggleClass('active');
+                event.stopPropagation();
             });
+        }
+    }
 
-            $(".search-icon").click(function () {
-                var icon = $(this),
-                        input = icon.parent().find("#search"),
-                        submit = icon.parent().find(".search-submit"),
-                        is_submit_clicked = false;
+    $(function () {
 
-                // Animate the input field
-                input.animate({
-                    "width": "165px",
-                    "padding": "10px",
-                    "opacity": 1
-                }, 300, function () {
-                    input.focus();
-                });
+        var dd = new DropDown($('#dd'));
+        var dd2 = new DropDown($('#dd2'));
+        var dd3 = new DropDown($('#dd3'));
 
-                submit.mousedown(function () {
-                    is_submit_clicked = true;
-                });
-
-                // Now, we need to hide the icon too
-                icon.fadeOut(300);
-
-                // Looks great, but what about hiding the input when it loses focus and doesnt contain any value? Lets do that too
-                input.blur(function () {
-                    if (!input.val() && !is_submit_clicked) {
-                        input.animate({
-                            "width": "0",
-                            "padding": "0",
-                            "opacity": 0
-                        }, 200);
-
-                        // Get the icon back
-                        icon.fadeIn(200);
-                    }
-                    ;
-                });
-            });
+        $(document).click(function () {
+            // all dropdowns
+            $('.wrapper-dropdown-2').removeClass('active');
         });
-    </script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-{% endcompress %}
 
-<!--[if lt IE 9]>
-    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    });
+</script>
+{% block extrajs %}{% endblock %}
 </body>
 </html>
