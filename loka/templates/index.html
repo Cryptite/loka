@@ -70,18 +70,15 @@
 
                     <div class="features-wrapper">
                         <div class="col-md-4 wp2">
-                            <div class="tab-icon">
-                                <i class="fa fa-laptop shadow"></i>
-                            </div>
                             <h2>Territories</h2>
 
                             <p>Claim land throughout Loka. Establish your Dominance. Loka features a unique and powerful
-                                Territory System that lets you show how powerful you and your friends can be..</p>
+                                Territory System that lets you show how powerful you and your friends can be... Will
+                                your town become the <em>Capital of Loka</em>?</p>
+
+                            <a href="{% url 'loka.views.territories' %}" class="guide-btn territories">Territories</a>
                         </div>
                         <div class="col-md-4 wp2 delay-05s">
-                            <div class="tab-icon">
-                                <i class="fa fa-code shadow"></i>
-                            </div>
                             <h2>Towns with Progression</h2>
 
                             <p>From the outset of beginning your town, your every action <a
@@ -90,11 +87,10 @@
                                         href="{% url 'loka.views.towns' %}#perks">Perks</a> and <a
                                         href="{% url 'loka.views.towns' %}#industries">unlock Industries</a> as your
                                 town levels up and show the world why your town is the best.</p>
+
+                            <a href="{% url 'loka.views.towns' %}" class="guide-btn">Towns Guide</a>
                         </div>
                         <div class="col-md-4 wp2 delay-1s">
-                            <div class="tab-icon">
-                                <i class="fa fa-heart shadow"></i>
-                            </div>
                             <h2>Top-Notch PVP</h2>
 
                             <p>From ELO-Rated Arenas to our Battlegrounds that feature a unique Talent Set, Loka's PvP
@@ -102,6 +98,8 @@
                                 all-encompassing set of games guaranteed to keep you constantly improving and proving
                                 your
                                 worth to Loka!</p>
+
+                            <a href="{% url 'loka.views.pvp' %}" class="guide-btn pvp">PvP Guide</a>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -109,11 +107,11 @@
             </div>
         </div>
     </section>
-    <section class="swag-mystery text-center">
+    <section class="swag swag-mystery text-center">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h1>But wait<br/><br/><span>Loka gets <em>even better</em></span></h1>
+                    <h1>But wait<span>Loka gets <em>even better</em></span></h1>
                     <a href="#about" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -247,6 +245,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <br/><br/>
                     <ul class="social-buttons">
                         <li><a href="https://twitter.com/LokaMinecraft" class="social-btn"><i class="fa fa-twitter"></i></a>
                         </li>
