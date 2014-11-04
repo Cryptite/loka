@@ -6,6 +6,7 @@
 {% load compress %}
 <html lang="en">
 <head>
+    <title>{% block title %}{% endblock %}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +38,7 @@
             <li>
                 <div id="dd" class="wrapper-dropdown-2" tabindex="1">Guide
                     <ul class="dropdown dropdown-pos-guide">
-                    <li><a href="{% url 'loka.views.guide' %}"><i class="icon-twitter icon-large"></i>Guide</a></li>
+                        <li><a href="{% url 'loka.views.guide' %}"><i class="icon-twitter icon-large"></i>Guide</a></li>
                         <li><a href="{% url 'loka.views.towns' %}"><i class="icon-twitter icon-large"></i>Towns</a></li>
                         <li><a href="{% url 'loka.views.territories' %}"><i class="icon-github icon-large"></i>Territories</a>
                         </li>
