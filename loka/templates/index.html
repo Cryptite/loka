@@ -9,14 +9,10 @@
     <header id="home">
         <section class="hero" id="hero">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-right navicon">
-                        <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center">
-                        <h1 class="animated fadeInDown heroTitle">Loka Minecraft</h1>
+                <div id="streaming">
+                    <div class="row">
+                        <div class="col-md-12 text-center"><h1>Checking stream...</h1>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -278,5 +274,55 @@
                 }, 5000);
             });
         })();
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            // your twitch channel name
+            var twitchName = 'lokaminecraft'
+
+            // an element on your page to put the widget into
+            var elementSelector = '#streaming'
+
+            // HTML to display while waiting for data
+            var loadingHTML = '<div class="col-md-12 text-center"><h1>Checking stream...</h1></div>';
+
+            // HTML to display while online
+            var onlineHTML = '<div class="row">' +
+                    '<div class="col-md-12 text-center">' +
+                    '<h1 class="animated fadeInDown heroTitle">Loka Livestream</h1>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="col-md-8 text-center">' +
+                    '<iframe src="http://www.twitch.tv/lokaminecraft/embed" frameborder="0" scrolling="no" height="500" width="730"></iframe>' +
+                    '<a href="http://www.twitch.tv/lokaminecraft?tt_medium=live_embed&tt_content=text_link" class="guide-btn guide-btn-sm">Watch on Twitch</a> ' +
+                    '</div> ' +
+                    '<div class="col-md-1"> ' +
+                    '<iframe src="http://www.twitch.tv/lokaminecraft/chat?popout=" frameborder="0" scrolling="no" height="500" width="320"></iframe>' +
+                    '</div>'
+
+            // HTML to display while offline
+            var offlineHTML = '<div class="row">' +
+                    '<div class="col-md-12 text-right navicon">' +
+                    '<a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a></div></div>' +
+                    '<div class="row"><div class="col-md-8 col-md-offset-2 text-center">' +
+                    '<h1 class="animated fadeInDown heroTitle">Loka Minecraft</h1>' +
+                    '</div></div>'
+
+            $(elementSelector).html(loadingHTML)
+
+            $.getJSON('https://api.twitch.tv/kraken/streams/lokaminecraft?client_id=5j0r5b7qb7kro03fvka3o8kbq262wwm&callback=?',
+
+                    function (twitchData) {
+                        if (twitchData.stream == null) {
+                            // something other than live
+                            $(elementSelector).html(offlineHTML)
+                        } else {
+                            // no data or invalid data from twitch
+                            $(elementSelector).html(onlineHTML)
+                        }
+                    }
+            )
+        })
     </script>
 {% endblock %}
