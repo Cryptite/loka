@@ -9,52 +9,37 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}"/>#}
-    {#    <link rel="stylesheet" type="text/css" href="css/demo.css"/>#}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}"/>
-    <script src="{% static 'js/modernizr.custom.js' %}"></script>
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}"/>#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/itemview.css' %}"/>
 {% endblock %}
 
 {% block content %}
 
-    <div class="jumbotron towns">
-        <h1>Towns of Loka</h1>
-    </div>
+    <section class="smallhero" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeIn delay-10s heroTitle">Towns of Loka</h1>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="container">
-        {% for alliance in alliances %}
-            <section class="grid-wrap">
-                <h1>{{ alliance.name }} Alliance
-                    <small>- {{ alliance.towns.count }} Towns - {{ alliance.strength }} Strength</small>
-                </h1>
-                <ul class="grid swipe-right" id="grid-{{ alliance.name }}">
-                    <li>
-                        <a href="/town/{{ alliance.leader.name }}">
-                            {% if alliance.leader.name|has_town_banner != None %}
-                                {% with image=alliance.leader.name|has_town_banner %}
-                                    {% if image.banner %}
-                                        <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
-                                             class="imgcenter"/>
-                                    {% else %}
-                                        <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                                    {% endif %}
-                                {% endwith %}
-                            {% else %}
-                                <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                            {% endif %}
-                            <h3 class="leader">{{ alliance.leader.name }}</h3>
-
-                            <p>Level {{ alliance.leader.level }}</p>
-                        </a>
-                    </li>
-                    {% for town in alliance.towns.all %}
-                        {% if town != alliance.leader %}
-                            <li>
-                                <a href="/town/{{ town.name }}">
-                                    {% if town.name|has_town_banner != None %}
-                                        {% with image=town.name|has_town_banner %}
+    {% for alliance in alliances %}
+        <section class="portfolio text-center section-padding">
+            <h1 class="town-category">{{ alliance.name }} Alliance
+                <small>- {{ alliance.towns.count }} Towns, {{ alliance.strength }} Strength</small>
+            </h1>
+            <div class="row">
+                <div class="col-md-3">
+                    <ul id="cd-gallery-items" class="cd-towns-container">
+                        <li>
+                            <ul class="cd-item-wrapper">
+                                <li class="cd-item-front">
+                                    {% if alliance.leader.name|has_town_banner != None %}
+                                        {% with image=alliance.leader.name|has_town_banner %}
                                             {% if image.banner %}
-                                                <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
+                                                <img src="{% thumbnail image.banner 720x400 detail %}" alt="dummy"
                                                      class="imgcenter"/>
                                             {% else %}
                                                 <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
@@ -62,62 +47,115 @@
                                         {% endwith %}
                                     {% else %}
                                         <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                                    {% endif %}
-                                    <h3 class="normal">{{ town.name }}</h3>
+                                    {% endif %}</li>
+                                {#                                <li class="cd-item-middle"><a href="#0"><img#}
+                                {#                                        src="{% static 'images/town_sm.jpg' %}"#}
+                                {#                                        alt="Preview image"></a></li>#}
+                                {#                                <li class="cd-item-back"><a href="#0"><img#}
+                                {#                                        src="{% static 'images/town_sm.jpg' %}"#}
+                                {#                                        alt="Preview image"></a>#}
+                                {#                                </li>#}
+                            </ul>
 
-                                    <p class="level">Level {{ town.level }}</p>
-                                </a>
-                            </li>{% endif %}
-                    {% endfor %}
-                </ul>
-            </section>
-        {% endfor %}
+                            <div class="cd-item-info">
+                                <b>{{ alliance.leader.get_list_name }}</b>
+                                <em>Level {{ alliance.leader.level }}</em>
+                            </div>
+                            <nav>
+                                <ul class="cd-item-navigation">
+                                    <li><a class="cd-img-replace" href="#0">Prev</a></li>
+                                    <li><a class="cd-img-replace" href="#0">Next</a></li>
+                                </ul>
+                            </nav>
 
-        <section class="grid-wrap">
-            <h1>Wild Towns
-            </h1>
-            <ul class="grid swipe-right" id="grid-wildtowns">
-                {% for town in towns %}
-                    <li>
-                        <a href="/town/{{ town.name }}">
-                            {% if town.name|has_town_banner != None %}
-                                {% with image=town.name|has_town_banner %}
-                                    {% if image.banner %}
-                                        <img src="{% thumbnail image.banner 500x300 detail %}" alt="dummy"
-                                             class="imgcenter"/>
-                                    {% else %}
-                                        <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                                    {% endif %}
-                                {% endwith %}
-                            {% else %}
-                                <img src="{% static 'images/town_sm.jpg' %}" alt="dummy"/>
-                            {% endif %}
-                            <h3 class="normal">{{ town.get_list_name }}</h3>
+                            <a class="cd-3d-trigger cd-img-replace" href="#0">Open</a>
+                        </li>
+                    </ul>
+                </div>
+                {% for town in alliance.towns.all %}
+                    {% if town != alliance.leader %}
+                        <div class="col-md-3">
+                            <ul id="cd-gallery-items" class="cd-towns-container">
+                                <li>
+                                    <ul class="cd-item-wrapper">
+                                        <li class="cd-item-front"><img
+                                                src="{% static 'images/town_sm.jpg' %}"
+                                                alt="Preview image"></li>
+                                        {#                                        <li class="cd-item-middle"><a href="#0"><img#}
+                                        {#                                                src="{% static 'images/town_sm.jpg' %}"#}
+                                        {#                                                alt="Preview image"></a></li>#}
+                                        {#                                        <li class="cd-item-back"><a href="#0"><img#}
+                                        {#                                                src="{% static 'images/town_sm.jpg' %}"#}
+                                        {#                                                alt="Preview image"></a>#}
+                                        {#                                        </li>#}
+                                    </ul>
 
-                            <p class="level">Level {{ town.level }}</p>
-                        </a>
-                    </li>
+                                    <div class="cd-item-info">
+                                        <b>{{ town.get_list_name }}</b>
+                                        <em>Level {{ town.level }}</em>
+                                    </div>
+                                    <nav>
+                                        <ul class="cd-item-navigation">
+                                            <li><a class="cd-img-replace" href="#0">Prev</a></li>
+                                            <li><a class="cd-img-replace" href="#0">Next</a></li>
+                                        </ul>
+                                    </nav>
+
+                                    <a class="cd-3d-trigger cd-img-replace" href="#0">Open</a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
                 {% endfor %}
-            </ul>
+            </div>
         </section>
+    {% endfor %}
 
-    </div>
-    <!-- /container -->
-    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
-    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
-    <script src="{% static 'js/classie.js' %}"></script>
-    <script src="{% static 'js/colorfinder-1.1.js' %}"></script>
-    <script src="{% static 'js/gridScrollFx.js' %}"></script>
+    <section class="portfolio text-center section-padding">
+        <h1 class="town-category">Wild Towns</h1>
 
-    <script>
-        {% for alliance in alliances %}
-            new GridScrollFx(document.getElementById('grid-{{ alliance.name }}'), {
-                viewportFactor: 0.4
-            });
-        {% endfor %}
-        new GridScrollFx(document.getElementById('grid-wildtowns'), {
-            viewportFactor: 0.4
-        });
-    </script>
+        <div class="row">
+            {% for town in towns %}
+                <div class="col-md-3">
+                    <ul id="cd-gallery-items" class="cd-towns-container">
+                        <li>
+                            <ul class="cd-item-wrapper">
+                                <li class="cd-item-front"><img
+                                        src="{% static 'images/town_sm.jpg' %}"
+                                        alt="Preview image"></li>
+                                {#                                <li class="cd-item-middle"><a href="#0"><img#}
+                                {#                                        src="{% static 'images/town_sm.jpg' %}"#}
+                                {#                                        alt="Preview image"></a></li>#}
+                                {#                                <li class="cd-item-back"><a href="#0"><img#}
+                                {#                                        src="{% static 'images/town_sm.jpg' %}"#}
+                                {#                                        alt="Preview image"></a>#}
+                                {#                                </li>#}
+                            </ul>
 
+                            <div class="cd-item-info">
+                                <b>{{ town.get_list_name }}</b>
+                                <em>Level {{ town.level }}</em>
+                            </div>
+                            <nav>
+                                <ul class="cd-item-navigation">
+                                    <li><a class="cd-img-replace" href="#0">Prev</a></li>
+                                    <li><a class="cd-img-replace" href="#0">Next</a></li>
+                                </ul>
+                            </nav>
+
+                            <a class="cd-3d-trigger cd-img-replace" href="#0">Open</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/itemview.js' %}"></script>
 {% endblock %}

@@ -154,6 +154,22 @@ def pvp(request):
     return render_to_response('pvp.html', RequestContext(request))
 
 
+def vota(request):
+    return render_to_response('vota.html', RequestContext(request))
+
+
+def voc(request):
+    return render_to_response('voc.html', RequestContext(request))
+
+
+def maelstrom(request):
+    return render_to_response('maelstrom.html', RequestContext(request))
+
+
+def talents(request):
+    return render_to_response('talents.html', RequestContext(request))
+
+
 def map_page(request):
     strength_towns = [town for town in Town.objects.filter(Q(strength__gt=0)).order_by("-strength")]
     return render_to_response('map.html', RequestContext(request, {
@@ -475,6 +491,10 @@ def about(request):
     return render_to_response('about.html', RequestContext(request))
 
 
+def guide(request):
+    return render_to_response('guide.html', RequestContext(request))
+
+
 def donate(request):
     return render_to_response('donate.html', RequestContext(request))
 
@@ -485,6 +505,10 @@ def thankyou(request):
 
 def towns(request):
     return render_to_response('towns.html', RequestContext(request))
+
+
+def territories(request):
+    return render_to_response('territories.html', RequestContext(request))
 
 
 def townslist(request):

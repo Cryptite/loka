@@ -16,76 +16,76 @@
     <div class="jumbotron header-arena">
         <h1>1v1 Arena Bracket</h1>
     </div>
-    <section class="row">
-        {% for match in matches %}
-            <div class="match-section text-center">
-                <div class="match-text-winner"><a href="/player/{{ match.winner.name }}">{{ match.winner.name }}</a>
-                    [{{ match.winner_rating }}] <span class="text-muted">defeated</span></div>
-                <div class="match-player winner">
-                    {% if match.winner.avatar %}
-                        <img src="{% static 'media/' %}{{ match.winner.avatar }}"
-                             class="match-avatar img-rounded">
-                    {% else %}
-                        <img src="{% static 'images/steve_sm.png' %}"
-                             class="avatar img-rounded {{ match.winner.name }}">
-                        <script type="application/javascript">
-                            $(document).ready(function () {
-                                $.ajax({
-                                    type: "GET",
-                                    url: "/avatar/{{ winner.name }}",
-                                    contentType: 'application/json',
-                                    complete: function (xhr, status) {
-                                        if (status === 'error' || !xhr.responseText) {
-                                        }
-                                        else {
-                                            var data = JSON.parse(xhr.responseText);
-                                            $('.{{ match.winner.name }}').fadeOut(500, function () {
-                                                $('.{{ match.winner.name }}').attr('src', data["path"]);
-                                                $('.{{ match.winner.name }}').fadeIn(500);
-                                            });
-                                        }
-                                    }
-                                });
-                            })
-                        </script>
-                    {% endif %}
-                </div>
-                <p class="match-ratingchange">+{{ match.rating_change }}</p>
-
-                <div class="match-player loser">
-                    {% if match.loser.avatar %}
-                        <img src="{% static 'media/' %}{{ match.loser.avatar }}"
-                             class="match-avatar img-rounded">
-                    {% else %}
-                        <img src="{% static 'images/steve_sm.png' %}"
-                             class="avatar img-rounded {{ match.loser.name }}">
-                        <script type="application/javascript">
-                            $(document).ready(function () {
-                                $.ajax({
-                                    type: "GET",
-                                    url: "/avatar/{{ match.loser.name }}",
-                                    contentType: 'application/json',
-                                    complete: function (xhr, status) {
-                                        if (status === 'error' || !xhr.responseText) {
-                                        }
-                                        else {
-                                            var data = JSON.parse(xhr.responseText);
-                                            $('.{{ match.loser.name }}').fadeOut(500, function () {
-                                                $('.{{ match.loser.name }}').attr('src', data["path"]);
-                                                $('.{{ match.loser.name }}').fadeIn(500);
-                                            });
-                                        }
-                                    }
-                                });
-                            })
-                        </script>
-                    {% endif %}
-                </div>
-                <div class="match-text-loser">[{{ match.loser_rating }}] <a
-                        href="/player/{{ match.loser.name }}">{{ match.loser.name }}</a></div>
-            </div>
-        {% endfor %}
-    </section>
+    {#    <section class="row">#}
+    {#        {% for match in matches %}#}
+    {#            <div class="match-section text-center">#}
+    {#                <div class="match-text-winner"><a href="/player/{{ match.winner.name }}">{{ match.winner.name }}</a>#}
+    {#                    [{{ match.winner_rating }}] <span class="text-muted">defeated</span></div>#}
+    {#                <div class="match-player winner">#}
+    {#                    {% if match.winner.avatar %}#}
+    {#                        <img src="{% static 'media/' %}{{ match.winner.avatar }}"#}
+    {#                             class="match-avatar img-rounded">#}
+    {#                    {% else %}#}
+    {#                        <img src="{% static 'images/steve_sm.png' %}"#}
+    {#                             class="avatar img-rounded {{ match.winner.name }}">#}
+    {#                        <script type="application/javascript">#}
+    {#                            $(document).ready(function () {#}
+    {#                                $.ajax({#}
+    {#                                    type: "GET",#}
+    {#                                    url: "/avatar/{{ winner.name }}",#}
+    {#                                    contentType: 'application/json',#}
+    {#                                    complete: function (xhr, status) {#}
+    {#                                        if (status === 'error' || !xhr.responseText) {#}
+    {#                                        }#}
+    {#                                        else {#}
+    {#                                            var data = JSON.parse(xhr.responseText);#}
+    {#                                            $('.{{ match.winner.name }}').fadeOut(500, function () {#}
+    {#                                                $('.{{ match.winner.name }}').attr('src', data["path"]);#}
+    {#                                                $('.{{ match.winner.name }}').fadeIn(500);#}
+    {#                                            });#}
+    {#                                        }#}
+    {#                                    }#}
+    {#                                });#}
+    {#                            })#}
+    {#                        </script>#}
+    {#                    {% endif %}#}
+    {#                </div>#}
+    {#                <p class="match-ratingchange">+{{ match.rating_change }}</p>#}
+    {##}
+    {#                <div class="match-player loser">#}
+    {#                    {% if match.loser.avatar %}#}
+    {#                        <img src="{% static 'media/' %}{{ match.loser.avatar }}"#}
+    {#                             class="match-avatar img-rounded">#}
+    {#                    {% else %}#}
+    {#                        <img src="{% static 'images/steve_sm.png' %}"#}
+    {#                             class="avatar img-rounded {{ match.loser.name }}">#}
+    {#                        <script type="application/javascript">#}
+    {#                            $(document).ready(function () {#}
+    {#                                $.ajax({#}
+    {#                                    type: "GET",#}
+    {#                                    url: "/avatar/{{ match.loser.name }}",#}
+    {#                                    contentType: 'application/json',#}
+    {#                                    complete: function (xhr, status) {#}
+    {#                                        if (status === 'error' || !xhr.responseText) {#}
+    {#                                        }#}
+    {#                                        else {#}
+    {#                                            var data = JSON.parse(xhr.responseText);#}
+    {#                                            $('.{{ match.loser.name }}').fadeOut(500, function () {#}
+    {#                                                $('.{{ match.loser.name }}').attr('src', data["path"]);#}
+    {#                                                $('.{{ match.loser.name }}').fadeIn(500);#}
+    {#                                            });#}
+    {#                                        }#}
+    {#                                    }#}
+    {#                                });#}
+    {#                            })#}
+    {#                        </script>#}
+    {#                    {% endif %}#}
+    {#                </div>#}
+    {#                <div class="match-text-loser">[{{ match.loser_rating }}] <a#}
+    {#                        href="/player/{{ match.loser.name }}">{{ match.loser.name }}</a></div>#}
+    {#            </div>#}
+    {#        {% endfor %}#}
+    {#    </section>#}
     <div class="container">
         <div class=".col-md-4">
             <table class="table table-hover">

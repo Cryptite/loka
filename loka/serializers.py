@@ -27,12 +27,12 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     valleyWins = serializers.IntegerField()
     valleyLosses = serializers.IntegerField()
     valleyScore = serializers.IntegerField()
-    overloadKills = serializers.IntegerField()
-    overloadDeaths = serializers.IntegerField()
-    overloadOverloads = serializers.IntegerField()
-    overloadWins = serializers.IntegerField()
-    overloadLosses = serializers.IntegerField()
-    overloadScore = serializers.IntegerField()
+    # overloadKills = serializers.IntegerField()
+    # overloadDeaths = serializers.IntegerField()
+    # overloadOverloads = serializers.IntegerField()
+    # overloadWins = serializers.IntegerField()
+    # overloadLosses = serializers.IntegerField()
+    # overloadScore = serializers.IntegerField()
     arrowShots = serializers.IntegerField()
     arrowHits = serializers.IntegerField()
     title = serializers.CharField(max_length=20, required=False)
@@ -47,7 +47,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
         data will simply return a dictionary of items.
         """
         if instance:
-            #     Update existing instance
+            # Update existing instance
             print 'Via existing instance'
             instance.name = attrs.get('name')
             instance.arenarating = attrs.get('arenarating')
@@ -66,12 +66,12 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
             instance.valleyWins = attrs.get('valleyWins')
             instance.valleyLosses = attrs.get('valleyLosses')
             instance.valleyScore = attrs.get('valleyScore')
-            instance.overloadKills = attrs.get('overloadKills')
-            instance.overloadDeaths = attrs.get('overloadDeaths')
-            instance.overloadOverloads = attrs.get('overloadOverloads')
-            instance.overloadWins = attrs.get('overloadWins')
-            instance.overloadLosses = attrs.get('overloadLosses')
-            instance.overloadScore = attrs.get('overloadScore')
+            # instance.overloadKills = attrs.get('overloadKills')
+            # instance.overloadDeaths = attrs.get('overloadDeaths')
+            # instance.overloadOverloads = attrs.get('overloadOverloads')
+            # instance.overloadWins = attrs.get('overloadWins')
+            # instance.overloadLosses = attrs.get('overloadLosses')
+            # instance.overloadScore = attrs.get('overloadScore')
             instance.arrowShots = attrs.get('arrowShots')
             instance.arrowHits = attrs.get('arrowHits')
             instance.title = attrs.get('title')
@@ -90,8 +90,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('name', 'arenarating', 'arenawins', 'arenalosses', 'streak', 'highestrating',
                   'arenarating2v2', 'arenawins2v2', 'arenalosses2v2', 'streak2v2', 'highestrating2v2',
                   'valleyKills', 'valleyDeaths', 'valleyCaps', 'valleyWins', 'valleyLosses', 'valleyScore', 'title',
-                  'rank', 'overloadKills', 'overloadDeaths', 'overloadOverloads', 'overloadWins', 'overloadLosses',
-                  'overloadScore', 'arrowHits', 'arrowShots')
+                  'rank', 'arrowHits', 'arrowShots')
         lookup_field = "name"
 
 
@@ -117,14 +116,14 @@ class PlayerAchievementsSerializer(serializers.ModelSerializer):
 
 
 # class PlayerSerializer(serializers.ModelSerializer):
-#     player_achievements = PlayerAchievementsSerializer(many=False)
+# player_achievements = PlayerAchievementsSerializer(many=False)
 #
-#     class Meta:
-#         model = Player
+# class Meta:
+# model = Player
 
 
 # class SinglePlayerSerializer(serializers.ModelSerializer):
-#     class Meta:
+# class Meta:
 #         model = Player
 #         lookup_field = "name"
 
@@ -283,6 +282,7 @@ class TerritorySerializer(serializers.HyperlinkedModelSerializer):
     latitude = serializers.FloatField()
     longitude = serializers.FloatField()
     conflicted = serializers.BooleanField(default=False)
+    # neutral = serializers.BooleanField(default=False)
     town = serializers.CharField(max_length=50)
 
     def restore_object(self, attrs, instance=None):
@@ -301,6 +301,7 @@ class TerritorySerializer(serializers.HyperlinkedModelSerializer):
             instance.latitude = attrs.get('latitude')
             instance.longitude = attrs.get('longitude')
             instance.conflicted = attrs.get('conflicted')
+            # instance.neutral = attrs.get('neutral')
             return instance
 
         town_name = attrs.get("town")
@@ -312,7 +313,7 @@ class TerritorySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Territory
-        fields = ('name', "latitude", "longitude", "conflicted", "town")
+        fields = ('name', "latitude", "longitude", "conflicted", "neutral", "town")
         lookup_field = "name"
 
 

@@ -1,0 +1,406 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Loka Minecraft - Town System{% endblock %}
+
+{% block extra_head %}
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/towntable.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <section class="smallhero header-territories" id="hero">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeIn delay-10s heroTitle">Territories</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="intro text-center section-padding" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="#power" class="guide-btn guide-btn-sm territories">Power</a>
+                    <a href="#buildings" class="guide-btn guide-btn-sm territories">Buildings</a>
+                    <a href="#warfare" class="guide-btn guide-btn-sm territories">Warfare</a>
+                    <a href="#capital" class="guide-btn guide-btn-sm territories">Capital</a>
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <h1 class="arrow">Territorial Warfare on a Worldwide Scale</h1>
+
+                <p>The battle for Territories on Loka is a fierce one,
+                    combining tactical prowess with long-term planning and gritty World PvP skill. Claim
+                    territories, fight to defend them, and become the strongest town or Alliance. The victor at
+                    the
+                    end of the month becomes Capital of Loka.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="swag swag-territories1 text-center">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                    <h1>Territory Power</h1>
+                    <a href="#power" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro text-center section-padding" id="power">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 wp1">
+                    <h1 class="arrow">Territory Power</h1>
+
+                    <p>There are two currencies of Territories, <strong>points</strong> and <strong>strength.</strong>
+                        In short, points are the currency required to construct Territory Buildings, whereas strength is
+                        the value that, at the end of the month, decides who becomes the Capital of Loka. Both Points
+                        and Strength are earned through owning Territory Generators and fighting for them.</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Territory Points</h3>
+
+                        <p>Any town that is eligible for Territories (Town Level 6 or higher) will generate Territory
+                            Points. The rate of generation is <strong>Town Level * 5 per real-life day.</strong> A level
+                            20
+                            town, for example, will generate 100 TP a day. Territory Points are the currency used to
+                            construct Territory Buildings.</p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h3>Territory Strength</h3>
+
+                        <p>At 8PM CST every night, Territory Strength is calculated. Strength is counted as the number
+                            of
+                            <strong>online Territory Generators your town owns.</strong> If your town is in an Alliance,
+                            the
+                            Alliance has an overall strength that is the sum of each town's strength each night. If,
+                            however, your town is in no Alliance, your Town has a strength of its own.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <a href="{% url 'loka.views.map_page' %}" class="learn-more-btn territories">View Map of Territory
+                        Control</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="swag swag-territories2 text-center">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                    <h1>Territory Buildings</h1>
+                    <a href="#buildings" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro text-center section-padding" id="buildings">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1 wp1">
+                    <h1 class="arrow">Territory Generator<br/>
+                        <small>Cost: 100TP</small>
+                    </h1>
+
+                    <p>The Territory Generator is the most important building in the game. These are the nodes that
+                        generate and extend territories for your Town and Alliance. Defending and Destroying these
+                        is
+                        key to winning the war.</p>
+
+                    <p>Each Territory Generator provides 800x800 blocks of territory protection. Any blocks broken
+                        by
+                        enemies in your territory will break, but will not drop their respective blocks. In time,
+                        these
+                        broken blocks will also regenerate.</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
+                    <div class="img">
+                        <img src="{% static 'images/item_tgen.jpg' %}" alt="Portfolio Item" class="theimage">
+
+                        <div class="overlay">
+                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                    <h1 class="toparrow">Territory Generators are the bread and butter of Territories</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro text-center section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
+                    <div class="img">
+                        <img src="{% static 'images/item_inhibitor.jpg' %}" alt="Portfolio Item">
+
+                        <div class="overlay">
+                            <a href="#0" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                    <h1 class="toparrow">Inhibitors are what start the fights.</h1>
+                </div>
+                <div class="col-md-5 col-md-offset-1 wp2">
+                    <h1 class="arrow">Inhibitor<br/>
+                        <small>Cost: 25TP</small>
+                    </h1>
+
+                    <p>In order to neutralize a Territory Generator and make it vulnerable to a siege, you must
+                        construct an Inhibitor. By placing one of these near an enemy Territory Generator, you begin
+                        the
+                        process of the siege. Depending on how many enemies are online, an Inhibitor will activate
+                        within 30-90 minutes.</p>
+
+                    <p>Once an Inhibitor goes online, the real battle begins. Check out the Warfare section to learn
+                        how
+                        Territory Combat works.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro text-center section-padding" id="buildings">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1 wp1">
+                    <h1 class="arrow">Beacon<br/>
+                        <small>Cost: Free</small>
+                    </h1>
+
+                    <p>Much like the Inhibitor, a Beacon allows for quick-travel via knife technology to various points
+                        in Loka depending on the state of your Territories. Each town can spawn in a beacon <em>within
+                            town protection</em>.</p>
+
+                    <p>When it is peace-time, Beacons have no use. However, if your town has an active Inhibitor online,
+                        the Beacon can be used to transport players to that Inhibitor, allowing for reinforcements
+                        during a fight. If your town has a Territory Generator under attack, the Beacon will take you to
+                        the nearest, active Territory Generator.</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
+                    <div class="img">
+                        <img src="{% static 'images/item_tgen.jpg' %}" alt="Portfolio Item" class="theimage">
+
+                        <div class="overlay">
+                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                    <h1 class="toparrow">Beacons allow for reinforcements</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team text-center section-padding" id="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="arrow">Towers<br/>
+                        <small>Cost: 25TP</small>
+                    </h1>
+
+                    <p>You may construct one of three Towers that will aid in the defense of your Territory
+                        Generator. These tactical structures can help you defend your Territories if you lack the
+                        numbers to thwart an attack.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="team-wrapper">
+                    <div id="teamSlider">
+                        <ul class="slides">
+                            <li>
+                                <div class="col-md-4">
+                                    <img src="{% static 'images/item_ttower.jpg' %}">
+
+                                    <h2>Attack Tower<br/></h2>
+
+                                    <p>Attack towers fire Primed TnT that will devastate nearby enemies.</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="{% static 'images/item_btower.jpg' %}">
+
+                                    <h2>Buff Tower<br/></h2>
+
+                                    <p>Buff Towers increase the health of Power Sources, slowing down enemies from
+                                        Overloading them in order to access the Generator's Core.</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="{% static 'images/item_wtower.jpg' %}">
+
+                                    <h2>Weakness Tower<br/></h2>
+
+                                    <p>All enemeis within the area are debuffed with Weakness, causing their
+                                        attacks against Protectors to be weaker and slowing down the attack
+                                        overall.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="swag swag-territories3 text-center">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                    <h1>Warfare</h1>
+                    <a href="#warfare" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro text-center section-padding" id="warfare">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 wp3">
+                    <h1 class="arrow">Warfare</h1>
+
+                    <p>Territorial Warfare is the ultimate conflict on Loka. Battles rage and grudges held for ages
+                        are finally erupting with Territories. You have a tangible way to enact your punishment on
+                        those whom you wish to see fall. Will you control the world, join the powerful, or aid the
+                        weak?</p>
+
+                    <p>When an Inhibitor goes online, Protectors will spawn in order to defend
+                        both the Inhibitor and the Territory Generator. Killing these Protectors gives you a 10
+                        second
+                        buff called Charged which you can use to overload a Power Source by standing next to it. If
+                        you
+                        destroy the Power Sources of an Inhibitor, it will be destroyed and the attack will be
+                        successfully repelled.</p>
+
+                    <p>Destroying 3 of the 5 Power Sources on a Territory Generator will open its Core to attack.
+                        Step inside and attack the core. Once you've mastered its defenses, striking down the core
+                        will destroy the Territory Generator in explosive beauty.</p>
+                </div>
+
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <a href="http://loka.wikia.com/wiki/Territories" class="learn-more-btn territories">View more about
+                        Territories</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="swag swag-capital text-center" id="capital">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>Capital of Loka</h1>
+                    <a href="#capital" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro text-center section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1 wp6">
+                    <h1 class="arrow">Capital of Loka</h1>
+
+                    <p>On the last day of every month, Territory Strength is tabulated and the Town or Alliance with the
+                        most strength becomes the <em>Capital of Loka</em>. If an Alliance wins, the leader of that
+                        Alliance will become the Capital.</p>
+
+                    <p>Upon becoming Capital of Loka, you get to implement a number of <em>Global Policies</em> that
+                        affect <em>every player on Loka</em>. Additionally, Beacons now allow for travel between towns
+                        in your Alliance.</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
+                    <div class="img">
+                        <img src="{% static 'images/item_castle.jpg' %}" alt="Portfolio Item">
+
+                        <div class="overlay">
+                            <a href="#" class="expand"><i class="fa fa-search"></i><br>View More</a>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                    <h1 class="toparrow">Will you be a benevolent Capital or a malicious one?</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark-bg text-center section-padding contact-wrap" id="perks">
+        <div class="component">
+            <h2>Global Policies</h2>
+
+            <p>Enacted by the Capital of Loka once every month, these global policies affect the entirety of Loka.</p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="user-email">Inflation</td>
+                    <td class="user-phone">Town generators consume 20% more emeralds per cycle.</td>
+                </tr>
+                <tr>
+                    <td class="user-email">Deflation</td>
+                    <td class="user-phone">Town generators consume 20% less emeralds per cycle</td>
+                </tr>
+                <tr>
+                    <td class="user-email">Air Defense</td>
+                    <td class="user-phone">Ender Pearls cannot be thrown in foreign towns.</td>
+                </tr>
+                <tr>
+                    <td class="town-perkname">Altruism</td>
+                    <td class="town-perktext">Town levels 15 and under gain 50% more xp toward Town Levels</td>
+                </tr>
+                <tr>
+                    <td class="user-email">Sanctions</td>
+                    <td class="user-phone">Town levels 15 and over gain 25% less xp toward Town Levels</td>
+                </tr>
+                <tr>
+                    <td class="user-email">Higher Learning</td>
+                    <td class="user-phone">All xp gained on Loka is increased by 25%</td>
+                </tr>
+                <tr>
+                    <td class="user-email">Lower Learning</td>
+                    <td class="user-phone">All xp gained on Loka is decreased by 25%</td>
+                </tr>
+                <tr>
+                    <td class="user-email">Pacification</td>
+                    <td class="user-phone">Loka's difficulty is set to Medium instead of Hard</td>
+                </tr>
+                <tr>
+                    <td class="user-email">Shutdown</td>
+                    <td class="user-phone">Industries no longer function on Loka.</td>
+                </tr>
+                <tr>
+                    <td class="user-email">Improved Infrastructure</td>
+                    <td class="user-phone">All Town Roads now award Speed II instead of Speed I</td>
+                </tr>
+                <tr>
+                    <td class="user-email">Black Market</td>
+                    <td class="user-phone">Open the Black Market</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+{% endblock %}

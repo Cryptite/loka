@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Loka Minecraft - PvP - Valley of the Artifacts{% endblock %}
+
+{% block extra_head %}
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/towntable.css' %}"/>
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}"/>#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/itemview.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <section class="smallhero header-vota" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeIn delay-10s heroTitle">Valley of the Artifacts</h1>
+                </div>
+                <div class="container">
+                    <div class="col-md-5 col-md-offset-1">
+                        <h1 class="arrow text-center">Capture and Hold the Artifacts!</h1>
+
+                        <p>Nestled in a hidden valley lie three Artifacts, a feat unheard of in any other world ever
+                            discovered
+                            by Lokans. Active Artifacts were always limited to one per world. What makes this valley so
+                            unique?</p>
+
+                        <p>Capture and Hold the three Artifacts to earn points. The first team to 100 wins the game!</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1 infocontainer">
+                        <h1 class="arrow text-center">Valley of the Artifacts</h1>
+
+                        <div class="row col-md-offset-1 text-left">
+                            <h3><strong>Game Type: </strong> Capture and Hold</h3>
+
+                            <h3><strong>Match Size: </strong> 2v2 - 6v6</h3>
+
+                            <h3><strong>Win Conditions: </strong> First to 100 points</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro text-center section-padding" id="strategy">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-11 col-md-offset-1 wp1">
+                    <h1 class="arrow">Strategy</h1>
+
+                    <p>Choose from among three separate Artifacts to try to hold. By standing underneath them, Artifacts
+                        will slowly tick towards your team's control. Once your team captures an Artifact, it generates
+                        points for your team. The more Artifacts you hold, the quicker your team will get to 100 and
+                        win!</p>
+
+                    <p>
+                        <strong>Tip: The more teammates that stand under an Artifact, the faster it will be captured or
+                            neutralized!
+                        </strong>
+                    </p>
+                    <br/><br/>
+                </div>
+
+                <div class="col-md-5 col-md-offset-1 overlay-effect effects clearfix">
+                    <ul id="cd-gallery-items" class="cd-container">
+                        <li>
+                            <ul class="cd-item-wrapper">
+                                <li class="cd-item-front"><a href="#0"><img
+                                        src="{% static 'images/pvp_vota_screen1.jpg' %}"
+                                        alt="Preview image"></a></li>
+                                <li class="cd-item-middle"><a href="#0"><img
+                                        src="{% static 'images/pvp_vota_screen2.jpg' %}"
+                                        alt="Preview image"></a></li>
+                                <li class="cd-item-back"><a href="#0"><img
+                                        src="{% static 'images/pvp_vota_screen3.jpg' %}"
+                                        alt="Preview image"></a>
+                                </li>
+                            </ul>
+
+                            <div class="cd-item-info">
+                                <b><a href="#0">Valley Artifacts</a></b>
+                                {#                                <em>Capture and Hold</em>#}
+                            </div>
+                            <nav>
+                                <ul class="cd-item-navigation">
+                                    <li><a class="cd-img-replace" href="#0">Prev</a></li>
+                                    <li><a class="cd-img-replace" href="#0">Next</a></li>
+                                </ul>
+                            </nav>
+
+                            <a class="cd-3d-trigger cd-img-replace" href="#0">Open</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-5 col-md-offset-1 wp1">
+                    <h1 class="arrow">More Info</h1>
+
+                    <p class="text-left">There are three Artifacts, <strong>Hidden, Middle, and Lower</strong>. Most
+                        games of VotA start
+                        with an exhilirating team fight for control of the <strong>Middle</strong> Artifact. You must
+                        choose whether it's tactically superior to hold 2 or try to go for the three-cap!</p>
+
+                    <p class="text-left">In the event of a tie (100-100) at the end, VotA will go into sudden-death
+                        mode, at which the
+                        first team to tick more points than the other will win.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/itemview.js' %}"></script>
+{% endblock %}
