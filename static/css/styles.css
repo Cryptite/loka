@@ -913,6 +913,10 @@ Swag
     background: url('/static/images/bg_mystery.jpg') no-repeat fixed center center;
 }
 
+.swag.swag-capital {
+    background: url('/static/images/bg_capital.jpg') no-repeat fixed center center;
+}
+
 .swag h1 {
     color: #fff;
     font-size: 40px;
