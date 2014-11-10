@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_toolkit %}
+{% block title %}Loka Minecraft - 2v2 Bracket{% endblock %}
+{% block extra_head %}
+    {{ form.media }}
+    <script type="text/javascript">
+        $(".streak").tooltip();
+    </script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron header-arena">
+        <h1>2v2 Arena Bracket</h1>
+    </div>
+    <div class="container">
+        <div class=".col-md-4">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Player</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Rating</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        {% if player.streak2v2 > 0 %}
+                            <td><a href="#" class="streak" title="{{ player.streak2v2 }} win streak"
+                                   data-original-title="Tooltip">{{ forloop.counter }} <img
+                                    src="{% static 'images/up.png' %}"></a>
+                            </td>
+                        {% else %}
+                            <td><a href="#" class="streak" data-toggle="tooltip"
+                                   title="{{ player.streak2v2 }} loss streak">{{ forloop.counter }}
+                                <img src="{% static 'images/down.png' %}"/></a>
+                            </td>
+                        {% endif %}
+                        <td>{% block avatar-sm %}{% endblock %}
+                            <a href="/player/{{ player.name }}">{{ player.name }}</a></td>
+                        <td>{{ player.arenawins2v2 }}</td>
+                        <td>{{ player.arenalosses2v2 }}</td>
+                        <td>{{ player.arenarating2v2 }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

@@ -202,6 +202,26 @@ def pvp1v1(request):
     }))
 
 
+def tab1v1(request):
+    players = [p for p in Player.objects.filter(Q(arenawins__gt=0) | Q(arenalosses__gt=0)).order_by("-arenarating")
+               if (p.arenawins + p.arenalosses) > 10]
+
+    return render_to_response('pvp_1v1tabulate.html', RequestContext(request, {
+        'players': players,
+        'matches': []
+    }))
+
+
+def tab2v2(request):
+    players = [p for p in
+               Player.objects.filter(Q(arenawins2v2__gt=0) | Q(arenalosses2v2__gt=0)).order_by("-arenarating")
+               if (p.arenawins2v2 + p.arenalosses2v2) > 10]
+
+    return render_to_response('pvp_2v2tabulate.html', RequestContext(request, {
+        'players': players
+    }))
+
+
 def pvp2v2(request):
     players = Player.objects.filter(Q(arenawins2v2__gt=0) | Q(arenalosses2v2__gt=0)).order_by("-arenarating2v2")
     check_player_avatars(players)
@@ -297,13 +317,13 @@ def issuelist(request):
             # town.public = True
             # town.save()
             # return HttpResponse({"something": "somethingelse"},
-            #                         mimetype='application/javascript')
+            # mimetype='application/javascript')
             #
             # elif request.POST['action'] == "thread":
-            #     author = Player.objects.get(name=request.user.username)
-            #     new_thread = Thread.objects.create(town=town,
-            #                                        title=request.POST['title'],
-            #                                        author=author)
+            # author = Player.objects.get(name=request.user.username)
+            # new_thread = Thread.objects.create(town=town,
+            # title=request.POST['title'],
+            # author=author)
             #     Post.objects.create(thread=new_thread,
             #                         text=request.POST['text'],
             #                         author=author)

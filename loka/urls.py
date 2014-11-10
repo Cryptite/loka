@@ -22,8 +22,6 @@ sitemaps = {
 
 # Routers provide an easy way of automatically determining the URL conf
 router = routers.DefaultRouter()
-router.register(r'town', TownViewSet)
-
 urlpatterns = patterns('',
                        # Examples:
                        # url(r'^$', 'loka.views.home', name='home'),
@@ -60,6 +58,8 @@ urlpatterns = patterns('',
                        url(r'^pvpvota', 'loka.views.pvpvota'),
                        url(r'^pvpoverload', 'loka.views.pvpoverload'),
                        url(r'^pvp2v2', 'loka.views.pvp2v2'),
+                       url(r'^tab2v2', 'loka.views.tab2v2'),
+                       url(r'^tab1v1', 'loka.views.tab1v1'),
                        url(r'^pvp1v1', 'loka.views.pvp1v1'),
                        url(r'^pvp', 'loka.views.pvp'),
                        url(r'^talents', 'loka.views.talents'),
@@ -83,5 +83,7 @@ urlpatterns = patterns('',
                        (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 
 )
+router.register(r'town', TownViewSet)
+
 
 urlpatterns += staticfiles_urlpatterns()
