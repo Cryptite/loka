@@ -582,6 +582,47 @@ Hero
     height: auto;
 }
 
+.hero-video {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: -1;
+    display: block;
+    margin: 0 auto;
+}
+
+.video-title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 30%;
+    font-size: 40px;
+    letter-spacing: 12px;
+    margin: 10px;
+}
+
+.video-title h2 {
+    width: 100%;
+    text-align: center;
+    color: #ededed;
+    font-size: 30px;
+    margin: 5px;
+}
+
+.video-title h2::after {
+    display: none;
+}
+
+.video-title a {
+    width: 40%;
+    font-size: 20px;
+}
+
+.video-container {
+    height: 800px;
+}
+
 .hero h1 {
     font-size: 70px;
     letter-spacing: 12px;
