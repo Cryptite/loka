@@ -158,6 +158,10 @@ def vota(request):
     return render_to_response('vota.html', RequestContext(request))
 
 
+def tourny(request):
+    return render_to_response('tourny.html', RequestContext(request))
+
+
 def voc(request):
     return render_to_response('voc.html', RequestContext(request))
 

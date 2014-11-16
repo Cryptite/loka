@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Loka Minecraft - Rumble in the Valley{% endblock %}
+
+{% block extra_head %}
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/towntable.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <section class="smallhero header-tourny" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h1 class="animated fadeIn delay-10s heroTitle">Rumble in the Valley</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team text-center section-padding" id="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <a href="http://loka.minecraftarium.com/forums/index.php?forums/rumble-in-the-valley-2014.20/"
+                       class="learn-more-btn pvp">SIGN UP NOW!</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="arrow">Group Stages</h1>
+
+                    <p>Each team will play every other team in its group once. The top 3 teams will advance to the
+                        knockout
+                        stage and the fourth will not advance at all.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="team-wrapper">
+
+                    <div id="teamSlider">
+                        <ul class="slides">
+                            <li>
+                                <div class="col-md-4 wp4 tourny-group">
+                                    <div class="row">
+                                        <h1 class="groupstageheader">Group A</h1>
+                                    </div>
+                                    <h2 class="tournyteam">Nice Guys
+                                        <div class="tournyplayers">
+                                            <img class="tournyavatar" src="http://localhost:3000/images/mopb3.png">
+                                            <img class="tournyavatar" src="http://localhost:3000/images/Defgnww.png">
+                                            <img class="tournyavatar"
+                                                 src="http://localhost:3000/images/MasterTargaryen.png">
+                                        </div>
+                                    </h2>
+                                    <h2 class="tournyteam">Godemox Save New Zealand
+                                        <div class="tournyplayers">
+                                            <img class="tournyavatar" src="http://localhost:3000/images/Leasaur.png">
+                                            <img class="tournyavatar" src="http://localhost:3000/images/godemox.png">
+                                            <img class="tournyavatar" src="http://localhost:3000/images/computern.png">
+                                        </div>
+                                    </h2>
+                                    <h2 class="tournyteam">YoloSwag
+                                        <div class="tournyplayers">
+                                            <img class="tournyavatar" src="http://localhost:3000/images/X_Cavator.png">
+                                            <img class="tournyavatar" src="http://localhost:3000/images/streetz234.png">
+                                            <img class="tournyavatar" src="{% static 'images/steve_sm.png' %}">
+                                        </div>
+                                    </h2>
+                                    <h2 class="tournyteam">-----
+                                        <div class="tournyplayers">
+                                        </div>
+                                    </h2>
+                                </div>
+
+                                <div class="col-md-4 wp4 tourny-group delay-05s">
+                                    <div class="row">
+                                        <h1 class="groupstageheader">Group B</h1>
+                                    </div>
+                                    <h2 class="tournyteam">------</h2>
+
+                                    <h2 class="tournyteam">------</h2>
+
+                                    <h2 class="tournyteam">------</h2>
+
+                                    <h2 class="tournyteam">------</h2>
+                                </div>
+
+                                <div class="col-md-4 wp4 tourny-group delay-1s">
+                                    <div class="row">
+                                        <h1 class="groupstageheader">Group C</h1>
+                                    </div>
+                                    <h2 class="tournyteam">------</h2>
+
+                                    <h2 class="tournyteam">------</h2>
+
+                                    <h2 class="tournyteam">------</h2>
+
+                                    <h2 class="tournyteam">------</h2>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+{% endblock %}

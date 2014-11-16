@@ -758,6 +758,10 @@ Small Hero
     background: url('/static/images/banners/header_artifact.jpg') no-repeat center center;
 }
 
+.header-tourny {
+    background: url('/static/images/banners/header_tourny.jpg') no-repeat center center;
+}
+
 .smallhero h1 {
     font-size: 70px;
     letter-spacing: 12px;
@@ -1869,4 +1873,42 @@ xsigin/signup popup
 
 #cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {
     display: block;
+}
+
+/**TOURNY**/
+
+img.tournyavatar {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-bottom: 0;
+}
+
+h1.groupstageheader {
+    font-size: 24px;
+    color: #000000;
+}
+
+h1.groupstageheader::after {
+    content: " ";
+    border: solid 2px #2d9fc9;
+    display: block;
+    width: 90%;
+    margin: 15px auto;
+}
+
+h2.tournyteam {
+    vertical-align: middle;
+    text-align: left;
+    margin-left: 10px;
+}
+
+h2.tournyteam:after {
+    display: none;
+}
+
+div.tournyplayers {
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
 }
