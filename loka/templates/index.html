@@ -283,6 +283,7 @@
             });
         })();
     </script>
+    <script src="{% static 'js/downCount.js' %}"></script>
     <script>
         $(document).ready(function () {
 
@@ -307,7 +308,7 @@
                     '</div> ' +
                     '<div class="col-md-1"> ' +
                     '<iframe src="http://www.twitch.tv/lokaminecraft/chat?popout=" frameborder="0" scrolling="no" height="500" width="320"></iframe>' +
-                    '</div>'
+                    '</div>';
 
             // HTML to display while offline
             var offlineHTML = '<div class="row">' +
@@ -315,23 +316,30 @@
                     '<a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a></div></div>' +
                     '<div class="row"><div class="col-md-8 col-md-offset-2 text-center">' +
                     '<h1 class="animated fadeInDown heroTitle">Loka Minecraft</h1>' +
-                    '</div></div>'
+                    '</div></div>';
 
             var offlineHTML2 = '<div class="row">' +
                     '<div class="col-md-12 text-right navicon">' +
                     '<a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a></div></div>' +
                     '<div class="row"><div class="col-md-8 col-md-offset-2 text-center">' +
                     '<h1 class="animated fadeInDown heroTitle">Loka Minecraft</h1>' +
-                    '</div></div>'
+                    '</div></div>';
 
             var offlineHTMLVid = '<video autoplay loop poster="/static/images/hero.jpg" class="hero-video">' +
                     '<source src="/static/images/tournyloop.webm" type="video/webm">' +
                     '</video>' +
                     '<div class="video-title">' +
                     '<h1 class="animated fadeInDown heroTitle">Rumble in the Valley</h1>' +
-                    '<h2>Starting November 22nd</h2>' +
-                    '<a href="/tourny" class="guide-btn pvp">We still have room!</a>' +
-                    '</div>'
+                    '<ul class="countdown">' +
+                    '<li><span class="days">00</span><p class="days_ref">days</p></li>' +
+                    '<li class="seperator">.</li>' +
+                    '<li><span class="hours">00</span><p class="hours_ref">hours</p></li>' +
+                    '<li class="seperator">:</li>' +
+                    '<li><span class="minutes">00</span><p class="minutes_ref">minutes</p></li>' +
+                    '<li class="seperator">:</li>' +
+                    '<li><span class="seconds">00</span><p class="seconds_ref">seconds</p></li></ul>' +
+                    '<a href="/tourny" class="guide-btn pvp">Sign up Now!</a>' +
+                    '</div>';
 
             $(elementSelector).html(loadingHTML)
 
@@ -340,7 +348,14 @@
                     function (twitchData) {
                         if (twitchData.stream == null) {
                             // something other than live
-                            $(elementSelector).html(offlineHTMLVid)
+                            $(elementSelector).html(offlineHTMLVid);
+
+                            $('.countdown').downCount({
+                                date: '11/22/2014 12:00:00',
+                                offset: -5
+                            }, function () {
+                                alert('WOOT WOOT, done!');
+                            });
                             {#                            $(elementSelector).html(offlineHTML)#}
                         } else {
                             // no data or invalid data from twitch
