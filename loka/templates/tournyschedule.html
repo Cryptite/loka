@@ -21,14 +21,14 @@
         <div class="container">
             <div class="row">
                 {% for group in groups %}
-                    <div class="col-md-10 text-center">
+                    <div class="col-md-10 col-md-offset-1 text-center">
                         <h1 class="arrow">Group A</h1>
 
                         {% for match in matches %}
                             {% if match.group == group %}
                                 <div class="tournymatch">
                                     <span class="teama">{{ match.team_a }}</span>
-                                    <span class="matchscore">0 - 0</span>
+                                    <span class="matchscore">{{ match.team_a_score }} - {{ match.team_b_score }}</span>
                                     <span class="teamb">{{ match.team_b }}</span>
                                 </div>
                             {% endif %}
