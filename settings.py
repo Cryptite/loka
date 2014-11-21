@@ -177,6 +177,7 @@ INSTALLED_APPS = (
     'tinymce',
     'loka',
     'south',
+    'django_admin_bootstrapped'
 )
 
 COMPRESS_ENABLED = True
