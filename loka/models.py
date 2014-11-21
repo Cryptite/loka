@@ -136,6 +136,9 @@ class Player(models.Model):
                 labels += '{0},'.format(x.loser_rating)
         return labels[:-1]
 
+    class Meta:
+        ordering = ['name']
+
 
 class Achievement(models.Model):
     name = models.CharField(max_length=25)
