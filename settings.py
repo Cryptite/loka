@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DEBUG = False
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['loka.minecraftarium.com']
+ALLOWED_HOSTS = ['loka.minecraftarium.com', 'lokamc.com', 'www.lokamc.com']
 
 ADMINS = (
     ('Tom Miller', 'cryptite@gmail.com'),
@@ -177,6 +177,7 @@ INSTALLED_APPS = (
     'tinymce',
     'loka',
     'south',
+    'django_admin_bootstrapped'
 )
 
 COMPRESS_ENABLED = True
