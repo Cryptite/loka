@@ -254,6 +254,25 @@ class Town(models.Model):
                 [self.latitude - .008, self.longitude - .008]]
 
 
+class TournyTeam(models.Model):
+    name = models.CharField(max_length=40)
+    wins = models.IntegerField(max_length=2)
+    losses = models.IntegerField(max_length=2)
+    players = models.ManyToManyField(Player, related_name="players")
+
+
+class TournyGroup(models.Model):
+    name = models.CharField(max_length=2)
+    teams = models.ManyToManyField(TournyTeam, related_name="teams")
+
+
+class TournyMatch(models.Model):
+    team_a = models.ForeignKey(TournyTeam, related_name="team_a")
+    team_b = models.ForeignKey(TournyTeam, related_name="team_b")
+    winner = models.ForeignKey(TournyTeam, related_name="winner")
+    group = models
+
+
 class Alliance(models.Model):
     name = models.CharField(max_length=40)
     leader = models.ForeignKey(Town)
@@ -408,3 +427,6 @@ admin.site.register(Quote)
 admin.site.register(Issue)
 admin.site.register(Player)
 admin.site.register(BannerArticle)
+admin.site.register(TournyTeam)
+admin.site.register(TournyGroup)
+admin.site.register(TournyMatch)
