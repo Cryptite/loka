@@ -1965,6 +1965,32 @@ div.tournyplayers {
     float: left;
 }
 
+div.tournymatch {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 15px;
+    font-size: 26px;
+    font-weight: 500;
+}
+
+span.teama {
+    position: absolute;
+    float: left;
+    display: inline-block;
+    left: 0;
+}
+
+span.teamb {
+    position: absolute;
+    right: 0;
+    float: right;
+    display: inline-block;
+}
+
+span.matchscore {
+    text-align: center;
+}
+
 /*Countdown Clock*/
 ul.countdown {
     list-style: none;

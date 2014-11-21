@@ -271,7 +271,7 @@ class TournyTeam(models.Model):
 
 
 class TournyGroup(models.Model):
-    name = models.CharField(max_length=2)
+    name = models.CharField(max_length=5)
     teams = models.ManyToManyField(TournyTeam, related_name="teams", null=True, blank=True)
 
     def __unicode__(self):
@@ -285,6 +285,7 @@ class TournyMatch(models.Model):
     team_a_score = models.IntegerField(max_length=3, default=0)
     team_b_score = models.IntegerField(max_length=3, default=0)
     match_url = models.URLField(blank=True, null=True)
+    group = models.ForeignKey(TournyGroup)
 
     def __unicode__(self):
         return self.team_a.name + " vs " + self.team_b.name

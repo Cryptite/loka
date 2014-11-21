@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Loka Minecraft - Rumble in the Valley{% endblock %}
+{% block title %}Loka Minecraft - Rumble in the Valley Schedule{% endblock %}
 
 {% block extra_head %}
     <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/towntable.css' %}"/>
 {% endblock %}
 
 {% block content %}
@@ -12,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
-                    <h1 class="animated fadeIn delay-10s heroTitle">Rumble in the Valley</h1>
+                    <h1 class="animated fadeIn delay-10s heroTitle">Rumble Schedule</h1>
                 </div>
             </div>
         </div>
@@ -21,17 +20,21 @@
     <section class="team text-center section-padding" id="team">
         <div class="container">
             <div class="row">
-                <div class="col-md-7 col-md-offset-1 wp6">
-                    <h1 class="arrow">Group A</h1>
+                {% for group in groups %}
+                    <div class="col-md-10 text-center">
+                        <h1 class="arrow">Group A</h1>
 
-                    {% for match in matches %}
-                        {% if match.group.name == "A" %}
-                            <div class="tournymatch">
-                                <h2>{{ match }}</h2>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+                        {% for match in matches %}
+                            {% if match.group == group %}
+                                <div class="tournymatch">
+                                    <span class="teama">{{ match.team_a }}</span>
+                                    <span class="matchscore">0 - 0</span>
+                                    <span class="teamb">{{ match.team_b }}</span>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
             </div>
 
         </div>
