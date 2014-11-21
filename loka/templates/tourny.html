@@ -34,86 +34,85 @@
 
                     <a href="http://loka.minecraftarium.com/forums/index.php?forums/rumble-in-the-valley-2014.20/"
                        class="learn-more-btn pvp">SIGN UP NOW!</a>
-                    {#                    <a href="{% url 'loka.views.tournyschedule' %}"#}
-                    {#                       class="learn-more-btn towns">Schedule of Play</a>#}
+                    <a href="{% url 'loka.views.tournyschedule' %}"
+                       class="learn-more-btn towns">Schedule of Play</a>
+                </div>
+                <div class="col-md-6 col-md-offset-1 overlay-effect effects clearfix">
+                    <h1 class="arrow">See what it's all about!<br/>
+                        <small>Watch a recent game of VotA.</small>
+                    </h1>
+
+                    <object bgcolor="#fff" data="http://www.twitch.tv/swflibs/TwitchPlayer.swf" height="328"
+                            id="clip_embed_player_flash" type="application/x-shockwave-flash" width="600">
+                        <param name="movie" value="http://www.twitch.tv/swflibs/TwitchPlayer.swf"/>
+                        <param name="allowScriptAccess" value="always"/>
+                        <param name="allowNetworking" value="all"/>
+                        <param name="allowFullScreen" value="true"/>
+                        <param name="flashvars"
+                               value="channel=lokaminecraft&auto_play=false&start_volume=15&videoId=c5527972"/>
+                    </object>
+                    <p>See more clips on <a href="http://www.twitch.tv/lokaminecraft">Twitch!</a></p>
+
+                    {#                    <br/><a href="http://www.twitch.tv/lokaminecraft"#}
+                    {#                            style="padding:2px 0px 4px; display:block; width: 320px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch#}
+                    {#                    live video from LokaMinecraft on Twitch</a>#}
                 </div>
             </div>
-            <div class="col-md-6 col-md-offset-1 overlay-effect effects clearfix">
-                <h1 class="arrow">See what it's all about!<br/>
-                    <small>Watch a recent game of VotA.</small>
-                </h1>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="arrow">Group Stages</h1>
 
-                <object bgcolor="#fff" data="http://www.twitch.tv/swflibs/TwitchPlayer.swf" height="328"
-                        id="clip_embed_player_flash" type="application/x-shockwave-flash" width="600">
-                    <param name="movie" value="http://www.twitch.tv/swflibs/TwitchPlayer.swf"/>
-                    <param name="allowScriptAccess" value="always"/>
-                    <param name="allowNetworking" value="all"/>
-                    <param name="allowFullScreen" value="true"/>
-                    <param name="flashvars"
-                           value="channel=lokaminecraft&auto_play=false&start_volume=15&videoId=c5527972"/>
-                </object>
-                <p>See more clips on <a href="http://www.twitch.tv/lokaminecraft">Twitch!</a></p>
-
-                {#                    <br/><a href="http://www.twitch.tv/lokaminecraft"#}
-                {#                            style="padding:2px 0px 4px; display:block; width: 320px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch#}
-                {#                    live video from LokaMinecraft on Twitch</a>#}
+                    <p>Each team will play every other team in its group once. The top 3 teams will advance to the
+                        knockout
+                        stage and the fourth will not advance at all.</p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="arrow">Group Stages</h1>
+            <div class="row">
+                <div class="team-wrapper">
 
-                <p>Each team will play every other team in its group once. The top 3 teams will advance to the
-                    knockout
-                    stage and the fourth will not advance at all.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="team-wrapper">
-
-                <div id="teamSlider">
-                    <ul class="slides">
-                        <li>
-                            {% for group in groups %}
-                                <div class="col-md-4 wp4 tourny-group">
-                                    <div class="row">
-                                        <h1 class="groupstageheader">Group {{ group.name }}</h1>
-                                    </div>
-                                    {% for team in group.teams.all %}
-                                        <h2 class="tournyteam">{{ team.name }}</h2>
-                                        <span class="tournyrecord">{{ team.wins }}-{{ team.losses }}</span>
-                                        <div class="tournyplayers">
-                                            {% for player in team.players.all %}
-                                                <img class="tournyavatar"
-                                                     src="{% static 'media/' %}{{ player.avatar_sm }}"
-                                                     alt="{{ player.name }}">
-                                            {% endfor %}
+                    <div id="teamSlider">
+                        <ul class="slides">
+                            <li>
+                                {% for group in groups %}
+                                    <div class="col-md-4 wp4 tourny-group">
+                                        <div class="row">
+                                            <h1 class="groupstageheader">Group {{ group.name }}</h1>
                                         </div>
-                                        <br/>
-                                    {% endfor %}
-                                </div>
-                            {% endfor %}
-                        </li>
-                    </ul>
+                                        {% for team in group.teams.all %}
+                                            <h2 class="tournyteam">{{ team.name }}</h2>
+                                            <span class="tournyrecord">{{ team.wins }}-{{ team.losses }}</span>
+                                            <div class="tournyplayers">
+                                                {% for player in team.players.all %}
+                                                    <img class="tournyavatar"
+                                                         src="{% static 'media/' %}{{ player.avatar_sm }}"
+                                                         alt="{{ player.name }}">
+                                                {% endfor %}
+                                            </div>
+                                            <br/>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="arrow">Knockout Round</h1>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="arrow">Knockout Round</h1>
 
-                <p>Teams that advance to the Knockout Round, depending on the number of teams, will then play best
-                    of three games. Losing here is an instant out.</p>
+                    <p>Teams that advance to the Knockout Round, depending on the number of teams, will then play best
+                        of three games. Losing here is an instant out.</p>
 
-                <p><em>Brackets coming soon!</em></p>
+                    <p><em>Brackets coming soon!</em></p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 text-center">
-                <a href="http://loka.minecraftarium.com/forums/index.php?forums/rumble-in-the-valley-2014.20/"
-                   class="learn-more-btn pvp">SIGN UP NOW!</a>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <a href="http://loka.minecraftarium.com/forums/index.php?forums/rumble-in-the-valley-2014.20/"
+                       class="learn-more-btn pvp">SIGN UP NOW!</a>
+                </div>
             </div>
-        </div>
         </div>
     </section>
 {% endblock %}
