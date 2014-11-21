@@ -291,8 +291,8 @@ class TournyMatch(models.Model):
 
 
 class TournyBestOfMatch(models.Model):
-    team_a = models.ForeignKey(TournyTeam, related_name="team_a")
-    team_b = models.ForeignKey(TournyTeam, related_name="team_b")
+    team_a = models.ForeignKey(TournyTeam, related_name="bestofteam_a")
+    team_b = models.ForeignKey(TournyTeam, related_name="bestofteam_b")
     matches = models.ManyToManyField(TournyMatch)
     winner = models.ForeignKey(TournyTeam, blank=True, null=True)
 
