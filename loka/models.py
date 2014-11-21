@@ -267,7 +267,7 @@ class TournyTeam(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['wins']
+        ordering = ['-wins']
 
 
 class TournyGroup(models.Model):

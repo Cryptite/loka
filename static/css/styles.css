@@ -1921,8 +1921,9 @@ xsigin/signup popup
 img.tournyavatar {
     width: 24px;
     height: 24px;
-    vertical-align: middle;
-    margin-bottom: 0;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    float: left;
 }
 
 h1.groupstageheader {
