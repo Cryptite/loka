@@ -266,10 +266,13 @@ class TournyTeam(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        ordering = ['wins']
+
 
 class TournyGroup(models.Model):
     name = models.CharField(max_length=2)
-    teams = models.ManyToManyField(TournyTeam, related_name="teams")
+    teams = models.ManyToManyField(TournyTeam, related_name="teams", null=True, blank=True)
 
     def __unicode__(self):
         return self.name

@@ -1939,19 +1939,29 @@ h1.groupstageheader::after {
 }
 
 h2.tournyteam {
-    vertical-align: middle;
+    display: inline-block;
+    float: left;
     text-align: left;
-    margin-left: 10px;
+    margin: 0 auto;
 }
 
 h2.tournyteam:after {
     display: none;
 }
 
+span.tournyrecord {
+    display: inline-block;
+    text-align: right;
+    color: #777777;
+    float: right;
+    font-weight: 500;
+    font-size: 20px;
+}
+
 div.tournyplayers {
     display: inline-block;
-    float: right;
-    margin-right: 10px;
+    width: 100%;
+    float: left;
 }
 
 /*Countdown Clock*/

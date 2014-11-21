@@ -16,7 +16,7 @@ from rest_framework.status import HTTP_201_CREATED
 from loka.core.email_messages import issue_created
 from loka.forms import TownBannerForm
 from loka.models import Player, Town, Quote, Post, Thread, Comment, TownMedia, ArenaMatch, Issue, BannerArticle, \
-    IssueComment, ISSUE_STATUS, Achievement, PlayerAchievements, UnlockedAchievement, Territory, Alliance
+    IssueComment, ISSUE_STATUS, Achievement, PlayerAchievements, UnlockedAchievement, Territory, Alliance, TournyGroup
 from loka.serializers import TownSerializer, UserSerializer, PlayerSerializer, ArenaMatchSerializer, \
     PlayerAchievementsSerializer, AchievementSerializer, resolve_player, TerritorySerializer, AllianceSerializer
 from loka.tasks import retrieve_avatar
@@ -159,7 +159,10 @@ def vota(request):
 
 
 def tourny(request):
-    return render_to_response('tourny.html', RequestContext(request))
+    groups = TournyGroup.objects.all()
+    return render_to_response('tourny.html', RequestContext(request, {
+        'groups': groups
+    }))
 
 
 def voc(request):
