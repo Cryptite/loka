@@ -296,6 +296,7 @@ class TournyBestOfMatch(models.Model):
     team_b = models.ForeignKey(TournyTeam, related_name="bestofteam_b")
     matches = models.ManyToManyField(TournyMatch)
     winner = models.ForeignKey(TournyTeam, blank=True, null=True)
+    group = models.ForeignKey(TournyGroup)
 
     def __unicode__(self):
         return self.team_a.name + " vs " + self.team_b.name
