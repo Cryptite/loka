@@ -284,6 +284,9 @@ class TournyMatch(models.Model):
     winner = models.ForeignKey(TournyTeam, related_name="winner", blank=True, null=True)
     team_a_score = models.IntegerField(max_length=3)
     team_b_score = models.IntegerField(max_length=3)
+    match_url = models.URLField(blank=True, null=True)
+    team_a_wins = models.IntegerField(max_length=1)
+    team_b_wins = models.IntegerField(max_length=1)
 
     def __unicode__(self):
         return self.team_a.name + " vs " + self.team_b.name
