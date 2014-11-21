@@ -263,10 +263,16 @@ class TournyTeam(models.Model):
     losses = models.IntegerField(max_length=2)
     players = models.ManyToManyField(Player, related_name="players")
 
+    def __unicode__(self):
+        return self.name
+
 
 class TournyGroup(models.Model):
     name = models.CharField(max_length=2)
     teams = models.ManyToManyField(TournyTeam, related_name="teams")
+
+    def __unicode__(self):
+        return self.name
 
 
 class TournyMatch(models.Model):
@@ -274,6 +280,9 @@ class TournyMatch(models.Model):
     team_b = models.ForeignKey(TournyTeam, related_name="team_b")
     winner = models.ForeignKey(TournyTeam, related_name="winner")
     group = models
+
+    def __unicode__(self):
+        return self.team_a.name + " vs " + self.team_b.name
 
 
 class Alliance(models.Model):
