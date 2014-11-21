@@ -281,8 +281,9 @@ class TournyGroup(models.Model):
 class TournyMatch(models.Model):
     team_a = models.ForeignKey(TournyTeam, related_name="team_a")
     team_b = models.ForeignKey(TournyTeam, related_name="team_b")
-    winner = models.ForeignKey(TournyTeam, related_name="winner")
-    group = models
+    winner = models.ForeignKey(TournyTeam, related_name="winner", blank=True, null=True)
+    team_a_score = models.IntegerField(max_length=3)
+    team_b_score = models.IntegerField(max_length=3)
 
     def __unicode__(self):
         return self.team_a.name + " vs " + self.team_b.name

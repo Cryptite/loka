@@ -52,6 +52,7 @@ urlpatterns = patterns('',
                        url(r'^thankyou', 'loka.views.thankyou'),
                        url(r'^towns', 'loka.views.towns'),
                        url(r'^territories', 'loka.views.territories'),
+                       url(r'^tourny/schedule', 'loka.views.tournyschedule'),
                        url(r'^tourny', 'loka.views.tourny'),
                        url(r'^pvp/vota', 'loka.views.vota'),
                        url(r'^pvp/voc', 'loka.views.voc'),
@@ -85,6 +86,5 @@ urlpatterns = patterns('',
 
 )
 router.register(r'town', TownViewSet)
-
 
 urlpatterns += staticfiles_urlpatterns()
