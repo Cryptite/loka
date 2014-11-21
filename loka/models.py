@@ -282,11 +282,19 @@ class TournyMatch(models.Model):
     team_a = models.ForeignKey(TournyTeam, related_name="team_a")
     team_b = models.ForeignKey(TournyTeam, related_name="team_b")
     winner = models.ForeignKey(TournyTeam, related_name="winner", blank=True, null=True)
-    team_a_score = models.IntegerField(max_length=3)
-    team_b_score = models.IntegerField(max_length=3)
+    team_a_score = models.IntegerField(max_length=3, default=0)
+    team_b_score = models.IntegerField(max_length=3, default=0)
     match_url = models.URLField(blank=True, null=True)
-    team_a_wins = models.IntegerField(max_length=1)
-    team_b_wins = models.IntegerField(max_length=1)
+
+    def __unicode__(self):
+        return self.team_a.name + " vs " + self.team_b.name
+
+
+class TournyBestOfMatch(models.Model):
+    team_a = models.ForeignKey(TournyTeam, related_name="team_a")
+    team_b = models.ForeignKey(TournyTeam, related_name="team_b")
+    matches = models.ManyToManyField(TournyMatch)
+    winner = models.ForeignKey(TournyTeam, blank=True, null=True)
 
     def __unicode__(self):
         return self.team_a.name + " vs " + self.team_b.name
