@@ -259,8 +259,8 @@ class Town(models.Model):
 
 class TournyTeam(models.Model):
     name = models.CharField(max_length=40)
-    wins = models.IntegerField(max_length=2)
-    losses = models.IntegerField(max_length=2)
+    wins = models.IntegerField(max_length=2, default=0)
+    losses = models.IntegerField(max_length=2, default=0)
     players = models.ManyToManyField(Player, related_name="players")
 
     def __unicode__(self):
