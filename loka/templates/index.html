@@ -7,24 +7,24 @@
 {% endblock %}
 {% block content %}
     <header id="home">
-        <section class="video">
-            <div id="streaming">
-                <div class="row">
-                    <div class="col-md-12 text-center"><h1>Checking stream...</h1></div>
+        {#        <section class="video">#}
+        {#            <div id="streaming">#}
+        {#                <div class="row">#}
+        {#                    <div class="col-md-12 text-center"><h1>Checking stream...</h1></div>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </section>#}
+        <section class="hero" id="hero">
+            <div class="container">
+
+                <div id="streaming">
+                    <div class="row">
+                        <div class="col-md-12 text-center"><h1>Checking stream...</h1>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        {#                <section class="hero" id="hero">#}
-        {#                    <div class="container">#}
-        {##}
-        {#                        <div id="streaming">#}
-        {#                            <div class="row">#}
-        {#                                <div class="col-md-12 text-center"><h1>Checking stream...</h1>#}
-        {#                                </div>#}
-        {#                            </div>#}
-        {#                        </div>#}
-        {#                    </div>#}
-        {#                </section>#}
     </header>
     <section class="intro text-center section-padding" id="intro">
         <div class="container">
@@ -346,21 +346,21 @@
             $.getJSON('https://api.twitch.tv/kraken/streams/lokaminecraft?client_id=5j0r5b7qb7kro03fvka3o8kbq262wwm&callback=?',
 
                     function (twitchData) {
-                        if (twitchData.stream == null) {
-                            // something other than live
-                            $(elementSelector).html(offlineHTMLVid);
-
-                            $('.countdown').downCount({
-                                date: '11/22/2014 14:00:00',
-                                offset: -5
-                            }, function () {
-                                $(elementSelector).html(onlineHTML)
-                            });
-                            {#                            $(elementSelector).html(offlineHTML)#}
-                        } else {
-                            // no data or invalid data from twitch
-                            $(elementSelector).html(onlineHTML)
-                        }
+                        {#                        if (twitchData.stream == null) {#}
+                        {#                            // something other than live#}
+                        {#                            $(elementSelector).html(offlineHTMLVid);#}
+                        {##}
+                        {#                            $('.countdown').downCount({#}
+                        {#                                date: '11/22/2014 14:00:00',#}
+                        {#                                offset: -5#}
+                        {#                            }, function () {#}
+                        {#                                $(elementSelector).html(onlineHTML)#}
+                        {#                            });#}
+                        {#                            $(elementSelector).html(offlineHTML)#}
+                        {#                        } else {#}
+                        // no data or invalid data from twitch
+                        $(elementSelector).html(onlineHTML)
+                        {#                        }#}
                     }
             )
         })
