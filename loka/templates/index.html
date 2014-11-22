@@ -14,17 +14,17 @@
                 </div>
             </div>
         </section>
-        {#        <section class="hero" id="hero">#}
-        {#            <div class="container">#}
-        {#                #}
-        {#                <div id="streaming">#}
-        {#                    <div class="row">#}
-        {#                        <div class="col-md-12 text-center"><h1>Checking stream...</h1>#}
+        {#                <section class="hero" id="hero">#}
+        {#                    <div class="container">#}
+        {##}
+        {#                        <div id="streaming">#}
+        {#                            <div class="row">#}
+        {#                                <div class="col-md-12 text-center"><h1>Checking stream...</h1>#}
+        {#                                </div>#}
+        {#                            </div>#}
         {#                        </div>#}
         {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        </section>#}
+        {#                </section>#}
     </header>
     <section class="intro text-center section-padding" id="intro">
         <div class="container">
@@ -299,7 +299,7 @@
             // HTML to display while online
             var onlineHTML = '<div class="row">' +
                     '<div class="col-md-12 text-center">' +
-                    '<h1 class="animated fadeInDown heroTitle">Loka Livestream</h1>' +
+                    '<h1 class="animated fadeInDown heroTitle">Rumble Livestream</h1>' +
                     '</div>' +
                     '</div>' +
                     '<div class="col-md-8 text-center">' +
@@ -351,10 +351,10 @@
                             $(elementSelector).html(offlineHTMLVid);
 
                             $('.countdown').downCount({
-                                date: '11/22/2014 13:00:00',
+                                date: '11/22/2014 14:00:00',
                                 offset: -5
                             }, function () {
-                                alert('WOOT WOOT, done!');
+                                $(elementSelector).html(onlineHTML)
                             });
                             {#                            $(elementSelector).html(offlineHTML)#}
                         } else {
