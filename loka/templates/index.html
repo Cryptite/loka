@@ -7,24 +7,24 @@
 {% endblock %}
 {% block content %}
     <header id="home">
-        {#        <section class="video">#}
-        {#            <div id="streaming">#}
-        {#                <div class="row">#}
-        {#                    <div class="col-md-12 text-center"><h1>Checking stream...</h1></div>#}
+        <section class="video">
+            <div id="streaming">
+                <div class="row">
+                    <div class="col-md-12 text-center"><h1>Checking stream...</h1></div>
+                </div>
+                    </div>
+        </section>
+        {#        <section class="hero" id="hero">#}
+        {#            <div class="container">#}
+        {##}
+        {#                <div id="streaming">#}
+        {#                    <div class="row">#}
+        {#                        <div class="col-md-12 text-center"><h1>Checking stream...</h1>#}
+        {#                        </div>#}
+        {#                    </div>#}
         {#                </div>#}
         {#            </div>#}
         {#        </section>#}
-        <section class="hero" id="hero">
-            <div class="container">
-
-                <div id="streaming">
-                    <div class="row">
-                        <div class="col-md-12 text-center"><h1>Checking stream...</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </header>
     <section class="intro text-center section-padding" id="intro">
         <div class="container">
@@ -329,7 +329,7 @@
                     '<source src="/static/images/tournyloop.webm" type="video/webm">' +
                     '</video>' +
                     '<div class="video-title">' +
-                    '<h1 class="animated fadeInDown heroTitle">Rumble in the Valley</h1>' +
+                    '<h1 class="animated fadeInDown heroTitle">Rumble Round 2</h1>' +
                     '<ul class="countdown">' +
                     '<li><span class="days">00</span><p class="days_ref">days</p></li>' +
                     '<li class="seperator">.</li>' +
@@ -348,14 +348,14 @@
                     function (twitchData) {
                         if (twitchData.stream == null) {
                             // something other than live
-                            $(elementSelector).html(offlineHTML);
+                            $(elementSelector).html(offlineHTMLVid);
 
-                            {#                            $('.countdown').downCount({#}
-                            {#                                date: '11/22/2014 14:00:00',#}
-                            {#                                offset: -5#}
-                            {#                            }, function () {#}
-                            {#                                $(elementSelector).html(onlineHTML)#}
-                            {#                            });#}
+                            $('.countdown').downCount({
+                                date: '12/6/2014 13:00:00',
+                                offset: -5
+                            }, function () {
+                                $(elementSelector).html(onlineHTML)
+                            });
                             {#                            $(elementSelector).html(offlineHTML)#}
                         } else {
                             // no data or invalid data from twitch
