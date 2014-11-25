@@ -284,11 +284,14 @@ class TournyMatch(models.Model):
     winner = models.ForeignKey(TournyTeam, related_name="winner", blank=True, null=True)
     team_a_score = models.IntegerField(max_length=3, default=0)
     team_b_score = models.IntegerField(max_length=3, default=0)
-    match_url = models.URLField(blank=True, null=True)
+    match_url = models.CharField(max_length=255, blank=True, null=True)
     group = models.ForeignKey(TournyGroup)
 
     def __unicode__(self):
         return self.team_a.name + " vs " + self.team_b.name
+
+    def been_played(self):
+        return self.team_a_score > 0 or self.team_b_score > 0
 
 
 class TournyBestOfMatch(models.Model):

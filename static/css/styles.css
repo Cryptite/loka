@@ -1972,28 +1972,41 @@ div.tournymatch {
     font-size: 24px;
     font-weight: 500;
     margin-bottom: 10px;
+    height: 80px;
 
     -webkit-box-shadow: 10px 10px 35px -14px rgba(0, 0, 0, 0.63);
     -moz-box-shadow: 10px 10px 35px -14px rgba(0, 0, 0, 0.63);
     box-shadow: 10px 10px 35px -14px rgba(0, 0, 0, 0.63);
 }
 
-span.teama {
+em.matchurl {
+    display: block;
+    top: 30px;
+    font-size: 14px;
+}
+
+.teama {
     position: absolute;
     float: left;
     display: inline-block;
+    vertical-align: middle;
     left: 25px;
 }
 
-span.teamb {
+.teamb {
     position: absolute;
-    right: 25px;
     float: right;
     display: inline-block;
+    vertical-align: middle;
+    right: 25px;
 }
 
-span.matchscore {
+div.matchscore {
     text-align: center;
+    left: 45%;
+    height: 70px;
+    position: absolute;
+    display: inline-block;
 }
 
 /*Countdown Clock*/

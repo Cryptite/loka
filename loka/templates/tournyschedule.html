@@ -20,14 +20,33 @@
     <section class="team text-center section-padding" id="team">
         <div class="container">
             <div class="row">
+                <iframe width="560" height="10" src="" frameborder="0" allowfullscreen class="vid"></iframe>
                 {% for group in groups %}
                     <div class="col-md-10 col-md-offset-1 text-center">
                         <h1 class="arrow">Group A</h1>
 
                         {% for match in matches %}
-                            {% if match.group == group %}
+                            {% if match.group == group and match.been_played %}
                                 <div class="tournymatch">
-                                    <span class="teama">{{ match.team_a }}</span>
+                                    <div class="teama">{{ match.team_a }}</div>
+                                    {% if match.match_url %}
+                                        <div class="matchscore"><a href="#" class="vidurl"
+                                                                   data-value="{{ match.match_url }}">{{ match.team_a_score }}
+                                            - {{ match.team_b_score }}
+                                            <em class="matchurl">Watch Match</em>
+                                        </a></div>
+                                    {% else %}
+                                        <span class="matchscore">{{ match.team_a_score }} - {{ match.team_b_score }}</span>
+                                    {% endif %}
+                                    <div class="teamb">{{ match.team_b }}</div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% for match in matches %}
+                            {% if match.group == group and not match.been_played %}
+                                <div class="tournymatch">
+                                <span class="teama">{{ match.team_a }}</span>
                                     <span class="matchscore">{{ match.team_a_score }} - {{ match.team_b_score }}</span>
                                     <span class="teamb">{{ match.team_b }}</span>
                                 </div>
@@ -44,5 +63,14 @@
 {% block extrajs %}
     <script src="{% static 'js/jquery.flexslider.js' %}"></script>
     <script src="{% static 'js/modernizr.js' %}"></script>
-    <script src="{% static 'js/scripts.js' %}"></script>
+    <script>
+        $(function () {
+            $('.tournymatch').on('click', 'a', function (evt) {
+                var thingie = $(this).data("value");
+                thingie = "//www.youtube.com/embed/O5C_Ffanpsw?list=PL_HRDHyWAr95M5NNbHSZ2A_XxjrBsXjFo";
+                $(".vid").attr("src", thingie).attr("height", 300);
+            });
+        });
+    </script>
+    {#    <script src="{% static 'js/scripts.js' %}"></script>#}
 {% endblock %}
