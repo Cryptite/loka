@@ -273,7 +273,8 @@
             // make sure..
             {#        bttn.disabled = false;#}
 
-            bttn.addEventListener('click', function () {
+            bttn.addEventListener('click', function (evt) {
+                evt.preventDefault();
                 bttn.innerHTML = "Copied to Clipboard";
                 bttn.blur();
                 setTimeout(function () {
