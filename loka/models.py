@@ -256,6 +256,12 @@ class Town(models.Model):
                 [self.latitude + .008, self.longitude - .008],
                 [self.latitude - .008, self.longitude - .008]]
 
+    def get_strength(self):
+        for alliance in Alliance.objects.all():
+            if self in alliance.towns.all():
+                return alliance.strength
+        return self.strength
+
 
 class TournyTeam(models.Model):
     name = models.CharField(max_length=40)

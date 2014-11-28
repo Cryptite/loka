@@ -5,7 +5,7 @@
 {% block extra_head %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css">
+    <link rel="stylesheet" href="{% static 'css/map.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -24,61 +24,81 @@
             <div id="map" style="width: 100%; height: 700px; position: relative;"
                  class="leaflet-container leaflet-fade-anim"
                  tabindex="0">
+
             </div>
 
             <script src="{% static 'js/leaflet.js' %}"></script>
             <script src="{% static 'js/convex_hull.js' %}"></script>
-            <script>
-                // See https://github.com/CloudMade/Leaflet/issues/980
-                L.CRS.Simple = L.Util.extend({}, L.CRS, {
-                    projection: L.Projection.LonLat,
-                    transformation: new L.Transformation(.5, .5, .5, .5)
-                });
-
-                var map = new L.Map('map', {
-                    crs: L.CRS.Simple,
-                    center: [0.0, 0.0],
-                    worldCopyJump: false
-                });
-
-                L.tileLayer('/static/images/map/{z}/{x}/{y}.jpg', {
-                    noWrap: true,
-                    minZoom: 2,
-                    maxZoom: 5
-                }).addTo(map);
-
-                map.setView([0, 0], 3);
-
-                L.marker([-.002252642, .002252642]).addTo(map).bindPopup('Spawn').openPopup();
-                L.circle([-.002252642, .002252642], 700.0, {color: 'blue', fillColor: 'blue'}).addTo(map).bindPopup('Spawn');
-
-                {% for town in towns %}
-                    {% if town.has_territories and town.latitude and town.longitude %}
-                        L.marker([{{ town.latitude }}, {{ town.longitude }}]).addTo(map).bindPopup('<h2>{{ town.name }}</h2><br/>Nodes: {{ town.num_territories }}<br/>Strength: {{ town.strength }}');
-
-                        var points = [];
-                        {% for territory in territories %}
-                            {% if territory.town == town %}
-                                points.push([{{ territory.latitude }}, {{ territory.longitude }}]);
-                                {#                        L.circle([{{ territory.latitude }}, {{ territory.longitude }}], 100, {fillOpacity: 1}).addTo(map);#}
-                            {% endif %}
-
-                            points.push([{{ town.latitude }}, {{ town.longitude }}]);
-                            {% for padded in town.get_padded %}
-                                points.push({{ padded }});
-                            {% endfor %}
-                        {% endfor %}
-
-                        hullPoints = getHull(points, 3);
-
-                        {% if town.has_territory_conflicted %}
-                            L.polygon(hullPoints, { color: 'red', fillColor: 'red', fillOpacity: 0.5, smoothFactor: 1}).addTo(map).bindPopup('{{ town.name }} Territory (Under Attack)');
-                        {% else %}
-                            L.polygon(hullPoints, { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.5, smoothFactor: 1}).addTo(map).bindPopup('{{ town.name }} Territory');
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            </script>
         </div>
     </section>
+{% endblock %}
+
+{% block extrajs %}
+    <script>
+        $.ajax({
+            url: "http://loka.minecraftarium.com:3000/territories/",
+            type: "GET",
+            contentType: "application/json"
+        }).done(function (msg) {
+
+            L.CRS.Simple = L.Util.extend({}, L.CRS, {
+                projection: L.Projection.LonLat,
+                transformation: new L.Transformation(.5, .5, .5, .5)
+            });
+
+            var map = new L.Map('map', {
+                crs: L.CRS.Simple,
+                center: [0.0, 0.0],
+                worldCopyJump: false
+            });
+
+            L.tileLayer('/static/images/map/{z}/{x}/{y}.jpg', {
+                noWrap: true,
+                minZoom: 2,
+                maxZoom: 5
+            }).addTo(map);
+
+            map.setView([0, 0], 3);
+
+            L.marker([-.002252642, .002252642]).addTo(map).bindPopup('Spawn').openPopup();
+            L.circle([-.002252642, .002252642], 700.0, {color: 'blue', fillColor: 'blue'}).addTo(map).bindPopup('Spawn');
+
+            var townHomes = {};
+            {% for town in towns %}
+                {% if town.latitude and town.longitude %}
+                    townHomes['{{ town.name }}'] = ['{{ town.longitude }}', '{{ town.latitude }}'];
+                {% endif %}
+            {% endfor %}
+
+            for (var town in msg) {
+                if (town == undefined) continue;
+
+                var points = [];
+                var territoryPopupMsg = town + ' Territory (' + msg[town].length + ' nodes)';
+
+                var townConflicted = false;
+                for (var node in msg[town]) {
+                    var newNode = msg[town][node];
+                    points.push([newNode.latitude, newNode.longitude]);
+                    if (newNode.conflicted) {
+                        townConflicted = true;
+                        L.circle([newNode.latitude, newNode.longitude], 400, {fillOpacity: 1, color: 'red'}).addTo(map);
+                    } else {
+                        L.circle([newNode.latitude, newNode.longitude], 100, {fillOpacity: 1}).addTo(map);
+                    }
+                }
+
+                if (townConflicted) {
+                    L.polygon(getHull(points, 3), { color: '#935b42', fillColor: '#C9793F', fillOpacity: 0.8, smoothFactor: 1}).addTo(map).bindPopup(territoryPopupMsg);
+                } else {
+                    L.polygon(getHull(points, 3), { color: 'yellow', fillColor: 'yellow', fillOpacity: 0.4, smoothFactor: 1}).addTo(map).bindPopup(territoryPopupMsg);
+                }
+
+                if (msg[town].length > 0 && townHomes[town] != undefined) {
+                    var townStr = "<h2>" + town + "<br/><h3>Nodes: " + msg[town].length + "</h3></h2>";
+                    L.marker([townHomes[town][1], townHomes[town][0]]).addTo(map).bindPopup(townStr);
+                }
+            }
+        });
+    </script>
 {% endblock %}
