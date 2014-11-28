@@ -23,6 +23,9 @@ var state = [
 var totalPoints = 0;
 var buttonClasses = ["unavailable", "available", "full"];
 var rankClasses = ["num-unavailable", "num-available", "num-full"];
+var topLevelTalent = -1;
+var topLevelTalentTree = -1;
+var topLevelTalentIndices = [8, 9];
 
 function drawCalculator() {
     for (var tree = 0; tree < 3; tree++)
@@ -149,6 +152,7 @@ function drawButton(tree, index) {
                         // Left click
                         if (isValidState(tree, index, rank, +1)) {
                             setState(tree, index, rank, +1);
+                            console.log(index);
                         }
                         break;
                     case 3:
@@ -161,14 +165,34 @@ function drawButton(tree, index) {
             })
             .data("update", function () {
                 rank = state[tree][index] || 0;
+
+//                console.log ("state: t: " + tree + " i: " + index + " = " + state[tree][index]);
+                if (rank > 0) {
+                    if (topLevelTalentIndices.indexOf(index) > -1) {
+                        topLevelTalent = index;
+                        topLevelTalentTree = tree;
+                    }
+                } else if (topLevelTalent == index && topLevelTalentTree == tree && rank == 0) {
+                    topLevelTalent = -1;
+                    topLevelTalentTree = -1;
+                }
+
                 if (rank == data[tree][index].ranks) {
                     status = "full";
                 } else {
                     // check if available
-                    if (masteryPointReq(tree, index) <= treePoints(tree) && masteryParentReq(tree, index))
-                        status = "available";
-                    else
+                    if (masteryPointReq(tree, index) <= treePoints(tree)
+                        && masteryParentReq(tree, index)) {
+
+                        //Check if 5th tier and available
+                        if (topLevelTalentIndices.indexOf(index) > -1) {
+                            status = getTopLevelStatus(tree, index);
+                        } else {
+                            status = "available";
+                        }
+                    } else {
                         status = "unavailable";
+                    }
 
                     // check if points spent
                     if (totalPoints >= MAX_POINTS)
@@ -176,11 +200,8 @@ function drawButton(tree, index) {
                             status = "available";
                         else
                             status = "unavailable";
-
-                    //Check if 5th tier talent
-//                    if ()
-//                    getOtherTopLevelTalentStatus(tree, index);
                 }
+
                 // change status class
                 if (!$(this).hasClass(status)) {
                     $(this)
@@ -211,19 +232,23 @@ function drawButton(tree, index) {
                 // force tooltip redraw
                 if ($(this).data("hover"))
                     $(this).mouseover();
-            })
+            }
+        )
     );
 }
 
-function getOtherTopLevelTalentStatus(tree, index) {
-    if (index == 9) {
-        console.log("Tree: " + tree + ", index: " + index);
-        var mastery = data[tree][10].index;
-        console.log("Mastery for 9 is " + mastery)
+function getTopLevelStatus(tree, index) {
+    if (index == 8) {
+        var rank = state[tree][9] || 0;
+        if (rank > 0) return "unavailable";
+        return "available";
+    } else if (index == 9) {
+        var rank2 = state[tree][8] || 0;
+        if (rank2 > 0) return "unavailable";
+        return "available";
     }
-    if (index == 10) {
-        var mastery = data[tree][9];
-    }
+
+    return "available";
 }
 
 function customTooltip(tooltip, tooltipText) {
@@ -393,6 +418,10 @@ function isValidState(tree, index, rank, mod) {
             if (i != index)
                 if (state[tree][i] > 0 && data[tree][i].parent == index)
                     return false;
+    }
+
+    if (topLevelTalentIndices.indexOf(index) > -1) {
+        if (topLevelTalent > 0 && topLevelTalent != index) return false;
     }
 
     return true;

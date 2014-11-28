@@ -342,6 +342,22 @@
                     '<a href="/tourny" class="guide-btn pvp">Sign up Now!</a>' +
                     '</div>';
 
+            var offlineHTMLVid2 = '<video autoplay loop poster="/static/images/hero.jpg" class="hero-video">' +
+                    '<source src="/static/images/tournyloop.webm" type="video/webm">' +
+                    '</video>' +
+                    '<div class="video-title">' +
+                    '<h1 class="animated fadeInDown heroTitle">Rumble in the Valley</h1>' +
+                    '<ul class="countdown">' +
+                    '<li><span class="days">00</span><p class="days_ref">days</p></li>' +
+                    '<li class="seperator">.</li>' +
+                    '<li><span class="hours">00</span><p class="hours_ref">hours</p></li>' +
+                    '<li class="seperator">:</li>' +
+                    '<li><span class="minutes">00</span><p class="minutes_ref">minutes</p></li>' +
+                    '<li class="seperator">:</li>' +
+                    '<li><span class="seconds">00</span><p class="seconds_ref">seconds</p></li></ul>' +
+                    '<a href="/tourny" class="guide-btn pvp">Sign up Now!</a>' +
+                    '</div>';
+
             $(elementSelector).html(loadingHTML)
 
             $.getJSON('https://api.twitch.tv/kraken/streams/lokaminecraft?client_id=5j0r5b7qb7kro03fvka3o8kbq262wwm&callback=?',

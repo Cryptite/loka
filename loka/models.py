@@ -340,7 +340,7 @@ class Territory(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     conflicted = models.BooleanField(default=False)
-    # neutral = models.BooleanField(default=False)
+    neutral = models.BooleanField(default=False)
     town = models.ForeignKey(Town)
 
     def get_padded(self):
