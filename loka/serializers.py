@@ -282,7 +282,7 @@ class TerritorySerializer(serializers.HyperlinkedModelSerializer):
     latitude = serializers.FloatField()
     longitude = serializers.FloatField()
     conflicted = serializers.BooleanField(default=False)
-    neutral = serializers.BooleanField(default=False)
+    # neutral = serializers.BooleanField(default=False)
     town = serializers.CharField(max_length=50)
 
     def restore_object(self, attrs, instance=None):
@@ -301,7 +301,7 @@ class TerritorySerializer(serializers.HyperlinkedModelSerializer):
             instance.latitude = attrs.get('latitude')
             instance.longitude = attrs.get('longitude')
             instance.conflicted = attrs.get('conflicted')
-            instance.neutral = attrs.get('neutral')
+            # instance.neutral = attrs.get('neutral')
             return instance
 
         town_name = attrs.get("town")
@@ -313,7 +313,7 @@ class TerritorySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Territory
-        fields = ('name', "latitude", "longitude", "conflicted", "neutral", "town")
+        fields = ('name', "latitude", "longitude", "conflicted", "town")
         lookup_field = "name"
 
 
