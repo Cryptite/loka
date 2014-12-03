@@ -80,11 +80,12 @@
                 for (var node in msg[town]) {
                     var newNode = msg[town][node];
                     points.push([newNode.latitude, newNode.longitude]);
-                    if (newNode.conflicted) townConflicted = true;
-                    {#                        L.circle([newNode.latitude, newNode.longitude], 400, {fillOpacity: 1, color: 'red'}).addTo(map);#}
-                    {#                    } else {#}
-                    {#                        L.circle([newNode.latitude, newNode.longitude], 100, {fillOpacity: 1}).addTo(map);#}
-                    {#                    }#}
+                    if (newNode.conflicted) {
+                        townConflicted = true;
+                        L.circle([newNode.latitude, newNode.longitude], 400, {fillOpacity: 1, color: 'red'}).addTo(map);
+                    } else {
+                        L.circle([newNode.latitude, newNode.longitude], 100, {fillOpacity: 1}).addTo(map);
+                    }
                 }
 
                 if (townConflicted) {
